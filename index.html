@@ -1,6 +1,164 @@
-<!DOCTYPE html>
-<html>
-<body>
-  <h1>Recipe book</h1>
-</body>
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>PantryPilot — Weekly Cooking Planner</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="page">
+      <header class="hero">
+        <div>
+          <p class="eyebrow">PantryPilot</p>
+          <h1 data-i18n="hero_title">Weekly recipe planner</h1>
+          <p class="subhead" data-i18n="hero_subhead">
+            Choose recipes, build the shopping list, and cook.
+          </p>
+          <div class="hero-actions">
+            <button class="primary" id="jump-planner" data-i18n="plan_week">Plan the week</button>
+            <button class="ghost" id="jump-cook" data-i18n="start_cooking">Start cooking</button>
+          </div>
+        </div>
+        <div class="hero-card">
+          <div class="hero-week">
+            <label>
+              <span data-i18n="top_week">Week</span>
+              <div class="week-picker">
+                <button type="button" class="week-trigger" id="top-week-trigger"></button>
+                <input type="week" id="top-week-picker" class="week-input" />
+                <div class="week-popover" id="top-week-popover" aria-hidden="true"></div>
+              </div>
+            </label>
+            <div class="week-label" id="top-week-label"></div>
+          </div>
+          <div class="hero-count" id="hero-count"></div>
+          <div class="hero-cook-week" id="hero-cook-week"></div>
+        </div>
+        <div class="language-switch">
+          <label>
+            <span data-i18n="language">Language</span>
+            <select id="language-select">
+              <option value="en">English</option>
+              <option value="fr">Français</option>
+            </select>
+          </label>
+        </div>
+      </header>
+
+      <section class="layout" id="planner">
+        <div class="panel">
+          <div class="panel-header">
+            <h2 data-i18n="recipe_library">Recipe Library</h2>
+            <p data-i18n="recipe_library_sub">Tap a recipe to add it to your picks. Scroll inside the list to keep the rest of the page visible.</p>
+          </div>
+          <div class="library-filters">
+            <input type="search" id="recipe-search" data-i18n-placeholder="search_placeholder" placeholder="Search recipes" />
+            <select id="filter-utensil">
+              <option value="all" data-i18n="filter_all">All</option>
+              <option value="thermomix" data-i18n="utensil_thermomix">Thermomix</option>
+              <option value="oven" data-i18n="utensil_oven">Oven</option>
+              <option value="airfryer" data-i18n="utensil_airfryer">Airfryer</option>
+              <option value="pan" data-i18n="utensil_pan">Fry pan</option>
+              <option value="no-cook" data-i18n="utensil_nocook">No-cook</option>
+              <option value="multi" data-i18n="utensil_multi">Multi</option>
+            </select>
+            <select id="filter-protein">
+              <option value="all" data-i18n="filter_all">All</option>
+              <option value="chicken" data-i18n="protein_chicken">Chicken</option>
+              <option value="beef" data-i18n="protein_beef">Beef</option>
+              <option value="pork" data-i18n="protein_pork">Pork</option>
+              <option value="fish" data-i18n="protein_fish">Fish</option>
+              <option value="seafood" data-i18n="protein_seafood">Seafood</option>
+              <option value="vegetarian" data-i18n="protein_vegetarian">Vegetarian</option>
+            </select>
+            <select id="filter-meal">
+              <option value="all" data-i18n="filter_all">All</option>
+              <option value="main" data-i18n="meal_main">Main</option>
+              <option value="soup" data-i18n="meal_soup">Soup</option>
+              <option value="salad" data-i18n="meal_salad">Salad</option>
+              <option value="bake" data-i18n="meal_bake">Bake</option>
+            </select>
+          </div>
+          <div class="recipe-grid" id="recipe-grid"></div>
+        </div>
+
+        <div class="panel">
+          <div class="panel-header">
+            <h2 data-i18n="recipe_picker">Recipe Picker</h2>
+            <p data-i18n="recipe_picker_sub">Select 3-6 recipes for the week. No day-by-day planning required.</p>
+          </div>
+          <div class="week-controls">
+            <label>
+              <span data-i18n="week_starting">Week starting</span>
+              <div class="week-picker">
+                <button type="button" class="week-trigger" id="week-trigger"></button>
+                <input type="week" id="week-picker" class="week-input" />
+                <div class="week-popover" id="week-popover" aria-hidden="true"></div>
+              </div>
+            </label>
+            <div class="week-label" id="week-label"></div>
+          </div>
+          <div class="pick-list" id="pick-list"></div>
+        </div>
+      </section>
+
+      <section class="layout">
+        <div class="panel">
+          <div class="panel-header">
+            <h2 data-i18n="shopping_list">Auto Shopping List</h2>
+            <p data-i18n="shopping_list_sub">Aggregated ingredients from your planned recipes. Check items as you shop.</p>
+          </div>
+          <label class="hide-checked">
+            <input type="checkbox" id="hide-checked" />
+            <span data-i18n="hide_checked">Hide checked items</span>
+          </label>
+          <div class="shopping-list" id="shopping-list"></div>
+          <div class="recent-weeks" id="recent-weeks"></div>
+          <div class="list-actions">
+            <a class="primary link-btn" id="woolworths-link" href="https://www.woolworths.com.au/" target="_blank" rel="noopener noreferrer">
+              <span data-i18n="order_woolworths">Order on Woolworths</span>
+            </a>
+            <button class="ghost" id="clear-checks" data-i18n="clear_checks">Clear checks</button>
+            <button class="ghost" id="clear-plan" data-i18n="clear_plan">Clear plan</button>
+          </div>
+        </div>
+      </section>
+
+      <section class="layout cook-section" id="cook">
+        <div class="panel full-width">
+          <div class="panel-header">
+            <h2 data-i18n="cook_mode">Cook Mode</h2>
+            <p data-i18n="cook_mode_sub">Select a planned recipe to follow the steps.</p>
+          </div>
+          <div class="cook-controls">
+            <label class="cook-week">
+              <span data-i18n="cook_week">Week to cook</span>
+              <div class="week-picker">
+                <button type="button" class="week-trigger" id="cook-week-trigger"></button>
+                <input type="week" id="cook-week-picker" class="week-input" />
+                <div class="week-popover" id="cook-week-popover" aria-hidden="true"></div>
+              </div>
+            </label>
+            <div class="week-label" id="cook-week-label"></div>
+            <button class="ghost" id="cook-sync-week" data-i18n="cook_sync_week">Sync to plan week</button>
+            <select id="cook-select"></select>
+            <button class="primary" id="start-cook" data-i18n="load_instructions">Load instructions</button>
+          </div>
+          <div class="cook-card" id="cook-card">
+            <div class="empty-state">
+              <h3 data-i18n="ready_title">Ready when you are</h3>
+              <p data-i18n="ready_sub">Pick a recipe from your plan to start cooking.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <footer class="footer">
+        <p data-i18n="tip_text">Tip: You can edit servings in cook mode and the ingredient list will update.</p>
+      </footer>
+    </div>
+
+    <script src="app.js"></script>
+  </body>
 </html>
