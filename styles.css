@@ -155,25 +155,6 @@ select {
   color: var(--ink);
 }
 
-.hero-cook-week {
-  margin-top: 6px;
-  color: var(--slate);
-  font-size: 0.9rem;
-}
-
-.hide-checked {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  margin-bottom: 10px;
-  font-size: 0.9rem;
-  color: var(--slate);
-}
-
-.hide-checked input {
-  transform: scale(1.1);
-}
-
 .mini-grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
@@ -367,23 +348,6 @@ select {
   align-items: center;
 }
 
-.pick-item-highlight {
-  animation: pickPulse 0.9s ease;
-  border: 1px solid rgba(78, 141, 124, 0.4);
-}
-
-@keyframes pickPulse {
-  0% {
-    box-shadow: 0 0 0 0 rgba(78, 141, 124, 0.35);
-  }
-  70% {
-    box-shadow: 0 0 0 10px rgba(78, 141, 124, 0);
-  }
-  100% {
-    box-shadow: 0 0 0 0 rgba(78, 141, 124, 0);
-  }
-}
-
 .pick-item strong {
   display: block;
 }
@@ -416,7 +380,7 @@ select {
 
 .library-filters {
   display: grid;
-  grid-template-columns: 1.4fr 1fr 1fr 1fr;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
   gap: 10px;
   margin-bottom: 12px;
 }

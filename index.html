@@ -15,14 +15,19 @@
           <p class="subhead" data-i18n="hero_subhead">
             Choose recipes, build the shopping list, and cook.
           </p>
+          <div class="hero-week">
+            <label>
+              <span data-i18n="week_starting">Week starting</span>
+              <input type="week" id="top-week-picker" />
+            </label>
+            <div class="week-label" id="top-week-label"></div>
+          </div>
           <div class="hero-actions">
             <button class="primary" id="jump-planner" data-i18n="plan_week">Plan the week</button>
             <button class="ghost" id="jump-cook" data-i18n="start_cooking">Start cooking</button>
           </div>
         </div>
-        <div class="hero-card">
-          <div class="hero-count" id="hero-count"></div>
-        </div>
+        <div class="hero-count" id="hero-count"></div>
         <div class="language-switch">
           <label>
             <span data-i18n="language">Language</span>
@@ -77,10 +82,6 @@
             <p data-i18n="recipe_picker_sub">Select 3-6 recipes for the week. No day-by-day planning required.</p>
           </div>
           <div class="week-controls">
-            <label>
-              <span data-i18n="week_starting">Week starting</span>
-              <input type="week" id="week-picker" />
-            </label>
             <div class="week-label" id="week-label"></div>
           </div>
           <div class="pick-list" id="pick-list"></div>
@@ -93,10 +94,6 @@
             <h2 data-i18n="shopping_list">Auto Shopping List</h2>
             <p data-i18n="shopping_list_sub">Aggregated ingredients from your planned recipes. Check items as you shop.</p>
           </div>
-          <label class="hide-checked">
-            <input type="checkbox" id="hide-checked" />
-            <span data-i18n="hide_checked">Hide checked items</span>
-          </label>
           <div class="shopping-list" id="shopping-list"></div>
           <div class="recent-weeks" id="recent-weeks"></div>
           <div class="list-actions">
@@ -116,12 +113,7 @@
             <p data-i18n="cook_mode_sub">Select a planned recipe to follow the steps.</p>
           </div>
           <div class="cook-controls">
-            <label class="cook-week">
-              <span data-i18n="cook_week">Week to cook</span>
-              <input type="week" id="cook-week-picker" />
-            </label>
             <div class="week-label" id="cook-week-label"></div>
-            <button class="ghost" id="cook-sync-week" data-i18n="cook_sync_week">Sync to plan week</button>
             <select id="cook-select"></select>
             <button class="primary" id="start-cook" data-i18n="load_instructions">Load instructions</button>
           </div>

@@ -1003,9 +1003,34 @@ const recipes = [
 
 
 
-const storedPicksByWeek = JSON.parse(localStorage.getItem("pantryPicksByWeek") || "{}");
-const storedChecksByWeek = JSON.parse(localStorage.getItem("pantryChecksByWeek") || "{}");
-const storedServingsByWeek = JSON.parse(localStorage.getItem("pantryServingsByWeek") || "{}");
+function safeGetItem(key) {
+  try {
+    return localStorage.getItem(key);
+  } catch (error) {
+    return null;
+  }
+}
+
+function safeSetItem(key, value) {
+  try {
+    localStorage.setItem(key, value);
+  } catch (error) {
+    // Ignore storage errors for file://
+  }
+}
+
+function safeParseStorage(key, fallback) {
+  try {
+    const raw = safeGetItem(key);
+    return raw ? JSON.parse(raw) : fallback;
+  } catch (error) {
+    return fallback;
+  }
+}
+
+const storedPicksByWeek = safeParseStorage("pantryPicksByWeek", {});
+const storedChecksByWeek = safeParseStorage("pantryChecksByWeek", {});
+const storedServingsByWeek = safeParseStorage("pantryServingsByWeek", {});
 let selectedRecipesByWeek = { ...storedPicksByWeek };
 let checkedItemsByWeek = { ...storedChecksByWeek };
 let selectedServingsByWeek = { ...storedServingsByWeek };
@@ -1013,11 +1038,10 @@ let selectedRecipes = [];
 let checkedItems = {};
 let currentWeekKey = "";
 let cookWeekKey = "";
-let currentLanguage = localStorage.getItem("pantryLanguage") || "en";
+let currentLanguage = safeGetItem("pantryLanguage") || "en";
 let selectedServings = {};
 let currentCookRecipeId = "";
 let lastAddedRecipeId = "";
-let hideCheckedItems = JSON.parse(localStorage.getItem("pantryHideChecked") || "false");
 
 const pickList = document.getElementById("pick-list");
 const recipeGrid = document.getElementById("recipe-grid");
@@ -1025,23 +1049,12 @@ const shoppingList = document.getElementById("shopping-list");
 const cookSelect = document.getElementById("cook-select");
 const cookCard = document.getElementById("cook-card");
 const miniGrid = document.getElementById("mini-grid");
-const weekPicker = document.getElementById("week-picker");
 const weekLabel = document.getElementById("week-label");
 const recentWeeks = document.getElementById("recent-weeks");
-const cookWeekPicker = document.getElementById("cook-week-picker");
 const cookWeekLabel = document.getElementById("cook-week-label");
-const weekTrigger = document.getElementById("week-trigger");
-const weekPopover = document.getElementById("week-popover");
-const cookWeekTrigger = document.getElementById("cook-week-trigger");
-const cookWeekPopover = document.getElementById("cook-week-popover");
 const topWeekPicker = document.getElementById("top-week-picker");
-const topWeekTrigger = document.getElementById("top-week-trigger");
-const topWeekPopover = document.getElementById("top-week-popover");
 const topWeekLabel = document.getElementById("top-week-label");
 const heroCount = document.getElementById("hero-count");
-const cookSyncWeek = document.getElementById("cook-sync-week");
-const heroCookWeek = document.getElementById("hero-cook-week");
-const hideCheckedToggle = document.getElementById("hide-checked");
 const recipeSearch = document.getElementById("recipe-search");
 const filterUtensil = document.getElementById("filter-utensil");
 const filterProtein = document.getElementById("filter-protein");
@@ -1067,8 +1080,6 @@ const translations = {
     top_week: "Week",
     selected_count: (count) => `${count} recipe${count === 1 ? "" : "s"} selected`,
     cook_sync_week: "Sync to plan week",
-    hide_checked: "Hide checked items",
-    top_cook_week: "Cook week:",
     week_select: "Select week",
     week_clear: "Clear",
     week_this: "This week",
@@ -1080,7 +1091,6 @@ const translations = {
     meal_bake: "Bake",
     time_total: "Total",
     time_cook: "Cook",
-    time_prep: "Prep",
     recipe_library: "Recipe Library",
     recipe_library_sub:
       "Tap a recipe to add it to your picks. Scroll inside the list to keep the rest of the page visible.",
@@ -1143,8 +1153,6 @@ const translations = {
     top_week: "Semaine",
     selected_count: (count) => `${count} recette${count === 1 ? "" : "s"} sélectionnée${count === 1 ? "" : "s"}`,
     cook_sync_week: "Synchroniser avec la semaine planifiee",
-    hide_checked: "Masquer les elements coches",
-    top_cook_week: "Semaine cuisine:",
     week_select: "Choisir la semaine",
     week_clear: "Effacer",
     week_this: "Cette semaine",
@@ -1156,7 +1164,6 @@ const translations = {
     meal_bake: "Gratin",
     time_total: "Total",
     time_cook: "Cuisson",
-    time_prep: "Preparation",
     recipe_library: "Bibliothèque de recettes",
     recipe_library_sub:
       "Touchez une recette pour l'ajouter. Faites défiler la liste pour garder le reste visible.",
@@ -1351,21 +1358,25 @@ function getRecipeSteps(recipe) {
 const jumpPlanner = document.getElementById("jump-planner");
 const jumpCook = document.getElementById("jump-cook");
 
-jumpPlanner.addEventListener("click", () => {
-  document.getElementById("planner").scrollIntoView({ behavior: "smooth" });
-});
+if (jumpPlanner) {
+  jumpPlanner.addEventListener("click", () => {
+    document.getElementById("planner").scrollIntoView({ behavior: "smooth" });
+  });
+}
 
-jumpCook.addEventListener("click", () => {
-  document.getElementById("cook").scrollIntoView({ behavior: "smooth" });
-});
+if (jumpCook) {
+  jumpCook.addEventListener("click", () => {
+    document.getElementById("cook").scrollIntoView({ behavior: "smooth" });
+  });
+}
 
 function saveState() {
   selectedRecipesByWeek[currentWeekKey] = [...selectedRecipes];
   checkedItemsByWeek[currentWeekKey] = { ...checkedItems };
   selectedServingsByWeek[currentWeekKey] = { ...selectedServings };
-  localStorage.setItem("pantryPicksByWeek", JSON.stringify(selectedRecipesByWeek));
-  localStorage.setItem("pantryChecksByWeek", JSON.stringify(checkedItemsByWeek));
-  localStorage.setItem("pantryServingsByWeek", JSON.stringify(selectedServingsByWeek));
+  safeSetItem("pantryPicksByWeek", JSON.stringify(selectedRecipesByWeek));
+  safeSetItem("pantryChecksByWeek", JSON.stringify(checkedItemsByWeek));
+  safeSetItem("pantryServingsByWeek", JSON.stringify(selectedServingsByWeek));
 }
 
 function getRecipeById(id) {
@@ -1579,8 +1590,8 @@ function renderRecentWeeks() {
     button.className = "ghost";
     button.textContent = t("view");
     button.addEventListener("click", () => {
-      weekPicker.value = weekKey;
-      setWeekFromPicker();
+      if (topWeekPicker) topWeekPicker.value = weekKey;
+      setWeekFromTopPicker();
     });
 
     row.appendChild(button);
@@ -1622,8 +1633,7 @@ function renderRecipeGrid() {
     const protein = getProteinLabel(recipe);
     const lastSelected = getLastSelectedLabel(recipe.id);
     const time = computeTimeBreakdown(recipe);
-    const prep = Math.max(0, time.total - time.cook);
-    line.textContent = `${t("time_total")} ${time.total} min · ${t("time_cook")} ${time.cook} min · ${t("time_prep")} ${prep} min · ${recipe.servings} ${t("servings_label")} · ${utensil} · ${protein} · ${lastSelected}`;
+    line.textContent = `${t("time_total")} ${time.total} min · ${t("time_cook")} ${time.cook} min · ${recipe.servings} ${t("servings_label")} · ${utensil} · ${protein} · ${lastSelected}`;
     info.append(title, line);
 
     const actionWrap = document.createElement("div");
@@ -1637,11 +1647,9 @@ function renderRecipeGrid() {
       if (selectedRecipes.includes(recipe.id)) {
         selectedRecipes = selectedRecipes.filter((id) => id !== recipe.id);
         delete selectedServings[recipe.id];
-        if (lastAddedRecipeId === recipe.id) lastAddedRecipeId = "";
       } else {
         selectedRecipes = [...selectedRecipes, recipe.id];
         if (!selectedServings[recipe.id]) selectedServings[recipe.id] = recipe.servings;
-        lastAddedRecipeId = recipe.id;
       }
       saveState();
       refreshAll();
@@ -1967,6 +1975,7 @@ function renderCookEmpty() {
 }
 
 function renderMiniGrid() {
+  if (!miniGrid) return;
   miniGrid.innerHTML = "";
   const weekLabelText = currentWeekKey ? formatWeekLabel(currentWeekKey) : t("summary_week");
   const recipeCount = selectedRecipes.length;
@@ -2164,30 +2173,15 @@ function setupWeekPicker({ input, trigger, popover, labelNode, onChange }) {
   updateTrigger();
 }
 
-function updateWeekTriggerText() {
-  if (weekTrigger) {
-    weekTrigger.textContent = weekPicker && weekPicker.value ? formatWeekLabel(weekPicker.value) : t("week_select");
-  }
-  if (cookWeekTrigger) {
-    cookWeekTrigger.textContent = cookWeekPicker && cookWeekPicker.value ? formatWeekLabel(cookWeekPicker.value) : t("week_select");
-  }
-  if (topWeekTrigger) {
-    topWeekTrigger.textContent = topWeekPicker && topWeekPicker.value ? formatWeekLabel(topWeekPicker.value) : t("week_select");
-  }
-}
-
-function setWeekFromPicker() {
-  currentWeekKey = weekPicker.value || getCurrentWeekKey();
+function setWeekFromTopPicker() {
+  currentWeekKey = (topWeekPicker && topWeekPicker.value) || getCurrentWeekKey();
+  cookWeekKey = currentWeekKey;
   selectedRecipes = [...(selectedRecipesByWeek[currentWeekKey] || [])];
   checkedItems = { ...(checkedItemsByWeek[currentWeekKey] || {}) };
   selectedServings = { ...(selectedServingsByWeek[currentWeekKey] || {}) };
-  weekLabel.textContent = formatWeekLabel(currentWeekKey);
-  refreshAll();
-}
-
-function setCookWeekFromPicker() {
-  cookWeekKey = cookWeekPicker.value || getCurrentWeekKey();
+  if (weekLabel) weekLabel.textContent = formatWeekLabel(currentWeekKey);
   if (cookWeekLabel) cookWeekLabel.textContent = formatWeekLabel(cookWeekKey);
+  if (topWeekLabel) topWeekLabel.textContent = formatWeekLabel(currentWeekKey);
   renderCookSelect();
   const cookIds = selectedRecipesByWeek[cookWeekKey] || [];
   if (!currentCookRecipeId || !cookIds.includes(currentCookRecipeId)) {
@@ -2195,13 +2189,13 @@ function setCookWeekFromPicker() {
     if (cookSelect) cookSelect.value = "";
     renderCookEmpty();
   }
+  refreshAll();
 }
 
 function refreshAll() {
   applyTranslations();
-  updateWeekTriggerText();
-  if (topWeekLabel && topWeekPicker) {
-    topWeekLabel.textContent = topWeekPicker.value ? formatWeekLabel(topWeekPicker.value) : "";
+  if (topWeekLabel) {
+    topWeekLabel.textContent = currentWeekKey ? formatWeekLabel(currentWeekKey) : "";
   }
   if (currentWeekKey) {
     weekLabel.textContent = formatWeekLabel(currentWeekKey);
@@ -2225,46 +2219,10 @@ function refreshAll() {
 
 refreshAll();
 
-weekPicker.value = getCurrentWeekKey();
-setWeekFromPicker();
-if (cookWeekPicker) {
-  cookWeekPicker.value = getCurrentWeekKey();
-  setCookWeekFromPicker();
-}
-
 if (topWeekPicker) {
   topWeekPicker.value = getCurrentWeekKey();
 }
-
-setupWeekPicker({
-  input: weekPicker,
-  trigger: weekTrigger,
-  popover: weekPopover,
-  labelNode: weekLabel,
-  onChange: setWeekFromPicker,
-});
-
-setupWeekPicker({
-  input: cookWeekPicker,
-  trigger: cookWeekTrigger,
-  popover: cookWeekPopover,
-  labelNode: cookWeekLabel,
-  onChange: setCookWeekFromPicker,
-});
-
-setupWeekPicker({
-  input: topWeekPicker,
-  trigger: topWeekTrigger,
-  popover: topWeekPopover,
-  labelNode: topWeekLabel,
-  onChange: () => {
-    if (!topWeekPicker) return;
-    weekPicker.value = topWeekPicker.value;
-    cookWeekPicker.value = topWeekPicker.value;
-    setWeekFromPicker();
-    setCookWeekFromPicker();
-  },
-});
+setWeekFromTopPicker();
 
 if (recipeSearch) {
   recipeSearch.addEventListener("input", () => renderRecipeGrid());
@@ -2280,70 +2238,66 @@ if (filterMeal) {
 }
 
 const startCook = document.getElementById("start-cook");
-startCook.addEventListener("click", () => {
-  const selected = cookSelect.value;
-  if (!selected) {
-    renderCookEmpty();
-    return;
-  }
-  currentCookRecipeId = selected;
-  renderCookCard(selected);
-});
+if (startCook) {
+  startCook.addEventListener("click", () => {
+    const selected = cookSelect.value;
+    if (!selected) {
+      renderCookEmpty();
+      return;
+    }
+    currentCookRecipeId = selected;
+    renderCookCard(selected);
+  });
+}
 
-cookSelect.addEventListener("change", () => {
-  const selected = cookSelect.value;
-  if (!selected) {
-    currentCookRecipeId = "";
-    renderCookEmpty();
-    return;
-  }
-  currentCookRecipeId = selected;
-  renderCookCard(selected);
-});
-
-if (cookSyncWeek) {
-  cookSyncWeek.addEventListener("click", () => {
-    if (!weekPicker || !cookWeekPicker) return;
-    cookWeekPicker.value = weekPicker.value;
-    setCookWeekFromPicker();
+if (cookSelect) {
+  cookSelect.addEventListener("change", () => {
+    const selected = cookSelect.value;
+    if (!selected) {
+      currentCookRecipeId = "";
+      renderCookEmpty();
+      return;
+    }
+    currentCookRecipeId = selected;
+    renderCookCard(selected);
   });
 }
 
 const clearChecks = document.getElementById("clear-checks");
-clearChecks.addEventListener("click", () => {
-  checkedItems = {};
-  saveState();
-  renderShoppingList();
-});
+if (clearChecks) {
+  clearChecks.addEventListener("click", () => {
+    checkedItems = {};
+    saveState();
+    renderShoppingList();
+  });
+}
 
 const clearPlan = document.getElementById("clear-plan");
-clearPlan.addEventListener("click", () => {
-  selectedRecipes = [];
-  checkedItems = {};
-  saveState();
-  refreshAll();
-  cookCard.innerHTML = `
-    <div class="empty-state">
-      <h3>${t("ready_title")}</h3>
-      <p>${t("ready_sub")}</p>
-    </div>
-  `;
-});
+if (clearPlan) {
+  clearPlan.addEventListener("click", () => {
+    selectedRecipes = [];
+    checkedItems = {};
+    saveState();
+    refreshAll();
+    cookCard.innerHTML = `
+      <div class="empty-state">
+        <h3>${t("ready_title")}</h3>
+        <p>${t("ready_sub")}</p>
+      </div>
+    `;
+  });
+}
 
-weekPicker.addEventListener("change", () => {
-  setWeekFromPicker();
-});
-
-if (cookWeekPicker) {
-  cookWeekPicker.addEventListener("change", () => {
-    setCookWeekFromPicker();
+if (topWeekPicker) {
+  topWeekPicker.addEventListener("change", () => {
+    setWeekFromTopPicker();
   });
 }
 
 if (languageSelect) {
   languageSelect.addEventListener("change", (event) => {
     currentLanguage = event.target.value;
-    localStorage.setItem("pantryLanguage", currentLanguage);
+    safeSetItem("pantryLanguage", currentLanguage);
     refreshAll();
   });
 }
