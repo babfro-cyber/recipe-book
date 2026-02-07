@@ -141,6 +141,7 @@ select {
   display: grid;
   gap: 8px;
   margin-bottom: 12px;
+  cursor: pointer;
 }
 
 .hero-week label {
@@ -148,6 +149,21 @@ select {
   gap: 6px;
   font-size: 0.9rem;
   color: var(--slate);
+  cursor: pointer;
+}
+
+.hero-week select {
+  width: 100%;
+  padding: 12px 14px;
+  border-radius: 14px;
+  border: 1px solid rgba(26, 26, 26, 0.15);
+  background: white;
+  font-size: 1rem;
+  cursor: pointer;
+}
+
+.hero-week select:hover {
+  border-color: rgba(26, 26, 26, 0.3);
 }
 
 .hero-count {
@@ -402,6 +418,105 @@ select {
   border-radius: 999px;
 }
 
+.recipe-details {
+  margin-top: 14px;
+  padding: 14px;
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.9);
+  border: 1px solid rgba(26, 26, 26, 0.08);
+  min-height: 60px;
+  display: none;
+}
+
+.recipe-details h4 {
+  margin: 0 0 8px;
+  font-size: 1rem;
+}
+
+.recipe-details .detail-meta {
+  color: var(--slate);
+  font-size: 0.85rem;
+  margin-bottom: 10px;
+}
+
+.recipe-details ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  gap: 6px;
+}
+
+.recipe-details li {
+  font-size: 0.95rem;
+}
+
+.modal {
+  position: fixed;
+  inset: 0;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+}
+
+.modal.is-open {
+  display: flex;
+}
+
+.modal-backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(20, 20, 20, 0.4);
+}
+
+.modal-card {
+  position: relative;
+  background: #fff;
+  border-radius: 18px;
+  padding: 18px;
+  width: min(520px, 92vw);
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.2);
+  z-index: 1;
+}
+
+.modal-close {
+  position: absolute;
+  top: 10px;
+  right: 12px;
+  border: none;
+  background: transparent;
+  font-size: 1.4rem;
+  cursor: pointer;
+  color: var(--ink);
+}
+
+.modal-body h4 {
+  margin: 0 0 8px;
+  font-size: 1.25rem;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.modal-body .detail-meta {
+  color: var(--slate);
+  font-size: 0.85rem;
+  margin-bottom: 10px;
+}
+
+.modal-body ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  gap: 6px;
+}
+
+.recipe-icon {
+  font-size: 1.2rem;
+}
+
 .recipe-card {
   border-radius: 16px;
   padding: 12px;
@@ -475,11 +590,29 @@ select {
 
 .shop-item input {
   transform: scale(1.2);
-  margin-left: auto;
 }
 
 .shop-item span {
   flex: 1;
+}
+
+.shop-item .woolworths-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  background: rgba(255, 107, 95, 0.18);
+  color: var(--ink);
+  text-decoration: none;
+  font-weight: 700;
+  font-size: 0.85rem;
+  margin-left: auto;
+}
+
+.shop-item .woolworths-link:hover {
+  background: rgba(255, 107, 95, 0.3);
 }
 
 .list-actions {
@@ -557,6 +690,28 @@ select {
   background: white;
 }
 
+.step-text {
+  margin-bottom: 8px;
+}
+
+.timer-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+}
+
+.timer-display {
+  font-variant-numeric: tabular-nums;
+  font-weight: 600;
+  color: var(--slate);
+}
+
+.timer-btn {
+  padding: 6px 10px;
+  font-size: 0.85rem;
+}
+
 .empty-state {
   text-align: center;
   padding: 40px 20px;
@@ -598,6 +753,17 @@ select {
 }
 
 .recipe-line {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
   font-size: 0.85rem;
   color: var(--slate);
+}
+
+.recipe-pill {
+  padding: 2px 8px;
+  border-radius: 999px;
+  background: rgba(26, 26, 26, 0.06);
+  color: var(--ink);
+  font-weight: 500;
 }

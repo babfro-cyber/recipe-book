@@ -15,10 +15,10 @@
           <p class="subhead" data-i18n="hero_subhead">
             Choose recipes, build the shopping list, and cook.
           </p>
-          <div class="hero-week">
+          <div class="hero-week" id="top-week-shell">
             <label>
               <span data-i18n="week_starting">Week starting</span>
-              <input type="week" id="top-week-picker" />
+              <select id="top-week-picker"></select>
             </label>
             <div class="week-label" id="top-week-label"></div>
           </div>
@@ -74,6 +74,7 @@
             </select>
           </div>
           <div class="recipe-grid" id="recipe-grid"></div>
+          <div class="recipe-details" id="recipe-details"></div>
         </div>
 
         <div class="panel">
@@ -131,6 +132,13 @@
       </footer>
     </div>
 
+    <div class="modal" id="recipe-modal" aria-hidden="true">
+      <div class="modal-backdrop" data-modal-close="true"></div>
+      <div class="modal-card" role="dialog" aria-modal="true" aria-labelledby="recipe-modal-title">
+        <button class="modal-close" type="button" data-modal-close="true">×</button>
+        <div class="modal-body" id="recipe-modal-body"></div>
+      </div>
+    </div>
     <script src="app.js"></script>
   </body>
 </html>

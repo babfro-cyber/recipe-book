@@ -4,33 +4,33 @@ const recipes = [
     name: "Gratin Dauphinois",
     name_fr: "Gratin Dauphinois",
     time: "85 min",
-    servings: 4,
+    servings: 6,
     tags: ["oven", "batch", "vegetarian"],
     ingredients: [
-      { item: "butter", qty: 70, unit: "g" },
-      { item: "potatoes", qty: 1, unit: "kg" },
+      { item: "butter", qty: 100, unit: "g" },
+      { item: "potatoes", qty: 1.5, unit: "kg" },
       { item: "garlic cloves", qty: 2, unit: "pcs" },
-      { item: "thickened cream", qty: 200, unit: "ml" },
-      { item: "milk", qty: 670, unit: "ml" },
-      { item: "nutmeg", qty: 0.5, unit: "tsp" },
-      { item: "salt", qty: 1, unit: "tsp" },
-      { item: "black pepper", qty: 0.5, unit: "tsp" },
+      { item: "thickened cream", qty: 300, unit: "ml" },
+      { item: "milk", qty: 1, unit: "L" },
+      { item: "nutmeg", qty: 1, unit: "pinch" },
+      { item: "salt", qty: 1, unit: "pinch" },
+      { item: "black pepper", qty: 1, unit: "pinch" },
     ],
     steps: [
-      "Peel and thinly slice potatoes. Do not rinse after slicing. (10 min)",
-      "Finely mince the garlic. (5 min)",
-      "Bring milk, garlic, salt, pepper, and nutmeg to a gentle boil. Add potatoes and simmer until just tender. (15 min)",
-      "Preheat oven to 180C and butter a baking dish. (5 min)",
-      "Drain potatoes into dish, pour over cream, and dot with butter. (5 min)",
-      "Bake until golden and bubbling. (45 min)",
+      "Peel, wash and cut the potatoes into thin slices (NB: do not wash them AFTER slicing, as the starch is needed for the right consistency).",
+      "Finely chop the garlic.",
+      "Bring the milk, garlic, salt, pepper and nutmeg to a boil in a saucepan, then add the potatoes and let cook 10 to 15 minutes, depending on firmness.",
+      "Preheat the oven to 180°C (thermostat 6) and butter a gratin dish using a sheet of paper towel.",
+      "Place the drained potatoes in the dish. Cover with cream, then dot small knobs of butter on top.",
+      "Bake for 50 minutes to 1 hour.",
     ],
     steps_fr: [
-      "Eplucher et couper les pommes de terre en fines rondelles. Ne pas rincer apres la coupe. (10 min)",
-      "Hacher finement l'ail. (5 min)",
-      "Porter le lait a frémissement avec l'ail, le sel, le poivre et la muscade. Ajouter les pommes de terre et laisser juste attendrir. (15 min)",
-      "Prechauffer le four a 180C et beurrer un plat. (5 min)",
-      "Egoutter les pommes de terre dans le plat, verser la creme et parsemer de noisettes de beurre. (5 min)",
-      "Cuire jusqu'a ce que ce soit dore et bouillonnant. (45 min)",
+      "Eplucher, laver et couper les pommes de terre en rondelles fines (NB : ne pas les laver APRES les avoir coupees, car l'amidon est necessaire a une consistance correcte).",
+      "Hacher l'ail tres finement.",
+      "Porter a ebullition dans une casserole le lait, l'ail, le sel, le poivre et la muscade puis y plonger les pommes de terre et laisser cuire 10 a 15 min, selon leur fermete.",
+      "Prechauffer le four a 180°C (thermostat 6) et beurrer un plat a gratin a l'aide d'une feuille de papier essuie-tout.",
+      "Placer les pommes de terre egouttees dans le plat. Les recouvrir de creme, puis disposer des petites noix de beurre sur le dessus.",
+      "Enfourner pour 50 min a 1 heure de cuisson.",
     ],
   },
   {
@@ -50,22 +50,20 @@ const recipes = [
       { item: "paprika", qty: 1, unit: "tsp" },
       { item: "mixed herbs", qty: 1, unit: "tbsp" },
       { item: "bay leaf", qty: 1, unit: "pcs" },
-      { item: "salt", qty: 0.5, unit: "tsp" },
-      { item: "black pepper", qty: 0.5, unit: "tsp" },
     ],
     steps: [
-      "Chop onion and garlic in Thermomix. (2 min)",
-      "Saute with olive oil. (3 min)",
-      "Add sliced capsicum; cook on reverse. (5 min)",
-      "Add tomatoes, paprika, herbs, bay leaf; simmer. (10 min)",
-      "Add chicken thighs, season, and cook on reverse/spoon. (25 min)",
+      "Chop the onion and garlic: Place in Thermomix bowl, mix 5 sec / Speed 5.",
+      "Saute: Add olive oil and cook 3 min / 120°C / Speed 1.",
+      "Cook the sliced bell peppers: Add the sliced peppers and cook 5 min / 120°C / Speed 1 / Reverse mode.",
+      "Simmer the sauce: Add tomatoes, paprika, mixed herbs, and bay leaf. Cook 10 min / 100°C / Speed 1 / Reverse mode.",
+      "Cook the chicken: Add the chicken thighs, season with salt and pepper, and cook 25 min / 100°C / Speed Spoon / Reverse mode.",
     ],
     steps_fr: [
-      "Hacher l'oignon et l'ail au Thermomix. (2 min)",
-      "Faire revenir avec l'huile d'olive. (3 min)",
-      "Ajouter les poivrons et cuire en sens inverse. (5 min)",
-      "Ajouter tomates, paprika, herbes et laurier; mijoter. (10 min)",
-      "Ajouter le poulet, assaisonner et cuire en sens inverse/vitesse cuillere. (25 min)",
+      "Hacher l'oignon et l'ail : Placer dans le bol du Thermomix, mixer 5 sec / Vitesse 5.",
+      "Sauter : Ajouter l'huile d'olive et cuire 3 min / 120°C / Vitesse 1.",
+      "Cuire les poivrons : Ajouter les poivrons et cuire 5 min / 120°C / Vitesse 1 / sens inverse.",
+      "Mijoter la sauce : Ajouter tomates, paprika, herbes melangees et feuille de laurier. Cuire 10 min / 100°C / Vitesse 1 / sens inverse.",
+      "Cuire le poulet : Ajouter les cuisses de poulet, assaisonner avec sel et poivre, et cuire 25 min / 100°C / Vitesse cuillere / sens inverse.",
     ],
   },
   {
@@ -80,33 +78,38 @@ const recipes = [
       { item: "plain flour", qty: 30, unit: "g" },
       { item: "olive oil", qty: 2.5, unit: "tbsp" },
       { item: "broccolini", qty: 1, unit: "kg" },
+      { item: "water", qty: 1, unit: "L" },
+      { item: "salt", qty: 1, unit: "tsp" },
       { item: "shallot", qty: 1, unit: "pcs" },
       { item: "chicken stock", qty: 500, unit: "ml" },
       { item: "fresh thyme", qty: 4, unit: "sprigs" },
       { item: "thickened cream", qty: 125, unit: "ml" },
       { item: "dijon mustard", qty: 2, unit: "tbsp" },
-      { item: "salt", qty: 0.5, unit: "tsp" },
-      { item: "black pepper", qty: 0.5, unit: "tsp" },
+      { item: "black pepper", qty: 1, unit: "tsp" },
     ],
     steps: [
-      "Season chicken and lightly coat in flour. (5 min)",
-      "Sear chicken in oil until golden; keep warm. (8 min)",
-      "Blanch broccolini, then saute briefly. (5 min)",
-      "Cook shallot, add stock and thyme, simmer. (5 min)",
-      "Stir in cream and mustard, simmer to thicken, return chicken and broccolini. (7 min)",
+      "Warm oven: Set your oven to 75°C (or the keep warm setting).",
+      "Season & flour chicken: Pat the chicken dry. Generously season both sides with salt & pepper. Lightly coat the chicken in flour.",
+      "Sear the chicken: Heat 2 Tbsp olive oil in a large pan over medium-high heat. Sear chicken in batches 4 minutes on one side, 2–4 minutes on the other, until golden and cooked through. Add more oil if the pan gets dry. Transfer cooked chicken to an oven-safe dish and place in the warm oven.",
+      "Blanch the broccolini: Bring a pot of salted water (salty like seawater) to a boil. Add broccolini, cover, and cook for 2 minutes. Drain and immediately transfer to a bowl of cold water if your chicken isn’t ready yet — this stops it overcooking.",
+      "Sauté broccolini: Add 1 Tbsp olive oil to the same pan over medium-high heat. Add the broccolini (it may splatter) and sauté 1 minute. Return broccolini to the warm oven with the chicken.",
+      "Make the sauce: In the same pan, add the shallot with a small splash of oil if needed. Cook 2–3 minutes, until soft. Add chicken stock and thyme. Simmer 3 minutes. Stir in cream and Dijon mustard. Simmer 5–6 minutes, until slightly thickened. Remove thyme stems and take off heat.",
+      "Serve: Either return chicken and broccolini to the sauce, or plate and spoon sauce over the top.",
     ],
     steps_fr: [
-      "Assaisonner le poulet et le fariner legerement. (5 min)",
-      "Saisir le poulet dans l'huile jusqu'a coloration; reserver au chaud. (8 min)",
-      "Blanchir le broccolini puis le faire sauter rapidement. (5 min)",
-      "Cuire l'echalote, ajouter le bouillon et le thym, laisser frémir. (5 min)",
-      "Ajouter creme et moutarde, faire epaissir, remettre poulet et broccolini. (7 min)",
+      "Chauffer le four : Reglez le four a 75°C (ou mode maintien au chaud).",
+      "Assaisonner et fariner le poulet : Secher le poulet. Assaisonner genereusement de sel et poivre. Fariner legerement.",
+      "Saisir le poulet : Chauffer 2 c. a soupe d'huile d'olive dans une grande poele a feu moyen-vif. Saisir le poulet 4 minutes d'un cote, 2–4 minutes de l'autre, jusqu'a coloration et cuisson. Ajouter un peu d'huile si besoin. Mettre le poulet cuit dans un plat allant au four et le garder au chaud.",
+      "Blanchir le broccolini : Porter une grande casserole d'eau salee a ebullition. Ajouter le broccolini, couvrir et cuire 2 minutes. Egoutter et plonger dans de l'eau froide si besoin pour stopper la cuisson.",
+      "Sauter le broccolini : Ajouter 1 c. a soupe d'huile d'olive dans la meme poele. Ajouter le broccolini (attention aux projections) et sauter 1 minute. Remettre au chaud avec le poulet.",
+      "Faire la sauce : Dans la meme poele, ajouter l'echalote avec un filet d'huile si besoin. Cuire 2–3 minutes jusqu'a ce qu'elle soit tendre. Ajouter le bouillon de poulet et le thym. Laisser mijoter 3 minutes. Ajouter la creme et la moutarde de Dijon. Laisser mijoter 5–6 minutes jusqu'a leger epaississement. Retirer les tiges de thym et retirer du feu.",
+      "Servir : Remettre le poulet et le broccolini dans la sauce ou napper a l'assiette.",
     ],
   },
   {
     id: "curry-epinards-pois-chiche",
     name: "Spinach & Chickpea Coconut Curry",
-    name_fr: "Curry d'epinards et pois chiches au lait de coco",
+    name_fr: "Curry d'epinards & pois chiche au lait de coco",
     time: "20 min",
     servings: 4,
     tags: ["pan", "vegetarian", "batch"],
@@ -117,22 +120,22 @@ const recipes = [
       { item: "coconut milk", qty: 200, unit: "ml" },
       { item: "brown onion", qty: 1, unit: "pcs" },
       { item: "garlic cloves", qty: 2, unit: "pcs" },
-      { item: "curry powder", qty: 2, unit: "tsp" },
+      { item: "curry powder", qty: 2.5, unit: "tsp" },
       { item: "turmeric", qty: 1, unit: "tsp" },
       { item: "olive oil", qty: 1, unit: "tbsp" },
-      { item: "black pepper", qty: 0.5, unit: "tsp" },
+      { item: "black pepper", qty: 1, unit: "pinch" },
     ],
     steps: [
-      "Slice onion and garlic; wash spinach. (5 min)",
-      "Heat oil, toast spices, then add onion and garlic. (5 min)",
-      "Add tomato puree, coconut milk, and chickpeas; simmer. (5 min)",
-      "Stir in spinach and cook until wilted. (5 min)",
+      "Peel and slice the onion and garlic. Wash the spinach leaves.",
+      "In a saute pan, heat the oil. Add the spices and stir for 1 minute to release the aromas. Add the onion then the garlic and saute for 2-3 minutes. Add a splash of water if needed.",
+      "Add the tomato puree, coconut milk and pepper. Bring to a boil. Add the chickpeas, reduce the heat and simmer for about 10 minutes.",
+      "Then add the spinach leaves and continue cooking for 5 minutes.",
     ],
     steps_fr: [
-      "Emincer oignon et ail; laver les epinards. (5 min)",
-      "Chauffer l'huile, torréfier les epices puis ajouter oignon et ail. (5 min)",
-      "Ajouter puree de tomate, lait de coco et pois chiches; mijoter. (5 min)",
-      "Ajouter les epinards et cuire jusqu'a ce qu'ils tombent. (5 min)",
+      "Epluchez et emincez l'oignon et les gousses d'ail. Lavez les feuilles d'epinards.",
+      "Dans une sauteuse, faites chauffer l'huile. Ajoutez les epices et remuez pendant 1 minute pour liberer tous les aromes. Incorporez l'oignon puis l'ail et faites revenir l'ensemble pendant 2-3 minutes. Versez un fond d'eau si besoin.",
+      "Incorporez la puree de tomates, le lait de coco et ajoutez le poivre. Portez l'ensemble a ebullition. Ajoutez les pois chiches, reduisez le feu et laissez mijoter environ 10 minutes.",
+      "Ajoutez ensuite les feuilles d'epinards et poursuivez la cuisson 5 minutes.",
     ],
   },
   {
@@ -145,30 +148,30 @@ const recipes = [
     ingredients: [
       { item: "chicken breast", qty: 700, unit: "g" },
       { item: "pineapple", qty: 600, unit: "g" },
-      { item: "thickened cream", qty: 3, unit: "tbsp" },
-      { item: "couscous", qty: 320, unit: "g" },
-      { item: "olive oil", qty: 1, unit: "tbsp" },
-      { item: "black pepper", qty: 0.5, unit: "tsp" },
+      { item: "creme fraiche", qty: 3, unit: "tbsp" },
+      { item: "couscous", qty: 2, unit: "glass" },
     ],
     steps: [
-      "Peel and dice pineapple. (5 min)",
-      "Saute pineapple in olive oil. (5 min)",
-      "Dice chicken and add to the pan; cook until golden. (10 min)",
-      "Prepare couscous with hot water (1.5 water to 1 couscous). (10 min)",
-      "Stir in cream, combine with couscous, and warm through. (5 min)",
+      "Peel and cut the pineapple into small pieces.",
+      "Saute the pineapple with a little olive oil in a pan.",
+      "Meanwhile, cut the chicken into small pieces.",
+      "Add the chicken to the pineapple (after about 5 minutes of cooking). Saute until the chicken is grilled and the pineapple caramelised.",
+      "Meanwhile, cook the couscous in water: 1.5 glass of water for 1 glass of couscous.",
+      "When the couscous and the chicken/pineapple mixture are cooked, add the couscous to the chicken/pineapple pan, add the creme fraiche, mix, and cook for 2 minutes.",
     ],
     steps_fr: [
-      "Eplucher et couper l'ananas en des. (5 min)",
-      "Faire revenir l'ananas avec l'huile d'olive. (5 min)",
-      "Couper le poulet en des, l'ajouter et cuire jusqu'a coloration. (10 min)",
-      "Preparer le couscous avec eau chaude (1,5 d'eau pour 1 de couscous). (10 min)",
-      "Incorporer la creme, melanger avec le couscous et rechauffer. (5 min)",
+      "Eplucher et couper en petits morceaux l'ananas.",
+      "Faire revenir l'ananas avec un peu d'huile d'olive dans une poele.",
+      "Pendant ce temps, couper le poulet en petits morceaux.",
+      "Ajouter le poulet a l'ananas (au bout de 5min de cuisson environ). Faire revenir le tout jusqu'a ce que le poulet soit grille et l'ananas caramelise.",
+      "Pendant ce temps, faire cuire le couscous dans l'eau : 1.5 verre d'eau pour 1 verre de couscous.",
+      "Lorsque la semoule et le melange poulet/ananas sont cuits, ajouter la semoule a la poele poulet/ananas, ajouter la creme fraiche, melanger et faire revenir 2 minutes.",
     ],
   },
   {
     id: "tabbouleh",
-    name: "Tabbouleh",
-    name_fr: "Taboule",
+    name: "Tabbouleh: the best recipe",
+    name_fr: "Taboule : la meilleure recette",
     time: "30 min",
     servings: 4,
     tags: ["no-cook", "salad", "vegetarian", "batch"],
@@ -181,57 +184,61 @@ const recipes = [
       { item: "lemon juice", qty: 2, unit: "pcs" },
       { item: "olive oil", qty: 5, unit: "tbsp" },
       { item: "mint", qty: 1, unit: "bunch" },
-      { item: "black pepper", qty: 0.5, unit: "tsp" },
+      { item: "black pepper", qty: 1, unit: "pinch" },
     ],
     steps: [
-      "Cook couscous in water (1.5 water to 1 couscous). (10 min)",
-      "Wash and chop vegetables finely. (10 min)",
-      "Toss with lemon juice and olive oil. (5 min)",
-      "Add chopped mint and pepper, mix well. (5 min)",
+      "Cook the couscous in water: 1.5 glass of water for 1 glass of couscous.",
+      "Wash the tomatoes and capsicum, peel the cucumber and the onions, deseed the capsicum.",
+      "Chop tomatoes, cucumber, and capsicum finely. Add everything to the couscous, drizzle with olive oil and lemon juice, mix.",
+      "Finely chop the herbs with a knife and add them to the salad, mix well. Add a pinch of pepper and adjust the seasoning if needed.",
     ],
     steps_fr: [
-      "Cuire le couscous dans l'eau (1,5 d'eau pour 1 de couscous). (10 min)",
-      "Laver et couper finement les legumes. (10 min)",
-      "Assaisonner avec le jus de citron et l'huile d'olive. (5 min)",
-      "Ajouter la menthe hachee et le poivre, bien melanger. (5 min)",
+      "Faire cuire le couscous dans l'eau : 1.5 verre d'eau pour 1 verre de couscous.",
+      "Lavez les tomates et les poivrons, epluchez le concombre et les oignons, epepinez les poivrons.",
+      "Emincez tomates, concombre et poivron finement. Ajoutez le tout au couscous, arrosez d'huile d'olive et de jus de citron, melangez.",
+      "Hachez finement les herbes au couteau et ajoutez-les a la salade, melangez bien. Ajoutez une pincee de poivre et rectifiez l'assaisonnement si c'est necessaire.",
     ],
   },
   {
     id: "quinoa-butternut-cranberries",
-    name: "Quinoa Salad with Honey-Roasted Pumpkin & Cranberries",
+    name: "Quinoa salad with honey-roasted butternut, goat cheese and cranberries",
     name_fr: "Salade de quinoa au butternut roti, chevre et cranberries",
     time: "35 min",
     servings: 4,
     tags: ["oven", "salad", "vegetarian", "batch"],
     ingredients: [
-      { item: "quinoa", qty: 170, unit: "g" },
-      { item: "butternut pumpkin", qty: 1, unit: "kg" },
-      { item: "dried cranberries", qty: 60, unit: "g" },
-      { item: "goat cheese", qty: 120, unit: "g" },
-      { item: "pepitas", qty: 60, unit: "g" },
+      { item: "quinoa", qty: 1, unit: "glass" },
+      { item: "butternut pumpkin", qty: 1, unit: "pcs" },
+      { item: "dried cranberries", qty: 1, unit: "handful" },
+      { item: "goat cheese", qty: 6, unit: "cubes" },
+      { item: "salt", qty: 1, unit: "pinch" },
+      { item: "black pepper", qty: 1, unit: "pinch" },
+      { item: "turmeric", qty: 0.5, unit: "tsp" },
       { item: "honey", qty: 1, unit: "tbsp" },
       { item: "olive oil", qty: 1.5, unit: "tbsp" },
-      { item: "turmeric", qty: 0.5, unit: "tsp" },
-      { item: "salt", qty: 0.5, unit: "tsp" },
-      { item: "black pepper", qty: 0.5, unit: "tsp" },
+      { item: "pepitas", qty: 0.5, unit: "glass" },
     ],
     steps: [
-      "Peel and cube pumpkin. (5 min)",
-      "Toss with oil, honey, turmeric, salt, and pepper; roast at 200C. (20 min)",
-      "Cook quinoa and drain. (10 min)",
-      "Assemble with cranberries, goat cheese, and pepitas. (5 min)",
+      "Peel the butternut squash and cut it into small pieces.",
+      "Place them in a bowl and add olive oil, turmeric, honey, salt, and pepper. Mix well.",
+      "Spread the mixture in an oven-safe dish and roast for 20 minutes at 200C until the butternut is tender.",
+      "Cook the quinoa in boiling water for 10-15 minutes. Drain and set aside.",
+      "Chop the dried cranberries into small pieces.",
+      "Once the butternut is cooked, assemble the salad by mixing in the quinoa, goat cheese cubes, cranberries, and pepitas.",
     ],
     steps_fr: [
-      "Eplucher et couper le butternut en cubes. (5 min)",
-      "Melanger avec huile, miel, curcuma, sel et poivre; rôtir a 200C. (20 min)",
-      "Cuire le quinoa puis egoutter. (10 min)",
-      "Assembler avec cranberries, chevre et pepitas. (5 min)",
+      "Eplucher le butternut squash et le couper en petits morceaux.",
+      "Les placer dans un bol et ajouter huile d'olive, curcuma, miel, sel et poivre. Bien melanger.",
+      "Etaler le melange dans un plat allant au four et faire rôtir 20 minutes a 200C jusqu'a ce que le butternut soit tendre.",
+      "Cuire le quinoa dans l'eau bouillante pendant 10-15 minutes. Egoutter et reserver.",
+      "Couper les cranberries sechees en petits morceaux.",
+      "Une fois le butternut cuit, assembler la salade en melangeant le quinoa, les cubes de chevre, les cranberries et les pepitas.",
     ],
   },
   {
     id: "fajitas",
-    name: "Chicken Fajitas",
-    name_fr: "Fajitas au poulet",
+    name: "Mexican Fajitas",
+    name_fr: "Fajitas mexicaines",
     time: "35 min",
     servings: 4,
     tags: ["pan", "batch"],
@@ -243,21 +250,22 @@ const recipes = [
       { item: "cumin", qty: 3, unit: "tsp" },
       { item: "paprika", qty: 1, unit: "tsp" },
       { item: "quinoa", qty: 40, unit: "g" },
-      { item: "olive oil", qty: 1, unit: "tbsp" },
     ],
     steps: [
-      "Slice capsicum and onion. (5 min)",
-      "Saute veg in olive oil. (10 min)",
-      "Slice chicken; add to pan and cook. (10 min)",
-      "Stir in spices and tomato pulp; simmer. (7 min)",
-      "Serve with cooked quinoa. (3 min)",
+      "Cut capsicum and onions into small pieces.",
+      "Saute capsicum and onions with a little olive oil in a pan.",
+      "Meanwhile, cut the chicken into small pieces.",
+      "Add the chicken to the pan of vegetables after about 10 minutes of cooking.",
+      "Add 3 tsp cumin, 1 tsp paprika, and the tomato pulp.",
+      "Cook until the chicken is grilled and cooked and the vegetables are soft. Serve.",
     ],
     steps_fr: [
-      "Couper poivrons et oignons en lamelles. (5 min)",
-      "Faire revenir les legumes a l'huile d'olive. (10 min)",
-      "Couper le poulet et l'ajouter; cuire. (10 min)",
-      "Ajouter epices et pulpe de tomate; laisser mijoter. (7 min)",
-      "Servir avec le quinoa cuit. (3 min)",
+      "Couper en petits morceaux poivrons et oignons.",
+      "Faire revenir poivrons et oignons avec un peu d'huile d'olive dans une poele.",
+      "Pendant ce temps, couper le poulet en petits morceaux.",
+      "Ajouter le poulet a la poelee de legumes au bout de 10min de cuisson environ.",
+      "Ajouter 3 cuilleres a cafe de cumin, 1 cuillere a cafe de paprika et la pulpe de tomates.",
+      "Faire revenir le tout jusqu'a ce que le poulet soit grille et cuit, et les legumes fondants. Servir.",
     ],
   },
   {
@@ -278,20 +286,24 @@ const recipes = [
       { item: "dried rosemary", qty: 1, unit: "tsp" },
       { item: "dried thyme", qty: 1, unit: "tsp" },
       { item: "parmesan", qty: 100, unit: "g" },
-      { item: "salt", qty: 0.5, unit: "tsp" },
-      { item: "black pepper", qty: 0.5, unit: "tsp" },
+      { item: "salt", qty: 1, unit: "pinch" },
+      { item: "black pepper", qty: 1, unit: "pinch" },
     ],
     steps: [
-      "Preheat oven to 200C and toss veg with oil, herbs, salt, and pepper. (10 min)",
-      "Roast 30 minutes, stirring halfway. (30 min)",
-      "Add cannellini beans and roast 10 minutes. (8 min)",
-      "Sprinkle parmesan and grill until golden. (3 min)",
+      "Prepare the Crust:",
+      "Preheat oven to 400°F (200°C).",
+      "In a large bowl, toss butternut squash, capsicum, zucchini, red onion, and garlic with olive oil, rosemary, thyme, salt, and pepper.",
+      "Spread vegetables in a single layer on a baking sheet and roast for 30 minutes, stirring halfway through.",
+      "Add cannellini beans to the baking sheet, mix gently, and roast for another 10 minutes until vegetables are tender.",
+      "Sprinkle with Parmesan cheese and broil for 2-3 minutes until cheese is golden.",
     ],
     steps_fr: [
-      "Prechauffer le four a 200C et melanger les legumes avec huile, herbes, sel et poivre. (10 min)",
-      "Rôtir 30 min en remuant a mi-cuisson. (30 min)",
-      "Ajouter les haricots cannellini et rôtir encore. (8 min)",
-      "Parsemer de parmesan et gratiner. (3 min)",
+      "Preparer la base :",
+      "Prechauffer le four a 200°C.",
+      "Dans un grand bol, melanger la courge butternut, le poivron, la courgette, l'oignon rouge et l'ail avec l'huile d'olive, le romarin, le thym, le sel et le poivre.",
+      "Etaler les legumes en une seule couche sur une plaque et rôtir 30 minutes, en remuant a mi-cuisson.",
+      "Ajouter les haricots cannellini sur la plaque, melanger delicatement, et rôtir encore 10 minutes jusqu'a ce que les legumes soient tendres.",
+      "Parsemer de parmesan et gratiner 2-3 minutes jusqu'a ce que le fromage soit dore.",
     ],
   },
   {
@@ -304,23 +316,23 @@ const recipes = [
     ingredients: [
       { item: "brown onion", qty: 2, unit: "pcs" },
       { item: "olive oil", qty: 40, unit: "g" },
-      { item: "water", qty: 1.4, unit: "L" },
+      { item: "water", qty: 1400, unit: "g" },
       { item: "vegetable stock", qty: 2, unit: "tbsp" },
-      { item: "frozen peas", qty: 1, unit: "kg" },
-      { item: "mint", qty: 2, unit: "bunches" },
+      { item: "frozen peas", qty: 1000, unit: "g" },
+      { item: "mint", qty: 2, unit: "bunch" },
       { item: "cream", qty: 2, unit: "tbsp" },
     ],
     steps: [
-      "Chop onion with oil in Thermomix. (2 min)",
-      "Add water, stock, peas; cook at 100C. (15 min)",
-      "Add mint and cook briefly. (2 min)",
-      "Add cream and blend to smooth. (1 min)",
+      "Place onion and oil into mixing bowl and chop 3 sec/speed 6.",
+      "Add water, stock and peas and cook 15 min/100C/speed 1.",
+      "Add mint and cook 3 min/100C/speed 1.",
+      "Add cream. Puree for 1 minute by bringing speed up slowly to speed 10.",
     ],
     steps_fr: [
-      "Hacher l'oignon avec l'huile au Thermomix. (2 min)",
-      "Ajouter eau, bouillon et petits pois; cuire a 100C. (15 min)",
-      "Ajouter la menthe et cuire. (2 min)",
-      "Ajouter la creme et mixer. (1 min)",
+      "Mettre l'oignon et l'huile dans le bol et mixer 3 sec/vitesse 6.",
+      "Ajouter l'eau, le bouillon et les pois et cuire 15 min/100C/vitesse 1.",
+      "Ajouter la menthe et cuire 3 min/100C/vitesse 1.",
+      "Ajouter la creme. Mixer 1 minute en augmentant progressivement la vitesse jusqu'a 10.",
     ],
   },
   {
@@ -345,58 +357,77 @@ const recipes = [
       { item: "olive oil", qty: 2, unit: "tbsp" },
     ],
     steps: [
-      "Saute onion in oil. (5 min)",
-      "Add spices and stir. (2 min)",
-      "Add carrots, capsicum, tomato; cook. (5 min)",
-      "Pour in coconut milk and simmer. (8 min)",
-      "Add fish, cover, and cook until flaky. (8 min)",
-      "Finish with lime juice. (2 min)",
+      "Heat olive oil in a pan. Saute the onion for 3 minutes.",
+      "Add curry powder, turmeric, ginger, and chili flakes. Stir for 1 minute.",
+      "Add carrots, bell pepper, and tomato. Cook for 5 minutes.",
+      "Pour in the coconut milk, bring to a boil, then simmer for 10 minutes.",
+      "Add the fish fillets, cover, and cook for 10 minutes until flaky.",
+      "Finish with lime juice and serve with rice.",
     ],
     steps_fr: [
-      "Faire revenir l'oignon dans l'huile. (5 min)",
-      "Ajouter les epices et remuer. (2 min)",
-      "Ajouter carottes, poivron et tomate; cuire. (5 min)",
-      "Verser le lait de coco et laisser mijoter. (8 min)",
-      "Ajouter le poisson, couvrir et cuire jusqu'a ce qu'il s'effeuille. (8 min)",
-      "Terminer avec le jus de citron vert. (2 min)",
+      "Faire chauffer l'huile d'olive dans une poele. Faire revenir l'oignon 3 minutes.",
+      "Ajouter la poudre de curry, le curcuma, le gingembre et les flocons de piment. Remuer 1 minute.",
+      "Ajouter les carottes, le poivron et la tomate. Cuire 5 minutes.",
+      "Verser le lait de coco, porter a ebullition, puis laisser mijoter 10 minutes.",
+      "Ajouter les filets de poisson, couvrir et cuire 10 minutes jusqu'a ce qu'ils soient tendres.",
+      "Terminer avec le jus de citron vert et servir avec du riz.",
     ],
   },
   {
     id: "lentil-soup-thermomix",
     name: "Lentil Soup (Thermomix)",
-    name_fr: "Soupe de lentilles (Thermomix)",
+    name_fr: "Soupe de lentilles vertes au Thermomix",
     time: "40 min",
     servings: 4,
     tags: ["thermomix", "vegetarian", "batch"],
     ingredients: [
       { item: "brown onion", qty: 1, unit: "pcs" },
-      { item: "carrot", qty: 1, unit: "pcs" },
+      { item: "carrot", qty: 100, unit: "g" },
       { item: "garlic cloves", qty: 2, unit: "pcs" },
       { item: "olive oil", qty: 10, unit: "g" },
       { item: "green lentils", qty: 200, unit: "g" },
       { item: "vegetable stock", qty: 1, unit: "tsp" },
       { item: "water", qty: 900, unit: "g" },
-      { item: "cream", qty: 1, unit: "tsp" },
-      { item: "black pepper", qty: 0.5, unit: "tsp" },
+      { item: "salt", qty: 1, unit: "pinch" },
+      { item: "black pepper", qty: 1, unit: "pinch" },
+      { item: "creme fraiche", qty: 1, unit: "tsp" },
     ],
     steps: [
-      "Add onion, carrot, garlic; chop. (2 min)",
-      "Saute with olive oil. (5 min)",
-      "Add lentils, stock, and water; cook. (30 min)",
-      "Add cream and blend to desired texture. (3 min)",
+      "Put the onion cut in half, the carrot(s) cut into pieces and the garlic cloves into the Thermomix bowl.",
+      "Add the lid with the measuring cup.",
+      "Mix 5 sec/speed 5.",
+      "Scrape down the sides of the bowl with the spatula.",
+      "Add olive oil to the Thermomix bowl.",
+      "Add the lid with the measuring cup.",
+      "Saute 5 min/120C/speed 1.",
+      "Add 200 g green lentils, the small spoon of vegetable stock and 900 g water to the Thermomix bowl.",
+      "Add the lid with the measuring cup.",
+      "Cook 35 min/100C/speed 1.",
+      "Add salt, pepper and the small spoon of creme fraiche to the Thermomix bowl.",
+      "Add the lid with the measuring cup.",
+      "Blend 1 min/speed 5. Increase speed gradually up to 10.",
     ],
     steps_fr: [
-      "Ajouter oignon, carotte et ail; hacher. (2 min)",
-      "Faire revenir avec l'huile d'olive. (5 min)",
-      "Ajouter lentilles, bouillon et eau; cuire. (30 min)",
-      "Ajouter la creme et mixer a la texture voulue. (3 min)",
+      "Mettre l'oignon coupe en deux, le(s) carotte(s) coupee(s) en morceaux et les gousses d'ail dans le bol du Thermomix.",
+      "Ajoutez le couvercle avec le gobelet doseur.",
+      "Melanger 5 sec/vitesse 5.",
+      "Racler les parois du bol avec la spatule.",
+      "Ajouter l'huile d'olive dans le bol du Thermomix.",
+      "Ajoutez le couvercle avec le gobelet doseur.",
+      "Rissoler 5 min/120C/vitesse 1.",
+      "Ajouter 200 grammes de lentilles vertes, la petite cuillere de bouillon et 900g d'eau dans le bol du Thermomix.",
+      "Ajoutez le couvercle avec le gobelet doseur.",
+      "Cuire 35 min/100C/vitesse 1.",
+      "Ajouter sel, poivre et la petite cuillere de creme fraiche dans le bol du Thermomix.",
+      "Ajoutez le couvercle avec le gobelet doseur.",
+      "Melanger 1 min/vitesse 5. Augmentez progressivement la vitesse jusqu'a 10.",
     ],
   },
   {
     id: "lentils-brussels-skillet",
     name: "Lentils & Brussels Sprouts Skillet",
     name_fr: "Poelee de lentilles et choux de Bruxelles",
-    time: "40 min",
+    time: "60 min",
     servings: 4,
     tags: ["pan", "vegetarian", "batch"],
     ingredients: [
@@ -407,22 +438,28 @@ const recipes = [
       { item: "garlic cloves", qty: 3, unit: "pcs" },
       { item: "chilli flakes", qty: 1, unit: "tsp" },
       { item: "lemon", qty: 0.5, unit: "pcs" },
-      { item: "salt", qty: 0.5, unit: "tsp" },
-      { item: "black pepper", qty: 0.5, unit: "tsp" },
+      { item: "salt", qty: 1, unit: "pinch" },
+      { item: "black pepper", qty: 1, unit: "pinch" },
     ],
     steps: [
-      "Cook lentils until tender; drain. (20 min)",
-      "Trim and halve Brussels sprouts. (5 min)",
-      "Saute onion and garlic in oil. (5 min)",
-      "Add sprouts and cook until browned. (10 min)",
-      "Stir in lentils, chilli, lemon, salt, and pepper. (5 min)",
+      "Cook the lentils: Add 1 cup green lentils to a pot with 3 cups boiling water. Cover and simmer on medium for 15–20 minutes, until tender. Drain any extra water and set aside.",
+      "Prep the Brussels sprouts: Wash them, trim the ends, remove loose outer leaves, and cut in half.",
+      "Prep aromatics: Slice the onion thinly into half-moons. Thinly slice the garlic.",
+      "Start cooking: Heat 1–2 Tbsp olive oil in a large pan. Add the onion and garlic and cook 3–4 minutes, until softened.",
+      "Add spice: Add chilli flakes and cook 1 minute.",
+      "Cook the Brussels sprouts: Add the halved Brussels sprouts to the pan. Cook 10 minutes, stirring occasionally, until browned and just tender.",
+      "Combine: Add the cooked lentils. Cook another 5 minutes, stirring to mix everything well.",
+      "Finish: Season with salt and pepper to taste. Squeeze in lemon juice and taste again — add more chili, salt, or lemon if you like.",
     ],
     steps_fr: [
-      "Cuire les lentilles jusqu'a tendres; egoutter. (20 min)",
-      "Parer et couper les choux de Bruxelles en deux. (5 min)",
-      "Faire revenir l'oignon et l'ail dans l'huile. (5 min)",
-      "Ajouter les choux et cuire jusqu'a coloration. (10 min)",
-      "Ajouter lentilles, piment, citron, sel et poivre. (5 min)",
+      "Cuire les lentilles : Ajouter 1 tasse de lentilles vertes dans une casserole avec 3 tasses d'eau bouillante. Couvrir et mijoter a feu moyen 15–20 minutes, jusqu'a tendres. Egoutter et reserver.",
+      "Preparer les choux de Bruxelles : Les laver, couper les extremites, enlever les feuilles abimees, et couper en deux.",
+      "Preparer les aromates : Emincer l'oignon en demi-lunes. Emincer finement l'ail.",
+      "Commencer la cuisson : Chauffer 1–2 c. a soupe d'huile d'olive dans une grande poele. Ajouter oignon et ail et cuire 3–4 minutes, jusqu'a ce qu'ils soient tendres.",
+      "Ajouter l'epice : Ajouter les flocons de piment et cuire 1 minute.",
+      "Cuire les choux de Bruxelles : Ajouter les choux et cuire 10 minutes, en remuant de temps en temps, jusqu'a ce qu'ils soient dores et juste tendres.",
+      "Assembler : Ajouter les lentilles cuites. Cuire encore 5 minutes en remuant.",
+      "Finir : Assaisonner avec sel et poivre. Presser le jus de citron et gouter — ajuster piment, sel ou citron si besoin.",
     ],
   },
   {
@@ -430,36 +467,39 @@ const recipes = [
     name: "Moroccan Lentil & Chickpea Soup (Harira)",
     name_fr: "Soupe marocaine lentilles et pois chiches (Harira)",
     time: "45 min",
-    servings: 4,
+    servings: 6,
     tags: ["pan", "vegetarian", "batch"],
     ingredients: [
-      { item: "green lentils", qty: 133, unit: "g" },
-      { item: "canned chickpeas", qty: 0.67, unit: "can" },
-      { item: "brown onion", qty: 1.33, unit: "pcs" },
-      { item: "carrot", qty: 1.33, unit: "pcs" },
-      { item: "garlic cloves", qty: 2, unit: "pcs" },
-      { item: "diced tomatoes", qty: 1.33, unit: "cans" },
-      { item: "vegetable stock", qty: 0.33, unit: "L" },
-      { item: "olive oil", qty: 1.33, unit: "tbsp" },
-      { item: "cumin", qty: 1.33, unit: "tsp" },
-      { item: "ground coriander", qty: 0.67, unit: "tsp" },
-      { item: "paprika", qty: 0.67, unit: "tsp" },
-      { item: "turmeric", qty: 0.67, unit: "tsp" },
-      { item: "lemon", qty: 0.67, unit: "pcs" },
+      { item: "green lentils", qty: 200, unit: "g" },
+      { item: "canned chickpeas", qty: 400, unit: "g" },
+      { item: "brown onion", qty: 2, unit: "pcs" },
+      { item: "carrot", qty: 2, unit: "pcs" },
+      { item: "garlic cloves", qty: 3, unit: "pcs" },
+      { item: "diced tomatoes", qty: 800, unit: "g" },
+      { item: "vegetable stock", qty: 0.5, unit: "L" },
+      { item: "olive oil", qty: 2, unit: "tbsp" },
+      { item: "cumin", qty: 2, unit: "tsp" },
+      { item: "ground coriander", qty: 1, unit: "tsp" },
+      { item: "paprika", qty: 1, unit: "tsp" },
+      { item: "turmeric", qty: 1, unit: "tsp" },
+      { item: "fresh coriander", qty: 1, unit: "bunch" },
+      { item: "lemon", qty: 1, unit: "pcs" },
+      { item: "salt", qty: 1, unit: "pinch" },
+      { item: "black pepper", qty: 1, unit: "pinch" },
     ],
     steps: [
-      "Saute onion, carrot, and garlic in oil. (5 min)",
-      "Add spices and toast briefly. (2 min)",
-      "Add tomatoes, stock, and lentils; simmer. (25 min)",
-      "Add chickpeas and cook 10 minutes. (10 min)",
-      "Finish with lemon juice and seasoning. (3 min)",
+      "Heat oil in a large pot. Saute onions, carrots, and garlic 5 min.",
+      "Add cumin, coriander, paprika and turmeric. Cook 1 min, stirring.",
+      "Add tomatoes, stock and lentils. Cook 25 min on medium heat.",
+      "Add chickpeas and cook 10 min more.",
+      "Season with salt and pepper, add lemon juice. Serve hot with fresh coriander.",
     ],
     steps_fr: [
-      "Faire revenir oignon, carotte et ail dans l'huile. (5 min)",
-      "Ajouter les epices et torréfier. (2 min)",
-      "Ajouter tomates, bouillon et lentilles; mijoter. (25 min)",
-      "Ajouter les pois chiches et cuire encore. (10 min)",
-      "Finir avec jus de citron et assaisonnement. (3 min)",
+      "Chauffer l'huile dans une grande casserole. Faire revenir oignons, carottes et ail 5 min.",
+      "Ajouter cumin, coriandre, paprika et curcuma. Cuire 1 min en melangeant.",
+      "Ajouter tomates, bouillon et lentilles. Cuire 25 min a feu moyen.",
+      "Ajouter pois chiches et cuire encore 10 min.",
+      "Saler, poivrer, ajouter le jus de citron. Servir chaud avec coriandre fraiche.",
     ],
   },
   {
@@ -477,27 +517,25 @@ const recipes = [
       { item: "egg", qty: 1, unit: "pcs" },
       { item: "ground beef", qty: 250, unit: "g" },
       { item: "ground pork", qty: 250, unit: "g" },
-      { item: "milk", qty: 250, unit: "ml" },
+      { item: "milk", qty: 1, unit: "cup" },
       { item: "breadcrumbs", qty: 40, unit: "g" },
       { item: "mixed herbs", qty: 1, unit: "tbsp" },
       { item: "garlic cloves", qty: 4, unit: "pcs" },
       { item: "olive oil", qty: 1, unit: "tbsp" },
-      { item: "salt", qty: 0.5, unit: "tsp" },
-      { item: "black pepper", qty: 0.5, unit: "tsp" },
     ],
     steps: [
-      "Preheat oven to 180C. (5 min)",
-      "Cut tops and scoop vegetables. (10 min)",
-      "Mix filling ingredients thoroughly. (10 min)",
-      "Stuff vegetables and place in baking dish. (5 min)",
-      "Drizzle with olive oil and bake. (40 min)",
+      "Preheat oven to 180°C (350°F).",
+      "Cut off the tops of the vegetables and scoop out the insides.",
+      "Blend the vegetable flesh and mix it with the ground meat, egg, milk, breadcrumbs, garlic, onion, herbs, salt, and pepper.",
+      "Stuff the vegetables with the filling and place them in a baking dish.",
+      "Drizzle with olive oil and bake for 40 minutes.",
     ],
     steps_fr: [
-      "Prechauffer le four a 180C. (5 min)",
-      "Couper les chapeaux et vider les legumes. (10 min)",
-      "Melanger tous les ingredients de la farce. (10 min)",
-      "Farcir les legumes et disposer dans un plat. (5 min)",
-      "Arroser d'huile d'olive et cuire au four. (40 min)",
+      "Prechauffer le four a 180°C (350°F).",
+      "Couper les chapeaux des legumes et vider l'interieur.",
+      "Mixer la chair des legumes et la melanger avec la viande hachee, l'oeuf, le lait, la chapelure, l'ail, l'oignon, les herbes, le sel et le poivre.",
+      "Farcir les legumes et les disposer dans un plat.",
+      "Arroser d'huile d'olive et enfourner 40 minutes.",
     ],
   },
   {
@@ -515,27 +553,39 @@ const recipes = [
       { item: "chilli powder", qty: 0.125, unit: "tsp" },
       { item: "cumin", qty: 2, unit: "tsp" },
       { item: "oregano", qty: 0.5, unit: "tsp" },
-      { item: "black pepper", qty: 0.5, unit: "tsp" },
+      { item: "black pepper", qty: 1, unit: "pinch" },
       { item: "tomato pulp", qty: 5, unit: "tbsp" },
       { item: "capsicum", qty: 1, unit: "pcs" },
       { item: "red kidney beans", qty: 1, unit: "can" },
       { item: "black beans", qty: 1, unit: "can" },
     ],
     steps: [
-      "Chop onion and garlic in Thermomix. (2 min)",
-      "Saute with olive oil. (3 min)",
-      "Add mince and cook on spoon/reverse. (3 min)",
-      "Add spices, tomato pulp, and capsicum. (10 min)",
-      "Add beans and cook on spoon/reverse. (10 min)",
-      "Season to taste. (5 min)",
+      "Place 1 large red onion (halved) and 2 peeled garlic cloves (or 2 small onions) into the Thermomix bowl.",
+      "Close the lid with measuring cup and mix 4 sec / speed 5.",
+      "Scrape down the sides of the bowl with the spatula.",
+      "Add 15 g olive oil to the Thermomix bowl.",
+      "Close the lid with measuring cup and cook 3 min / 100C / speed 2.",
+      "Add 500 g minced beef, breaking it into pieces with your hands.",
+      "Close the lid with measuring cup and cook 3 min / 100C / spoon speed.",
+      "Add 1/8 tsp chili powder, 2 tsp cumin, 1/2 tsp oregano, and a pinch of black pepper to the bowl.",
+      "Add 5 tbsp tomato pulp (or 2 small cans of Mutti) and 1 chopped bell pepper.",
+      "Place the Varoma on top (instead of the measuring cup) to avoid splashes. Cook 15 min / 120C / spoon speed.",
+      "Drain 1 can of red kidney beans and 1 can of black beans, then add them to the bowl.",
+      "Place the Varoma on top again and cook 10 min / 120C / spoon speed.",
     ],
     steps_fr: [
-      "Hacher l'oignon et l'ail au Thermomix. (2 min)",
-      "Faire revenir avec l'huile. (3 min)",
-      "Ajouter le boeuf hache et cuire en sens inverse. (3 min)",
-      "Ajouter epices, pulpe de tomate et poivron. (10 min)",
-      "Ajouter les haricots et cuire. (10 min)",
-      "Assaisonner et servir. (5 min)",
+      "Place 1 gros oignon rouge (coupe en deux) et 2 gousses d'ail epluchees (ou 2 petits oignons) dans le bol du Thermomix.",
+      "Fermer le couvercle avec le gobelet doseur et melanger 4 sec / vitesse 5.",
+      "Racler les parois du bol avec la spatule.",
+      "Ajouter 15 g d'huile d'olive dans le bol du Thermomix.",
+      "Fermer le couvercle avec le gobelet doseur et cuire 3 min / 100C / vitesse 2.",
+      "Ajouter 500 g de boeuf hache, en le separant avec les mains.",
+      "Fermer le couvercle avec le gobelet doseur et cuire 3 min / 100C / vitesse cuillere.",
+      "Ajouter 1/8 c. a cafe de chili en poudre, 2 c. a cafe de cumin, 1/2 c. a cafe d'origan, et une pincee de poivre noir.",
+      "Ajouter 5 c. a soupe de pulpe de tomate (ou 2 petites boites de Mutti) et 1 poivron coupe.",
+      "Placer le Varoma sur le dessus (a la place du gobelet doseur) pour eviter les projections. Cuire 15 min / 120C / vitesse cuillere.",
+      "Egoutter 1 boite de haricots rouges et 1 boite de haricots noirs, puis les ajouter au bol.",
+      "Placer a nouveau le Varoma sur le dessus et cuire 10 min / 120C / vitesse cuillere.",
     ],
   },
   {
@@ -543,35 +593,43 @@ const recipes = [
     name: "Ratatouille",
     name_fr: "Ratatouille (Thermomix)",
     time: "50 min",
-    servings: 4,
+    servings: 6,
     tags: ["thermomix", "vegetarian", "batch"],
     ingredients: [
-      { item: "white onion", qty: 2, unit: "pcs" },
-      { item: "garlic cloves", qty: 2, unit: "pcs" },
-      { item: "olive oil", qty: 33, unit: "g" },
-      { item: "tomatoes", qty: 2, unit: "pcs" },
-      { item: "capsicum", qty: 2, unit: "pcs" },
-      { item: "mixed herbs", qty: 1, unit: "tbsp" },
-      { item: "eggplant", qty: 1, unit: "pcs" },
-      { item: "zucchini", qty: 2, unit: "pcs" },
+      { item: "white onion", qty: 3, unit: "pcs" },
+      { item: "garlic cloves", qty: 3, unit: "pcs" },
+      { item: "olive oil", qty: 50, unit: "g" },
+      { item: "tomatoes", qty: 3, unit: "pcs" },
+      { item: "capsicum", qty: 3, unit: "pcs" },
+      { item: "mixed herbs", qty: 1.5, unit: "tbsp" },
+      { item: "eggplant", qty: 2, unit: "pcs" },
+      { item: "zucchini", qty: 3, unit: "pcs" },
     ],
     steps: [
-      "Chop onion and garlic in Thermomix. (2 min)",
-      "Saute with olive oil. (5 min)",
-      "Add vegetables and herbs; cook until tender. (35 min)",
-      "Season and portion. (8 min)",
+      "Turn on the Thermomix.",
+      "Select \"Menu\".",
+      "Select \"Recently cooked\".",
+      "Select \"Ratatouille\".",
+      "Press \"Start\" and follow the on-screen instructions.",
+      "If the machine offers \"Resume\" or \"Restart from beginning\", click \"Restart\".",
+      "DO NOT add salt or pepper, even if the recipe suggests it.",
+      "At the final step, add 10 extra minutes of cooking time.",
     ],
     steps_fr: [
-      "Hacher l'oignon et l'ail au Thermomix. (2 min)",
-      "Faire revenir avec l'huile. (5 min)",
-      "Ajouter les legumes et herbes; cuire jusqu'a tendres. (35 min)",
-      "Assaisonner et repartir. (8 min)",
+      "Allumer le Thermomix.",
+      "Selectionner \"Menu\".",
+      "Selectionner \"Recently cooked\".",
+      "Selectionner \"Ratatouille\".",
+      "Appuyer sur \"Start\" et suivre les instructions a l'ecran.",
+      "Si la machine propose \"Resume\" ou \"Restart from beginning\", cliquer \"Restart\".",
+      "NE PAS ajouter de sel ou de poivre, meme si la recette le suggere.",
+      "A la derniere etape, ajouter 10 minutes de cuisson supplementaires.",
     ],
   },
   {
     id: "split-pea-soup-thermomix",
     name: "Split Pea Soup (Thermomix)",
-    name_fr: "Soupe de pois casses (Thermomix)",
+    name_fr: "Soupe de pois casses au Thermomix",
     time: "50 min",
     servings: 4,
     tags: ["thermomix", "batch"],
@@ -583,20 +641,39 @@ const recipes = [
       { item: "split peas", qty: 200, unit: "g" },
       { item: "vegetable stock", qty: 1, unit: "tsp" },
       { item: "water", qty: 900, unit: "g" },
-      { item: "cream", qty: 1, unit: "tsp" },
-      { item: "black pepper", qty: 0.5, unit: "tsp" },
+      { item: "salt", qty: 1, unit: "pinch" },
+      { item: "black pepper", qty: 1, unit: "pinch" },
+      { item: "creme fraiche", qty: 1, unit: "tsp" },
     ],
     steps: [
-      "Add onion, carrot, garlic; chop. (2 min)",
-      "Saute with olive oil. (5 min)",
-      "Add split peas, stock, and water; cook. (40 min)",
-      "Add cream and blend to desired texture. (3 min)",
+      "Place the onion cut in half, the carrot cut into pieces and the garlic cloves in the Thermomix bowl.",
+      "Add the lid with the measuring cup.",
+      "Mix 5 sec/speed 5.",
+      "Scrape down the sides of the bowl with the spatula.",
+      "Add the olive oil to the Thermomix bowl.",
+      "Add the lid with the measuring cup.",
+      "Saute 5 min/120C/speed 1.",
+      "Add 200 g split peas, the small spoon of vegetable stock and 900 g water to the Thermomix bowl.",
+      "Add the lid with the measuring cup.",
+      "Cook 45 min/100C/speed 2.",
+      "Add salt, pepper and the small spoon of creme fraiche to the Thermomix bowl.",
+      "Add the lid with the measuring cup.",
+      "Mix 1 min/speed 5. Increase speed progressively up to 10.",
     ],
     steps_fr: [
-      "Ajouter oignon, carotte, ail; hacher. (2 min)",
-      "Faire revenir avec l'huile. (5 min)",
-      "Ajouter pois casses, bouillon et eau; cuire. (40 min)",
-      "Ajouter la creme et mixer. (3 min)",
+      "Mettre l'oignon coupe en deux, le(s) carotte(s) coupee(s) en morceaux et les gousses d'ail dans le bol du Thermomix.",
+      "Ajoutez le couvercle avec le gobelet doseur.",
+      "Melanger 5 sec/vitesse 5.",
+      "Racler les parois du bol avec la spatule.",
+      "Ajouter l'huile d'olive dans le bol du Thermomix.",
+      "Ajoutez le couvercle avec le gobelet doseur.",
+      "Rissoler 5 min/120C/vitesse 1.",
+      "Ajouter 200 grammes de pois casses, la petite cuillere de bouillon et 900g d'eau dans le bol du Thermomix.",
+      "Ajoutez le couvercle avec le gobelet doseur.",
+      "Cuire 45 min/100C/vitesse 2.",
+      "Ajouter sel, poivre et la petite cuillere de creme fraiche dans le bol du Thermomix.",
+      "Ajoutez le couvercle avec le gobelet doseur.",
+      "Melanger 1 min/vitesse 5. Augmentez progressivement la vitesse jusqu'a 10.",
     ],
   },
   {
@@ -610,23 +687,27 @@ const recipes = [
       { item: "chicken breast", qty: 700, unit: "g" },
       { item: "zucchini", qty: 10, unit: "pcs" },
       { item: "brown onion", qty: 2, unit: "pcs" },
-      { item: "thickened cream", qty: 2, unit: "tbsp" },
+      { item: "creme fraiche", qty: 2, unit: "tbsp" },
       { item: "olive oil", qty: 1, unit: "tbsp" },
       { item: "rice", qty: 40, unit: "g" },
     ],
     steps: [
-      "Wash and slice zucchinis. (5 min)",
-      "Slice onions and saute in olive oil. (5 min)",
-      "Add zucchini and cook until tender. (10 min)",
-      "Slice chicken and pan-fry in a separate pan. (7 min)",
-      "Combine chicken and vegetables, stir in cream, warm through. (3 min)",
+      "Wash the zucchinis.",
+      "Cut zucchinis and onions finely.",
+      "Saute the onions in a pan with a little olive oil for 5 min.",
+      "Add the zucchinis, a little olive oil and saute until cooked, lightly grilled and soft.",
+      "During the vegetable cooking, cut the chicken into small pieces.",
+      "Grill the chicken on high heat in another pan then continue cooking over medium heat.",
+      "When the chicken and vegetables are cooked, add the chicken to the vegetable pan, add the creme fraiche, mix and simmer on low heat for 2 minutes.",
     ],
     steps_fr: [
-      "Laver et couper les courgettes. (5 min)",
-      "Emincer les oignons et les faire revenir. (5 min)",
-      "Ajouter les courgettes et cuire jusqu'a fondantes. (10 min)",
-      "Couper le poulet et le saisir dans une autre poele. (7 min)",
-      "Assembler, ajouter la creme et rechauffer. (3 min)",
+      "Laver les courgettes.",
+      "Couper courgettes et oignons finement.",
+      "Faire revenir les oignons a la poele avec un peu d'huile d'olive pendant 5 min.",
+      "Ajouter les courgettes, un peu d'huile d'olive et faire revenir le tout jusqu'a ce que ce soit cuit, legerement grille et fondant.",
+      "Pendant la cuisson des legumes, couper le poulet en petits morceaux.",
+      "Griller le poulet a feu vif dans une autre poele puis poursuivre la cuisson a feu moyen.",
+      "Lorsque le poulet et les legumes sont cuits, ajouter le poulet a la poelee de legumes, ajouter la creme fraiche, melanger et faire revenir le tout a feu doux pendant 2 minutes.",
     ],
   },
   {
@@ -634,70 +715,92 @@ const recipes = [
     name: "Vegan Bean Stew with Fennel",
     name_fr: "Ragout vegan de haricots au fenouil",
     time: "75 min",
-    servings: 4,
+    servings: 6,
     tags: ["pan", "batch", "vegetarian"],
     ingredients: [
       { item: "brown onion", qty: 1, unit: "pcs" },
       { item: "garlic cloves", qty: 4, unit: "pcs" },
       { item: "red capsicum", qty: 2, unit: "pcs" },
-      { item: "fennel bulb", qty: 1.5, unit: "pcs" },
-      { item: "cumin", qty: 1.5, unit: "tsp" },
+      { item: "fennel bulb", qty: 0.5, unit: "pcs" },
+      { item: "fennel bulb (optional)", qty: 1.5, unit: "pcs" },
+      { item: "cumin", qty: 0.5, unit: "tsp" },
       { item: "smoked paprika", qty: 3, unit: "tsp" },
       { item: "fennel seeds", qty: 0.5, unit: "tsp" },
       { item: "chilli flakes", qty: 0.25, unit: "tsp" },
+      { item: "saffron (optional)", qty: 1, unit: "pinch" },
       { item: "olive oil", qty: 2, unit: "tbsp" },
       { item: "canned tomatoes", qty: 2, unit: "cans" },
+      { item: "water or stock", qty: 1, unit: "can" },
+      { item: "dried thyme", qty: 1, unit: "tsp" },
+      { item: "salt", qty: 0.5, unit: "tsp" },
+      { item: "black pepper", qty: 1, unit: "pinch" },
       { item: "cannellini beans", qty: 2, unit: "cans" },
-      { item: "black pepper", qty: 0.5, unit: "tsp" },
+      { item: "green olives (optional)", qty: 12, unit: "pcs" },
+      { item: "pepitas (optional)", qty: 0.25, unit: "cup" },
+      { item: "lemon juice (optional)", qty: 1, unit: "tsp" },
+      { item: "sugar or date syrup (optional)", qty: 1, unit: "tsp" },
     ],
     steps: [
-      "Optional: roast fennel and extra capsicum at 200C. (25 min)",
-      "Cook onion in olive oil until soft. (7 min)",
-      "Add garlic; cook a few minutes. (5 min)",
-      "Add capsicum and fennel; cook. (5 min)",
-      "Add spices, tomatoes, and beans; simmer until thick. (25 min)",
-      "Adjust seasoning and finish. (8 min)",
+      "Optional: Roast the fennel & extra capsicum (do this first): Preheat oven to 200°C. Slice 1 capsicum into large pieces and cut remaining fennel into wedges. Toss with olive oil, salt, pepper. Roast 25 minutes, turning once, until soft and lightly charred. Set aside to add at the end.",
+      "Start the stew base: Heat 2 Tbsp olive oil in a large pot over medium heat.",
+      "Cook onion: Add diced onion, cook 7 minutes until soft.",
+      "Add garlic: Add garlic and cook 5 minutes more.",
+      "Add fresh capsicum + fennel: Add the second (raw) diced capsicum and 1/2 diced fennel bulb. Cook 3–5 minutes.",
+      "Add spices: Stir in 1/2 tsp cumin, 3 tsp smoked paprika, 1/2 tsp ground fennel seed, 1/4 tsp chili flakes and a pinch of saffron (optional). Cook 1–2 minutes.",
+      "Add tomatoes + liquid: Add 2 cans chopped tomatoes and 1 can of water or stock. Add 1 tsp dried thyme + 1/2 tsp salt.",
+      "Simmer: Cover and cook 15 minutes. Then uncover and simmer 20–30 minutes, stirring occasionally, until thickened.",
+      "Toast pepitas: Heat 1 tsp oil in a small pan. Add pepitas and toast until they pop. Salt lightly.",
+      "Taste & balance: If tangy → add 1 tsp sugar or date syrup. If sweet → add lemon juice. Adjust salt + black pepper.",
+      "Finish: Stir in the cannellini beans to warm through. Add roasted capsicum and roasted fennel (if using). Add olives if desired.",
+      "Serve: Top with toasted pepitas. Serve with rice, quinoa, couscous, or crusty bread.",
     ],
     steps_fr: [
-      "Optionnel: rôtir fenouil et poivron a 200C. (25 min)",
-      "Faire revenir l'oignon dans l'huile. (7 min)",
-      "Ajouter l'ail et cuire encore. (5 min)",
-      "Ajouter poivron et fenouil; cuire. (5 min)",
-      "Ajouter epices, tomates et haricots; mijoter. (25 min)",
-      "Ajuster l'assaisonnement. (8 min)",
+      "Optionnel : Rôtir le fenouil et le poivron (a faire en premier) : Prechauffer le four a 200°C. Couper 1 poivron en gros morceaux et le reste du fenouil en quartiers. Melanger avec huile d'olive, sel, poivre. Rôtir 25 minutes en retournant une fois, jusqu'a tendres et legerement grilles. Reserver pour la fin.",
+      "Commencer la base du ragout : Chauffer 2 c. a soupe d'huile d'olive dans une grande casserole a feu moyen.",
+      "Cuire l'oignon : Ajouter l'oignon emince, cuire 7 minutes jusqu'a tendre.",
+      "Ajouter l'ail : Ajouter l'ail et cuire 5 minutes de plus.",
+      "Ajouter poivron frais + fenouil : Ajouter le second poivron cru en des et 1/2 bulbe de fenouil en des. Cuire 3–5 minutes.",
+      "Ajouter les epices : Incorporer 1/2 c. a cafe de cumin, 3 c. a cafe de paprika fume, 1/2 c. a cafe de graines de fenouil moulues, 1/4 c. a cafe de flocons de piment et une pincee de safran (optionnel). Cuire 1–2 minutes.",
+      "Ajouter tomates + liquide : Ajouter 2 boites de tomates concassees et 1 boite d'eau ou de bouillon. Ajouter 1 c. a cafe de thym sec + 1/2 c. a cafe de sel.",
+      "Mijoter : Couvrir et cuire 15 minutes. Decouvrir et laisser mijoter 20–30 minutes en remuant de temps en temps, jusqu'a epaississement.",
+      "Griller les pepitas : Chauffer 1 c. a cafe d'huile dans une petite poele. Ajouter les pepitas et griller jusqu'a ce qu'elles eclatent. Saler legerement.",
+      "Gouter et equilibrer : Si c'est trop acide → ajouter 1 c. a cafe de sucre ou de sirop de datte. Si c'est trop sucre → ajouter du jus de citron. Ajuster sel + poivre.",
+      "Finir : Incorporer les haricots cannellini pour les rechauffer. Ajouter le poivron et le fenouil rôtis (si utilises). Ajouter les olives si desire.",
+      "Servir : Parsemer de pepitas grillees. Servir avec riz, quinoa, couscous ou pain croustillant.",
     ],
   },
   {
     id: "dahl-lentilles-epinards",
-    name: "Lentil Dahl with Spinach",
-    name_fr: "Dahl de lentilles aux epinards",
+    name: "Lentil Dahl with Spinach and Spices",
+    name_fr: "Dahl de lentilles aux epinards et epices",
     time: "40 min",
-    servings: 4,
+    servings: 5,
     tags: ["pan", "vegetarian", "batch"],
     ingredients: [
-      { item: "green lentils", qty: 200, unit: "g" },
-      { item: "coconut milk", qty: 320, unit: "ml" },
-      { item: "hot water", qty: 400, unit: "ml" },
-      { item: "fresh spinach", qty: 100, unit: "g" },
+      { item: "green lentils", qty: 250, unit: "g" },
+      { item: "coconut milk", qty: 400, unit: "ml" },
+      { item: "hot water", qty: 500, unit: "ml" },
+      { item: "fresh spinach", qty: 130, unit: "g" },
       { item: "carrot", qty: 1, unit: "pcs" },
       { item: "red onion", qty: 1, unit: "pcs" },
       { item: "garlic cloves", qty: 2, unit: "pcs" },
-      { item: "turmeric", qty: 12, unit: "g" },
+      { item: "turmeric", qty: 15, unit: "g" },
       { item: "curry powder", qty: 1, unit: "tbsp" },
       { item: "lime", qty: 1, unit: "pcs" },
       { item: "olive oil", qty: 1, unit: "tbsp" },
+      { item: "rice", qty: 40, unit: "g" },
     ],
     steps: [
-      "Soak lentils, then drain. (15 min)",
-      "Saute onion, garlic, and carrot in oil. (5 min)",
-      "Add lentils, coconut milk, hot water, turmeric, and curry; simmer. (20 min)",
-      "Add spinach in the last 5 minutes. (5 min)",
+      "Start by soaking the lentils in water for 15 minutes, then drain them.",
+      "Peel the onion, garlic and carrot. Dice the onion and garlic and cut the carrot into small cubes. In a saucepan, brown everything with a drizzle of olive oil (about 5 minutes).",
+      "In the saucepan, add the lentils, coconut milk, hot water, turmeric and curry. Mix and cover the pan with a lid. Simmer for 35 minutes over low heat, stirring regularly. If it sticks, add a little hot water.",
+      "Meanwhile, wash the spinach. After 25 minutes of cooking, add the spinach to the saucepan and stir regularly.",
     ],
     steps_fr: [
-      "Faire tremper les lentilles puis egoutter. (15 min)",
-      "Faire revenir oignon, ail et carotte dans l'huile. (5 min)",
-      "Ajouter lentilles, lait de coco, eau chaude, curcuma et curry; mijoter. (20 min)",
-      "Ajouter les epinards en fin de cuisson. (5 min)",
+      "Commencez par faire tremper les lentilles dans de l'eau pendant 15 minutes, puis egouttez-les.",
+      "Epluchez l'oignon, l'ail et la carotte. Emincez l'oignon et l'ail et coupez la carotte en petits cubes. Dans une casserole, faites dorer le tout avec un filet d'huile d'olive (environ 5 minutes).",
+      "Dans la casserole, ajoutez les lentilles corail, le lait de coco, l'eau chaude, le curcuma (turmeric) et le curry. Melangez et recouvrez la casserole avec un couvercle. Laissez mijoter pendant 35 minutes a feu doux et remuez regulierement. Si ca accroche, ajoutez un peu d'eau chaude.",
+      "Pendant ce temps, lavez les epinards. Au bout de 25 minutes de cuisson, ajoutez-les dans la casserole et remuez regulierement.",
     ],
   },
   {
@@ -714,19 +817,20 @@ const recipes = [
       { item: "dried thyme", qty: 1, unit: "tbsp" },
       { item: "zucchini", qty: 4, unit: "pcs" },
       { item: "olive oil", qty: 4, unit: "tbsp" },
-      { item: "black pepper", qty: 0.5, unit: "tsp" },
+      { item: "salt", qty: 1, unit: "pinch" },
+      { item: "black pepper", qty: 1, unit: "pinch" },
     ],
     steps: [
-      "Preheat oven to 180C. (5 min)",
-      "Slice all vegetables thinly. (10 min)",
-      "Layer in a dish, season with thyme, pepper, and oil. (10 min)",
-      "Bake until tender. (45 min)",
+      "Preheat the oven to 180C.",
+      "Wash and slice all the vegetables into thin slices.",
+      "Layer them in a baking dish, seasoning with salt, pepper, dried thyme and olive oil.",
+      "Bake for 45 minutes and serve in the dish.",
     ],
     steps_fr: [
-      "Prechauffer le four a 180C. (5 min)",
-      "Trancher finement tous les legumes. (10 min)",
-      "Superposer dans un plat, assaisonner de thym, poivre et huile. (10 min)",
-      "Cuire au four jusqu'a tendres. (45 min)",
+      "Prechauffez le four a 180C.",
+      "Lavez et taillez tous les legumes en lamelles fines.",
+      "Superposez-les dans un plat a gratin, assaisonnant de sel, de poivre, de thym seche et d'huile d'olive.",
+      "Enfournez 45 min et servez dans le plat.",
     ],
   },
   {
@@ -743,22 +847,49 @@ const recipes = [
       { item: "olive oil", qty: 3, unit: "tbsp" },
       { item: "beef mince", qty: 500, unit: "g" },
       { item: "herbes de provence", qty: 1, unit: "tsp" },
+      { item: "water", qty: 50, unit: "g" },
       { item: "tomato pulp", qty: 400, unit: "g" },
       { item: "tomato paste", qty: 30, unit: "g" },
     ],
     steps: [
-      "Chop carrot, onion, and garlic. (2 min)",
-      "Saute with olive oil. (5 min)",
-      "Add mince and cook. (15 min)",
-      "Add tomato pulp, paste, and herbs; simmer. (40 min)",
-      "Season and serve. (5 min)",
+      "Place 120 g peeled carrots cut into small pieces in the Thermomix bowl.",
+      "Add 160 g peeled onions cut into quarters in the Thermomix bowl.",
+      "Add 2 peeled garlic cloves to the Thermomix bowl.",
+      "Add the lid with the measuring cup.",
+      "Mix 5 sec/speed 5.",
+      "Scrape down the sides of the bowl with the spatula.",
+      "Add 3 tablespoons of olive oil to the Thermomix bowl.",
+      "Add the lid with the measuring cup.",
+      "Cook 7 min/100C/spoon speed.",
+      "Add 500 g minced beef to the Thermomix bowl.",
+      "Add 50 g water to the Thermomix bowl.",
+      "Add 1 teaspoon of herbes de provence to the Thermomix bowl.",
+      "Add the lid with the measuring cup.",
+      "Heat 15 min/80C/spoon speed.",
+      "Add 400 g tomato pulp to the Thermomix bowl.",
+      "Add 30 g tomato paste to the Thermomix bowl.",
+      "Add the lid with the measuring cup.",
+      "Cook 20 min/90C/speed 1.",
     ],
     steps_fr: [
-      "Hacher carotte, oignon et ail. (2 min)",
-      "Faire revenir avec l'huile d'olive. (5 min)",
-      "Ajouter le boeuf hache et cuire. (15 min)",
-      "Ajouter pulpe de tomate, concentre et herbes; mijoter. (40 min)",
-      "Assaisonner et servir. (5 min)",
+      "Mettre 120 grammes de carottes epluchees et coupees en petits morceaux dans le bol du Thermomix.",
+      "Ajouter 160 grammes d'oignons epluches et coupes en quatre dans le bol du Thermomix.",
+      "Ajouter 2 gousses d'ail epluchees dans le bol du Thermomix.",
+      "Ajoutez le couvercle avec le gobelet doseur.",
+      "Melanger 5 sec/vitesse 5.",
+      "Racler les parois du bol avec la spatule.",
+      "Ajouter 3 cuilleres a soupe d'huile d'olive dans le bol du Thermomix.",
+      "Ajoutez le couvercle avec le gobelet doseur.",
+      "Cuire 7 min/100C/Vitesse Cuillere.",
+      "Ajouter 500 grammes de boeuf hache dans le bol du Thermomix.",
+      "Ajouter 50 grammes d'eau dans le bol du Thermomix.",
+      "Ajouter 1 cuillere a cafe d'herbes de provence dans le bol du Thermomix.",
+      "Ajoutez le couvercle avec le gobelet doseur.",
+      "Chauffer 15 min/80C/Vitesse Cuillere.",
+      "Ajouter 400 grammes de coulis de tomates dans le bol du Thermomix.",
+      "Ajouter 30 grammes de concentre de tomates dans le bol du Thermomix.",
+      "Ajoutez le couvercle avec le gobelet doseur.",
+      "Cuire 20 min/90C/vitesse 1.",
     ],
   },
   {
@@ -772,23 +903,26 @@ const recipes = [
       { item: "cauliflower", qty: 1, unit: "head" },
       { item: "almonds", qty: 80, unit: "g" },
       { item: "grated cheese", qty: 60, unit: "g" },
-      { item: "dried thyme", qty: 4, unit: "tbsp" },
+      { item: "thyme", qty: 4, unit: "tbsp" },
       { item: "olive oil", qty: 4, unit: "tbsp" },
-      { item: "cumin", qty: 1, unit: "tsp" },
-      { item: "creamy plant base", qty: 150, unit: "ml" },
-      { item: "black pepper", qty: 0.5, unit: "tsp" },
+      { item: "ground cumin", qty: 1, unit: "tsp" },
+      { item: "plant-based cream", qty: 150, unit: "ml" },
     ],
     steps: [
-      "Preheat oven to 180C and blanch cauliflower florets. (10 min)",
-      "Crush almonds. (3 min)",
-      "Layer cauliflower in a dish; add almonds, cheese, thyme, oil, cream, cumin. (5 min)",
-      "Bake until golden. (15 min)",
+      "Preheat the oven to 180°C.",
+      "Wash the cauliflower and cut into florets. Blanch for 10 minutes in boiling water.",
+      "Crush the almonds with a rolling pin.",
+      "In a greased gratin dish, place the cauliflower florets.",
+      "Cover with crushed almonds, grated cheese, thyme, olive oil, plant-based cream, and cumin. Season with salt and pepper.",
+      "Bake for 15 minutes.",
     ],
     steps_fr: [
-      "Prechauffer le four a 180C et blanchir le chou-fleur. (10 min)",
-      "Concasser les amandes. (3 min)",
-      "Disposer le chou-fleur dans un plat; ajouter amandes, fromage, thym, huile, creme et cumin. (5 min)",
-      "Gratiner jusqu'a dore. (15 min)",
+      "Prechauffez le four a 180°C.",
+      "Lavez le chou-fleur et taillez-le en bouquets. Plongez ses fleurettes 10 minutes dans de l'eau bouillante.",
+      "Concasez les amandes a l'aide d'un rouleau a patisserie.",
+      "Dans un plat a gratin graisse, placez les tetes de chou-fleur.",
+      "Recouvrez-les d'amandes concassees, de fromage rape, de thym, d'huile, de preparation cremeuse et de cumin. Salez et poivrez.",
+      "Enfournez pour 15 minutes.",
     ],
   },
   {
@@ -812,48 +946,58 @@ const recipes = [
       { item: "plain flour", qty: 3, unit: "tbsp" },
       { item: "milk", qty: 600, unit: "ml" },
       { item: "nutmeg", qty: 0.25, unit: "tsp" },
-      { item: "salt", qty: 0.5, unit: "tsp" },
-      { item: "black pepper", qty: 0.5, unit: "tsp" },
     ],
     steps: [
-      "Preheat oven to 180C and slice eggplant. (5 min)",
-      "Saute onion and garlic, add beef and spices, then tomatoes and water; simmer. (15 min)",
-      "Grill eggplant slices until tender. (15 min)",
-      "Make bechamel: melt butter, whisk in flour, add milk, season. (10 min)",
-      "Layer eggplant, meat sauce, bechamel; bake. (30 min)",
+      "Preheat oven to 180°C (350°F).",
+      "Heat olive oil in a pan, cook onion and garlic.",
+      "Add beef, cinnamon, and cumin.",
+      "Add tomatoes, water, salt, and pepper. Simmer for 15 minutes.",
+      "Grill eggplant slices in the oven at 200°C (400°F) for 10 minutes per side.",
+      "Prepare bechamel: Melt butter, whisk in flour, then gradually add milk. Stir until thickened, then add nutmeg.",
+      "In a baking dish, layer eggplants, meat sauce, and bechamel. Repeat layers and finish with bechamel on top.",
+      "Bake for 30 minutes. Serve warm.",
     ],
     steps_fr: [
-      "Prechauffer le four a 180C et trancher les aubergines. (5 min)",
-      "Faire revenir oignon et ail, ajouter boeuf et epices, puis tomates et eau; mijoter. (15 min)",
-      "Griller les aubergines jusqu'a tendres. (15 min)",
-      "Preparer la bechamel: beurre, farine, lait, muscade. (10 min)",
-      "Monter les couches et enfourner. (30 min)",
+      "Prechauffer le four a 180°C (350°F).",
+      "Faire chauffer l'huile d'olive dans une poele, cuire l'oignon et l'ail.",
+      "Ajouter le boeuf, la cannelle et le cumin.",
+      "Ajouter tomates, eau, sel et poivre. Laisser mijoter 15 minutes.",
+      "Griller les tranches d'aubergine au four a 200°C (400°F) pendant 10 minutes par cote.",
+      "Preparer la bechamel : faire fondre le beurre, incorporer la farine, puis ajouter le lait progressivement. Remuer jusqu'a epaississement, puis ajouter la muscade.",
+      "Dans un plat, alterner aubergines, sauce viande et bechamel. Recommencer et terminer par la bechamel.",
+      "Cuire 30 minutes. Servir chaud.",
     ],
   },
   {
     id: "chickpeas-swiss-chard",
-    name: "Chickpeas & Swiss Chard",
-    name_fr: "Pois chiches et blettes",
-    time: "25 min",
+    name: "Chickpeas, spinach, yogurt (Ottolenghi)",
+    name_fr: "Pois chiches, epinards, yaourt (Ottolenghi)",
+    time: "30 min",
     servings: 4,
     tags: ["pan", "vegetarian", "batch"],
     ingredients: [
+      { item: "carrot", qty: 6, unit: "pcs" },
+      { item: "olive oil", qty: 90, unit: "ml" },
+      { item: "brown onion", qty: 3, unit: "pcs" },
+      { item: "ground cumin", qty: 3, unit: "tsp" },
+      { item: "fresh spinach", qty: 400, unit: "g" },
       { item: "canned chickpeas", qty: 2, unit: "cans" },
-      { item: "swiss chard", qty: 1, unit: "bunch" },
-      { item: "brown onion", qty: 1, unit: "pcs" },
-      { item: "garlic cloves", qty: 2, unit: "pcs" },
       { item: "lemon", qty: 1, unit: "pcs" },
-      { item: "olive oil", qty: 1, unit: "tbsp" },
+      { item: "black pepper", qty: 1, unit: "pinch" },
     ],
     steps: [
-      "Saute onion and garlic in olive oil. (8 min)",
-      "Add chickpeas and chopped chard. (8 min)",
-      "Cook until wilted; finish with lemon. (8 min)",
+      "Preheat the oven to 200°C fan.",
+      "Mix the carrots with 2 tablespoon of oil and a grind of pepper. Spread out on a parchment-lined baking tray and roast for 20 minutes: they should still be a little crunchy.",
+      "Place the remaining 4 tablespoons of oil in a large frying pan, on a medium heat, and add the onion and cumin. Fry for 10 minutes, stirring occasionally, until golden-brown.",
+      "Add the spinach, cooked carrots, chickpeas, 75ml of water and a good grind of pepper, and mix through. Cook for 5 minutes, until the spinach leaves are soft and hardly any juice is left in the pan.",
+      "Remove from the heat, stir through the lemon juice, and serve.",
     ],
     steps_fr: [
-      "Faire revenir oignon et ail dans l'huile. (8 min)",
-      "Ajouter pois chiches et blettes. (8 min)",
-      "Cuire jusqu'a ce que les blettes tombent; finir au citron. (8 min)",
+      "Prechauffer le four a 200°C chaleur tournante.",
+      "Melanger les carottes avec 2 c. a soupe d'huile et un tour de poivre. Etaler sur une plaque chemisee et rôtir 20 minutes : elles doivent rester legerement croquantes.",
+      "Mettre les 4 c. a soupe d'huile restantes dans une grande poele a feu moyen, ajouter l'oignon et le cumin. Faire revenir 10 minutes en remuant de temps en temps, jusqu'a coloration.",
+      "Ajouter les epinards, les carottes cuites, les pois chiches, 75 ml d'eau et un bon tour de poivre, puis melanger. Cuire 5 minutes, jusqu'a ce que les epinards soient tendres et qu'il ne reste presque plus de jus.",
+      "Retirer du feu, ajouter le jus de citron et servir.",
     ],
   },
   {
@@ -878,22 +1022,24 @@ const recipes = [
       { item: "butter", qty: 30, unit: "g" },
       { item: "plain flour", qty: 30, unit: "g" },
       { item: "milk", qty: 400, unit: "ml" },
-      { item: "nutmeg", qty: 0.25, unit: "tsp" },
-      { item: "lasagne sheets", qty: 1, unit: "pack" },
+      { item: "nutmeg", qty: 1, unit: "pinch" },
+      { item: "lasagne sheets", qty: 8, unit: "sheets" },
     ],
     steps: [
-      "Chop onion, garlic, carrot; dice zucchini and capsicum. (10 min)",
-      "Saute aromatics, add veg, then lentils, tomatoes, paste, herbs, and water; simmer. (25 min)",
-      "Make bechamel: melt butter, whisk in flour, add milk, season with nutmeg. (10 min)",
-      "Layer sauce, sheets, and bechamel; bake at 180C. (30 min)",
-      "Rest before serving. (5 min)",
+      "Peel and finely chop the onion, garlic, and carrots. Cut courgettes and capsicum into small pieces.",
+      "Heat olive oil in a large pan. Add onion and garlic. Cook 3 min on medium heat. Add carrots, courgettes, and capsicum. Cook 5 more min.",
+      "Add lentils, crushed tomatoes, tomato paste, herbs, and 300 ml of water. Bring to a boil, then cover and simmer 20-25 min until lentils are tender and sauce is reduced.",
+      "Make the béchamel: melt butter in a saucepan, stir in flour, then gradually whisk in milk. Cook 5-7 min until thickened. Add nutmeg.",
+      "Preheat oven to 180°C. In a baking dish, layer lentil sauce, lasagna sheets, béchamel. Repeat for 2-3 layers. Finish with béchamel on top.",
+      "Bake 30-35 min at 180°C. Let rest 10 min before serving.",
     ],
     steps_fr: [
-      "Hacher oignon, ail, carotte; couper courgette et poivron. (10 min)",
-      "Faire revenir, ajouter legumes, puis lentilles, tomates, concentre, herbes et eau; mijoter. (25 min)",
-      "Faire une bechamel: beurre, farine, lait, muscade. (10 min)",
-      "Monter lasagnes et cuire a 180C. (30 min)",
-      "Laisser reposer. (5 min)",
+      "Peler et hacher finement l'oignon, l'ail et les carottes. Couper courgettes et poivron en petits pieces.",
+      "Faire chauffer l'huile d'olive dans une grande poele. Ajouter oignon et ail. Cuire 3 min a feu moyen. Ajouter carottes, courgettes et poivron. Cuire 5 min de plus.",
+      "Ajouter lentilles, tomates concassees, concentre de tomate, herbes, et 300 ml d'eau. Porter a ebullition, puis couvrir et mijoter 20-25 min jusqu'a ce que les lentilles soient tendres et la sauce reduite.",
+      "Faire la bechamel : faire fondre le beurre dans une casserole, incorporer la farine, puis ajouter le lait progressivement en fouettant. Cuire 5-7 min jusqu'a epaississement. Ajouter la muscade.",
+      "Prechauffer le four a 180°C. Dans un plat, alterner sauce aux lentilles, feuilles de lasagne et bechamel. Recommencer pour 2-3 couches. Terminer par la bechamel.",
+      "Cuire 30-35 min a 180°C. Laisser reposer 10 min avant de servir.",
     ],
   },
   {
@@ -909,7 +1055,11 @@ const recipes = [
       { item: "garlic cloves", qty: 2, unit: "pcs" },
       { item: "egg", qty: 1, unit: "pcs" },
       { item: "parmesan", qty: 100, unit: "g" },
+      { item: "salt", qty: 1, unit: "pinch" },
+      { item: "black pepper", qty: 1, unit: "pinch" },
+      { item: "nutmeg", qty: 1, unit: "pinch" },
       { item: "lasagne sheets", qty: 375, unit: "g" },
+      { item: "basil", qty: 1, unit: "bunch" },
       { item: "butter", qty: 50, unit: "g" },
       { item: "plain flour", qty: 2, unit: "tbsp" },
       { item: "milk", qty: 400, unit: "ml" },
@@ -920,53 +1070,69 @@ const recipes = [
       { item: "dried basil", qty: 0.5, unit: "tsp" },
     ],
     steps: [
-      "Mix spinach, ricotta, garlic, egg, and half the parmesan. (10 min)",
-      "Make bechamel with butter, flour, and milk. (10 min)",
-      "Make quick tomato sauce with oil, shallot, and tomatoes. (8 min)",
-      "Assemble and bake at 200C until golden. (25 min)",
-      "Rest before serving. (5 min)",
+      "Clean spinach and remove as much water as possible. Finely chop and combine in a large bowl with ricotta, garlic, egg and 1/2 of the parmesan to form a smooth, spreadable paste. Season with salt, if necessary, pepper and nutmeg.",
+      "To make bechamel sauce, melt butter in a small saucepan over a medium-high heat. Stir in flour and cook, stirring, for 1-2 minutes. Remove from heat and slowly add milk, whisking until combined. Return to heat and cook, stirring, for 4 minutes or until mixture thickens. Season with salt and pepper.",
+      "To make tomato sauce, heat oil in a large frying pan over a medium-high heat. Add eschalot and cook for 1-2 minutes. Add tomato and dried herbs, then reduce heat and simmer for 4-5 minutes. Season with salt and pepper.",
+      "Preheat oven to 200C. To assemble dish, spread a little of the tomato sauce over base of a 30 x 25cm baking dish. Lay 1/3 of the lasagne sheets over sauce, top with 1/2 of the spinach mixture and drizzle with 1/3 of the bechamel sauce. Repeat with 1/3 of the lasagne sheets, remaining spinach mixture and 1/3 of the bechamel. Top with remaining lasagne sheets, remaining tomato sauce and remaining bechamel. Sprinkle over remaining parmesan and bake for 45 minutes or until golden brown.",
     ],
     steps_fr: [
-      "Melanger epinards, ricotta, ail, oeuf et la moitie du parmesan. (10 min)",
-      "Faire la bechamel avec beurre, farine et lait. (10 min)",
-      "Faire une sauce tomate rapide avec huile, echalote et tomates. (8 min)",
-      "Monter et cuire a 200C jusqu'a dore. (25 min)",
-      "Laisser reposer. (5 min)",
+      "Nettoyez les epinards et enlevez un maximum d'eau. Hachez finement et melangez dans un grand bol avec la ricotta, l'ail, l'oeuf et 1/2 du parmesan pour obtenir une pate lisse et tartinable. Assaisonnez avec du sel si necessaire, du poivre et de la muscade.",
+      "Pour faire la sauce bechamel, faites fondre le beurre dans une petite casserole a feu moyen-vif. Incorporez la farine et cuisez en remuant pendant 1-2 minutes. Retirez du feu et ajoutez lentement le lait en fouettant jusqu'a obtention d'un melange homogene. Remettez sur le feu et faites cuire en remuant pendant 4 minutes ou jusqu'a ce que le melange epaississe. Assaisonnez avec du sel et du poivre.",
+      "Pour faire la sauce tomate, faites chauffer l'huile dans une grande poele a feu moyen-vif. Ajoutez l'echalote et faites cuire 1-2 minutes. Ajoutez la tomate et les herbes sechees, puis baissez le feu et laissez mijoter 4-5 minutes. Assaisonnez avec du sel et du poivre.",
+      "Prechauffez le four a 200C. Pour assembler le plat, etalez un peu de sauce tomate au fond d'un plat de 30 x 25cm. Deposez 1/3 des feuilles de lasagne sur la sauce, ajoutez 1/2 de la preparation aux epinards et nappez de 1/3 de la bechamel. Repetez avec 1/3 des feuilles de lasagne, le reste de la preparation aux epinards et 1/3 de la bechamel. Terminez avec le reste des feuilles de lasagne, le reste de la sauce tomate et le reste de la bechamel. Parsemez le reste du parmesan et enfournez 45 minutes ou jusqu'a ce que ce soit dore.",
     ],
   },
   {
     id: "quiche-courgettes-poivrons-onions",
-    name: "Zucchini, Capsicum & Onion Quiche",
-    name_fr: "Quiche courgettes, poivrons et oignons",
+    name: "Capsicum & Zucchini Quiche",
+    name_fr: "Quiche aux poivrons et a la courgette",
     time: "55 min",
     servings: 4,
     tags: ["oven", "batch", "vegetarian", "thermomix"],
     ingredients: [
-      { item: "plain flour", qty: 225, unit: "g" },
-      { item: "butter", qty: 90, unit: "g" },
-      { item: "water", qty: 75, unit: "g" },
       { item: "gruyere", qty: 40, unit: "g" },
       { item: "goat cheese", qty: 200, unit: "g" },
+      { item: "black pepper", qty: 1, unit: "pinch" },
+      { item: "salt", qty: 1, unit: "pinch" },
       { item: "capsicum", qty: 4, unit: "pcs" },
       { item: "zucchini", qty: 4, unit: "pcs" },
       { item: "brown onion", qty: 2, unit: "pcs" },
       { item: "eggs", qty: 6, unit: "pcs" },
-      { item: "thickened cream", qty: 300, unit: "ml" },
-      { item: "black pepper", qty: 0.5, unit: "tsp" },
+      { item: "creme fraiche", qty: 300, unit: "ml" },
+      { item: "plain flour", qty: 225, unit: "g" },
+      { item: "salt", qty: 1, unit: "tsp" },
+      { item: "butter", qty: 90, unit: "g" },
+      { item: "water", qty: 75, unit: "g" },
     ],
     steps: [
-      "Make pastry in Thermomix and chill. (10 min)",
-      "Preheat oven to 220C. (5 min)",
-      "Saute vegetables until soft. (10 min)",
-      "Whisk eggs with cream and cheese; season. (5 min)",
-      "Assemble quiche and bake. (30 min)",
+      "Place 225 g flour, 1 tsp salt, 90 g butter in pieces and 75 g water in the Thermomix bowl.",
+      "Add the lid with the measuring cup. Mix 1 min / kneading speed.",
+      "Remove the dough from the Thermomix and form a ball.",
+      "Refrigerate 15 min.",
+      "Roll out the dough with a rolling pin to make a thin crust.",
+      "Roll out the dough on baking paper then place the paper in the dish.",
+      "Preheat your oven to 220C.",
+      "Cut zucchini and capsicum into small pieces.",
+      "Put zucchini, capsicum and onions in a large pan with a little olive oil over medium heat. Saute until cooked and lightly grilled.",
+      "In a bowl, crack and whisk the eggs, then add the liquid creme fraiche and grated gruyere. Mix well. Salt and pepper.",
+      "Roll out the crust in a tart dish and arrange the vegetables evenly. Cover with the egg/cream mixture.",
+      "Place the goat cheese on top in small pieces, spread evenly over the quiche.",
+      "Bake at 220C for about 30 min.",
     ],
     steps_fr: [
-      "Faire la pate au Thermomix et reserver au frais. (10 min)",
-      "Prechauffer le four a 220C. (5 min)",
-      "Faire revenir les legumes. (10 min)",
-      "Battre les oeufs avec creme et fromages; poivrer. (5 min)",
-      "Assembler et cuire la quiche. (30 min)",
+      "Mettre 225 grammes de farine, 1 cuillere a cafe de sel, 90g de beurre coupes en morceaux et 75g d'eau dans le bol du Thermomix.",
+      "Ajoutez le couvercle avec le gobelet doseur. Melanger 1 min/vitesse petrin.",
+      "Sortir la pate du thermomix et former une boule.",
+      "Reserver au frigo 15min.",
+      "Etaler la pate avec le rouleau a patisserie pour former une pate fine.",
+      "Etaler la pate sur du papier sulfurise puis mettre le papier dans le plat.",
+      "Prechauffer votre four a 220C (thermostat 7).",
+      "Couper courgettes et poivrons en petits morceaux.",
+      "Mettre courgettes, poivrons et oignons dans une grande poele avec un peu d'huile d'olive a feu moyen. Les faire revenir jusqu'a ce qu'ils soient cuits et un peu grilles.",
+      "Dans un bol, casser et battre les oeufs, puis ajouter la creme liquide et le gruyere rape. Bien melanger le tout. Saler et poivrer.",
+      "Etaler la pate dans un plat a tarte et disposer les legumes de facon homogene. Recouvrir avec le melange oeufs/creme.",
+      "Disposer le chevre sur le dessus en petits morceaux, repartis de facon homogene sur la quiche.",
+      "Enfourner a 220C pendant environ 30 min.",
     ],
   },
   {
@@ -977,26 +1143,49 @@ const recipes = [
     servings: 4,
     tags: ["oven", "vegetarian", "batch"],
     ingredients: [
-      { item: "eggplant", qty: 2, unit: "pcs" },
-      { item: "parmesan", qty: 100, unit: "g" },
-      { item: "basil", qty: 1, unit: "bunch" },
+      { item: "eggplant", qty: 4, unit: "pcs" },
+      { item: "parmesan", qty: 170, unit: "g" },
+      { item: "basil", qty: 2, unit: "cups" },
       { item: "mozzarella", qty: 150, unit: "g" },
       { item: "brown onion", qty: 1, unit: "pcs" },
-      { item: "garlic cloves", qty: 3, unit: "pcs" },
+      { item: "garlic cloves", qty: 5, unit: "pcs" },
       { item: "diced tomatoes", qty: 600, unit: "g" },
       { item: "olive oil", qty: 2, unit: "tbsp" },
+      { item: "oregano", qty: 1, unit: "tsp" },
     ],
     steps: [
-      "Slice and bake eggplant until tender. (20 min)",
-      "Saute onion and garlic; add tomatoes and simmer. (15 min)",
-      "Layer sauce, eggplant, mozzarella, parmesan, and basil. (10 min)",
-      "Bake until bubbling and golden. (15 min)",
+      "Baking eggplant: cut eggplant in thin slices.",
+      "Preheat oven to 220C / 430F (200C fan).",
+      "Bake eggplants with olive oil for 45 minutes until browning and tender. Remove from oven, leave to cool.",
+      "Saute onions and garlic: Heat olive oil in a large skillet over medium-high heat. Saute onions and garlic for 3 minutes until softened and just about to colour on the edges.",
+      "Add remaining ingredients: Pour in fry pan canned tomatoes and oregano. Stir and bring to a simmer.",
+      "Simmer uncovered for about 15 minutes, stirring occasionally, until thickened, adding the basil stalks halfway through cooking.",
+      "The final consistency should be slightly thicker than a pasta sauce so it's spreadable and not leaching liquid, but not too pasty either. Add extra water a little at a time if required during cooking if it gets too thick.",
+      "Season: Stir in salt and pepper. (Remember, we get salt from the parmesan too, so no need to go overboard here)",
+      "Assembling and baking:",
+      "Reduce oven to 180C / 350F (160C fan).",
+      "Smear a little tomato sauce in the bottom of baking dish.",
+      "Layer 1: Lay one third of the eggplant so it covers the base (some overlap is OK when layering eggplant). Spread 1/3 of the remaining sugo over eggplant. Drizzle with a little olive oil. Sprinkle with 1/3 of the parmesan, and 1/3 of basil leaves.",
+      "Layer 2: Repeat another 1/3 each of eggplant, tomato sauce, olive oil, basil and parmesan.",
+      "Layer 3 (top layer): Repeat again with remaining eggplant, tomato sauce and some olive oil. Do not put basil on top layer (we will garnish after baking). Scatter with remaining parmesan, then all the mozzarella.",
+      "Bake for 25 mins until bubbling and golden.",
     ],
     steps_fr: [
-      "Couper les aubergines et les cuire au four. (20 min)",
-      "Faire revenir oignon et ail; ajouter tomates et mijoter. (15 min)",
-      "Alterner sauce, aubergines, mozzarella, parmesan et basilic. (10 min)",
-      "Cuire jusqu'a ce que ce soit gratine. (15 min)",
+      "Cuire les aubergines: couper les aubergines en fines tranches.",
+      "Prechauffer le four a 220C / 430F (200C fan).",
+      "Cuire les aubergines avec l'huile d'olive pendant 45 minutes jusqu'a ce qu'elles soient dorees et tendres. Retirer du four et laisser refroidir.",
+      "Faire revenir les oignons et l'ail: Chauffer l'huile d'olive dans une grande poele a feu moyen-vif. Faire revenir oignons et ail 3 minutes jusqu'a ce qu'ils soient tendres et commencent a colorer.",
+      "Ajouter les ingredients restants: Verser dans la poele les tomates en conserve et l'origan. Remuer et porter a frémissement.",
+      "Laisser mijoter a decouvert environ 15 minutes, en remuant de temps en temps, jusqu'a ce que la sauce epaississe, en ajoutant les tiges de basilic a mi-cuisson.",
+      "La consistance finale doit etre legerement plus epaisse qu'une sauce pour pates afin qu'elle soit tartinable et ne rende pas d'eau, mais pas trop epaisse non plus. Ajouter un peu d'eau si necessaire pendant la cuisson si la sauce epaissit trop.",
+      "Assaisonner: incorporer sel et poivre. (Rappelez-vous que le parmesan apporte deja du sel, donc pas besoin d'en mettre trop)",
+      "Assemblage et cuisson:",
+      "Baisser le four a 180C / 350F (160C fan).",
+      "Etaler un peu de sauce tomate au fond du plat.",
+      "Couche 1: Deposer un tiers des aubergines pour couvrir le fond (un leger chevauchement est OK). Etaler 1/3 du reste de la sauce sur les aubergines. Arroser d'un peu d'huile d'olive. Parsemer 1/3 du parmesan et 1/3 des feuilles de basilic.",
+      "Couche 2: Repeter avec un autre tiers d'aubergines, sauce tomate, huile d'olive, basilic et parmesan.",
+      "Couche 3 (couche du dessus): Repeter avec le reste des aubergines, sauce tomate et un peu d'huile d'olive. Ne pas mettre de basilic sur la couche du dessus (on garnira apres cuisson). Parsemer le reste du parmesan puis toute la mozzarella.",
+      "Cuire 25 minutes jusqu'a ce que ce soit bouillonnant et dore.",
     ],
   },
 ];
@@ -1045,6 +1234,9 @@ let lastAddedRecipeId = "";
 
 const pickList = document.getElementById("pick-list");
 const recipeGrid = document.getElementById("recipe-grid");
+const recipeDetails = document.getElementById("recipe-details");
+const recipeModal = document.getElementById("recipe-modal");
+const recipeModalBody = document.getElementById("recipe-modal-body");
 const shoppingList = document.getElementById("shopping-list");
 const cookSelect = document.getElementById("cook-select");
 const cookCard = document.getElementById("cook-card");
@@ -1054,6 +1246,8 @@ const recentWeeks = document.getElementById("recent-weeks");
 const cookWeekLabel = document.getElementById("cook-week-label");
 const topWeekPicker = document.getElementById("top-week-picker");
 const topWeekLabel = document.getElementById("top-week-label");
+const topWeekShell = document.getElementById("top-week-shell");
+const topWeekLabelBlock = document.getElementById("top-week-label");
 const heroCount = document.getElementById("hero-count");
 const recipeSearch = document.getElementById("recipe-search");
 const filterUtensil = document.getElementById("filter-utensil");
@@ -1079,6 +1273,8 @@ const translations = {
     cook_week: "Week to cook",
     top_week: "Week",
     selected_count: (count) => `${count} recipe${count === 1 ? "" : "s"} selected`,
+    planned_count: (count, weekLabel) =>
+      `${count} recipe${count === 1 ? "" : "s"} planned for ${weekLabel}`,
     cook_sync_week: "Sync to plan week",
     week_select: "Select week",
     week_clear: "Clear",
@@ -1152,6 +1348,8 @@ const translations = {
     cook_week: "Semaine a cuisiner",
     top_week: "Semaine",
     selected_count: (count) => `${count} recette${count === 1 ? "" : "s"} sélectionnée${count === 1 ? "" : "s"}`,
+    planned_count: (count, weekLabel) =>
+      `${count} recette${count === 1 ? "" : "s"} planifiée${count === 1 ? "" : "s"} pour ${weekLabel}`,
     cook_sync_week: "Synchroniser avec la semaine planifiee",
     week_select: "Choisir la semaine",
     week_clear: "Effacer",
@@ -1235,6 +1433,7 @@ const ingredientTranslationsFr = {
   "garlic cloves": "gousses d'ail",
   "garlic clove": "gousse d'ail",
   "thickened cream": "crème épaisse",
+  "creme fraiche": "crème fraîche",
   "cream": "crème",
   "milk": "lait",
   "nutmeg": "muscade",
@@ -1508,6 +1707,24 @@ function getMealType(recipe) {
   return "main";
 }
 
+function getRecipeIcon(recipe) {
+  const name = `${recipe.name} ${recipe.name_fr}`.toLowerCase();
+  if (name.includes("lasagne") || name.includes("spaghetti")) return "🍝";
+  if (name.includes("soup") || name.includes("soupe")) return "🥣";
+  if (name.includes("salad") || name.includes("salade") || name.includes("taboul")) return "🥗";
+  if (name.includes("curry")) return "🍛";
+  if (name.includes("chili")) return "🌶️";
+  if (name.includes("quiche")) return "🥧";
+  if (name.includes("gratin")) return "🥔";
+  if (name.includes("ratatouille")) return "🍆";
+  if (name.includes("fajitas")) return "🌮";
+  if (name.includes("fish") || name.includes("poisson")) return "🐟";
+  if (name.includes("chicken") || name.includes("poulet")) return "🍗";
+  if (name.includes("eggplant") || name.includes("aubergine")) return "🍆";
+  if (name.includes("beans") || name.includes("lentil") || name.includes("lentille")) return "🫘";
+  return "🍽️";
+}
+
 function computeTimeBreakdown(recipe) {
   let cook = 0;
   let prep = 0;
@@ -1633,7 +1850,20 @@ function renderRecipeGrid() {
     const protein = getProteinLabel(recipe);
     const lastSelected = getLastSelectedLabel(recipe.id);
     const time = computeTimeBreakdown(recipe);
-    line.textContent = `${t("time_total")} ${time.total} min · ${t("time_cook")} ${time.cook} min · ${recipe.servings} ${t("servings_label")} · ${utensil} · ${protein} · ${lastSelected}`;
+    const parts = [
+      `${t("time_total")} ${time.total} min`,
+      `${t("time_cook")} ${time.cook} min`,
+      `${recipe.servings} ${t("servings_label")}`,
+      utensil,
+      protein,
+      lastSelected,
+    ];
+    parts.forEach((part) => {
+      const pill = document.createElement("span");
+      pill.className = "recipe-pill";
+      pill.textContent = part;
+      line.appendChild(pill);
+    });
     info.append(title, line);
 
     const actionWrap = document.createElement("div");
@@ -1656,9 +1886,41 @@ function renderRecipeGrid() {
     });
     actionWrap.appendChild(actionBtn);
 
+    card.addEventListener("click", (event) => {
+      if (event.target === actionBtn) return;
+      renderRecipeDetails(recipe);
+    });
+
     card.append(info, actionWrap);
     recipeGrid.appendChild(card);
   });
+}
+
+function renderRecipeDetails(recipe) {
+  if (!recipeDetails && !recipeModalBody) return;
+  const servings = recipe.servings;
+  const ingredients = recipe.ingredients
+    .map((ingredient) => {
+      const displayQty = formatQuantity(ingredient.qty, ingredient.unit);
+      const displayItem = translateIngredientItem(ingredient.item);
+      return `<li>${displayItem} — ${displayQty} ${ingredient.unit}</li>`;
+    })
+    .join("");
+
+  const html = `
+    <h4 id="recipe-modal-title"><span class="recipe-icon">${getRecipeIcon(recipe)}</span>${getRecipeName(recipe)}</h4>
+    <div class="detail-meta">${recipe.time} · ${servings} ${t("servings_label")}</div>
+    <ul>${ingredients}</ul>
+  `;
+
+  if (recipeModalBody && recipeModal) {
+    recipeModalBody.innerHTML = html;
+    recipeModal.classList.add("is-open");
+    recipeModal.setAttribute("aria-hidden", "false");
+    if (recipeDetails) recipeDetails.innerHTML = "";
+  } else if (recipeDetails) {
+    recipeDetails.innerHTML = html;
+  }
 }
 
 function normalizeShoppingItem(item) {
@@ -1717,6 +1979,17 @@ function renderShoppingList() {
       const displayItem = translateIngredientItem(ingredient.item);
       left.textContent = `${displayItem} — ${displayQty} ${ingredient.unit}`;
 
+      const link = document.createElement("a");
+      link.className = "woolworths-link";
+      link.href = `https://www.woolworths.com.au/shop/search/products?searchTerm=${encodeURIComponent(ingredient.item)}`;
+      link.target = "_blank";
+      link.rel = "noopener noreferrer";
+      link.textContent = "W";
+      link.setAttribute("aria-label", `Search ${ingredient.item} on Woolworths`);
+      link.addEventListener("click", (event) => {
+        event.stopPropagation();
+      });
+
       const checkbox = document.createElement("input");
       checkbox.type = "checkbox";
       checkbox.checked = Boolean(checkedItems[key]);
@@ -1727,7 +2000,7 @@ function renderShoppingList() {
         saveState();
       });
 
-      row.append(left, checkbox);
+      row.append(left, link, checkbox);
       shoppingList.appendChild(row);
     });
   });
@@ -1877,6 +2150,49 @@ function formatIngredientForDisplay(ingredient, scaledQty) {
   return `${displayItem}: ${displayQty} ${ingredient.unit}`;
 }
 
+function parseStepDurationMinutes(text) {
+  const lower = String(text).toLowerCase();
+  const hourMatch = lower.match(/(\d+)\s*(?:h|hour|hours)\b/);
+  let minutes = 0;
+  if (hourMatch) minutes += parseInt(hourMatch[1], 10) * 60;
+
+  const minRange = lower.match(/(\d+)\s*(?:-|to)\s*(\d+)\s*(?:min|mins|minutes)\b/);
+  if (minRange) {
+    minutes += parseInt(minRange[2], 10);
+  } else {
+    const minMatch = lower.match(/(\d+)\s*(?:min|mins|minutes)\b/);
+    if (minMatch) minutes += parseInt(minMatch[1], 10);
+  }
+  return minutes;
+}
+
+function formatTimer(minutes) {
+  const totalSeconds = Math.max(0, minutes) * 60;
+  const mm = Math.floor(totalSeconds / 60);
+  const ss = totalSeconds % 60;
+  return `${String(mm).padStart(2, "0")}:${String(ss).padStart(2, "0")}`;
+}
+
+function playTimerSound() {
+  try {
+    const context = new (window.AudioContext || window.webkitAudioContext)();
+    const osc = context.createOscillator();
+    const gain = context.createGain();
+    osc.type = "sine";
+    osc.frequency.value = 880;
+    gain.gain.value = 0.15;
+    osc.connect(gain);
+    gain.connect(context.destination);
+    osc.start();
+    setTimeout(() => {
+      osc.stop();
+      context.close();
+    }, 700);
+  } catch (error) {
+    // ignore audio errors
+  }
+}
+
 function renderCookSelect() {
   cookSelect.innerHTML = "";
   const planIds = Array.from(new Set(selectedRecipesByWeek[cookWeekKey] || []));
@@ -1955,7 +2271,58 @@ function renderCookCard(recipeId) {
     getRecipeSteps(recipe).forEach((step, index) => {
       const stepCard = document.createElement("div");
       stepCard.className = "step";
-      stepCard.textContent = `${index + 1}. ${step}`;
+      const stepText = document.createElement("div");
+      stepText.className = "step-text";
+      stepText.textContent = `${index + 1}. ${step}`;
+      stepCard.appendChild(stepText);
+
+      const minutes = parseStepDurationMinutes(step);
+      if (minutes > 0) {
+        const timerRow = document.createElement("div");
+        timerRow.className = "timer-row";
+
+        const display = document.createElement("span");
+        display.className = "timer-display";
+        display.textContent = formatTimer(minutes);
+
+        const startBtn = document.createElement("button");
+        startBtn.className = "ghost timer-btn";
+        startBtn.textContent = "Start timer";
+
+        const reminderBtn = document.createElement("a");
+        reminderBtn.className = "ghost timer-btn";
+        reminderBtn.textContent = "Set phone reminder";
+        reminderBtn.target = "_blank";
+        reminderBtn.rel = "noopener";
+        reminderBtn.href = `https://www.google.com/search?q=timer+${minutes}+minutes`;
+
+        let intervalId = null;
+        let remaining = minutes * 60;
+
+        startBtn.addEventListener("click", () => {
+          if (intervalId) return;
+          startBtn.disabled = true;
+          const tick = () => {
+            const mm = Math.floor(remaining / 60);
+            const ss = remaining % 60;
+            display.textContent = `${String(mm).padStart(2, "0")}:${String(ss).padStart(2, "0")}`;
+            if (remaining <= 0) {
+              clearInterval(intervalId);
+              intervalId = null;
+              startBtn.disabled = false;
+              playTimerSound();
+              if (navigator.vibrate) navigator.vibrate([200, 100, 200]);
+              return;
+            }
+            remaining -= 1;
+          };
+          tick();
+          intervalId = setInterval(tick, 1000);
+        });
+
+        timerRow.append(display, startBtn, reminderBtn);
+        stepCard.appendChild(timerRow);
+      }
       steps.appendChild(stepCard);
     });
 
@@ -2052,6 +2419,12 @@ function getCurrentWeekKey() {
   const yearStart = new Date(Date.UTC(tmp.getUTCFullYear(), 0, 1));
   const weekNum = Math.ceil(((tmp - yearStart) / 86400000 + 1) / 7);
   return `${tmp.getUTCFullYear()}-W${String(weekNum).padStart(2, "0")}`;
+}
+
+function getNextWeekKey() {
+  const start = getWeekStartFromDate(new Date());
+  start.setDate(start.getDate() + 7);
+  return getWeekKeyFromDate(start);
 }
 
 function setupWeekPicker({ input, trigger, popover, labelNode, onChange }) {
@@ -2174,7 +2547,7 @@ function setupWeekPicker({ input, trigger, popover, labelNode, onChange }) {
 }
 
 function setWeekFromTopPicker() {
-  currentWeekKey = (topWeekPicker && topWeekPicker.value) || getCurrentWeekKey();
+  currentWeekKey = (topWeekPicker && topWeekPicker.value) || getNextWeekKey();
   cookWeekKey = currentWeekKey;
   selectedRecipes = [...(selectedRecipesByWeek[currentWeekKey] || [])];
   checkedItems = { ...(checkedItemsByWeek[currentWeekKey] || {}) };
@@ -2190,6 +2563,26 @@ function setWeekFromTopPicker() {
     renderCookEmpty();
   }
   refreshAll();
+}
+
+function populateTopWeekOptions() {
+  if (!topWeekPicker) return;
+  topWeekPicker.innerHTML = "";
+  const nowKey = getNextWeekKey();
+  const [yearPart, weekPart] = nowKey.split("-W");
+  const baseYear = parseInt(yearPart, 10);
+  const baseWeek = parseInt(weekPart, 10);
+  const totalWeeks = 20;
+
+  for (let i = -2; i < totalWeeks; i += 1) {
+    const date = getDateFromISOWeek(baseYear, baseWeek);
+    date.setDate(date.getDate() + i * 7);
+    const weekKey = getWeekKeyFromDate(date);
+    const option = document.createElement("option");
+    option.value = weekKey;
+    option.textContent = formatWeekLabel(weekKey);
+    topWeekPicker.appendChild(option);
+  }
 }
 
 function refreshAll() {
@@ -2210,7 +2603,8 @@ function refreshAll() {
   renderRecipeGrid();
   renderRecentWeeks();
   if (heroCount) {
-    heroCount.textContent = t("selected_count", selectedRecipes.length);
+    const weekLabel = formatWeekLabel(currentWeekKey);
+    heroCount.textContent = t("planned_count", selectedRecipes.length, weekLabel);
   }
   if (currentCookRecipeId && (selectedRecipesByWeek[cookWeekKey] || []).includes(currentCookRecipeId)) {
     renderCookCard(currentCookRecipeId);
@@ -2219,8 +2613,9 @@ function refreshAll() {
 
 refreshAll();
 
+populateTopWeekOptions();
 if (topWeekPicker) {
-  topWeekPicker.value = getCurrentWeekKey();
+  topWeekPicker.value = getNextWeekKey();
 }
 setWeekFromTopPicker();
 
@@ -2299,5 +2694,14 @@ if (languageSelect) {
     currentLanguage = event.target.value;
     safeSetItem("pantryLanguage", currentLanguage);
     refreshAll();
+  });
+}
+
+if (recipeModal) {
+  recipeModal.addEventListener("click", (event) => {
+    const shouldClose = event.target?.dataset?.modalClose === "true";
+    if (!shouldClose) return;
+    recipeModal.classList.remove("is-open");
+    recipeModal.setAttribute("aria-hidden", "true");
   });
 }
