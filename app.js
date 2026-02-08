@@ -1190,6 +1190,43 @@ const recipes = [
   },
 ];
 
+const recipeImageMap = {
+  "gratin-dauphinois": "https://cdn.pixabay.com/photo/2018/08/05/21/42/potato-casserole-3586488_1280.jpg",
+  "chickpeas-swiss-chard": "Recipes/Recipe book - all_2.JPG",
+  "poulet-courgettes-creme": "Recipes/Recipe book - all_3.JPG",
+  "chilli-con-carne-thermomix": "Recipes/Recipe book - all_5.JPG",
+  "quiche-courgettes-poivrons-onions": "https://cdn.pixabay.com/photo/2017/06/16/19/57/tart-2409958_1280.jpg",
+  "tian-de-legumes": "Recipes/Recipe book - all_8.JPG",
+  "tabbouleh": "https://images.pexels.com/photos/15832880/pexels-photo-15832880.jpeg?cs=srgb&dl=pexels-esmihel-15832880.jpg&fm=jpg",
+  "poulet-ananas-couscous": "Recipes/Recipe book - all_10.JPG",
+  "ratatouille-thermomix": "https://cdn.pixabay.com/photo/2020/06/19/08/26/ratatouille-5316199_1280.jpg",
+  "lentil-soup-thermomix": "Recipes/Recipe book - all_12.JPG",
+  "split-pea-soup-thermomix": "Recipes/Recipe book - all_14.JPG",
+  "pea-mint-soup": "Recipes/Recipe book - all_16.JPG",
+  "quinoa-butternut-cranberries": "Recipes/Recipe book - all_17.JPG",
+  "fajitas": "Recipes/Recipe book - all_18.JPG",
+  "bolognese-thermomix": "Recipes/Recipe book - all_20.JPG",
+  "eggplant-parmigiana": "https://cdn.pixabay.com/photo/2015/09/03/09/58/eggplant-920269_1280.jpg",
+  "spinach-ricotta-lasagne": "https://images.pexels.com/photos/8023752/pexels-photo-8023752.jpeg?auto=compress&cs=tinysrgb&w=800",
+  "curry-epinards-pois-chiche": "Recipes/Recipe book - all_26.JPG",
+  "dahl-lentilles-epinards": "Recipes/Recipe book - all_28.JPG",
+  "gratin-choufleur": "Recipes/Recipe book - all_30.JPG",
+  "legumes-farcis": "Recipes/Recipe book - all_31.JPG",
+  "poulet-basquaise": "Recipes/Recipe book - all_32.JPG",
+  "curry-poisson": "Recipes/Recipe book - all_33.JPG",
+  "moussaka": "https://cdn.pixabay.com/photo/2016/03/11/02/01/moussaka-1249606_1280.jpg",
+  "lasagne-lentilles": "https://images.pexels.com/photos/13823542/pexels-photo-13823542.jpeg?auto=compress&cs=tinysrgb&w=800",
+  "harira-lentil-chickpea": "Recipes/Recipe book - all_36.JPG",
+  "lentils-brussels-skillet": "Recipes/Recipe book - all_37.JPG",
+  "chicken-broccolini-mustard": "Recipes/Recipe book - all_39.JPG",
+  "vegan-bean-stew-fennel": "Recipes/Recipe book - all_41.JPG",
+  "roasted-veg-cannellini": "Recipes/Recipe book - all_43.JPG",
+};
+
+function getRecipeImage(recipe) {
+  return recipeImageMap[recipe.id] || "";
+}
+
 
 
 function safeGetItem(key) {
@@ -1220,9 +1257,11 @@ function safeParseStorage(key, fallback) {
 const storedPicksByWeek = safeParseStorage("pantryPicksByWeek", {});
 const storedChecksByWeek = safeParseStorage("pantryChecksByWeek", {});
 const storedServingsByWeek = safeParseStorage("pantryServingsByWeek", {});
+const storedRatings = safeParseStorage("pantryRatingsByRecipe", {});
 let selectedRecipesByWeek = { ...storedPicksByWeek };
 let checkedItemsByWeek = { ...storedChecksByWeek };
 let selectedServingsByWeek = { ...storedServingsByWeek };
+let ratingsByRecipe = { ...storedRatings };
 let selectedRecipes = [];
 let checkedItems = {};
 let currentWeekKey = "";
@@ -1540,8 +1579,11 @@ const ingredientTranslationsFr = {
 };
 
 function translateIngredientItem(item) {
-  if (currentLanguage !== "fr") return item;
   const key = item.toLowerCase();
+  if (currentLanguage !== "fr") {
+    if (key === "creme fraiche") return "cream";
+    return item;
+  }
   return ingredientTranslationsFr[key] || item;
 }
 
@@ -1556,18 +1598,63 @@ function getRecipeSteps(recipe) {
 }
 const jumpPlanner = document.getElementById("jump-planner");
 const jumpCook = document.getElementById("jump-cook");
+const jumpLibrary = document.getElementById("jump-library");
+const jumpPicker = document.getElementById("jump-picker");
+const plannerSection = document.getElementById("planner");
+const cookSection = document.getElementById("cook");
+const shoppingSection = document.getElementById("shopping");
+const plannerLibrary = document.getElementById("planner-library");
+const plannerPicker = document.getElementById("planner-picker");
+
+function setView(view) {
+  const isCook = view === "cook";
+  document.body.classList.toggle("view-cook", isCook);
+  document.body.classList.toggle("view-plan", !isCook);
+  if (jumpPlanner) {
+    jumpPlanner.classList.toggle("primary", !isCook);
+    jumpPlanner.classList.toggle("ghost", isCook);
+  }
+  if (jumpCook) {
+    jumpCook.classList.toggle("primary", isCook);
+    jumpCook.classList.toggle("ghost", !isCook);
+  }
+}
 
 if (jumpPlanner) {
   jumpPlanner.addEventListener("click", () => {
-    document.getElementById("planner").scrollIntoView({ behavior: "smooth" });
+    setView("plan");
+    if (plannerSection) {
+      plannerSection.scrollIntoView({ behavior: "smooth" });
+    }
   });
 }
 
 if (jumpCook) {
   jumpCook.addEventListener("click", () => {
-    document.getElementById("cook").scrollIntoView({ behavior: "smooth" });
+    setView("cook");
+    if (cookSection) {
+      cookSection.scrollIntoView({ behavior: "smooth" });
+    }
   });
 }
+
+if (jumpLibrary) {
+  jumpLibrary.addEventListener("click", () => {
+    if (plannerLibrary) {
+      plannerLibrary.scrollIntoView({ behavior: "smooth" });
+    }
+  });
+}
+
+if (jumpPicker) {
+  jumpPicker.addEventListener("click", () => {
+    if (plannerPicker) {
+      plannerPicker.scrollIntoView({ behavior: "smooth" });
+    }
+  });
+}
+
+setView("plan");
 
 function saveState() {
   selectedRecipesByWeek[currentWeekKey] = [...selectedRecipes];
@@ -1576,6 +1663,27 @@ function saveState() {
   safeSetItem("pantryPicksByWeek", JSON.stringify(selectedRecipesByWeek));
   safeSetItem("pantryChecksByWeek", JSON.stringify(checkedItemsByWeek));
   safeSetItem("pantryServingsByWeek", JSON.stringify(selectedServingsByWeek));
+  safeSetItem("pantryRatingsByRecipe", JSON.stringify(ratingsByRecipe));
+}
+
+function renderRatingStars(target, recipeId) {
+  target.innerHTML = "";
+  target.classList.add("rating");
+  const current = ratingsByRecipe[recipeId] || 0;
+  for (let i = 1; i <= 5; i += 1) {
+    const star = document.createElement("button");
+    star.type = "button";
+    star.className = `star ${i <= current ? "is-filled" : ""}`;
+    star.textContent = "★";
+    star.setAttribute("aria-label", `Rate ${i} star${i === 1 ? "" : "s"}`);
+    star.addEventListener("click", (event) => {
+      event.stopPropagation();
+      ratingsByRecipe[recipeId] = i;
+      saveState();
+      renderRatingStars(target, recipeId);
+    });
+    target.appendChild(star);
+  }
 }
 
 function getRecipeById(id) {
@@ -1839,11 +1947,31 @@ function renderRecipeGrid() {
     .forEach((recipe) => {
     const card = document.createElement("div");
     card.className = "recipe-card";
+
+    const thumb = document.createElement("div");
+    thumb.className = "recipe-thumb";
+    const imageSrc = getRecipeImage(recipe);
+    if (imageSrc) {
+      const img = document.createElement("img");
+      img.src = imageSrc;
+      img.alt = getRecipeName(recipe);
+      img.loading = "lazy";
+      thumb.appendChild(img);
+    } else {
+      thumb.classList.add("is-fallback");
+      const fallback = document.createElement("span");
+      fallback.textContent = getRecipeIcon(recipe);
+      thumb.appendChild(fallback);
+    }
+
     const info = document.createElement("div");
     info.className = "recipe-info";
     const title = document.createElement("h3");
     title.className = "recipe-title";
     title.textContent = getRecipeName(recipe);
+
+    const rating = document.createElement("div");
+    renderRatingStars(rating, recipe.id);
     const line = document.createElement("div");
     line.className = "recipe-line";
     const utensil = getUtensilLabel(recipe);
@@ -1864,7 +1992,7 @@ function renderRecipeGrid() {
       pill.textContent = part;
       line.appendChild(pill);
     });
-    info.append(title, line);
+    info.append(title, rating, line);
 
     const actionWrap = document.createElement("div");
 
@@ -1891,7 +2019,7 @@ function renderRecipeGrid() {
       renderRecipeDetails(recipe);
     });
 
-    card.append(info, actionWrap);
+    card.append(thumb, info, actionWrap);
     recipeGrid.appendChild(card);
   });
 }
@@ -1910,11 +2038,14 @@ function renderRecipeDetails(recipe) {
   const html = `
     <h4 id="recipe-modal-title"><span class="recipe-icon">${getRecipeIcon(recipe)}</span>${getRecipeName(recipe)}</h4>
     <div class="detail-meta">${recipe.time} · ${servings} ${t("servings_label")}</div>
+    <div class="rating" data-rating-for="${recipe.id}"></div>
     <ul>${ingredients}</ul>
   `;
 
   if (recipeModalBody && recipeModal) {
     recipeModalBody.innerHTML = html;
+    const ratingTarget = recipeModalBody.querySelector(`[data-rating-for="${recipe.id}"]`);
+    if (ratingTarget) renderRatingStars(ratingTarget, recipe.id);
     recipeModal.classList.add("is-open");
     recipeModal.setAttribute("aria-hidden", "false");
     if (recipeDetails) recipeDetails.innerHTML = "";
@@ -1927,6 +2058,7 @@ function normalizeShoppingItem(item) {
   const name = item.toLowerCase().trim();
   if (name === "water" || name === "hot water") return null;
   if (name === "brown onion" || name === "white onion" || name === "yellow onion") return "onion";
+  if (name === "creme fraiche") return "cream";
   if (name === "tomato" || name === "tomatoes" || name === "canned tomatoes" || name === "diced tomatoes" || name === "crushed tomatoes") {
     return "tomatoes";
   }
