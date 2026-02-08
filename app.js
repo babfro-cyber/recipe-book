@@ -1271,6 +1271,7 @@ let selectedServings = {};
 let currentCookRecipeId = "";
 let lastAddedRecipeId = "";
 let syncTimer = null;
+let syncPoller = null;
 let lastSyncedAt = safeGetItem("pantryLastSync") || "";
 let syncCode = safeGetItem("pantrySyncCode") || "";
 
@@ -1675,6 +1676,7 @@ updateSaveStatus();
 updateSyncStatus();
 if (syncCode) {
   pullPlan();
+  startAutoPull();
 }
 
 if (saveChanges) {
@@ -1699,11 +1701,13 @@ if (syncConnect) {
     updateSyncStatus("Connecting...");
     await pullPlan();
     scheduleSync();
+    startAutoPull();
   });
 }
 
 if (syncNow) {
-  syncNow.addEventListener("click", () => {
+  syncNow.addEventListener("click", async () => {
+    await pullPlan();
     pushPlan();
   });
 }
@@ -1827,6 +1831,14 @@ function scheduleSync() {
   syncTimer = setTimeout(() => {
     pushPlan();
   }, 800);
+}
+
+function startAutoPull() {
+  if (!supabaseClient || !syncCode) return;
+  if (syncPoller) clearInterval(syncPoller);
+  syncPoller = setInterval(() => {
+    pullPlan();
+  }, 15000);
 }
 
 async function pushPlan() {
