@@ -1191,36 +1191,36 @@ const recipes = [
 ];
 
 const recipeImageMap = {
-  "gratin-dauphinois": "https://cdn.pixabay.com/photo/2018/08/05/21/42/potato-casserole-3586488_1280.jpg",
-  "chickpeas-swiss-chard": "Recipes/Recipe book - all_2.JPG",
-  "poulet-courgettes-creme": "Recipes/Recipe book - all_3.JPG",
-  "chilli-con-carne-thermomix": "Recipes/Recipe book - all_5.JPG",
-  "quiche-courgettes-poivrons-onions": "https://cdn.pixabay.com/photo/2017/06/16/19/57/tart-2409958_1280.jpg",
-  "tian-de-legumes": "Recipes/Recipe book - all_8.JPG",
+  "gratin-dauphinois": "https://d194ip2226q57d.cloudfront.net/images/GratinDauphinois.original.jpg",
+  "chickpeas-swiss-chard": "https://static1.squarespace.com/static/56801b350e4c11744888ec37/t/602d95369cbd8f1dc15d2d7a/1613600058892/Chick+Pea+Swiss+Chard+landscape.jpg?format=1500w",
+  "poulet-courgettes-creme": "https://littlesunnykitchen.com/wp-content/uploads/2025/08/Chicken-Zucchini-Pasta-1.jpg",
+  "chilli-con-carne-thermomix": "https://www.parentclub.scot/sites/default/files/2025-02/chilli-con-carne-iStock-1353857212.jpg",
+  "quiche-courgettes-poivrons-onions": "https://assets.tmecosys.com/image/upload/t_web_shared_recipe_221x240/img/recipe/ras/Assets/D4D985E0-2D3E-4F7D-B9A9-C2E38CA4CD3A/Derivates/5B707963-499E-43CA-9800-BB5CE0FC3CAD.jpg",
+  "tian-de-legumes": "Recipes/vegetable-tian.jpg",
   "tabbouleh": "https://images.pexels.com/photos/15832880/pexels-photo-15832880.jpeg?cs=srgb&dl=pexels-esmihel-15832880.jpg&fm=jpg",
-  "poulet-ananas-couscous": "Recipes/Recipe book - all_10.JPG",
-  "ratatouille-thermomix": "https://cdn.pixabay.com/photo/2020/06/19/08/26/ratatouille-5316199_1280.jpg",
-  "lentil-soup-thermomix": "Recipes/Recipe book - all_12.JPG",
-  "split-pea-soup-thermomix": "Recipes/Recipe book - all_14.JPG",
-  "pea-mint-soup": "Recipes/Recipe book - all_16.JPG",
-  "quinoa-butternut-cranberries": "Recipes/Recipe book - all_17.JPG",
-  "fajitas": "Recipes/Recipe book - all_18.JPG",
-  "bolognese-thermomix": "Recipes/Recipe book - all_20.JPG",
-  "eggplant-parmigiana": "https://cdn.pixabay.com/photo/2015/09/03/09/58/eggplant-920269_1280.jpg",
-  "spinach-ricotta-lasagne": "https://images.pexels.com/photos/8023752/pexels-photo-8023752.jpeg?auto=compress&cs=tinysrgb&w=800",
-  "curry-epinards-pois-chiche": "Recipes/Recipe book - all_26.JPG",
-  "dahl-lentilles-epinards": "https://images.pexels.com/photos/6544380/pexels-photo-6544380.jpeg",
-  "gratin-choufleur": "Recipes/Recipe book - all_30.JPG",
-  "legumes-farcis": "Recipes/Recipe book - all_31.JPG",
-  "poulet-basquaise": "Recipes/Recipe book - all_32.JPG",
-  "curry-poisson": "Recipes/Recipe book - all_33.JPG",
-  "moussaka": "https://cdn.pixabay.com/photo/2016/03/11/02/01/moussaka-1249606_1280.jpg",
-  "lasagne-lentilles": "https://images.pexels.com/photos/13823542/pexels-photo-13823542.jpeg?auto=compress&cs=tinysrgb&w=800",
-  "harira-lentil-chickpea": "Recipes/Recipe book - all_36.JPG",
-  "lentils-brussels-skillet": "Recipes/Recipe book - all_37.JPG",
-  "chicken-broccolini-mustard": "Recipes/Recipe book - all_39.JPG",
-  "vegan-bean-stew-fennel": "Recipes/Recipe book - all_41.JPG",
-  "roasted-veg-cannellini": "Recipes/Recipe book - all_43.JPG",
+  "poulet-ananas-couscous": "https://skinnyfitalicious.com/wp-content/uploads/2018/12/pineapple-chicken-quinoa-img4.jpg",
+  "ratatouille-thermomix": "https://lacuisinedegeraldine.fr/wp-content/uploads/2025/06/Ratatouille-333-500x500.jpg",
+  "lentil-soup-thermomix": "https://hips.hearstapps.com/hmg-prod/images/lentil-soup-recipe-2-677c54158ad10.jpg?crop=0.6667718689179948xw:1xh;center,top&resize=1200:*",
+  "split-pea-soup-thermomix": "https://www.allrecipes.com/thmb/VbJpto2PNNZNCemQU-Hk-1J0nZg=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/219170-HamAndSplitPeaSoup-DDMFS-4x3-154b6d4968b14fa190ea733b66bbbc8e.jpg",
+  "pea-mint-soup": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS6V0K0v29CpPl1fivBUzW9hKu3XnLWolPj_w&s",
+  "quinoa-butternut-cranberries": "https://foolproofliving.com/wp-content/uploads/2023/01/Butternut-Squash-Quinoa-Salad-with-Pomegranate.jpg",
+  "fajitas": "https://www.foodiecrush.com/wp-content/uploads/2020/06/Chicken-Fajitas-foodiecrush.com-008.jpg",
+  "bolognese-thermomix": "https://static01.nyt.com/images/2024/10/29/multimedia/Marcella-Hazans-Bolognese-Saucerex-wptg-sub/Marcella-Hazans-Bolognese-Saucerex-wptg-sub-videoSixteenByNineJumbo1600-v2.jpg",
+  "eggplant-parmigiana": "https://www.recipetineats.com/tachyon/2021/05/Eggplant-Parmigiana_1-SQ.jpg",
+  "spinach-ricotta-lasagne": "https://api.photon.aremedia.net.au/wp-content/uploads/sites/4/2015/03/19/e45f8cf903ef47ec94feb52dce841000/spinach-and-ricotta-lasagne.jpg?fit=2048%2C1536",
+  "curry-epinards-pois-chiche": "https://mygoodnesskitchen.com/wp-content/uploads/2022/02/Chickpea-and-Spinach-Curry-Hero-1061.jpg.webp",
+  "dahl-lentilles-epinards": "https://rainbowplantlife.com/wp-content/uploads/2024/05/Dal-Palak-hero-shots-3-of-4.jpg",
+  "gratin-choufleur": "https://www.naomicrisante.com.au/wp-content/uploads/2019/05/134F22CC-1F9B-4399-A0CA-61A55733987D.jpeg",
+  "legumes-farcis": "https://ichef.bbc.co.uk/ace/standard/1600/food/recipes/stuffed_vegetables_56352_16x9.jpg.webp",
+  "poulet-basquaise": "https://www.foodandwine.com/thmb/7_y1SLSmabv8G3X6-bjZkNFfgOE=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/Poulet-Basquaise-FT-RECIPE1023-1e5c2fc9a9324247bb91968a096066e3.jpg",
+  "curry-poisson": "https://www.gimmesomeoven.com/wp-content/uploads/2025/04/Cod-Curry-6-1.jpg",
+  "moussaka": "https://www.recipetineats.com/tachyon/2019/03/Greek-Moussaka_3-re-edited-SQ.jpg?resize=500%2C500",
+  "lasagne-lentilles": "https://vancouverwithlove.com/wp-content/uploads/2025/03/vegan-red-lentil-lasagna.jpg",
+  "harira-lentil-chickpea": "https://www.crowdedkitchen.com/wp-content/uploads/2020/08/moroccan-chickpea-lentil-stew.jpg",
+  "lentils-brussels-skillet": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT-dmcczJg4HopMx2RMc-hfgz5zVwqUztU8Uw&s",
+  "chicken-broccolini-mustard": "https://thefoodcharlatan.com/wp-content/uploads/2016/10/IMG_6395.jpg",
+  "vegan-bean-stew-fennel": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcShQY6ikrhJtwXIntF8g9PGJu3BMvzZCWgW-g&s",
+  "roasted-veg-cannellini": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTHZ-LLkszTKNyIGnEuZ4fl3UvVWNpZYlvNrw&s",
 };
 
 function getRecipeImage(recipe) {
@@ -1270,6 +1270,13 @@ let currentLanguage = safeGetItem("pantryLanguage") || "en";
 let selectedServings = {};
 let currentCookRecipeId = "";
 let lastAddedRecipeId = "";
+let syncTimer = null;
+let lastSyncedAt = safeGetItem("pantryLastSync") || "";
+let syncCode = safeGetItem("pantrySyncCode") || "";
+
+const SUPABASE_URL = "https://jscczxnmujsimeidltdt.supabase.co";
+const SUPABASE_KEY = "sb_publishable_sg_e1rUxUxwQacU0le5D_Q_VYhYe980";
+const supabase = window.supabase ? window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY) : null;
 
 const pickList = document.getElementById("pick-list");
 const recipeGrid = document.getElementById("recipe-grid");
@@ -1293,6 +1300,10 @@ const filterUtensil = document.getElementById("filter-utensil");
 const filterProtein = document.getElementById("filter-protein");
 const filterMeal = document.getElementById("filter-meal");
 const languageSelect = document.getElementById("language-select");
+const syncCodeInput = document.getElementById("sync-code");
+const syncConnect = document.getElementById("sync-connect");
+const syncNow = document.getElementById("sync-now");
+const syncStatus = document.getElementById("sync-status");
 
 const translations = {
   en: {
@@ -1600,6 +1611,11 @@ const jumpPlanner = document.getElementById("jump-planner");
 const jumpCook = document.getElementById("jump-cook");
 const jumpLibrary = document.getElementById("jump-library");
 const jumpPicker = document.getElementById("jump-picker");
+const saveChanges = document.getElementById("save-changes");
+const saveStatus = document.getElementById("save-status");
+const exportPlan = document.getElementById("export-plan");
+const importPlan = document.getElementById("import-plan");
+const importFile = document.getElementById("import-file");
 const plannerSection = document.getElementById("planner");
 const cookSection = document.getElementById("cook");
 const shoppingSection = document.getElementById("shopping");
@@ -1655,6 +1671,102 @@ if (jumpPicker) {
 }
 
 setView("plan");
+updateSaveStatus();
+updateSyncStatus();
+if (syncCode) {
+  pullPlan();
+}
+
+if (saveChanges) {
+  saveChanges.addEventListener("click", () => {
+    saveState();
+  });
+}
+
+if (syncCodeInput) {
+  syncCodeInput.value = syncCode;
+}
+
+if (syncConnect) {
+  syncConnect.addEventListener("click", async () => {
+    const value = (syncCodeInput?.value || "").trim();
+    if (!value) {
+      updateSyncStatus("Enter a household code.");
+      return;
+    }
+    syncCode = value;
+    safeSetItem("pantrySyncCode", syncCode);
+    updateSyncStatus("Connecting...");
+    await pullPlan();
+    scheduleSync();
+  });
+}
+
+if (syncNow) {
+  syncNow.addEventListener("click", () => {
+    pushPlan();
+  });
+}
+
+if (exportPlan) {
+  exportPlan.addEventListener("click", () => {
+    const payload = {
+      version: 1,
+      exportedAt: new Date().toISOString(),
+      picksByWeek: selectedRecipesByWeek,
+      checksByWeek: checkedItemsByWeek,
+      servingsByWeek: selectedServingsByWeek,
+      ratingsByRecipe: ratingsByRecipe,
+      language: currentLanguage,
+    };
+    const blob = new Blob([JSON.stringify(payload, null, 2)], { type: "application/json" });
+    const url = URL.createObjectURL(blob);
+    const link = document.createElement("a");
+    link.href = url;
+    link.download = "pantrypilot-plan.json";
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+    URL.revokeObjectURL(url);
+  });
+}
+
+if (importPlan && importFile) {
+  importPlan.addEventListener("click", () => {
+    importFile.click();
+  });
+}
+
+if (importFile) {
+  importFile.addEventListener("change", async (event) => {
+    const file = event.target.files?.[0];
+    if (!file) return;
+    try {
+      const text = await file.text();
+      const data = JSON.parse(text);
+      selectedRecipesByWeek = { ...(data.picksByWeek || {}) };
+      checkedItemsByWeek = { ...(data.checksByWeek || {}) };
+      selectedServingsByWeek = { ...(data.servingsByWeek || {}) };
+      ratingsByRecipe = { ...(data.ratingsByRecipe || {}) };
+      currentLanguage = data.language || currentLanguage;
+
+      safeSetItem("pantryPicksByWeek", JSON.stringify(selectedRecipesByWeek));
+      safeSetItem("pantryChecksByWeek", JSON.stringify(checkedItemsByWeek));
+      safeSetItem("pantryServingsByWeek", JSON.stringify(selectedServingsByWeek));
+      safeSetItem("pantryRatingsByRecipe", JSON.stringify(ratingsByRecipe));
+      safeSetItem("pantryLanguage", currentLanguage);
+
+      if (languageSelect) languageSelect.value = currentLanguage;
+      setWeekFromTopPicker();
+      refreshAll();
+      updateSaveStatus();
+    } catch (error) {
+      alert("Import failed. Please use a valid PantryPilot export file.");
+    } finally {
+      importFile.value = "";
+    }
+  });
+}
 
 function saveState() {
   selectedRecipesByWeek[currentWeekKey] = [...selectedRecipes];
@@ -1664,6 +1776,98 @@ function saveState() {
   safeSetItem("pantryChecksByWeek", JSON.stringify(checkedItemsByWeek));
   safeSetItem("pantryServingsByWeek", JSON.stringify(selectedServingsByWeek));
   safeSetItem("pantryRatingsByRecipe", JSON.stringify(ratingsByRecipe));
+  updateSaveStatus();
+  scheduleSync();
+}
+
+function updateSaveStatus() {
+  if (!saveStatus) return;
+  const now = new Date();
+  const time = now.toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" });
+  saveStatus.textContent = `Saved locally at ${time}.`;
+}
+
+function updateSyncStatus(message) {
+  if (!syncStatus) return;
+  syncStatus.textContent = message || (syncCode ? "Sync on." : "Sync off.");
+}
+
+function getPlanPayload() {
+  return {
+    picksByWeek: selectedRecipesByWeek,
+    checksByWeek: checkedItemsByWeek,
+    servingsByWeek: selectedServingsByWeek,
+    ratingsByRecipe: ratingsByRecipe,
+    language: currentLanguage,
+    updatedAt: new Date().toISOString(),
+  };
+}
+
+function applyPlanPayload(payload) {
+  selectedRecipesByWeek = { ...(payload.picksByWeek || {}) };
+  checkedItemsByWeek = { ...(payload.checksByWeek || {}) };
+  selectedServingsByWeek = { ...(payload.servingsByWeek || {}) };
+  ratingsByRecipe = { ...(payload.ratingsByRecipe || {}) };
+  currentLanguage = payload.language || currentLanguage;
+  lastSyncedAt = payload.updatedAt || lastSyncedAt;
+  safeSetItem("pantryPicksByWeek", JSON.stringify(selectedRecipesByWeek));
+  safeSetItem("pantryChecksByWeek", JSON.stringify(checkedItemsByWeek));
+  safeSetItem("pantryServingsByWeek", JSON.stringify(selectedServingsByWeek));
+  safeSetItem("pantryRatingsByRecipe", JSON.stringify(ratingsByRecipe));
+  safeSetItem("pantryLanguage", currentLanguage);
+  if (lastSyncedAt) safeSetItem("pantryLastSync", lastSyncedAt);
+  if (languageSelect) languageSelect.value = currentLanguage;
+  setWeekFromTopPicker();
+  refreshAll();
+}
+
+function scheduleSync() {
+  if (!supabase || !syncCode) return;
+  if (syncTimer) clearTimeout(syncTimer);
+  syncTimer = setTimeout(() => {
+    pushPlan();
+  }, 800);
+}
+
+async function pushPlan() {
+  if (!supabase || !syncCode) return;
+  const payload = getPlanPayload();
+  safeSetItem("pantryLastSync", payload.updatedAt);
+  lastSyncedAt = payload.updatedAt;
+  updateSyncStatus("Syncing...");
+  const { error } = await supabase.from("plans").upsert(
+    {
+      code: syncCode,
+      payload,
+      updated_at: payload.updatedAt,
+    },
+    { onConflict: "code" }
+  );
+  if (error) {
+    updateSyncStatus("Sync failed.");
+    return;
+  }
+  updateSyncStatus(`Synced at ${new Date().toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" })}.`);
+}
+
+async function pullPlan() {
+  if (!supabase || !syncCode) return;
+  updateSyncStatus("Syncing...");
+  const { data, error } = await supabase.from("plans").select("payload, updated_at").eq("code", syncCode).maybeSingle();
+  if (error) {
+    updateSyncStatus("Sync failed.");
+    return;
+  }
+  if (data?.payload) {
+    const remoteUpdated = data.updated_at || data.payload.updatedAt || "";
+    const localUpdated = safeGetItem("pantryLastSync") || "";
+    if (!localUpdated || (remoteUpdated && remoteUpdated > localUpdated)) {
+      applyPlanPayload(data.payload);
+      lastSyncedAt = remoteUpdated;
+      safeSetItem("pantryLastSync", remoteUpdated);
+    }
+  }
+  updateSyncStatus(`Synced at ${new Date().toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" })}.`);
 }
 
 function renderRatingStars(target, recipeId) {
@@ -1950,12 +2154,18 @@ function renderRecipeGrid() {
 
     const thumb = document.createElement("div");
     thumb.className = "recipe-thumb";
+    if (recipe.id === "dahl-lentilles-epinards") {
+      thumb.classList.add("thumb-dahl");
+    }
     const imageSrc = getRecipeImage(recipe);
     if (imageSrc) {
       const img = document.createElement("img");
       img.src = imageSrc;
       img.alt = getRecipeName(recipe);
       img.loading = "lazy";
+      if (recipe.id === "dahl-lentilles-epinards") {
+        img.classList.add("fit-contain");
+      }
       thumb.appendChild(img);
     } else {
       thumb.classList.add("is-fallback");

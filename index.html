@@ -25,6 +25,17 @@
           <div class="hero-actions">
             <button class="primary" id="jump-planner" data-i18n="plan_week">Plan the week</button>
             <button class="ghost" id="jump-cook" data-i18n="start_cooking">Start cooking</button>
+            <button class="ghost" id="save-changes" type="button">Save changes</button>
+            <button class="ghost" id="export-plan" type="button">Export plan</button>
+            <button class="ghost" id="import-plan" type="button">Import plan</button>
+            <input type="file" id="import-file" accept="application/json" hidden />
+          </div>
+          <div class="save-status" id="save-status">Saved locally.</div>
+          <div class="sync-bar">
+            <input id="sync-code" type="text" placeholder="Household code" />
+            <button class="ghost" id="sync-connect" type="button">Connect</button>
+            <button class="ghost" id="sync-now" type="button">Sync now</button>
+            <div class="sync-status" id="sync-status">Sync off.</div>
           </div>
         </div>
         <div class="hero-count" id="hero-count"></div>
@@ -143,6 +154,7 @@
         <div class="modal-body" id="recipe-modal-body"></div>
       </div>
     </div>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     <script src="app.js"></script>
   </body>
 </html>
