@@ -6,7 +6,7 @@
     <title>PantryPilot — Weekly Cooking Planner</title>
     <link rel="stylesheet" href="styles.css" />
   </head>
-  <body>
+  <body class="view-plan">
     <div class="page">
       <header class="hero">
         <div>
@@ -40,7 +40,11 @@
       </header>
 
       <section class="layout" id="planner">
-        <div class="panel">
+        <div class="planner-jump" aria-hidden="false">
+          <button class="ghost" id="jump-library" data-i18n="recipe_library">Recipe Library</button>
+          <button class="ghost" id="jump-picker" data-i18n="recipe_picker">Recipe Picker</button>
+        </div>
+        <div class="panel" id="planner-library">
           <div class="panel-header">
             <h2 data-i18n="recipe_library">Recipe Library</h2>
             <p data-i18n="recipe_library_sub">Tap a recipe to add it to your picks. Scroll inside the list to keep the rest of the page visible.</p>
@@ -77,7 +81,7 @@
           <div class="recipe-details" id="recipe-details"></div>
         </div>
 
-        <div class="panel">
+        <div class="panel" id="planner-picker">
           <div class="panel-header">
             <h2 data-i18n="recipe_picker">Recipe Picker</h2>
             <p data-i18n="recipe_picker_sub">Select 3-6 recipes for the week. No day-by-day planning required.</p>
@@ -89,7 +93,7 @@
         </div>
       </section>
 
-      <section class="layout">
+      <section class="layout" id="shopping">
         <div class="panel">
           <div class="panel-header">
             <h2 data-i18n="shopping_list">Auto Shopping List</h2>
