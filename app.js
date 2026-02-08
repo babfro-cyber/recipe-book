@@ -1317,6 +1317,7 @@ const translations = {
     summary_week: "Planning",
     summary_recipes: "Recipes selected",
     summary_missing: "Missing items",
+    ingredients_empty: "No ingredients yet.",
     language: "Language",
     recipe_picker: "Recipe Picker",
     recipe_picker_sub: "Select 3-6 recipes for the week. No day-by-day planning required.",
@@ -1392,6 +1393,7 @@ const translations = {
     summary_week: "Semaine",
     summary_recipes: "Recettes",
     summary_missing: "Articles manquants",
+    ingredients_empty: "Pas d'ingredients pour le moment.",
     language: "Langue",
     recipe_picker: "Sélection de recettes",
     recipe_picker_sub: "Choisissez 3 à 6 recettes pour la semaine, sans planning par jour.",
@@ -1702,6 +1704,7 @@ if (syncNow) {
   });
 }
 
+
 if (openSettings && settingsModal) {
   openSettings.addEventListener("click", () => {
     settingsModal.classList.add("is-open");
@@ -1733,6 +1736,7 @@ function updateSyncStatus(message) {
   if (!syncStatus) return;
   syncStatus.textContent = message || (syncCode ? "Sync on." : "Sync off.");
 }
+
 
 function getPlanPayload() {
   return {
@@ -2223,19 +2227,22 @@ function renderRecipeGrid() {
 function renderRecipeDetails(recipe) {
   if (!recipeDetails && !recipeModalBody) return;
   const servings = recipe.servings;
-  const ingredients = recipe.ingredients
-    .map((ingredient) => {
-      const displayQty = formatQuantity(ingredient.qty, ingredient.unit);
-      const displayItem = translateIngredientItem(ingredient.item);
-      return `<li>${displayItem} — ${displayQty} ${ingredient.unit}</li>`;
-    })
-    .join("");
+  const ingredients = recipe.ingredients.length
+    ? recipe.ingredients
+        .map((ingredient) => {
+          const displayQty = formatQuantity(ingredient.qty, ingredient.unit);
+          const displayItem = translateIngredientItem(ingredient.item);
+          return `<li>${displayItem} — ${displayQty} ${ingredient.unit}</li>`;
+        })
+        .join("")
+    : `<li>${t("ingredients_empty")}</li>`;
 
   const html = `
     <h4 id="recipe-modal-title"><span class="recipe-icon">${getRecipeIcon(recipe)}</span>${getRecipeName(recipe)}</h4>
     <div class="detail-meta">${recipe.time} · ${servings} ${t("servings_label")}</div>
     <div class="rating" data-rating-for="${recipe.id}"></div>
     <ul>${ingredients}</ul>
+    ${recipe.source_url ? `<a class="ghost link-btn" href="${recipe.source_url}" target="_blank" rel="noopener">Open recipe link</a>` : ""}
   `;
 
   if (recipeModalBody && recipeModal) {
@@ -2587,12 +2594,18 @@ function renderCookCard(recipeId) {
 
     const ingredients = document.createElement("div");
     ingredients.className = "cook-ingredients";
-    recipe.ingredients.forEach((ingredient) => {
-      const item = document.createElement("div");
-      const scaled = (ingredient.qty / recipe.servings) * servings;
-      item.textContent = `• ${formatIngredientForDisplay(ingredient, scaled)}`;
-      ingredients.appendChild(item);
-    });
+    if (recipe.ingredients.length) {
+      recipe.ingredients.forEach((ingredient) => {
+        const item = document.createElement("div");
+        const scaled = (ingredient.qty / recipe.servings) * servings;
+        item.textContent = `• ${formatIngredientForDisplay(ingredient, scaled)}`;
+        ingredients.appendChild(item);
+      });
+    } else {
+      const empty = document.createElement("div");
+      empty.textContent = t("ingredients_empty");
+      ingredients.appendChild(empty);
+    }
 
     const steps = document.createElement("div");
     steps.className = "cook-steps";
@@ -2654,7 +2667,19 @@ function renderCookCard(recipeId) {
       steps.appendChild(stepCard);
     });
 
-    cookCard.append(header, ingredients, steps);
+    if (recipe.source_url) {
+      const linkWrap = document.createElement("div");
+      const link = document.createElement("a");
+      link.className = "ghost link-btn";
+      link.href = recipe.source_url;
+      link.target = "_blank";
+      link.rel = "noopener";
+      link.textContent = "Open recipe link";
+      linkWrap.appendChild(link);
+      cookCard.append(header, linkWrap, ingredients, steps);
+    } else {
+      cookCard.append(header, ingredients, steps);
+    }
   };
 
   render();
