@@ -1276,7 +1276,7 @@ let syncCode = safeGetItem("pantrySyncCode") || "";
 
 const SUPABASE_URL = "https://jscczxnmujsimeidltdt.supabase.co";
 const SUPABASE_KEY = "sb_publishable_sg_e1rUxUxwQacU0le5D_Q_VYhYe980";
-const supabase = window.supabase ? window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY) : null;
+const supabaseClient = window.supabase ? window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY) : null;
 
 const pickList = document.getElementById("pick-list");
 const recipeGrid = document.getElementById("recipe-grid");
@@ -1822,7 +1822,7 @@ function applyPlanPayload(payload) {
 }
 
 function scheduleSync() {
-  if (!supabase || !syncCode) return;
+  if (!supabaseClient || !syncCode) return;
   if (syncTimer) clearTimeout(syncTimer);
   syncTimer = setTimeout(() => {
     pushPlan();
@@ -1830,42 +1830,70 @@ function scheduleSync() {
 }
 
 async function pushPlan() {
-  if (!supabase || !syncCode) return;
+  if (!syncCode) {
+    updateSyncStatus("Enter a household code.");
+    return;
+  }
+  if (!supabaseClient) {
+    updateSyncStatus("Sync unavailable (Supabase not loaded).");
+    return;
+  }
   const payload = getPlanPayload();
   safeSetItem("pantryLastSync", payload.updatedAt);
   lastSyncedAt = payload.updatedAt;
   updateSyncStatus("Syncing...");
-  const { error } = await supabase.from("plans").upsert(
-    {
-      code: syncCode,
-      payload,
-      updated_at: payload.updatedAt,
-    },
-    { onConflict: "code" }
-  );
-  if (error) {
-    updateSyncStatus("Sync failed.");
+  try {
+    const { error } = await supabaseClient.from("plans").upsert(
+      {
+        code: syncCode,
+        payload,
+        updated_at: payload.updatedAt,
+      },
+      { onConflict: "code" }
+    );
+    if (error) {
+      updateSyncStatus("Sync failed. Check Supabase setup.");
+      console.warn("Sync push failed:", error);
+      return;
+    }
+  } catch (error) {
+    updateSyncStatus("Sync failed. Check network.");
+    console.warn("Sync push exception:", error);
     return;
   }
   updateSyncStatus(`Synced at ${new Date().toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" })}.`);
 }
 
 async function pullPlan() {
-  if (!supabase || !syncCode) return;
-  updateSyncStatus("Syncing...");
-  const { data, error } = await supabase.from("plans").select("payload, updated_at").eq("code", syncCode).maybeSingle();
-  if (error) {
-    updateSyncStatus("Sync failed.");
+  if (!syncCode) {
+    updateSyncStatus("Enter a household code.");
     return;
   }
-  if (data?.payload) {
-    const remoteUpdated = data.updated_at || data.payload.updatedAt || "";
-    const localUpdated = safeGetItem("pantryLastSync") || "";
-    if (!localUpdated || (remoteUpdated && remoteUpdated > localUpdated)) {
-      applyPlanPayload(data.payload);
-      lastSyncedAt = remoteUpdated;
-      safeSetItem("pantryLastSync", remoteUpdated);
+  if (!supabaseClient) {
+    updateSyncStatus("Sync unavailable (Supabase not loaded).");
+    return;
+  }
+  updateSyncStatus("Syncing...");
+  try {
+    const { data, error } = await supabaseClient.from("plans").select("payload, updated_at").eq("code", syncCode).maybeSingle();
+    if (error) {
+      updateSyncStatus("Sync failed. Check Supabase setup.");
+      console.warn("Sync pull failed:", error);
+      return;
     }
+    if (data?.payload) {
+      const remoteUpdated = data.updated_at || data.payload.updatedAt || "";
+      const localUpdated = safeGetItem("pantryLastSync") || "";
+      if (!localUpdated || (remoteUpdated && remoteUpdated > localUpdated)) {
+        applyPlanPayload(data.payload);
+        lastSyncedAt = remoteUpdated;
+        safeSetItem("pantryLastSync", remoteUpdated);
+      }
+    }
+  } catch (error) {
+    updateSyncStatus("Sync failed. Check network.");
+    console.warn("Sync pull exception:", error);
+    return;
   }
   updateSyncStatus(`Synced at ${new Date().toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" })}.`);
 }
