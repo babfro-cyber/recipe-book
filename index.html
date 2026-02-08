@@ -20,22 +20,10 @@
               <span data-i18n="week_starting">Week starting</span>
               <select id="top-week-picker"></select>
             </label>
-            <div class="week-label" id="top-week-label"></div>
           </div>
           <div class="hero-actions">
             <button class="primary" id="jump-planner" data-i18n="plan_week">Plan the week</button>
             <button class="ghost" id="jump-cook" data-i18n="start_cooking">Start cooking</button>
-            <button class="ghost" id="save-changes" type="button">Save changes</button>
-            <button class="ghost" id="export-plan" type="button">Export plan</button>
-            <button class="ghost" id="import-plan" type="button">Import plan</button>
-            <input type="file" id="import-file" accept="application/json" hidden />
-          </div>
-          <div class="save-status" id="save-status">Saved locally.</div>
-          <div class="sync-bar">
-            <input id="sync-code" type="text" placeholder="Household code" />
-            <button class="ghost" id="sync-connect" type="button">Connect</button>
-            <button class="ghost" id="sync-now" type="button">Sync now</button>
-            <div class="sync-status" id="sync-status">Sync off.</div>
           </div>
         </div>
         <div class="hero-count" id="hero-count"></div>
@@ -47,6 +35,7 @@
               <option value="fr">Français</option>
             </select>
           </label>
+          <button class="settings-btn" id="open-settings" type="button" aria-label="Open settings">⚙</button>
         </div>
       </header>
 
@@ -152,6 +141,24 @@
       <div class="modal-card" role="dialog" aria-modal="true" aria-labelledby="recipe-modal-title">
         <button class="modal-close" type="button" data-modal-close="true">×</button>
         <div class="modal-body" id="recipe-modal-body"></div>
+      </div>
+    </div>
+    <div class="modal" id="settings-modal" aria-hidden="true">
+      <div class="modal-backdrop" data-modal-close="true"></div>
+      <div class="modal-card" role="dialog" aria-modal="true" aria-labelledby="settings-modal-title">
+        <button class="modal-close" type="button" data-modal-close="true">×</button>
+        <div class="modal-body">
+          <h4 id="settings-modal-title">Settings</h4>
+          <div class="settings-group">
+            <label class="settings-label" for="sync-code">Household code</label>
+            <input id="sync-code" type="text" placeholder="Household code" />
+          </div>
+          <div class="settings-actions">
+            <button class="ghost" id="sync-connect" type="button">Connect</button>
+            <button class="ghost" id="sync-now" type="button">Sync now</button>
+          </div>
+          <div class="sync-status" id="sync-status">Sync off.</div>
+        </div>
       </div>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>

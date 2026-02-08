@@ -58,6 +58,8 @@ p {
 .language-switch {
   display: flex;
   justify-content: flex-end;
+  align-items: center;
+  gap: 10px;
 }
 
 .language-switch label {
@@ -71,6 +73,44 @@ p {
   padding: 8px 12px;
   border-radius: 10px;
   border: 1px solid rgba(26, 26, 26, 0.15);
+}
+
+.settings-btn {
+  border: none;
+  background: rgba(26, 26, 26, 0.08);
+  width: 36px;
+  height: 36px;
+  border-radius: 12px;
+  cursor: pointer;
+  font-size: 1rem;
+}
+
+.settings-btn:hover {
+  background: rgba(26, 26, 26, 0.16);
+}
+
+.settings-group {
+  display: grid;
+  gap: 6px;
+  margin: 12px 0;
+}
+
+.settings-label {
+  font-size: 0.9rem;
+  color: var(--slate);
+}
+
+.settings-group input {
+  padding: 10px 12px;
+  border-radius: 12px;
+  border: 1px solid rgba(26, 26, 26, 0.15);
+}
+
+.settings-actions {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-bottom: 10px;
 }
 
 .eyebrow {
@@ -91,26 +131,6 @@ p {
   flex-wrap: wrap;
   gap: 12px;
   margin-top: 16px;
-}
-
-.save-status {
-  margin-top: 10px;
-  font-size: 0.9rem;
-  color: var(--sage);
-}
-
-.sync-bar {
-  margin-top: 12px;
-  display: grid;
-  grid-template-columns: minmax(180px, 240px) auto auto 1fr;
-  gap: 10px;
-  align-items: center;
-}
-
-.sync-bar input {
-  padding: 10px 12px;
-  border-radius: 12px;
-  border: 1px solid rgba(26, 26, 26, 0.15);
 }
 
 .sync-status {
@@ -884,9 +904,6 @@ body.view-cook #shopping {
     padding-right: 0;
   }
 
-  .sync-bar {
-    grid-template-columns: 1fr 1fr;
-  }
 }
 .recipe-info {
   display: grid;

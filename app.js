@@ -1612,11 +1612,8 @@ const jumpPlanner = document.getElementById("jump-planner");
 const jumpCook = document.getElementById("jump-cook");
 const jumpLibrary = document.getElementById("jump-library");
 const jumpPicker = document.getElementById("jump-picker");
-const saveChanges = document.getElementById("save-changes");
-const saveStatus = document.getElementById("save-status");
-const exportPlan = document.getElementById("export-plan");
-const importPlan = document.getElementById("import-plan");
-const importFile = document.getElementById("import-file");
+const openSettings = document.getElementById("open-settings");
+const settingsModal = document.getElementById("settings-modal");
 const plannerSection = document.getElementById("planner");
 const cookSection = document.getElementById("cook");
 const shoppingSection = document.getElementById("shopping");
@@ -1672,17 +1669,10 @@ if (jumpPicker) {
 }
 
 setView("plan");
-updateSaveStatus();
 updateSyncStatus();
 if (syncCode) {
   pullPlan();
   startAutoPull();
-}
-
-if (saveChanges) {
-  saveChanges.addEventListener("click", () => {
-    saveState();
-  });
 }
 
 if (syncCodeInput) {
@@ -1712,63 +1702,19 @@ if (syncNow) {
   });
 }
 
-if (exportPlan) {
-  exportPlan.addEventListener("click", () => {
-    const payload = {
-      version: 1,
-      exportedAt: new Date().toISOString(),
-      picksByWeek: selectedRecipesByWeek,
-      checksByWeek: checkedItemsByWeek,
-      servingsByWeek: selectedServingsByWeek,
-      ratingsByRecipe: ratingsByRecipe,
-      language: currentLanguage,
-    };
-    const blob = new Blob([JSON.stringify(payload, null, 2)], { type: "application/json" });
-    const url = URL.createObjectURL(blob);
-    const link = document.createElement("a");
-    link.href = url;
-    link.download = "pantrypilot-plan.json";
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
-    URL.revokeObjectURL(url);
+if (openSettings && settingsModal) {
+  openSettings.addEventListener("click", () => {
+    settingsModal.classList.add("is-open");
+    settingsModal.setAttribute("aria-hidden", "false");
   });
 }
 
-if (importPlan && importFile) {
-  importPlan.addEventListener("click", () => {
-    importFile.click();
-  });
-}
-
-if (importFile) {
-  importFile.addEventListener("change", async (event) => {
-    const file = event.target.files?.[0];
-    if (!file) return;
-    try {
-      const text = await file.text();
-      const data = JSON.parse(text);
-      selectedRecipesByWeek = { ...(data.picksByWeek || {}) };
-      checkedItemsByWeek = { ...(data.checksByWeek || {}) };
-      selectedServingsByWeek = { ...(data.servingsByWeek || {}) };
-      ratingsByRecipe = { ...(data.ratingsByRecipe || {}) };
-      currentLanguage = data.language || currentLanguage;
-
-      safeSetItem("pantryPicksByWeek", JSON.stringify(selectedRecipesByWeek));
-      safeSetItem("pantryChecksByWeek", JSON.stringify(checkedItemsByWeek));
-      safeSetItem("pantryServingsByWeek", JSON.stringify(selectedServingsByWeek));
-      safeSetItem("pantryRatingsByRecipe", JSON.stringify(ratingsByRecipe));
-      safeSetItem("pantryLanguage", currentLanguage);
-
-      if (languageSelect) languageSelect.value = currentLanguage;
-      setWeekFromTopPicker();
-      refreshAll();
-      updateSaveStatus();
-    } catch (error) {
-      alert("Import failed. Please use a valid PantryPilot export file.");
-    } finally {
-      importFile.value = "";
-    }
+if (settingsModal) {
+  settingsModal.addEventListener("click", (event) => {
+    const shouldClose = event.target?.dataset?.modalClose === "true";
+    if (!shouldClose) return;
+    settingsModal.classList.remove("is-open");
+    settingsModal.setAttribute("aria-hidden", "true");
   });
 }
 
@@ -1780,15 +1726,7 @@ function saveState() {
   safeSetItem("pantryChecksByWeek", JSON.stringify(checkedItemsByWeek));
   safeSetItem("pantryServingsByWeek", JSON.stringify(selectedServingsByWeek));
   safeSetItem("pantryRatingsByRecipe", JSON.stringify(ratingsByRecipe));
-  updateSaveStatus();
   scheduleSync();
-}
-
-function updateSaveStatus() {
-  if (!saveStatus) return;
-  const now = new Date();
-  const time = now.toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" });
-  saveStatus.textContent = `Saved locally at ${time}.`;
 }
 
 function updateSyncStatus(message) {
@@ -2203,6 +2141,14 @@ function renderRecipeGrid() {
       img.src = imageSrc;
       img.alt = getRecipeName(recipe);
       img.loading = "lazy";
+      img.referrerPolicy = "no-referrer";
+      img.addEventListener("error", () => {
+        thumb.classList.add("is-fallback");
+        thumb.innerHTML = "";
+        const fallback = document.createElement("span");
+        fallback.textContent = getRecipeIcon(recipe);
+        thumb.appendChild(fallback);
+      });
       if (recipe.id === "dahl-lentilles-epinards") {
         img.classList.add("fit-contain");
       }
