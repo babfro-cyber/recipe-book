@@ -1106,7 +1106,7 @@ const recipes = [
     ],
     steps: [
       "Place 225 g flour, 1 tsp salt, 90 g butter in pieces and 75 g water in the Thermomix bowl.",
-      "Add the lid with the measuring cup. Mix 1 min / kneading speed.",
+      "Add the lid with the measuring cup. Mix 1 min / kneading speed (Dough mode).",
       "Remove the dough from the Thermomix and form a ball.",
       "Refrigerate 15 min.",
       "Roll out the dough with a rolling pin to make a thin crust.",
@@ -1121,7 +1121,7 @@ const recipes = [
     ],
     steps_fr: [
       "Mettre 225 grammes de farine, 1 cuillere a cafe de sel, 90g de beurre coupes en morceaux et 75g d'eau dans le bol du Thermomix.",
-      "Ajoutez le couvercle avec le gobelet doseur. Melanger 1 min/vitesse petrin.",
+      "Ajoutez le couvercle avec le gobelet doseur. Melanger 1 min/vitesse petrin (mode Petrin).",
       "Sortir la pate du thermomix et former une boule.",
       "Reserver au frigo 15min.",
       "Etaler la pate avec le rouleau a patisserie pour former une pate fine.",
@@ -1209,7 +1209,7 @@ const recipeImageMap = {
   "eggplant-parmigiana": "https://cdn.pixabay.com/photo/2015/09/03/09/58/eggplant-920269_1280.jpg",
   "spinach-ricotta-lasagne": "https://images.pexels.com/photos/8023752/pexels-photo-8023752.jpeg?auto=compress&cs=tinysrgb&w=800",
   "curry-epinards-pois-chiche": "Recipes/Recipe book - all_26.JPG",
-  "dahl-lentilles-epinards": "Recipes/Recipe book - all_28.JPG",
+  "dahl-lentilles-epinards": "https://images.pexels.com/photos/6544380/pexels-photo-6544380.jpeg",
   "gratin-choufleur": "Recipes/Recipe book - all_30.JPG",
   "legumes-farcis": "Recipes/Recipe book - all_31.JPG",
   "poulet-basquaise": "Recipes/Recipe book - all_32.JPG",
