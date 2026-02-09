@@ -113,6 +113,31 @@ p {
   margin-bottom: 10px;
 }
 
+.note-section {
+  margin: 12px 0;
+  display: grid;
+  gap: 8px;
+}
+
+.note-label {
+  font-size: 0.9rem;
+  color: var(--slate);
+}
+
+.note-input {
+  border-radius: 12px;
+  border: 1px solid rgba(26, 26, 26, 0.15);
+  padding: 10px 12px;
+  font-family: inherit;
+  font-size: 0.95rem;
+}
+
+.note-actions {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
 
 .eyebrow {
   letter-spacing: 2px;
@@ -587,6 +612,13 @@ body.view-cook #shopping {
   gap: 6px;
 }
 
+.fun-modal-image {
+  width: 100%;
+  height: auto;
+  border-radius: 14px;
+  display: block;
+}
+
 .recipe-icon {
   font-size: 1.2rem;
 }
@@ -748,6 +780,16 @@ body.view-cook #shopping {
 
 .shop-item span {
   flex: 1;
+}
+
+.chilli-trigger {
+  color: inherit;
+  font-weight: inherit;
+  cursor: default;
+}
+
+.chilli-trigger:hover {
+  text-decoration: none;
 }
 
 .shop-item .woolworths-link {

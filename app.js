@@ -54,7 +54,7 @@ const recipes = [
     steps: [
       "Chop the onion and garlic: Place in Thermomix bowl, mix 5 sec / Speed 5.",
       "Saute: Add olive oil and cook 3 min / 120°C / Speed 1.",
-      "Cook the sliced bell peppers: Add the sliced peppers and cook 5 min / 120°C / Speed 1 / Reverse mode.",
+      "Cook the sliced capsicum: Add the sliced capsicum and cook 5 min / 120°C / Speed 1 / Reverse mode.",
       "Simmer the sauce: Add tomatoes, paprika, mixed herbs, and bay leaf. Cook 10 min / 100°C / Speed 1 / Reverse mode.",
       "Cook the chicken: Add the chicken thighs, season with salt and pepper, and cook 25 min / 100°C / Speed Spoon / Reverse mode.",
     ],
@@ -359,7 +359,7 @@ const recipes = [
     steps: [
       "Heat olive oil in a pan. Saute the onion for 3 minutes.",
       "Add curry powder, turmeric, ginger, and chili flakes. Stir for 1 minute.",
-      "Add carrots, bell pepper, and tomato. Cook for 5 minutes.",
+      "Add carrots, capsicum, and tomato. Cook for 5 minutes.",
       "Pour in the coconut milk, bring to a boil, then simmer for 10 minutes.",
       "Add the fish fillets, cover, and cook for 10 minutes until flaky.",
       "Finish with lime juice and serve with rice.",
@@ -568,7 +568,7 @@ const recipes = [
       "Add 500 g minced beef, breaking it into pieces with your hands.",
       "Close the lid with measuring cup and cook 3 min / 100C / spoon speed.",
       "Add 1/8 tsp chili powder, 2 tsp cumin, 1/2 tsp oregano, and a pinch of black pepper to the bowl.",
-      "Add 5 tbsp tomato pulp (or 2 small cans of Mutti) and 1 chopped bell pepper.",
+      "Add 5 tbsp tomato pulp (or 2 small cans of Mutti) and 1 chopped capsicum.",
       "Place the Varoma on top (instead of the measuring cup) to avoid splashes. Cook 15 min / 120C / spoon speed.",
       "Drain 1 can of red kidney beans and 1 can of black beans, then add them to the bowl.",
       "Place the Varoma on top again and cook 10 min / 120C / spoon speed.",
@@ -1258,10 +1258,12 @@ const storedPicksByWeek = safeParseStorage("pantryPicksByWeek", {});
 const storedChecksByWeek = safeParseStorage("pantryChecksByWeek", {});
 const storedServingsByWeek = safeParseStorage("pantryServingsByWeek", {});
 const storedRatings = safeParseStorage("pantryRatingsByRecipe", {});
+const storedRecipeNotes = safeParseStorage("pantryRecipeNotes", {});
 let selectedRecipesByWeek = { ...storedPicksByWeek };
 let checkedItemsByWeek = { ...storedChecksByWeek };
 let selectedServingsByWeek = { ...storedServingsByWeek };
 let ratingsByRecipe = { ...storedRatings };
+let recipeNotesById = { ...storedRecipeNotes };
 let selectedRecipes = [];
 let checkedItems = {};
 let currentWeekKey = "";
@@ -1284,6 +1286,7 @@ const recipeGrid = document.getElementById("recipe-grid");
 const recipeDetails = document.getElementById("recipe-details");
 const recipeModal = document.getElementById("recipe-modal");
 const recipeModalBody = document.getElementById("recipe-modal-body");
+const chilliModal = document.getElementById("chilli-modal");
 const shoppingList = document.getElementById("shopping-list");
 const cookSelect = document.getElementById("cook-select");
 const cookCard = document.getElementById("cook-card");
@@ -1317,6 +1320,11 @@ const translations = {
     summary_week: "Planning",
     summary_recipes: "Recipes selected",
     summary_missing: "Missing items",
+    step_add_prefix: "Add",
+    recipe_note: "Recipe note",
+    recipe_note_placeholder: "Add tips, improvements, or issues...",
+    note_save: "Save note",
+    note_clear: "Delete note",
     ingredients_empty: "No ingredients yet.",
     language: "Language",
     recipe_picker: "Recipe Picker",
@@ -1393,6 +1401,11 @@ const translations = {
     summary_week: "Semaine",
     summary_recipes: "Recettes",
     summary_missing: "Articles manquants",
+    step_add_prefix: "Ajouter",
+    recipe_note: "Note de recette",
+    recipe_note_placeholder: "Ajoutez des conseils, améliorations ou problèmes...",
+    note_save: "Enregistrer",
+    note_clear: "Supprimer",
     ingredients_empty: "Pas d'ingredients pour le moment.",
     language: "Langue",
     recipe_picker: "Sélection de recettes",
@@ -1601,6 +1614,88 @@ function translateIngredientItem(item) {
   return ingredientTranslationsFr[key] || item;
 }
 
+function formatQuantityExact(qty) {
+  if (Number.isInteger(qty)) return String(qty);
+  const rounded = Math.round(qty * 100) / 100;
+  return Number.isInteger(rounded) ? String(rounded) : rounded.toFixed(2);
+}
+
+function formatIngredientInline(ingredient, scaledQty = null) {
+  const qty = formatQuantity(scaledQty === null ? ingredient.qty : scaledQty, ingredient.unit);
+  const item = translateIngredientItem(ingredient.item);
+  const unit = ingredient.unit || "";
+  if (!unit || unit.toLowerCase() === "pcs") {
+    return `${qty} ${item}`.trim();
+  }
+  return `${qty} ${unit} ${item}`.trim();
+}
+
+function getIngredientMatchTokens(ingredient) {
+  const base = ingredient.item.toLowerCase();
+  const translated = translateIngredientItem(ingredient.item).toLowerCase();
+  const tokens = new Set([base, translated]);
+  const baseParts = base.split(" ");
+  const translatedParts = translated.split(" ");
+  if (baseParts.length > 1) tokens.add(baseParts[baseParts.length - 1]);
+  if (translatedParts.length > 1) tokens.add(translatedParts[translatedParts.length - 1]);
+  return Array.from(tokens).filter((token) => token.length > 3);
+}
+
+function stepMentionsUnit(stepLower, unit) {
+  const unitKey = (unit || "").toLowerCase();
+  if (!unitKey) return false;
+  const map = {
+    g: "g",
+    kg: "kg",
+    ml: "ml",
+    l: "l",
+    tsp: "tsp",
+    tbsp: "tbsp",
+    cup: "cup",
+    cups: "cups",
+    pinch: "pinch",
+    pcs: "pcs",
+  };
+  const needle = map[unitKey] || unitKey;
+  return stepLower.includes(needle);
+}
+
+function stripStepQuantities(step) {
+  return String(step)
+    .replace(/\b\d+(?:[.,]\d+)?[\s\u00A0]*(?:g|kg|ml|l|tsp|tbsp|cup|cups|pinch|pcs?)\b/gi, "")
+    .replace(/\s{2,}/g, " ")
+    .trim();
+}
+
+function formatStepWithQuantities(step, recipe, servings) {
+  const stepLower = String(step).toLowerCase();
+  const matches = recipe.ingredients.filter((ingredient) => {
+    const tokens = getIngredientMatchTokens(ingredient);
+    const tokenHit = tokens.some((token) => stepLower.includes(token));
+    if (!tokenHit) return false;
+    const unitHit = stepMentionsUnit(stepLower, ingredient.unit);
+    if ((stepLower.includes("tsp") || stepLower.includes("tbsp") || stepLower.includes("pinch")) && !unitHit) {
+      return false;
+    }
+    return true;
+  });
+
+  const cleaned = stripStepQuantities(step);
+  if (!matches.length) return cleaned;
+  const unique = new Map();
+  matches.forEach((ingredient) => {
+    const key = `${ingredient.item}|${ingredient.unit}`;
+    if (!unique.has(key)) unique.set(key, ingredient);
+  });
+  const list = Array.from(unique.values())
+    .map((ingredient) => {
+      const scaled = (ingredient.qty / recipe.servings) * servings;
+      return formatIngredientInline(ingredient, scaled);
+    })
+    .join(", ");
+  return `${cleaned} (${t("step_add_prefix")}: ${list})`;
+}
+
 function getRecipeName(recipe) {
   if (currentLanguage === "fr" && recipe.name_fr) return recipe.name_fr;
   return recipe.name;
@@ -1744,6 +1839,7 @@ function getPlanPayload() {
     checksByWeek: checkedItemsByWeek,
     servingsByWeek: selectedServingsByWeek,
     ratingsByRecipe: ratingsByRecipe,
+    recipeNotesById: recipeNotesById,
     language: currentLanguage,
     updatedAt: new Date().toISOString(),
   };
@@ -1754,12 +1850,14 @@ function applyPlanPayload(payload) {
   checkedItemsByWeek = { ...(payload.checksByWeek || {}) };
   selectedServingsByWeek = { ...(payload.servingsByWeek || {}) };
   ratingsByRecipe = { ...(payload.ratingsByRecipe || {}) };
+  recipeNotesById = { ...(payload.recipeNotesById || {}) };
   currentLanguage = payload.language || currentLanguage;
   lastSyncedAt = payload.updatedAt || lastSyncedAt;
   safeSetItem("pantryPicksByWeek", JSON.stringify(selectedRecipesByWeek));
   safeSetItem("pantryChecksByWeek", JSON.stringify(checkedItemsByWeek));
   safeSetItem("pantryServingsByWeek", JSON.stringify(selectedServingsByWeek));
   safeSetItem("pantryRatingsByRecipe", JSON.stringify(ratingsByRecipe));
+  safeSetItem("pantryRecipeNotes", JSON.stringify(recipeNotesById));
   safeSetItem("pantryLanguage", currentLanguage);
   if (lastSyncedAt) safeSetItem("pantryLastSync", lastSyncedAt);
   if (languageSelect) languageSelect.value = currentLanguage;
@@ -2130,6 +2228,12 @@ function renderRecipeGrid() {
       const matchesMeal = mealFilter === "all" || getMealType(recipe) === mealFilter;
       return matchesQuery && matchesUtensil && matchesProtein && matchesMeal;
     })
+    .sort((a, b) => {
+      const ratingA = ratingsByRecipe[a.id] || 0;
+      const ratingB = ratingsByRecipe[b.id] || 0;
+      if (ratingA !== ratingB) return ratingB - ratingA;
+      return getRecipeName(a).localeCompare(getRecipeName(b));
+    })
     .forEach((recipe) => {
     const card = document.createElement("div");
     card.className = "recipe-card";
@@ -2227,6 +2331,7 @@ function renderRecipeGrid() {
 function renderRecipeDetails(recipe) {
   if (!recipeDetails && !recipeModalBody) return;
   const servings = recipe.servings;
+  const noteValue = recipeNotesById[recipe.id] || "";
   const ingredients = recipe.ingredients.length
     ? recipe.ingredients
         .map((ingredient) => {
@@ -2242,6 +2347,14 @@ function renderRecipeDetails(recipe) {
     <div class="detail-meta">${recipe.time} · ${servings} ${t("servings_label")}</div>
     <div class="rating" data-rating-for="${recipe.id}"></div>
     <ul>${ingredients}</ul>
+    <div class="note-section">
+      <label class="note-label" for="note-${recipe.id}">${t("recipe_note")}</label>
+      <textarea id="note-${recipe.id}" class="note-input" rows="3" placeholder="${t("recipe_note_placeholder")}">${noteValue}</textarea>
+      <div class="note-actions">
+        <button class="ghost" data-note-save="${recipe.id}">${t("note_save")}</button>
+        <button class="ghost" data-note-clear="${recipe.id}">${t("note_clear")}</button>
+      </div>
+    </div>
     ${recipe.source_url ? `<a class="ghost link-btn" href="${recipe.source_url}" target="_blank" rel="noopener">Open recipe link</a>` : ""}
   `;
 
@@ -2249,6 +2362,24 @@ function renderRecipeDetails(recipe) {
     recipeModalBody.innerHTML = html;
     const ratingTarget = recipeModalBody.querySelector(`[data-rating-for="${recipe.id}"]`);
     if (ratingTarget) renderRatingStars(ratingTarget, recipe.id);
+    const noteInput = recipeModalBody.querySelector(`#note-${recipe.id}`);
+    const saveBtn = recipeModalBody.querySelector(`[data-note-save="${recipe.id}"]`);
+    const clearBtn = recipeModalBody.querySelector(`[data-note-clear="${recipe.id}"]`);
+    if (saveBtn && noteInput) {
+      saveBtn.addEventListener("click", () => {
+        recipeNotesById[recipe.id] = noteInput.value.trim();
+        safeSetItem("pantryRecipeNotes", JSON.stringify(recipeNotesById));
+        saveState();
+      });
+    }
+    if (clearBtn && noteInput) {
+      clearBtn.addEventListener("click", () => {
+        noteInput.value = "";
+        delete recipeNotesById[recipe.id];
+        safeSetItem("pantryRecipeNotes", JSON.stringify(recipeNotesById));
+        saveState();
+      });
+    }
     recipeModal.classList.add("is-open");
     recipeModal.setAttribute("aria-hidden", "false");
     if (recipeDetails) recipeDetails.innerHTML = "";
@@ -2312,7 +2443,12 @@ function renderShoppingList() {
       const left = document.createElement("span");
       const displayQty = formatQuantity(ingredient.qty, ingredient.unit);
       const displayItem = translateIngredientItem(ingredient.item);
-      left.textContent = `${displayItem} — ${displayQty} ${ingredient.unit}`;
+      if (category === "Pantry" && /chilli/i.test(displayItem)) {
+        const safeItem = displayItem.replace(/chilli/gi, (match) => `<span class="chilli-trigger">${match}</span>`);
+        left.innerHTML = `${safeItem} — ${displayQty} ${ingredient.unit}`;
+      } else {
+        left.textContent = `${displayItem} — ${displayQty} ${ingredient.unit}`;
+      }
 
       const link = document.createElement("a");
       link.className = "woolworths-link";
@@ -2337,6 +2473,16 @@ function renderShoppingList() {
 
       row.append(left, link, checkbox);
       shoppingList.appendChild(row);
+    });
+  });
+
+  const chilliTriggers = shoppingList.querySelectorAll(".chilli-trigger");
+  chilliTriggers.forEach((trigger) => {
+    trigger.addEventListener("click", (event) => {
+      event.stopPropagation();
+      if (!chilliModal) return;
+      chilliModal.classList.add("is-open");
+      chilliModal.setAttribute("aria-hidden", "false");
     });
   });
 }
@@ -2614,7 +2760,7 @@ function renderCookCard(recipeId) {
       stepCard.className = "step";
       const stepText = document.createElement("div");
       stepText.className = "step-text";
-      stepText.textContent = `${index + 1}. ${step}`;
+      stepText.textContent = `${index + 1}. ${formatStepWithQuantities(step, recipe, servings)}`;
       stepCard.appendChild(stepText);
 
       const minutes = parseStepDurationMinutes(step);
@@ -2667,6 +2813,38 @@ function renderCookCard(recipeId) {
       steps.appendChild(stepCard);
     });
 
+    const noteSection = document.createElement("div");
+    noteSection.className = "note-section";
+    const noteLabel = document.createElement("label");
+    noteLabel.className = "note-label";
+    noteLabel.textContent = t("recipe_note");
+    const noteInput = document.createElement("textarea");
+    noteInput.className = "note-input";
+    noteInput.rows = 3;
+    noteInput.placeholder = t("recipe_note_placeholder");
+    noteInput.value = recipeNotesById[recipe.id] || "";
+    const noteActions = document.createElement("div");
+    noteActions.className = "note-actions";
+    const saveBtn = document.createElement("button");
+    saveBtn.className = "ghost";
+    saveBtn.textContent = t("note_save");
+    saveBtn.addEventListener("click", () => {
+      recipeNotesById[recipe.id] = noteInput.value.trim();
+      safeSetItem("pantryRecipeNotes", JSON.stringify(recipeNotesById));
+      saveState();
+    });
+    const clearBtn = document.createElement("button");
+    clearBtn.className = "ghost";
+    clearBtn.textContent = t("note_clear");
+    clearBtn.addEventListener("click", () => {
+      noteInput.value = "";
+      delete recipeNotesById[recipe.id];
+      safeSetItem("pantryRecipeNotes", JSON.stringify(recipeNotesById));
+      saveState();
+    });
+    noteActions.append(saveBtn, clearBtn);
+    noteSection.append(noteLabel, noteInput, noteActions);
+
     if (recipe.source_url) {
       const linkWrap = document.createElement("div");
       const link = document.createElement("a");
@@ -2676,9 +2854,9 @@ function renderCookCard(recipeId) {
       link.rel = "noopener";
       link.textContent = "Open recipe link";
       linkWrap.appendChild(link);
-      cookCard.append(header, linkWrap, ingredients, steps);
+      cookCard.append(header, linkWrap, noteSection, ingredients, steps);
     } else {
-      cookCard.append(header, ingredients, steps);
+      cookCard.append(header, noteSection, ingredients, steps);
     }
   };
 
@@ -2775,8 +2953,12 @@ function getCurrentWeekKey() {
 }
 
 function getNextWeekKey() {
-  const start = getWeekStartFromDate(new Date());
-  start.setDate(start.getDate() + 7);
+  const today = new Date();
+  const start = getWeekStartFromDate(today);
+  const day = today.getDay(); // 0=Sun, 1=Mon
+  if (day >= 2) {
+    start.setDate(start.getDate() + 7);
+  }
   return getWeekKeyFromDate(start);
 }
 
@@ -3056,5 +3238,14 @@ if (recipeModal) {
     if (!shouldClose) return;
     recipeModal.classList.remove("is-open");
     recipeModal.setAttribute("aria-hidden", "true");
+  });
+}
+
+if (chilliModal) {
+  chilliModal.addEventListener("click", (event) => {
+    const shouldClose = event.target?.dataset?.modalClose === "true";
+    if (!shouldClose) return;
+    chilliModal.classList.remove("is-open");
+    chilliModal.setAttribute("aria-hidden", "true");
   });
 }
