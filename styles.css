@@ -53,13 +53,12 @@ p {
   box-shadow: var(--shadow);
   margin-bottom: 32px;
   animation: fadeIn 0.8s ease;
+  position: relative;
 }
 
 .language-switch {
   display: flex;
   justify-content: flex-end;
-  align-items: center;
-  gap: 10px;
 }
 
 .language-switch label {
@@ -83,6 +82,14 @@ p {
   border-radius: 12px;
   cursor: pointer;
   font-size: 1rem;
+  justify-self: end;
+}
+
+.settings-floating {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  z-index: 2;
 }
 
 .settings-btn:hover {
@@ -111,6 +118,12 @@ p {
   gap: 10px;
   flex-wrap: wrap;
   margin-bottom: 10px;
+}
+
+.settings-divider {
+  height: 1px;
+  background: rgba(26, 26, 26, 0.08);
+  margin: 16px 0;
 }
 
 .note-section {
@@ -805,6 +818,30 @@ body.view-cook #shopping {
   font-weight: 700;
   font-size: 0.85rem;
   margin-left: auto;
+}
+
+.shop-item .woolworths-link img {
+  width: 18px;
+  height: 18px;
+  object-fit: contain;
+}
+
+.shop-item .colruyt-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  background: rgba(26, 26, 26, 0.08);
+  text-decoration: none;
+  margin-left: 8px;
+}
+
+.shop-item .colruyt-link img {
+  width: 18px;
+  height: 18px;
+  object-fit: contain;
 }
 
 .shop-item .woolworths-link:hover {

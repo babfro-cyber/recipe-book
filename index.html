@@ -35,8 +35,8 @@
               <option value="fr">Français</option>
             </select>
           </label>
-          <button class="settings-btn" id="open-settings" type="button" aria-label="Open settings">⚙</button>
         </div>
+        <button class="settings-btn settings-floating" id="open-settings" type="button" aria-label="Open settings">⚙</button>
       </header>
 
       <section class="layout" id="planner">
@@ -102,9 +102,6 @@
           <div class="shopping-list" id="shopping-list"></div>
           <div class="recent-weeks" id="recent-weeks"></div>
           <div class="list-actions">
-            <a class="primary link-btn" id="woolworths-link" href="https://www.woolworths.com.au/" target="_blank" rel="noopener noreferrer">
-              <span data-i18n="order_woolworths">Order on Woolworths</span>
-            </a>
             <button class="ghost" id="clear-checks" data-i18n="clear_checks">Clear checks</button>
             <button class="ghost" id="clear-plan" data-i18n="clear_plan">Clear plan</button>
           </div>
@@ -168,6 +165,14 @@
             <button class="ghost" id="sync-now" type="button">Sync now</button>
           </div>
           <div class="sync-status" id="sync-status">Sync off.</div>
+          <div class="settings-divider"></div>
+          <div class="settings-group">
+            <label class="settings-label" for="retailer-select">Retailer</label>
+            <select id="retailer-select">
+              <option value="woolworths">Woolworths</option>
+              <option value="colruyt">Colruyt</option>
+            </select>
+          </div>
         </div>
       </div>
     </div>

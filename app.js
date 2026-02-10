@@ -170,33 +170,39 @@ const recipes = [
   },
   {
     id: "tabbouleh",
-    name: "Tabbouleh: the best recipe",
-    name_fr: "Taboule : la meilleure recette",
-    time: "30 min",
-    servings: 4,
+    name: "Tabbouleh (Original)",
+    name_fr: "Taboulé original",
+    time: "10 min",
+    servings: 6,
     tags: ["no-cook", "salad", "vegetarian", "batch"],
     ingredients: [
-      { item: "pearl couscous", qty: 400, unit: "g" },
-      { item: "tomatoes", qty: 600, unit: "g" },
-      { item: "red onion", qty: 300, unit: "g" },
-      { item: "capsicum", qty: 1, unit: "pcs" },
-      { item: "cucumber", qty: 1, unit: "pcs" },
-      { item: "lemon juice", qty: 2, unit: "pcs" },
-      { item: "olive oil", qty: 5, unit: "tbsp" },
-      { item: "mint", qty: 1, unit: "bunch" },
       { item: "black pepper", qty: 1, unit: "pinch" },
+      { item: "salt", qty: 1, unit: "pinch" },
+      { item: "turmeric", qty: 1, unit: "pinch" },
+      { item: "carrot", qty: 100, unit: "g" },
+      { item: "oranges", qty: 2, unit: "pcs" },
+      { item: "capsicum", qty: 1, unit: "pcs" },
+      { item: "tomatoes", qty: 3, unit: "pcs" },
+      { item: "couscous", qty: 400, unit: "g" },
+      { item: "lemon juice", qty: 2, unit: "pcs" },
+      { item: "raisins", qty: 75, unit: "g" },
+      { item: "mint", qty: 10, unit: "leaves" },
+      { item: "olive oil", qty: 200, unit: "ml" },
+      { item: "cinnamon", qty: 3, unit: "pinch" },
     ],
     steps: [
-      "Cook the couscous in water: 1.5 glass of water for 1 glass of couscous.",
-      "Wash the tomatoes and capsicum, peel the cucumber and the onions, deseed the capsicum.",
-      "Chop tomatoes, cucumber, and capsicum finely. Add everything to the couscous, drizzle with olive oil and lemon juice, mix.",
-      "Finely chop the herbs with a knife and add them to the salad, mix well. Add a pinch of pepper and adjust the seasoning if needed.",
+      "Place the couscous in a large bowl. Squeeze in the juice of 2 lemons and 1 orange, then mix with salt, pepper, turmeric, cinnamon, and chopped mint.",
+      "Dice the tomatoes and capsicum, then add them to the couscous.",
+      "Add the grated carrot, raisins, and olive oil, then mix well.",
+      "Peel the last orange, remove all the white pith, cut into pieces, and fold in gently.",
+      "Chill for at least 2 hours before serving.",
     ],
     steps_fr: [
-      "Faire cuire le couscous dans l'eau : 1.5 verre d'eau pour 1 verre de couscous.",
-      "Lavez les tomates et les poivrons, epluchez le concombre et les oignons, epepinez les poivrons.",
-      "Emincez tomates, concombre et poivron finement. Ajoutez le tout au couscous, arrosez d'huile d'olive et de jus de citron, melangez.",
-      "Hachez finement les herbes au couteau et ajoutez-les a la salade, melangez bien. Ajoutez une pincee de poivre et rectifiez l'assaisonnement si c'est necessaire.",
+      "Verser la semoule dans un saladier, presser le jus de 2 citrons et 1 orange, puis mélanger avec le sel, le poivre, le curcuma, la cannelle et la menthe ciselée.",
+      "Couper les tomates et le poivron en dés, puis les ajouter à la semoule.",
+      "Ajouter la carotte râpée, les raisins secs et l'huile d'olive, puis bien mélanger.",
+      "Éplucher la dernière orange, retirer toute la peau blanche, couper en morceaux et mélanger délicatement.",
+      "Laisser reposer au frais au moins 2 heures avant de servir.",
     ],
   },
   {
@@ -333,6 +339,87 @@ const recipes = [
       "Ajouter l'eau, le bouillon et les pois et cuire 15 min/100C/vitesse 1.",
       "Ajouter la menthe et cuire 3 min/100C/vitesse 1.",
       "Ajouter la creme. Mixer 1 minute en augmentant progressivement la vitesse jusqu'a 10.",
+    ],
+  },
+  {
+    id: "ramen-boeuf-thermomix",
+    name: "Beef Ramen (Thermomix)",
+    name_fr: "Ramen au boeuf (Thermomix)",
+    time: "30 min",
+    servings: 4,
+    tags: ["thermomix", "soup", "batch"],
+    ingredients: [
+      { item: "fresh ginger", qty: 2, unit: "cm" },
+      { item: "coriander", qty: 3, unit: "tbsp" },
+      { item: "harissa", qty: 1, unit: "pinch" },
+      { item: "ramen noodles (precooked)", qty: 400, unit: "g" },
+      { item: "beef steaks", qty: 4, unit: "pcs" },
+      { item: "fresh Chinese cabbage", qty: 250, unit: "g" },
+      { item: "shallot", qty: 2, unit: "pcs" },
+      { item: "spring onions", qty: 4, unit: "pcs" },
+      { item: "garlic clove", qty: 1, unit: "pcs" },
+      { item: "soy sauce", qty: 3, unit: "tbsp" },
+      { item: "yakitori sauce", qty: 3, unit: "tbsp" },
+      { item: "chicken stock cube", qty: 1, unit: "pcs" },
+      { item: "water", qty: 1, unit: "L" },
+    ],
+    steps: [
+      "Cut the beef into 2 cm cubes. Place in a deep dish, rub with the peeled garlic clove and brush with yakitori sauce. Marinate in the fridge for 30 minutes.",
+      "Peel the shallots and ginger. Finely dice the ginger. Chop the coriander.",
+      "Slice the cabbage, shallots, and spring onions.",
+      "Pour 1 L water into the Thermomix bowl. Crumble in the chicken stock cube, add the soy sauce, then bring to a boil for 7 min / Varoma / Speed 3.",
+      "Through the lid opening, add at 1-minute intervals: coriander, ginger, shallots, spring onions, cabbage. Add the beef and ramen at the same time, then simmer 8 min / 105°C / Speed Spoon / Reverse.",
+      "Serve in a large bowl and mix with harissa.",
+    ],
+    steps_fr: [
+      "Coupez le boeuf en des d'environ 2 cm. Deposez-les dans une assiette creuse, frottez-les avec l'ail pele et badigeonnez de sauce yakitori. Laissez mariner au frais pendant 30 minutes.",
+      "Epluchez les echalotes et le gingembre. Coupez ce dernier en brunoise tres fine. Ciselez la coriandre.",
+      "Emincez le chou, les echalotes et les oignons nouveaux.",
+      "Versez 1 L d'eau dans la cuve de votre Thermomix. Emiettez le cube de bouillon, versez la sauce soja, puis portez a ebullition pendant 7 min / Varoma / vit. 3.",
+      "Ajoutez, par le trou du bouchon, avec 1 minute d'intervalle entre chaque ingredient : la coriandre, le gingembre, les echalotes, les oignons, le chou. Versez en meme temps le boeuf et les ramen et laissez mijoter 8 min / 105°C / vit. cuillere / sens inverse.",
+      "Versez dans une grande soupiere et melangez avec la harissa.",
+    ],
+  },
+  {
+    id: "poelee-poulet-carottes-haricots",
+    name: "Chicken, Carrot & Green Bean Skillet",
+    name_fr: "Poelee de poulet, carottes et haricots verts",
+    time: "25 min",
+    servings: 4,
+    tags: ["pan", "batch"],
+    ingredients: [
+      { item: "chicken breast", qty: 2, unit: "pcs" },
+      { item: "carrot", qty: 2, unit: "pcs" },
+      { item: "brown onion", qty: 1, unit: "pcs" },
+      { item: "green beans", qty: 2, unit: "handful" },
+      { item: "olive oil", qty: 1, unit: "tbsp" },
+      { item: "salt", qty: 1, unit: "pinch" },
+      { item: "ground ginger", qty: 0.5, unit: "tsp" },
+      { item: "cayenne pepper", qty: 1, unit: "pinch" },
+      { item: "cumin", qty: 0.25, unit: "tsp" },
+      { item: "soy sauce", qty: 1, unit: "tbsp" },
+      { item: "honey", qty: 1, unit: "tsp" },
+      { item: "water", qty: 1, unit: "splash" },
+    ],
+    steps: [
+      "Trim the green beans, place them in a microwave-safe dish, cover loosely, and microwave for 1 minute at 850W.",
+      "Heat the olive oil in a pan.",
+      "Slice the chicken breasts into strips. Peel and slice the onion into strips. Add to the pan and season with salt.",
+      "Peel the carrots and cut into batons (or grate using the large holes).",
+      "When the chicken and onion start to brown (or before), add the carrots and green beans (cut to match the carrot size).",
+      "Sprinkle with ground ginger, cayenne, and cumin.",
+      "Saute for a few minutes. Add a splash of water if it sticks.",
+      "Add soy sauce and honey. Stir, check seasoning, cover, and cook a little longer until the carrots are tender.",
+    ],
+    steps_fr: [
+      "Eplucher les haricots verts, les mettre dans un plat allant au micro-ondes, couvrir partiellement et faire cuire 1 min a 850 W.",
+      "Mettre un peu d'huile a chauffer dans une poele.",
+      "Couper le blanc de poulet en lanieres. Eplucher et couper l'oignon en lanieres. Mettre a cuire dans la poele. Saler.",
+      "Eplucher la carotte, la couper en batonnets (ou la raper avec la partie gros trous de la rape).",
+      "Quand le poulet et l'oignon commencent a dorer (voire avant), ajouter la carotte et les haricots verts (recoupes eventuellement pour qu'ils aient la meme taille que les batonnets de carotte).",
+      "Saupoudrer de gingembre, de piment de Cayenne et de cumin.",
+      "Faire revenir quelques minutes. Il peut etre necessaire d'ajouter un peu d'eau si ca attache.",
+      "Ajouter une cuillere a soupe de sauce soja et une cuillere a cafe de miel. Remuer, verifier l'assaisonnement, couvrir et laisser cuire encore un peu, jusqu'a ce que les carottes s'attendrissent.",
     ],
   },
   {
@@ -1203,6 +1290,8 @@ const recipeImageMap = {
   "lentil-soup-thermomix": "https://hips.hearstapps.com/hmg-prod/images/lentil-soup-recipe-2-677c54158ad10.jpg?crop=0.6667718689179948xw:1xh;center,top&resize=1200:*",
   "split-pea-soup-thermomix": "https://www.allrecipes.com/thmb/VbJpto2PNNZNCemQU-Hk-1J0nZg=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/219170-HamAndSplitPeaSoup-DDMFS-4x3-154b6d4968b14fa190ea733b66bbbc8e.jpg",
   "pea-mint-soup": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS6V0K0v29CpPl1fivBUzW9hKu3XnLWolPj_w&s",
+  "poelee-poulet-carottes-haricots": "https://assets.afcdn.com/recipe/20150901/53198_w1024h768c1cx1500cy2250.jpg",
+  "ramen-boeuf-thermomix": "https://assets.afcdn.com/recipe/20191204/103427_w1024h768c1cx3150cy2237cxt0cyt0cxb7952cyb4473.jpg",
   "quinoa-butternut-cranberries": "https://foolproofliving.com/wp-content/uploads/2023/01/Butternut-Squash-Quinoa-Salad-with-Pomegranate.jpg",
   "fajitas": "https://www.foodiecrush.com/wp-content/uploads/2020/06/Chicken-Fajitas-foodiecrush.com-008.jpg",
   "bolognese-thermomix": "https://static01.nyt.com/images/2024/10/29/multimedia/Marcella-Hazans-Bolognese-Saucerex-wptg-sub/Marcella-Hazans-Bolognese-Saucerex-wptg-sub-videoSixteenByNineJumbo1600-v2.jpg",
@@ -1264,6 +1353,8 @@ let checkedItemsByWeek = { ...storedChecksByWeek };
 let selectedServingsByWeek = { ...storedServingsByWeek };
 let ratingsByRecipe = { ...storedRatings };
 let recipeNotesById = { ...storedRecipeNotes };
+const DEFAULT_SERVINGS = 4;
+let preferredRetailer = safeGetItem("pantryRetailer") || "woolworths";
 let selectedRecipes = [];
 let checkedItems = {};
 let currentWeekKey = "";
@@ -1308,6 +1399,7 @@ const syncCodeInput = document.getElementById("sync-code");
 const syncConnect = document.getElementById("sync-connect");
 const syncNow = document.getElementById("sync-now");
 const syncStatus = document.getElementById("sync-status");
+const retailerSelect = document.getElementById("retailer-select");
 
 const translations = {
   en: {
@@ -1799,6 +1891,16 @@ if (syncNow) {
   });
 }
 
+if (retailerSelect) {
+  retailerSelect.value = preferredRetailer;
+  retailerSelect.addEventListener("change", () => {
+    preferredRetailer = retailerSelect.value;
+    safeSetItem("pantryRetailer", preferredRetailer);
+    renderShoppingList();
+    saveState();
+  });
+}
+
 
 if (openSettings && settingsModal) {
   openSettings.addEventListener("click", () => {
@@ -1840,6 +1942,7 @@ function getPlanPayload() {
     servingsByWeek: selectedServingsByWeek,
     ratingsByRecipe: ratingsByRecipe,
     recipeNotesById: recipeNotesById,
+    preferredRetailer: preferredRetailer,
     language: currentLanguage,
     updatedAt: new Date().toISOString(),
   };
@@ -1851,6 +1954,7 @@ function applyPlanPayload(payload) {
   selectedServingsByWeek = { ...(payload.servingsByWeek || {}) };
   ratingsByRecipe = { ...(payload.ratingsByRecipe || {}) };
   recipeNotesById = { ...(payload.recipeNotesById || {}) };
+  preferredRetailer = payload.preferredRetailer || preferredRetailer;
   currentLanguage = payload.language || currentLanguage;
   lastSyncedAt = payload.updatedAt || lastSyncedAt;
   safeSetItem("pantryPicksByWeek", JSON.stringify(selectedRecipesByWeek));
@@ -1858,6 +1962,8 @@ function applyPlanPayload(payload) {
   safeSetItem("pantryServingsByWeek", JSON.stringify(selectedServingsByWeek));
   safeSetItem("pantryRatingsByRecipe", JSON.stringify(ratingsByRecipe));
   safeSetItem("pantryRecipeNotes", JSON.stringify(recipeNotesById));
+  safeSetItem("pantryRetailer", preferredRetailer);
+  if (retailerSelect) retailerSelect.value = preferredRetailer;
   safeSetItem("pantryLanguage", currentLanguage);
   if (lastSyncedAt) safeSetItem("pantryLastSync", lastSyncedAt);
   if (languageSelect) languageSelect.value = currentLanguage;
@@ -1995,7 +2101,7 @@ function renderPickList() {
     const meta = document.createElement("span");
     const utensil = getUtensilLabel(recipe);
     const protein = getProteinLabel(recipe);
-    const servingCount = selectedServings[recipeId] || recipe.servings;
+    const servingCount = selectedServings[recipeId] || DEFAULT_SERVINGS;
     meta.textContent = `${recipe.time} · ${servingCount} ${t("servings_label")} · ${utensil} · ${protein}`;
     left.append(title, meta);
 
@@ -2285,7 +2391,7 @@ function renderRecipeGrid() {
     const parts = [
       `${t("time_total")} ${time.total} min`,
       `${t("time_cook")} ${time.cook} min`,
-      `${recipe.servings} ${t("servings_label")}`,
+      `${DEFAULT_SERVINGS} ${t("servings_label")}`,
       utensil,
       protein,
       lastSelected,
@@ -2311,7 +2417,7 @@ function renderRecipeGrid() {
         delete selectedServings[recipe.id];
       } else {
         selectedRecipes = [...selectedRecipes, recipe.id];
-        if (!selectedServings[recipe.id]) selectedServings[recipe.id] = recipe.servings;
+        if (!selectedServings[recipe.id]) selectedServings[recipe.id] = DEFAULT_SERVINGS;
       }
       saveState();
       refreshAll();
@@ -2420,6 +2526,35 @@ function aggregateShoppingList() {
   return Object.values(counts).sort((a, b) => a.item.localeCompare(b.item));
 }
 
+function consolidateShoppingUnits(list) {
+  const grouped = new Map();
+  list.forEach((ingredient) => {
+    const key = ingredient.item;
+    if (!grouped.has(key)) grouped.set(key, []);
+    grouped.get(key).push(ingredient);
+  });
+
+  const result = [];
+  grouped.forEach((entries, item) => {
+    if (entries.length === 1) {
+      result.push(entries[0]);
+      return;
+    }
+    const parts = entries.map((entry) => {
+      const qty = formatQuantity(entry.qty, entry.unit);
+      return `${qty} ${entry.unit}`.trim();
+    });
+    result.push({
+      item,
+      unit: "mixed",
+      qty: 0,
+      compositeText: parts.join(" + "),
+    });
+  });
+
+  return result;
+}
+
 function renderShoppingList() {
   shoppingList.innerHTML = "";
   const items = aggregateShoppingList();
@@ -2435,29 +2570,43 @@ function renderShoppingList() {
     heading.textContent = category;
     shoppingList.appendChild(heading);
 
-    list.forEach((ingredient) => {
-      const key = `${ingredient.item}|${ingredient.unit}`;
+    const consolidated = consolidateShoppingUnits(list);
+    consolidated.forEach((ingredient) => {
+      const key = ingredient.unit === "mixed" ? `${ingredient.item}|mixed` : `${ingredient.item}|${ingredient.unit}`;
       const row = document.createElement("label");
       row.className = "shop-item";
 
       const left = document.createElement("span");
-      const displayQty = formatQuantity(ingredient.qty, ingredient.unit);
       const displayItem = translateIngredientItem(ingredient.item);
+      const displayQty = ingredient.compositeText || `${formatQuantity(ingredient.qty, ingredient.unit)} ${ingredient.unit}`.trim();
       if (category === "Pantry" && /chilli/i.test(displayItem)) {
         const safeItem = displayItem.replace(/chilli/gi, (match) => `<span class="chilli-trigger">${match}</span>`);
-        left.innerHTML = `${safeItem} — ${displayQty} ${ingredient.unit}`;
+        left.innerHTML = `${safeItem} — ${displayQty}`;
       } else {
-        left.textContent = `${displayItem} — ${displayQty} ${ingredient.unit}`;
+        left.textContent = `${displayItem} — ${displayQty}`;
       }
 
-      const link = document.createElement("a");
-      link.className = "woolworths-link";
-      link.href = `https://www.woolworths.com.au/shop/search/products?searchTerm=${encodeURIComponent(ingredient.item)}`;
-      link.target = "_blank";
-      link.rel = "noopener noreferrer";
-      link.textContent = "W";
-      link.setAttribute("aria-label", `Search ${ingredient.item} on Woolworths`);
-      link.addEventListener("click", (event) => {
+      const retailerLink = document.createElement("a");
+      const isColruyt = preferredRetailer === "colruyt";
+      retailerLink.className = isColruyt ? "colruyt-link" : "woolworths-link";
+      if (isColruyt) {
+        const colruytTerm = translateIngredientItem(ingredient.item);
+        retailerLink.href = `https://www.colruyt.be/fr/produits?method=suggestion&o=product%20overview&page=1&searchTerm=${encodeURIComponent(colruytTerm)}&suggestion=products&type=product`;
+        retailerLink.setAttribute("aria-label", `Rechercher ${ingredient.item} sur Colruyt`);
+      } else {
+        retailerLink.href = `https://www.woolworths.com.au/shop/search/products?searchTerm=${encodeURIComponent(ingredient.item)}`;
+        retailerLink.setAttribute("aria-label", `Search ${ingredient.item} on Woolworths`);
+      }
+      retailerLink.target = "_blank";
+      retailerLink.rel = "noopener noreferrer";
+      const logo = document.createElement("img");
+      logo.src = isColruyt
+        ? "https://www.element61.be/sites/default/files/styles/max_325x325/public/img_company_logos/Colruyt.png.webp?itok=5VR0mLrI"
+        : "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTyZ8o4wGHBjezVaPKrg-ffgW-ph2TzVuMCEw&s";
+      logo.alt = isColruyt ? "Colruyt" : "Woolworths";
+      logo.loading = "lazy";
+      retailerLink.appendChild(logo);
+      retailerLink.addEventListener("click", (event) => {
         event.stopPropagation();
       });
 
@@ -2471,7 +2620,7 @@ function renderShoppingList() {
         saveState();
       });
 
-      row.append(left, link, checkbox);
+      row.append(left, retailerLink, checkbox);
       shoppingList.appendChild(row);
     });
   });
@@ -2695,7 +2844,10 @@ function renderCookSelect() {
 function renderCookCard(recipeId) {
   const recipe = getRecipeById(recipeId);
   if (!recipe) return;
-  let servings = (selectedServingsByWeek[cookWeekKey] || {})[recipeId] || recipe.servings;
+  let servings =
+    (selectedServingsByWeek[cookWeekKey] || {})[recipeId] ||
+    selectedServings[recipeId] ||
+    DEFAULT_SERVINGS;
 
   const render = () => {
     cookCard.innerHTML = "";
