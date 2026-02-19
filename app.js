@@ -983,7 +983,7 @@ const recipes = [
     id: "gratin-choufleur",
     name: "Cauliflower Almond Gratin",
     name_fr: "Gratin de chou-fleur aux amandes",
-    time: "25 min",
+    time: "40 min",
     servings: 4,
     tags: ["oven", "vegetarian", "batch"],
     ingredients: [
@@ -1001,7 +1001,7 @@ const recipes = [
       "Crush the almonds with a rolling pin.",
       "In a greased gratin dish, place the cauliflower florets.",
       "Cover with crushed almonds, grated cheese, thyme, olive oil, plant-based cream, and cumin. Season with salt and pepper.",
-      "Bake for 15 minutes.",
+      "Bake for 30 minutes.",
     ],
     steps_fr: [
       "Prechauffez le four a 180°C.",
@@ -1009,7 +1009,7 @@ const recipes = [
       "Concasez les amandes a l'aide d'un rouleau a patisserie.",
       "Dans un plat a gratin graisse, placez les tetes de chou-fleur.",
       "Recouvrez-les d'amandes concassees, de fromage rape, de thym, d'huile, de preparation cremeuse et de cumin. Salez et poivrez.",
-      "Enfournez pour 15 minutes.",
+      "Enfournez pour 30 minutes.",
     ],
   },
   {
@@ -1277,6 +1277,301 @@ const recipes = [
   },
 ];
 
+const NUTRITION_PROFILES = {
+  vegetable: { kcal: 25, protein: 1.5, carbs: 5, fat: 0.2, fiber: 2.5 },
+  fruit: { kcal: 55, protein: 0.6, carbs: 14, fat: 0.2, fiber: 2.4 },
+  driedFruit: { kcal: 300, protein: 3, carbs: 80, fat: 0.5, fiber: 7 },
+  grain: { kcal: 360, protein: 10, carbs: 75, fat: 2, fiber: 6 },
+  legume: { kcal: 120, protein: 8, carbs: 20, fat: 1.5, fiber: 6 },
+  nuts: { kcal: 600, protein: 20, carbs: 20, fat: 50, fiber: 8 },
+  chicken: { kcal: 165, protein: 31, carbs: 0, fat: 3.6, fiber: 0 },
+  beef: { kcal: 250, protein: 26, carbs: 0, fat: 17, fiber: 0 },
+  pork: { kcal: 260, protein: 25, carbs: 0, fat: 18, fiber: 0 },
+  fish: { kcal: 120, protein: 22, carbs: 0, fat: 2, fiber: 0 },
+  egg: { kcal: 143, protein: 13, carbs: 1.1, fat: 10, fiber: 0 },
+  cheese: { kcal: 330, protein: 22, carbs: 3, fat: 27, fiber: 0 },
+  milk: { kcal: 60, protein: 3.2, carbs: 5, fat: 3.2, fiber: 0 },
+  cream: { kcal: 200, protein: 2, carbs: 3, fat: 20, fiber: 0 },
+  butter: { kcal: 717, protein: 0.9, carbs: 0.1, fat: 81, fiber: 0 },
+  oil: { kcal: 884, protein: 0, carbs: 0, fat: 100, fiber: 0 },
+  sugar: { kcal: 387, protein: 0, carbs: 100, fat: 0, fiber: 0 },
+  stock: { kcal: 5, protein: 0.5, carbs: 0.5, fat: 0, fiber: 0 },
+};
+
+const NUTRITION_OVERRIDES = {
+  "coconut milk": { kcal: 230, protein: 2, carbs: 3, fat: 24, fiber: 2 },
+  "thickened cream": { kcal: 250, protein: 2, carbs: 4, fat: 25, fiber: 0 },
+  "creme fraiche": { kcal: 300, protein: 2, carbs: 3, fat: 30, fiber: 0 },
+  "plant-based cream": { kcal: 160, protein: 1, carbs: 3, fat: 16, fiber: 0 },
+  "olive oil": { kcal: 884, protein: 0, carbs: 0, fat: 100, fiber: 0 },
+  "butter": { kcal: 717, protein: 0.9, carbs: 0.1, fat: 81, fiber: 0 },
+  "parmesan": { kcal: 430, protein: 38, carbs: 4, fat: 29, fiber: 0 },
+  "gruyere": { kcal: 413, protein: 29, carbs: 0.4, fat: 32, fiber: 0 },
+  "mozzarella": { kcal: 280, protein: 28, carbs: 3, fat: 17, fiber: 0 },
+  "goat cheese": { kcal: 365, protein: 22, carbs: 2, fat: 30, fiber: 0 },
+  "ricotta": { kcal: 174, protein: 11, carbs: 3, fat: 13, fiber: 0 },
+  "milk": { kcal: 60, protein: 3.2, carbs: 5, fat: 3.2, fiber: 0 },
+  "egg": { kcal: 143, protein: 13, carbs: 1.1, fat: 10, fiber: 0 },
+  "eggs": { kcal: 143, protein: 13, carbs: 1.1, fat: 10, fiber: 0 },
+  "soy sauce": { kcal: 53, protein: 8, carbs: 5, fat: 0.6, fiber: 0 },
+  "yakitori sauce": { kcal: 150, protein: 3, carbs: 33, fat: 0.5, fiber: 0 },
+  "honey": { kcal: 304, protein: 0.3, carbs: 82, fat: 0, fiber: 0 },
+};
+
+const UNIT_TO_ML = {
+  tbsp: 15,
+  tsp: 5,
+  cup: 250,
+  glass: 250,
+  splash: 15,
+};
+
+const UNIT_TO_G = {
+  pinch: 0.3,
+  sprigs: 1,
+  leaves: 0.5,
+  handful: 30,
+  bunch: 30,
+  can: 400,
+  cans: 400,
+  sheets: 20,
+  cubes: 20,
+  head: 600,
+  cm: 5,
+};
+
+const ITEM_UNIT_WEIGHTS = {
+  "brown onion": { pcs: 150 },
+  "white onion": { pcs: 150 },
+  "yellow onion": { pcs: 150 },
+  "red onion": { pcs: 150 },
+  "onion": { pcs: 150 },
+  "garlic clove": { pcs: 3 },
+  "garlic cloves": { pcs: 3 },
+  "shallot": { pcs: 30 },
+  "spring onions": { pcs: 15 },
+  "carrot": { pcs: 60 },
+  "potatoes": { pcs: 200 },
+  "tomatoes": { pcs: 120 },
+  "tomato": { pcs: 120 },
+  "capsicum": { pcs: 150 },
+  "red capsicum": { pcs: 150 },
+  "zucchini": { pcs: 200 },
+  "round zucchini": { pcs: 200 },
+  "eggplant": { pcs: 300 },
+  "eggplants": { pcs: 300 },
+  "fennel bulb": { pcs: 200 },
+  "oranges": { pcs: 130 },
+  "lemon": { pcs: 60 },
+  "lime": { pcs: 60 },
+  "lemon juice": { pcs: 50 },
+  "chicken thighs": { pcs: 150 },
+  "chicken breast": { pcs: 180 },
+  "beef steaks": { pcs: 180 },
+  "white fish fillets": { pcs: 150 },
+  "egg": { pcs: 50 },
+  "eggs": { pcs: 50 },
+  "bay leaf": { pcs: 0.2 },
+  "goat cheese": { cubes: 20 },
+  "fresh thyme": { sprigs: 1 },
+  "mint": { bunch: 20, leaves: 0.5 },
+  "basil": { bunch: 20, cups: 15 },
+  "fresh coriander": { bunch: 20 },
+  "green olives": { pcs: 4 },
+  "pineapple": { pcs: 800 },
+  "butternut pumpkin": { pcs: 800 },
+  "cauliflower": { head: 600 },
+  "couscous": { glass: 180 },
+  "quinoa": { glass: 170 },
+  "pepitas": { glass: 120, cup: 120 },
+  "dried cranberries": { handful: 30 },
+  "green beans": { handful: 80 },
+  "lasagne sheets": { sheets: 20 },
+  "plain flour": { tbsp: 8 },
+  "curry powder": { tbsp: 6, tsp: 2 },
+  "paprika": { tsp: 2 },
+  "smoked paprika": { tsp: 2 },
+  "sweet paprika": { tsp: 2 },
+  "cumin": { tsp: 2 },
+  "ground cumin": { tsp: 2 },
+  "ground coriander": { tsp: 2 },
+  "ground ginger": { tsp: 2 },
+  "turmeric": { tsp: 2, tbsp: 6, pinch: 0.3 },
+  "cinnamon": { tsp: 2.6, pinch: 0.3 },
+  "nutmeg": { tsp: 2, pinch: 0.3 },
+  "oregano": { tsp: 1 },
+  "dried oregano": { tsp: 1 },
+  "dried basil": { tsp: 1 },
+  "dried thyme": { tsp: 1, tbsp: 3 },
+  "thyme": { tsp: 1, tbsp: 3 },
+  "herbes de provence": { tsp: 1 },
+  "chilli flakes": { tsp: 1 },
+  "chilli powder": { tsp: 2 },
+  "harissa": { pinch: 0.5 },
+  "saffron": { pinch: 0.05 },
+  "black pepper": { tsp: 2, pinch: 0.3 },
+  "salt": { tsp: 6, pinch: 0.3 },
+  "honey": { tbsp: 21, tsp: 7 },
+  "soy sauce": { tbsp: 15 },
+  "yakitori sauce": { tbsp: 17 },
+  "tomato paste": { tbsp: 16 },
+  "tomato pulp": { tbsp: 15 },
+  "canned tomatoes": { cans: 400 },
+  "crushed tomatoes": { cans: 400 },
+  "black beans": { can: 400 },
+  "red kidney beans": { can: 400 },
+  "cannellini beans": { cans: 400 },
+  "canned chickpeas": { cans: 400 },
+  "water or stock": { can: 400 },
+  "vegetable stock": { L: 1000, tbsp: 9, tsp: 3 },
+  "chicken stock cube": { pcs: 10 },
+  "water": { splash: 15 },
+};
+
+const DENSITY_BY_ITEM = {
+  "olive oil": 0.91,
+  "soy sauce": 1.1,
+  "yakitori sauce": 1.15,
+  "honey": 1.42,
+  "milk": 1.03,
+  "thickened cream": 1.03,
+  "creme fraiche": 1.03,
+  "cream": 1.02,
+  "plant-based cream": 1.0,
+  "coconut milk": 1.02,
+};
+
+const DEFAULT_PCS_WEIGHT = 100;
+
+function normalizeIngredientKey(item) {
+  return item.toLowerCase().replace(/\(.*?\)/g, "").trim();
+}
+
+function getDensityForItem(key) {
+  return DENSITY_BY_ITEM[key] ?? 1;
+}
+
+function estimateIngredientGrams(ingredient) {
+  const key = normalizeIngredientKey(ingredient.item);
+  const unit = ingredient.unit;
+  const qty = ingredient.qty;
+  if (!qty) return 0;
+
+  if (unit === "g") return qty;
+  if (unit === "kg") return qty * 1000;
+  if (unit === "ml") return qty * getDensityForItem(key);
+  if (unit === "L") return qty * 1000 * getDensityForItem(key);
+
+  const itemWeights = ITEM_UNIT_WEIGHTS[key] || {};
+  if (itemWeights[unit] != null) return qty * itemWeights[unit];
+
+  if (UNIT_TO_ML[unit]) return qty * UNIT_TO_ML[unit] * getDensityForItem(key);
+  if (UNIT_TO_G[unit]) return qty * UNIT_TO_G[unit];
+
+  if (unit === "pcs") return qty * (itemWeights.pcs ?? DEFAULT_PCS_WEIGHT);
+  if (unit === "can" || unit === "cans") return qty * (itemWeights[unit] ?? UNIT_TO_G[unit] ?? 400);
+
+  return 0;
+}
+
+function getNutritionProfileForItem(item) {
+  const key = normalizeIngredientKey(item);
+  if (NUTRITION_OVERRIDES[key]) return NUTRITION_OVERRIDES[key];
+
+  if (key.includes("oil")) return NUTRITION_PROFILES.oil;
+  if (key.includes("butter")) return NUTRITION_PROFILES.butter;
+  if (key.includes("cream") || key.includes("creme")) return NUTRITION_PROFILES.cream;
+  if (key.includes("cheese") || key.includes("mozzarella") || key.includes("parmesan") || key.includes("gruyere") || key.includes("ricotta")) {
+    return NUTRITION_PROFILES.cheese;
+  }
+  if (key.includes("milk")) return NUTRITION_PROFILES.milk;
+  if (key.includes("chicken")) return NUTRITION_PROFILES.chicken;
+  if (key.includes("beef")) return NUTRITION_PROFILES.beef;
+  if (key.includes("pork")) return NUTRITION_PROFILES.pork;
+  if (key.includes("fish")) return NUTRITION_PROFILES.fish;
+  if (key.includes("egg")) return NUTRITION_PROFILES.egg;
+  if (key.includes("green beans")) return NUTRITION_PROFILES.vegetable;
+  if (key.includes("lentil") || key.includes("beans") || key.includes("chickpeas") || key.includes("peas")) {
+    return NUTRITION_PROFILES.legume;
+  }
+  if (key.includes("almonds") || key.includes("pepitas") || key.includes("nuts")) return NUTRITION_PROFILES.nuts;
+  if (key.includes("honey") || key.includes("sugar") || key.includes("syrup")) return NUTRITION_PROFILES.sugar;
+  if (key.includes("raisins") || key.includes("cranberries")) return NUTRITION_PROFILES.driedFruit;
+  if (
+    key.includes("rice") ||
+    key.includes("quinoa") ||
+    key.includes("couscous") ||
+    key.includes("noodles") ||
+    key.includes("lasagne") ||
+    key.includes("breadcrumbs") ||
+    key.includes("flour")
+  ) {
+    return NUTRITION_PROFILES.grain;
+  }
+  if (
+    key.includes("tomato") ||
+    key.includes("onion") ||
+    key.includes("garlic") ||
+    key.includes("carrot") ||
+    key.includes("capsicum") ||
+    key.includes("broccolini") ||
+    key.includes("spinach") ||
+    key.includes("zucchini") ||
+    key.includes("eggplant") ||
+    key.includes("fennel") ||
+    key.includes("cabbage") ||
+    key.includes("brussels") ||
+    key.includes("cauliflower") ||
+    key.includes("potato") ||
+    key.includes("pumpkin") ||
+    key.includes("pepper") ||
+    key.includes("herb") ||
+    key.includes("thyme") ||
+    key.includes("basil") ||
+    key.includes("mint") ||
+    key.includes("coriander") ||
+    key.includes("chilli")
+  ) {
+    return NUTRITION_PROFILES.vegetable;
+  }
+  if (key.includes("orange") || key.includes("lemon") || key.includes("lime") || key.includes("pineapple")) {
+    return NUTRITION_PROFILES.fruit;
+  }
+  if (key.includes("stock") || key.includes("water")) return NUTRITION_PROFILES.stock;
+
+  return NUTRITION_PROFILES.vegetable;
+}
+
+function calculateRecipeNutrition(recipe) {
+  const totals = { kcal: 0, protein: 0, carbs: 0, fat: 0, fiber: 0 };
+  let missing = 0;
+
+  recipe.ingredients.forEach((ingredient) => {
+    const grams = estimateIngredientGrams(ingredient);
+    const profile = getNutritionProfileForItem(ingredient.item);
+    if (!grams || !profile) {
+      missing += 1;
+      return;
+    }
+    const factor = grams / 100;
+    totals.kcal += profile.kcal * factor;
+    totals.protein += profile.protein * factor;
+    totals.carbs += profile.carbs * factor;
+    totals.fat += profile.fat * factor;
+    totals.fiber += profile.fiber * factor;
+  });
+
+  const perServe = {
+    kcal: totals.kcal / recipe.servings,
+    protein: totals.protein / recipe.servings,
+    carbs: totals.carbs / recipe.servings,
+    fat: totals.fat / recipe.servings,
+    fiber: totals.fiber / recipe.servings,
+  };
+
+  return { totals, perServe, missing };
+}
+
 const recipeImageMap = {
   "gratin-dauphinois": "https://d194ip2226q57d.cloudfront.net/images/GratinDauphinois.original.jpg",
   "chickpeas-swiss-chard": "https://static1.squarespace.com/static/56801b350e4c11744888ec37/t/602d95369cbd8f1dc15d2d7a/1613600058892/Chick+Pea+Swiss+Chard+landscape.jpg?format=1500w",
@@ -1415,6 +1710,14 @@ const translations = {
     step_add_prefix: "Add",
     recipe_note: "Recipe note",
     recipe_note_placeholder: "Add tips, improvements, or issues...",
+    nutrition_title: "Nutrition per serve",
+    nutrition_calories: "Calories",
+    nutrition_protein: "Protein",
+    nutrition_carbs: "Carbs",
+    nutrition_fat: "Fat",
+    nutrition_fiber: "Fiber",
+    nutrition_note: "Estimates based on ingredient quantities and standard references.",
+    nutrition_note_missing: "Estimates based on ingredient quantities; some items use generic assumptions.",
     note_save: "Save note",
     note_clear: "Delete note",
     ingredients_empty: "No ingredients yet.",
@@ -1432,6 +1735,9 @@ const translations = {
     week_clear: "Clear",
     week_this: "This week",
     filter_all: "All",
+    filter_utensil: "Utensil",
+    filter_protein: "Protein",
+    filter_meal: "Meal",
     search_placeholder: "Search recipes",
     meal_main: "Main",
     meal_soup: "Soup",
@@ -1496,6 +1802,14 @@ const translations = {
     step_add_prefix: "Ajouter",
     recipe_note: "Note de recette",
     recipe_note_placeholder: "Ajoutez des conseils, améliorations ou problèmes...",
+    nutrition_title: "Nutrition par portion",
+    nutrition_calories: "Calories",
+    nutrition_protein: "Protéines",
+    nutrition_carbs: "Glucides",
+    nutrition_fat: "Lipides",
+    nutrition_fiber: "Fibres",
+    nutrition_note: "Estimations basées sur les quantités d'ingrédients et des références standard.",
+    nutrition_note_missing: "Estimations basées sur les quantités d'ingrédients ; certains ingrédients utilisent des hypothèses génériques.",
     note_save: "Enregistrer",
     note_clear: "Supprimer",
     ingredients_empty: "Pas d'ingredients pour le moment.",
@@ -1513,6 +1827,9 @@ const translations = {
     week_clear: "Effacer",
     week_this: "Cette semaine",
     filter_all: "Tous",
+    filter_utensil: "Ustensile",
+    filter_protein: "Protéine",
+    filter_meal: "Plat",
     search_placeholder: "Rechercher une recette",
     meal_main: "Plat",
     meal_soup: "Soupe",
@@ -2071,6 +2388,7 @@ function renderRatingStars(target, recipeId) {
       ratingsByRecipe[recipeId] = i;
       saveState();
       renderRatingStars(target, recipeId);
+      renderRecipeGrid();
     });
     target.appendChild(star);
   }
@@ -2354,8 +2672,22 @@ function renderRecipeGrid() {
       const img = document.createElement("img");
       img.src = imageSrc;
       img.alt = getRecipeName(recipe);
-      img.loading = "lazy";
-      img.referrerPolicy = "no-referrer";
+      // Safari can fail to fetch/decode lazy images inside scrollable containers.
+      img.loading = "eager";
+      img.decoding = "async";
+      const setBestImageFit = () => {
+        const width = img.naturalWidth || 0;
+        const height = img.naturalHeight || 0;
+        if (!width || !height) return;
+        const ratio = width / height;
+        // Wide landscape images are the ones that get visibly cropped in cards.
+        if (ratio >= 1.35) {
+          img.classList.add("fit-contain");
+        } else {
+          img.classList.remove("fit-contain");
+        }
+      };
+      img.addEventListener("load", setBestImageFit);
       img.addEventListener("error", () => {
         thumb.classList.add("is-fallback");
         thumb.innerHTML = "";
@@ -2366,6 +2698,7 @@ function renderRecipeGrid() {
       if (recipe.id === "dahl-lentilles-epinards") {
         img.classList.add("fit-contain");
       }
+      if (img.complete) setBestImageFit();
       thumb.appendChild(img);
     } else {
       thumb.classList.add("is-fallback");
@@ -2447,12 +2780,45 @@ function renderRecipeDetails(recipe) {
         })
         .join("")
     : `<li>${t("ingredients_empty")}</li>`;
+  const nutrition = calculateRecipeNutrition(recipe);
+  const nutritionNote = nutrition.missing
+    ? t("nutrition_note_missing")
+    : t("nutrition_note");
+  const nutritionHtml = `
+    <div class="nutrition-panel">
+      <h5>${t("nutrition_title")}</h5>
+      <div class="nutrition-grid">
+        <div>
+          <span>${t("nutrition_calories")}</span>
+          <strong>${Math.round(nutrition.perServe.kcal)} kcal</strong>
+        </div>
+        <div>
+          <span>${t("nutrition_protein")}</span>
+          <strong>${nutrition.perServe.protein.toFixed(1)} g</strong>
+        </div>
+        <div>
+          <span>${t("nutrition_carbs")}</span>
+          <strong>${nutrition.perServe.carbs.toFixed(1)} g</strong>
+        </div>
+        <div>
+          <span>${t("nutrition_fat")}</span>
+          <strong>${nutrition.perServe.fat.toFixed(1)} g</strong>
+        </div>
+        <div>
+          <span>${t("nutrition_fiber")}</span>
+          <strong>${nutrition.perServe.fiber.toFixed(1)} g</strong>
+        </div>
+      </div>
+      <p class="nutrition-note">${nutritionNote}</p>
+    </div>
+  `;
 
   const html = `
     <h4 id="recipe-modal-title"><span class="recipe-icon">${getRecipeIcon(recipe)}</span>${getRecipeName(recipe)}</h4>
     <div class="detail-meta">${recipe.time} · ${servings} ${t("servings_label")}</div>
     <div class="rating" data-rating-for="${recipe.id}"></div>
     <ul>${ingredients}</ul>
+    ${nutritionHtml}
     <div class="note-section">
       <label class="note-label" for="note-${recipe.id}">${t("recipe_note")}</label>
       <textarea id="note-${recipe.id}" class="note-input" rows="3" placeholder="${t("recipe_note_placeholder")}">${noteValue}</textarea>
@@ -2915,53 +3281,6 @@ function renderCookCard(recipeId) {
       stepText.textContent = `${index + 1}. ${formatStepWithQuantities(step, recipe, servings)}`;
       stepCard.appendChild(stepText);
 
-      const minutes = parseStepDurationMinutes(step);
-      if (minutes > 0) {
-        const timerRow = document.createElement("div");
-        timerRow.className = "timer-row";
-
-        const display = document.createElement("span");
-        display.className = "timer-display";
-        display.textContent = formatTimer(minutes);
-
-        const startBtn = document.createElement("button");
-        startBtn.className = "ghost timer-btn";
-        startBtn.textContent = "Start timer";
-
-        const reminderBtn = document.createElement("a");
-        reminderBtn.className = "ghost timer-btn";
-        reminderBtn.textContent = "Set phone reminder";
-        reminderBtn.target = "_blank";
-        reminderBtn.rel = "noopener";
-        reminderBtn.href = `https://www.google.com/search?q=timer+${minutes}+minutes`;
-
-        let intervalId = null;
-        let remaining = minutes * 60;
-
-        startBtn.addEventListener("click", () => {
-          if (intervalId) return;
-          startBtn.disabled = true;
-          const tick = () => {
-            const mm = Math.floor(remaining / 60);
-            const ss = remaining % 60;
-            display.textContent = `${String(mm).padStart(2, "0")}:${String(ss).padStart(2, "0")}`;
-            if (remaining <= 0) {
-              clearInterval(intervalId);
-              intervalId = null;
-              startBtn.disabled = false;
-              playTimerSound();
-              if (navigator.vibrate) navigator.vibrate([200, 100, 200]);
-              return;
-            }
-            remaining -= 1;
-          };
-          tick();
-          intervalId = setInterval(tick, 1000);
-        });
-
-        timerRow.append(display, startBtn, reminderBtn);
-        stepCard.appendChild(timerRow);
-      }
       steps.appendChild(stepCard);
     });
 
