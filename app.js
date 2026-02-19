@@ -1738,6 +1738,7 @@ const translations = {
     filter_utensil: "Utensil",
     filter_protein: "Protein",
     filter_meal: "Meal",
+    selected_badge: "Selected",
     search_placeholder: "Search recipes",
     meal_main: "Main",
     meal_soup: "Soup",
@@ -1830,6 +1831,7 @@ const translations = {
     filter_utensil: "Ustensile",
     filter_protein: "Protéine",
     filter_meal: "Plat",
+    selected_badge: "Selectionnee",
     search_placeholder: "Rechercher une recette",
     meal_main: "Plat",
     meal_soup: "Soupe",
@@ -2659,8 +2661,10 @@ function renderRecipeGrid() {
       return getRecipeName(a).localeCompare(getRecipeName(b));
     })
     .forEach((recipe) => {
+    const isSelected = selectedRecipes.includes(recipe.id);
     const card = document.createElement("div");
     card.className = "recipe-card";
+    if (isSelected) card.classList.add("is-selected");
 
     const thumb = document.createElement("div");
     thumb.className = "recipe-thumb";
@@ -2706,6 +2710,12 @@ function renderRecipeGrid() {
       fallback.textContent = getRecipeIcon(recipe);
       thumb.appendChild(fallback);
     }
+    if (isSelected) {
+      const selectedBadge = document.createElement("span");
+      selectedBadge.className = "selected-badge";
+      selectedBadge.textContent = t("selected_badge");
+      thumb.appendChild(selectedBadge);
+    }
 
     const info = document.createElement("div");
     info.className = "recipe-info";
@@ -2741,7 +2751,7 @@ function renderRecipeGrid() {
 
     const actionBtn = document.createElement("button");
     actionBtn.className = "ghost";
-    actionBtn.textContent = selectedRecipes.includes(recipe.id)
+    actionBtn.textContent = isSelected
       ? t("remove_from_picks")
       : t("add_to_picks");
     actionBtn.addEventListener("click", () => {
