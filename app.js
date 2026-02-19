@@ -1643,11 +1643,13 @@ const storedChecksByWeek = safeParseStorage("pantryChecksByWeek", {});
 const storedServingsByWeek = safeParseStorage("pantryServingsByWeek", {});
 const storedRatings = safeParseStorage("pantryRatingsByRecipe", {});
 const storedRecipeNotes = safeParseStorage("pantryRecipeNotes", {});
+const storedPantryInventory = safeParseStorage("pantryIngredientInventory", {});
 let selectedRecipesByWeek = { ...storedPicksByWeek };
 let checkedItemsByWeek = { ...storedChecksByWeek };
 let selectedServingsByWeek = { ...storedServingsByWeek };
 let ratingsByRecipe = { ...storedRatings };
 let recipeNotesById = { ...storedRecipeNotes };
+let pantryInventory = { ...storedPantryInventory };
 const DEFAULT_SERVINGS = 4;
 let preferredRetailer = safeGetItem("pantryRetailer") || "woolworths";
 let selectedRecipes = [];
@@ -1686,6 +1688,11 @@ const topWeekShell = document.getElementById("top-week-shell");
 const topWeekLabelBlock = document.getElementById("top-week-label");
 const heroCount = document.getElementById("hero-count");
 const recipeSearch = document.getElementById("recipe-search");
+const pantryIngredientSearch = document.getElementById("pantry-ingredient-search");
+const pantrySearchResults = document.getElementById("pantry-search-results");
+const pantrySelected = document.getElementById("pantry-selected");
+const pantryMatchList = document.getElementById("pantry-match-list");
+const pantryClear = document.getElementById("pantry-clear");
 const filterUtensil = document.getElementById("filter-utensil");
 const filterProtein = document.getElementById("filter-protein");
 const filterMeal = document.getElementById("filter-meal");
@@ -1749,6 +1756,21 @@ const translations = {
     recipe_library: "Recipe Library",
     recipe_library_sub:
       "Tap a recipe to add it to your picks. Scroll inside the list to keep the rest of the page visible.",
+    pantry_matcher: "Recipe Matcher",
+    pantry_matcher_sub: "Search recipe ingredients, add what you have, then see recipes ranked by matching items.",
+    pantry_search_placeholder: "Search ingredients from recipes",
+    pantry_search_prompt: "Start typing an ingredient to add it.",
+    pantry_search_empty: "No ingredient match in recipe data.",
+    pantry_selected_title: "Your pantry/fridge items",
+    pantry_selected_empty: "Add at least one ingredient to start matching recipes.",
+    pantry_quantity: "Qty",
+    pantry_unit: "Unit",
+    pantry_unit_any: "Any",
+    pantry_clear: "Clear pantry picks",
+    pantry_matches_empty: "Recipes with at least one matching item will appear here.",
+    pantry_matches_none: "No recipes match your current pantry quantities/units.",
+    pantry_match_count: (count) => `${count} matching item${count === 1 ? "" : "s"}`,
+    pantry_matched_items: "Matched items",
     shopping_list: "Auto Shopping List",
     shopping_list_sub: "Aggregated ingredients from your planned recipes. Check items as you shop.",
     shopping_checked: "Already have",
@@ -1842,6 +1864,21 @@ const translations = {
     recipe_library: "Bibliothèque de recettes",
     recipe_library_sub:
       "Touchez une recette pour l'ajouter. Faites défiler la liste pour garder le reste visible.",
+    pantry_matcher: "Correspondance recettes",
+    pantry_matcher_sub: "Recherchez des ingrédients, ajoutez ce que vous avez, puis affichez les recettes par nombre d'articles correspondants.",
+    pantry_search_placeholder: "Rechercher des ingrédients des recettes",
+    pantry_search_prompt: "Commencez a taper un ingrédient pour l'ajouter.",
+    pantry_search_empty: "Aucun ingrédient correspondant dans les recettes.",
+    pantry_selected_title: "Articles dans votre placard/frigo",
+    pantry_selected_empty: "Ajoutez au moins un ingrédient pour commencer.",
+    pantry_quantity: "Qté",
+    pantry_unit: "Unité",
+    pantry_unit_any: "Toutes",
+    pantry_clear: "Effacer la sélection placard",
+    pantry_matches_empty: "Les recettes avec au moins un ingrédient correspondant s'afficheront ici.",
+    pantry_matches_none: "Aucune recette ne correspond aux quantités/unités choisies.",
+    pantry_match_count: (count) => `${count} ingrédient${count === 1 ? "" : "s"} correspondant${count === 1 ? "" : "s"}`,
+    pantry_matched_items: "Ingrédients correspondants",
     shopping_list: "Liste de courses",
     shopping_list_sub: "Ingrédients regroupés de vos recettes. Cochez au fur et à mesure.",
     shopping_checked: "Deja dans le placard",
@@ -1890,6 +1927,25 @@ function t(key, ...args) {
   return typeof value === "function" ? value(...args) : value;
 }
 
+function canonicalIngredientItem(item) {
+  const key = normalizeIngredientKey(item).toLowerCase();
+  if (!key) return "";
+  if (key === "fresh tomato" || key === "tomato" || key === "tomatoes") return "Fresh tomato";
+  if (
+    key === "canned chopped tomatoes" ||
+    key === "canned tomatoes" ||
+    key === "diced tomatoes" ||
+    key === "crushed tomatoes"
+  ) {
+    return "Canned chopped tomatoes";
+  }
+  if (key === "canned polpa tomatoes" || key === "tomato pulp" || key === "tomato puree") {
+    return "Canned polpa tomatoes";
+  }
+  if (key === "paste tomato" || key === "tomato paste") return "Paste tomato";
+  return key;
+}
+
 function applyTranslations() {
   document.querySelectorAll("[data-i18n]").forEach((node) => {
     const key = node.getAttribute("data-i18n");
@@ -1923,6 +1979,10 @@ const ingredientTranslationsFr = {
   "capsicum": "poivron",
   "tomatoes": "tomates",
   "tomato": "tomate",
+  "fresh tomato": "tomates fraîches",
+  "canned chopped tomatoes": "tomates concassées en conserve",
+  "canned polpa tomatoes": "tomates polpa en conserve",
+  "paste tomato": "concentré de tomate",
   "cucumber": "concombre",
   "brown onion": "oignon",
   "red onion": "oignon rouge",
@@ -2017,12 +2077,13 @@ const ingredientTranslationsFr = {
 };
 
 function translateIngredientItem(item) {
-  const key = item.toLowerCase();
+  const canonical = canonicalIngredientItem(item);
+  const key = canonical.toLowerCase();
   if (currentLanguage !== "fr") {
     if (key === "creme fraiche") return "cream";
-    return item;
+    return canonical;
   }
-  return ingredientTranslationsFr[key] || item;
+  return ingredientTranslationsFr[key] || canonical;
 }
 
 function formatQuantityExact(qty) {
@@ -2119,6 +2180,7 @@ function getRecipeSteps(recipe) {
 const jumpPlanner = document.getElementById("jump-planner");
 const jumpCook = document.getElementById("jump-cook");
 const jumpLibrary = document.getElementById("jump-library");
+const jumpMatch = document.getElementById("jump-match");
 const jumpPicker = document.getElementById("jump-picker");
 const openSettings = document.getElementById("open-settings");
 const settingsModal = document.getElementById("settings-modal");
@@ -2126,6 +2188,7 @@ const plannerSection = document.getElementById("planner");
 const cookSection = document.getElementById("cook");
 const shoppingSection = document.getElementById("shopping");
 const plannerLibrary = document.getElementById("planner-library");
+const plannerMatch = document.getElementById("planner-match");
 const plannerPicker = document.getElementById("planner-picker");
 
 function setView(view) {
@@ -2164,6 +2227,14 @@ if (jumpLibrary) {
   jumpLibrary.addEventListener("click", () => {
     if (plannerLibrary) {
       plannerLibrary.scrollIntoView({ behavior: "smooth" });
+    }
+  });
+}
+
+if (jumpMatch) {
+  jumpMatch.addEventListener("click", () => {
+    if (plannerMatch) {
+      plannerMatch.scrollIntoView({ behavior: "smooth" });
     }
   });
 }
@@ -2608,6 +2679,304 @@ function getLastSelectedLabel(recipeId) {
   return t("last_selected", weeks);
 }
 
+function normalizeMatcherIngredientKey(item) {
+  const key = canonicalIngredientItem(item).toLowerCase().replace(/\s+/g, " ").trim();
+  if (!key) return "";
+  if (key === "capsicums") return "capsicum";
+  if (/^(red|green|yellow|orange)\s+capsicum$/.test(key)) return "capsicum";
+  if (
+    key === "cream" ||
+    key === "creme fraiche" ||
+    key === "thickened cream" ||
+    key === "plant-based cream" ||
+    key === "creamy plant base"
+  ) {
+    return "cream";
+  }
+  return key;
+}
+
+function normalizePantryQuantity(qty) {
+  const parsed = Number(qty);
+  if (!Number.isFinite(parsed)) return 1;
+  return Math.max(1, Math.round(parsed));
+}
+
+function getPantryIngredientCatalog() {
+  const map = new Map();
+  recipes.forEach((recipe) => {
+    recipe.ingredients.forEach((ingredient) => {
+      const key = normalizeMatcherIngredientKey(ingredient.item);
+      if (!key) return;
+      if (!map.has(key)) {
+        map.set(key, {
+          key,
+          item: key,
+          units: new Set(),
+        });
+      }
+      map.get(key).units.add((ingredient.unit || "").toLowerCase());
+    });
+  });
+
+  return Array.from(map.values())
+    .map((entry) => ({
+      ...entry,
+      units: Array.from(entry.units).filter(Boolean).sort(),
+    }))
+    .sort((a, b) => translateIngredientItem(a.item).localeCompare(translateIngredientItem(b.item)));
+}
+
+function savePantryInventory() {
+  safeSetItem("pantryIngredientInventory", JSON.stringify(pantryInventory));
+}
+
+function sanitizePantryInventory() {
+  const catalogKeys = new Set(getPantryIngredientCatalog().map((entry) => entry.key));
+  const clean = {};
+  Object.keys(pantryInventory || {}).forEach((key) => {
+    if (!catalogKeys.has(key)) return;
+    const qty = normalizePantryQuantity(pantryInventory[key]?.qty);
+    const unit = String(pantryInventory[key]?.unit || "any").toLowerCase();
+    clean[key] = {
+      qty,
+      unit: unit || "any",
+    };
+  });
+  pantryInventory = clean;
+  savePantryInventory();
+}
+
+function formatMatchIngredientLabel(ingredient) {
+  const item = translateIngredientItem(normalizeMatcherIngredientKey(ingredient.item));
+  const qty = formatQuantityExact(ingredient.qty);
+  const unit = (ingredient.unit || "").trim();
+  const qtyPart = unit && unit.toLowerCase() !== "pcs" ? `${qty} ${unit}` : qty;
+  return `${item} (${qtyPart})`;
+}
+
+function getPantryRecipeMatches() {
+  const selections = pantryInventory || {};
+  return recipes
+    .map((recipe) => {
+      const found = new Map();
+      recipe.ingredients.forEach((ingredient) => {
+        const key = normalizeMatcherIngredientKey(ingredient.item);
+        const selection = selections[key];
+        if (!selection) return;
+        const selectionQty = Number(selection.qty);
+        if (!Number.isFinite(selectionQty) || selectionQty <= 0) return;
+        const selectedUnit = String(selection.unit || "any").toLowerCase();
+        const ingredientUnit = String(ingredient.unit || "").toLowerCase();
+        if (selectedUnit !== "any" && selectedUnit !== ingredientUnit) return;
+        if (selectedUnit !== "any" && selectionQty < ingredient.qty) return;
+        if (!found.has(key)) found.set(key, ingredient);
+      });
+
+      return {
+        recipe,
+        matches: Array.from(found.values()),
+      };
+    })
+    .filter((entry) => entry.matches.length > 0)
+    .sort((a, b) => {
+      if (b.matches.length !== a.matches.length) return b.matches.length - a.matches.length;
+      return getRecipeName(a.recipe).localeCompare(getRecipeName(b.recipe));
+    });
+}
+
+function renderPantrySearchResults() {
+  if (!pantrySearchResults) return;
+  pantrySearchResults.innerHTML = "";
+  const catalog = getPantryIngredientCatalog();
+  const query = (pantryIngredientSearch?.value || "").toLowerCase().trim();
+  if (!query) {
+    pantrySearchResults.innerHTML = `<p class="pantry-hint">${t("pantry_search_prompt")}</p>`;
+    return;
+  }
+
+  const filtered = catalog
+    .filter((entry) => {
+      const item = entry.item.toLowerCase();
+      const translated = translateIngredientItem(entry.item).toLowerCase();
+      return item.includes(query) || translated.includes(query);
+    })
+    .slice(0, 20);
+
+  if (!filtered.length) {
+    pantrySearchResults.innerHTML = `<p class="pantry-hint">${t("pantry_search_empty")}</p>`;
+    return;
+  }
+
+  filtered.forEach((entry) => {
+    const button = document.createElement("button");
+    button.type = "button";
+    button.className = "pantry-option";
+    button.textContent = translateIngredientItem(entry.item);
+    button.addEventListener("click", () => {
+      if (!pantryInventory[entry.key]) {
+        pantryInventory[entry.key] = { qty: 1, unit: "any" };
+        savePantryInventory();
+      }
+      renderPantryPicker();
+      renderPantryRecipeMatches();
+    });
+    pantrySearchResults.appendChild(button);
+  });
+}
+
+function renderPantryPicker() {
+  if (!pantrySelected) return;
+  pantrySelected.innerHTML = "";
+
+  const title = document.createElement("strong");
+  title.textContent = t("pantry_selected_title");
+  pantrySelected.appendChild(title);
+
+  const keys = Object.keys(pantryInventory || {}).sort((a, b) =>
+    translateIngredientItem(a).localeCompare(translateIngredientItem(b))
+  );
+  if (!keys.length) {
+    const hint = document.createElement("p");
+    hint.className = "pantry-hint";
+    hint.textContent = t("pantry_selected_empty");
+    pantrySelected.appendChild(hint);
+    return;
+  }
+
+  const catalogByKey = new Map(getPantryIngredientCatalog().map((entry) => [entry.key, entry]));
+  keys.forEach((key) => {
+    const row = document.createElement("div");
+    row.className = "pantry-row";
+
+    const name = document.createElement("div");
+    name.className = "pantry-item-name";
+    name.textContent = translateIngredientItem(key);
+
+    const qtyLabel = document.createElement("label");
+    qtyLabel.className = "pantry-control";
+    qtyLabel.classList.add("pantry-qty");
+    qtyLabel.innerHTML = `<span>${t("pantry_quantity")}</span>`;
+    const qtyInput = document.createElement("input");
+    qtyInput.type = "number";
+    qtyInput.min = "1";
+    qtyInput.step = "1";
+    qtyInput.value = formatQuantityExact(pantryInventory[key].qty);
+    qtyInput.addEventListener("change", () => {
+      const normalizedQty = normalizePantryQuantity(qtyInput.value);
+      pantryInventory[key].qty = normalizedQty;
+      qtyInput.value = formatQuantityExact(normalizedQty);
+      savePantryInventory();
+      renderPantryRecipeMatches();
+    });
+    qtyLabel.appendChild(qtyInput);
+
+    const unitLabel = document.createElement("label");
+    unitLabel.className = "pantry-control";
+    unitLabel.classList.add("pantry-unit");
+    unitLabel.innerHTML = `<span>${t("pantry_unit")}</span>`;
+    const unitSelect = document.createElement("select");
+    const defaultOpt = document.createElement("option");
+    defaultOpt.value = "any";
+    defaultOpt.textContent = t("pantry_unit_any");
+    unitSelect.appendChild(defaultOpt);
+    (catalogByKey.get(key)?.units || []).forEach((unit) => {
+      const option = document.createElement("option");
+      option.value = unit;
+      option.textContent = unit;
+      unitSelect.appendChild(option);
+    });
+    unitSelect.value = pantryInventory[key].unit || "any";
+    unitSelect.addEventListener("change", () => {
+      pantryInventory[key].unit = unitSelect.value || "any";
+      savePantryInventory();
+      renderPantryRecipeMatches();
+    });
+    unitLabel.appendChild(unitSelect);
+
+    const remove = document.createElement("button");
+    remove.type = "button";
+    remove.className = "ghost";
+    remove.classList.add("pantry-remove");
+    remove.textContent = t("remove");
+    remove.addEventListener("click", () => {
+      delete pantryInventory[key];
+      savePantryInventory();
+      renderPantryPicker();
+      renderPantryRecipeMatches();
+    });
+
+    row.append(name, qtyLabel, unitLabel, remove);
+    pantrySelected.appendChild(row);
+  });
+}
+
+function renderPantryRecipeMatches() {
+  if (!pantryMatchList) return;
+  pantryMatchList.innerHTML = "";
+  const selectedCount = Object.keys(pantryInventory || {}).length;
+  if (!selectedCount) {
+    pantryMatchList.innerHTML = `<p class="pantry-hint">${t("pantry_matches_empty")}</p>`;
+    return;
+  }
+
+  const matches = getPantryRecipeMatches();
+  if (!matches.length) {
+    pantryMatchList.innerHTML = `<p class="pantry-hint">${t("pantry_matches_none")}</p>`;
+    return;
+  }
+
+  matches.forEach(({ recipe, matches: matchedIngredients }) => {
+    const isSelected = selectedRecipes.includes(recipe.id);
+    const card = document.createElement("div");
+    card.className = "pantry-match-card";
+
+    const head = document.createElement("div");
+    head.className = "pantry-match-head";
+    const title = document.createElement("h3");
+    title.textContent = getRecipeName(recipe);
+    const count = document.createElement("span");
+    count.className = "match-count";
+    count.textContent = t("pantry_match_count", matchedIngredients.length);
+    head.append(title, count);
+
+    const matchesLabel = document.createElement("p");
+    matchesLabel.className = "pantry-match-label";
+    matchesLabel.textContent = `${t("pantry_matched_items")}: ${matchedIngredients.map(formatMatchIngredientLabel).join(", ")}`;
+
+    const action = document.createElement("button");
+    action.type = "button";
+    action.className = "ghost";
+    action.textContent = isSelected ? t("remove_from_picks") : t("add_to_picks");
+    action.addEventListener("click", () => {
+      if (selectedRecipes.includes(recipe.id)) {
+        selectedRecipes = selectedRecipes.filter((id) => id !== recipe.id);
+        delete selectedServings[recipe.id];
+      } else {
+        selectedRecipes = [...selectedRecipes, recipe.id];
+        if (!selectedServings[recipe.id]) selectedServings[recipe.id] = DEFAULT_SERVINGS;
+      }
+      saveState();
+      refreshAll();
+    });
+
+    card.addEventListener("click", (event) => {
+      if (event.target === action) return;
+      renderRecipeDetails(recipe);
+    });
+
+    card.append(head, matchesLabel, action);
+    pantryMatchList.appendChild(card);
+  });
+}
+
+function renderPantryPickerSection() {
+  sanitizePantryInventory();
+  renderPantrySearchResults();
+  renderPantryPicker();
+  renderPantryRecipeMatches();
+}
+
 function renderRecentWeeks() {
   recentWeeks.innerHTML = "";
   const weeks = Object.keys(selectedRecipesByWeek).sort().reverse();
@@ -2655,6 +3024,9 @@ function renderRecipeGrid() {
       return matchesQuery && matchesUtensil && matchesProtein && matchesMeal;
     })
     .sort((a, b) => {
+      const selectedA = selectedRecipes.includes(a.id);
+      const selectedB = selectedRecipes.includes(b.id);
+      if (selectedA !== selectedB) return selectedA ? -1 : 1;
       const ratingA = ratingsByRecipe[a.id] || 0;
       const ratingB = ratingsByRecipe[b.id] || 0;
       if (ratingA !== ratingB) return ratingB - ratingA;
@@ -2871,13 +3243,10 @@ function renderRecipeDetails(recipe) {
 }
 
 function normalizeShoppingItem(item) {
-  const name = item.toLowerCase().trim();
+  const name = canonicalIngredientItem(item).toLowerCase().trim();
   if (name === "water" || name === "hot water") return null;
   if (name === "brown onion" || name === "white onion" || name === "yellow onion") return "onion";
   if (name === "creme fraiche") return "cream";
-  if (name === "tomato" || name === "tomatoes" || name === "canned tomatoes" || name === "diced tomatoes" || name === "crushed tomatoes") {
-    return "tomatoes";
-  }
   return name;
 }
 
@@ -3090,8 +3459,10 @@ function groupShoppingItems(items) {
 
     if (pantryItems.has(name)) {
       category = "Pantry";
-    } else if (name === "tomato" || name === "tomatoes") {
+    } else if (name === "fresh tomato") {
       category = "Produce";
+    } else if (name === "canned chopped tomatoes" || name === "canned polpa tomatoes" || name === "paste tomato") {
+      category = "Canned & Jarred";
     } else if (/(chicken|beef|pork|lamb|fish|salmon|prawn|turkey)/.test(name)) {
       category = "Meat & Seafood";
     } else if (/(milk|cream|cheese|ricotta|parmesan|gruyere|mozzarella|goat cheese|butter)/.test(name)) {
@@ -3617,6 +3988,7 @@ function refreshAll() {
   renderCookSelect();
   renderMiniGrid();
   renderRecipeGrid();
+  renderPantryPickerSection();
   renderRecentWeeks();
   if (heroCount) {
     const weekLabel = formatWeekLabel(currentWeekKey);
@@ -3637,6 +4009,16 @@ setWeekFromTopPicker();
 
 if (recipeSearch) {
   recipeSearch.addEventListener("input", () => renderRecipeGrid());
+}
+if (pantryIngredientSearch) {
+  pantryIngredientSearch.addEventListener("input", () => renderPantrySearchResults());
+}
+if (pantryClear) {
+  pantryClear.addEventListener("click", () => {
+    pantryInventory = {};
+    savePantryInventory();
+    renderPantryPickerSection();
+  });
 }
 if (filterUtensil) {
   filterUtensil.addEventListener("change", () => renderRecipeGrid());

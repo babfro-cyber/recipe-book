@@ -565,6 +565,147 @@ body.view-cook #shopping {
   background: white;
 }
 
+.pantry-search {
+  display: grid;
+  gap: 10px;
+}
+
+.pantry-search input {
+  padding: 8px 12px;
+  border-radius: 12px;
+  border: 1px solid rgba(26, 26, 26, 0.15);
+  background: white;
+}
+
+.pantry-search-results {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  max-height: 124px;
+  overflow: auto;
+  padding-right: 4px;
+}
+
+.pantry-option {
+  border: 1px solid rgba(26, 26, 26, 0.15);
+  background: rgba(122, 167, 249, 0.08);
+  border-radius: 999px;
+  padding: 6px 10px;
+  font-size: 0.9rem;
+  cursor: pointer;
+}
+
+.pantry-selected {
+  margin-top: 14px;
+  display: grid;
+  gap: 10px;
+}
+
+.pantry-selected strong {
+  font-size: 0.95rem;
+}
+
+.pantry-row {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr) auto;
+  grid-template-areas:
+    "name name name"
+    "qty unit remove";
+  gap: 8px;
+  align-items: end;
+  background: rgba(78, 141, 124, 0.1);
+  border-radius: 12px;
+  padding: 10px;
+  overflow: hidden;
+}
+
+.pantry-item-name {
+  grid-area: name;
+  font-weight: 600;
+  align-self: center;
+  min-width: 0;
+  overflow-wrap: break-word;
+}
+
+.pantry-control {
+  display: grid;
+  gap: 4px;
+  font-size: 0.75rem;
+  color: var(--slate);
+  min-width: 0;
+}
+
+.pantry-control input,
+.pantry-control select {
+  border: 1px solid rgba(26, 26, 26, 0.15);
+  border-radius: 10px;
+  padding: 6px 8px;
+  width: 100%;
+  min-width: 0;
+  background: #fff;
+}
+
+.pantry-row .ghost {
+  grid-area: remove;
+  padding: 8px 12px;
+  white-space: nowrap;
+}
+
+.pantry-qty {
+  grid-area: qty;
+}
+
+.pantry-unit {
+  grid-area: unit;
+}
+
+.pantry-hint {
+  margin: 0;
+  color: var(--slate);
+  font-size: 0.9rem;
+}
+
+.pantry-match-list {
+  margin-top: 8px;
+  display: grid;
+  gap: 10px;
+}
+
+.pantry-match-card {
+  border: 1px solid rgba(26, 26, 26, 0.1);
+  border-radius: 12px;
+  padding: 10px;
+  background: rgba(255, 255, 255, 0.92);
+  display: grid;
+  gap: 8px;
+}
+
+.pantry-match-head {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  align-items: center;
+}
+
+.pantry-match-head h3 {
+  margin: 0;
+  font-size: 1rem;
+}
+
+.pantry-match-label {
+  margin: 0;
+  font-size: 0.9rem;
+}
+
+.match-count {
+  display: inline-block;
+  border-radius: 999px;
+  background: rgba(255, 107, 95, 0.16);
+  padding: 4px 10px;
+  font-size: 0.8rem;
+  font-weight: 600;
+}
+
 .recipe-grid::-webkit-scrollbar {
   width: 8px;
 }
@@ -1069,6 +1210,26 @@ body.view-cook #shopping {
     padding-right: 0;
   }
 
+  .pantry-row {
+    grid-template-columns: 1fr;
+    grid-template-areas:
+      "name"
+      "qty"
+      "unit"
+      "remove";
+    align-items: stretch;
+  }
+
+  .pantry-control input,
+  .pantry-control select {
+    width: 100%;
+  }
+}
+
+@media (max-width: 1180px) {
+  .pantry-row .ghost {
+    justify-self: end;
+  }
 }
 .recipe-info {
   display: grid;

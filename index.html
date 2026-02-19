@@ -42,6 +42,7 @@
       <section class="layout" id="planner">
         <div class="planner-jump" aria-hidden="false">
           <button class="ghost" id="jump-library" data-i18n="recipe_library">Recipe Library</button>
+          <button class="ghost" id="jump-match" data-i18n="pantry_matcher">Recipe Matcher</button>
           <button class="ghost" id="jump-picker" data-i18n="recipe_picker">Recipe Picker</button>
         </div>
         <div class="panel" id="planner-library">
@@ -79,6 +80,27 @@
           </div>
           <div class="recipe-grid" id="recipe-grid"></div>
           <div class="recipe-details" id="recipe-details"></div>
+        </div>
+
+        <div class="panel" id="planner-match">
+          <div class="panel-header">
+            <h2 data-i18n="pantry_matcher">Recipe Matcher</h2>
+            <p data-i18n="pantry_matcher_sub">Search recipe ingredients, add what you have, then see recipes ranked by matching items.</p>
+          </div>
+          <div class="pantry-search">
+            <input
+              type="search"
+              id="pantry-ingredient-search"
+              data-i18n-placeholder="pantry_search_placeholder"
+              placeholder="Search ingredients from recipes"
+            />
+            <div class="pantry-search-results" id="pantry-search-results"></div>
+          </div>
+          <div class="pantry-selected" id="pantry-selected"></div>
+          <div class="list-actions">
+            <button class="ghost" id="pantry-clear" data-i18n="pantry_clear">Clear pantry picks</button>
+          </div>
+          <div class="pantry-match-list" id="pantry-match-list"></div>
         </div>
 
         <div class="panel" id="planner-picker">
