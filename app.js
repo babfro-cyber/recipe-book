@@ -345,39 +345,40 @@ const recipes = [
     id: "ramen-boeuf-thermomix",
     name: "Beef Ramen (Thermomix)",
     name_fr: "Ramen au boeuf (Thermomix)",
-    time: "30 min",
+    time: "35 min",
     servings: 4,
     tags: ["thermomix", "soup", "batch"],
     ingredients: [
-      { item: "fresh ginger", qty: 2, unit: "cm" },
-      { item: "coriander", qty: 3, unit: "tbsp" },
-      { item: "harissa", qty: 1, unit: "pinch" },
-      { item: "ramen noodles (precooked)", qty: 400, unit: "g" },
-      { item: "beef steaks", qty: 4, unit: "pcs" },
-      { item: "fresh Chinese cabbage", qty: 250, unit: "g" },
+      { item: "fresh ginger", qty: 4, unit: "cm" },
+      { item: "coriander", qty: 4, unit: "tbsp" },
+      { item: "harissa", qty: 2, unit: "pinch" },
+      { item: "ramen noodles (precooked)", qty: 600, unit: "g" },
+      { item: "beef steaks", qty: 600, unit: "g" },
+      { item: "fresh Chinese cabbage", qty: 350, unit: "g" },
+      { item: "carrot", qty: 2, unit: "pcs" },
       { item: "shallot", qty: 2, unit: "pcs" },
       { item: "spring onions", qty: 4, unit: "pcs" },
-      { item: "garlic clove", qty: 1, unit: "pcs" },
-      { item: "soy sauce", qty: 3, unit: "tbsp" },
-      { item: "yakitori sauce", qty: 3, unit: "tbsp" },
-      { item: "chicken stock cube", qty: 1, unit: "pcs" },
-      { item: "water", qty: 1, unit: "L" },
+      { item: "garlic cloves", qty: 3, unit: "pcs" },
+      { item: "soy sauce", qty: 5, unit: "tbsp" },
+      { item: "yakitori sauce", qty: 4, unit: "tbsp" },
+      { item: "chicken stock cube", qty: 2, unit: "pcs" },
+      { item: "water", qty: 1.1, unit: "L" },
     ],
     steps: [
-      "Cut the beef into 2 cm cubes. Place in a deep dish, rub with the peeled garlic clove and brush with yakitori sauce. Marinate in the fridge for 30 minutes.",
-      "Peel the shallots and ginger. Finely dice the ginger. Chop the coriander.",
-      "Slice the cabbage, shallots, and spring onions.",
-      "Pour 1 L water into the Thermomix bowl. Crumble in the chicken stock cube, add the soy sauce, then bring to a boil for 7 min / Varoma / Speed 3.",
-      "Through the lid opening, add at 1-minute intervals: coriander, ginger, shallots, spring onions, cabbage. Add the beef and ramen at the same time, then simmer 8 min / 105°C / Speed Spoon / Reverse.",
-      "Serve in a large bowl and mix with harissa.",
+      "Cut the beef into thin strips. In a deep dish, mix beef with 2 tbsp soy sauce, 2 tbsp yakitori sauce, and 1 grated garlic clove. Marinate in the fridge for 15 minutes.",
+      "Peel shallots, ginger, and carrots. Finely chop shallots, grate ginger and carrots, slice spring onions, and finely shred the cabbage. Chop coriander.",
+      "Add 1.1 L water to the Thermomix bowl. Crumble in 2 stock cubes, add 3 tbsp soy sauce and 2 tbsp yakitori sauce, then heat 8 min / Varoma / Speed 2.",
+      "Add ginger, half the spring onions, shallots, carrots, and cabbage. Cook 8 min / 100°C / Speed Spoon / Reverse.",
+      "Add marinated beef and ramen noodles. Cook 6 min / 100°C / Speed Spoon / Reverse.",
+      "Taste and adjust with a little extra soy sauce if needed. Serve hot with coriander, remaining spring onions, and harissa.",
     ],
     steps_fr: [
-      "Coupez le boeuf en des d'environ 2 cm. Deposez-les dans une assiette creuse, frottez-les avec l'ail pele et badigeonnez de sauce yakitori. Laissez mariner au frais pendant 30 minutes.",
-      "Epluchez les echalotes et le gingembre. Coupez ce dernier en brunoise tres fine. Ciselez la coriandre.",
-      "Emincez le chou, les echalotes et les oignons nouveaux.",
-      "Versez 1 L d'eau dans la cuve de votre Thermomix. Emiettez le cube de bouillon, versez la sauce soja, puis portez a ebullition pendant 7 min / Varoma / vit. 3.",
-      "Ajoutez, par le trou du bouchon, avec 1 minute d'intervalle entre chaque ingredient : la coriandre, le gingembre, les echalotes, les oignons, le chou. Versez en meme temps le boeuf et les ramen et laissez mijoter 8 min / 105°C / vit. cuillere / sens inverse.",
-      "Versez dans une grande soupiere et melangez avec la harissa.",
+      "Coupez le boeuf en fines lamelles. Dans une assiette creuse, melangez le boeuf avec 2 c. a soupe de sauce soja, 2 c. a soupe de sauce yakitori et 1 gousse d'ail rapee. Laissez mariner 15 minutes au frais.",
+      "Epluchez les echalotes, le gingembre et les carottes. Emincez finement les echalotes, rapez le gingembre et les carottes, coupez les oignons nouveaux et emincez finement le chou. Ciselez la coriandre.",
+      "Versez 1,1 L d'eau dans le bol du Thermomix. Emiettez 2 cubes de bouillon, ajoutez 3 c. a soupe de sauce soja et 2 c. a soupe de sauce yakitori, puis chauffez 8 min / Varoma / vit. 2.",
+      "Ajoutez le gingembre, la moitie des oignons nouveaux, les echalotes, les carottes et le chou. Faites cuire 8 min / 100°C / vit. cuillere / sens inverse.",
+      "Ajoutez le boeuf marine et les nouilles ramen. Faites cuire 6 min / 100°C / vit. cuillere / sens inverse.",
+      "Goutez et ajustez avec un peu de sauce soja si besoin. Servez bien chaud avec la coriandre, le reste des oignons nouveaux et la harissa.",
     ],
   },
   {
@@ -1656,7 +1657,20 @@ let selectedRecipes = [];
 let checkedItems = {};
 let currentWeekKey = "";
 let cookWeekKey = "";
-let currentLanguage = safeGetItem("pantryLanguage") || "en";
+function normalizeLanguageCode(value) {
+  const lang = String(value || "").trim().toLowerCase();
+  return lang.startsWith("fr") ? "fr" : "en";
+}
+
+function isFrenchLanguage() {
+  return currentLanguage === "fr";
+}
+
+function getDateLocale() {
+  return isFrenchLanguage() ? "fr-FR" : "en-AU";
+}
+
+let currentLanguage = normalizeLanguageCode(safeGetItem("pantryLanguage") || "en");
 let selectedServings = {};
 let currentCookRecipeId = "";
 let lastAddedRecipeId = "";
@@ -1669,7 +1683,7 @@ const SUPABASE_URL = "https://jscczxnmujsimeidltdt.supabase.co";
 const SUPABASE_KEY = "sb_publishable_sg_e1rUxUxwQacU0le5D_Q_VYhYe980";
 const supabaseClient = window.supabase ? window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY) : null;
 
-const pickList = document.getElementById("pick-list");
+const selectedList = document.getElementById("selected-list");
 const recipeGrid = document.getElementById("recipe-grid");
 const recipeDetails = document.getElementById("recipe-details");
 const recipeModal = document.getElementById("recipe-modal");
@@ -1693,6 +1707,13 @@ const pantrySearchResults = document.getElementById("pantry-search-results");
 const pantrySelected = document.getElementById("pantry-selected");
 const pantryMatchList = document.getElementById("pantry-match-list");
 const pantryClear = document.getElementById("pantry-clear");
+const openFrequency = document.getElementById("open-frequency");
+const frequencyModal = document.getElementById("frequency-modal");
+const closeFrequency = document.getElementById("close-frequency");
+const frequencyTableWrap = document.getElementById("frequency-table-wrap");
+const frequencyTable = document.getElementById("frequency-table");
+const frequencySubtitle = document.getElementById("frequency-subtitle");
+const frequencyEmpty = document.getElementById("frequency-empty");
 const filterUtensil = document.getElementById("filter-utensil");
 const filterProtein = document.getElementById("filter-protein");
 const filterMeal = document.getElementById("filter-meal");
@@ -1730,7 +1751,7 @@ const translations = {
     ingredients_empty: "No ingredients yet.",
     language: "Language",
     recipe_picker: "Recipe Picker",
-    recipe_picker_sub: "Select 3-6 recipes for the week. No day-by-day planning required.",
+    recipe_picker_sub: "Select recipes for the week. No day-by-day planning required.",
     week_starting: "Week starting",
     cook_week: "Week to cook",
     top_week: "Week",
@@ -1771,6 +1792,13 @@ const translations = {
     pantry_matches_none: "No recipes match your current pantry quantities/units.",
     pantry_match_count: (count) => `${count} matching item${count === 1 ? "" : "s"}`,
     pantry_matched_items: "Matched items",
+    frequency_view: "Frequency view",
+    frequency_title: "Cooking frequency",
+    frequency_back: "Back to planner",
+    frequency_recipe: "Recipe",
+    frequency_subtitle: (recipeCount, weekCount) =>
+      `${recipeCount} recipe${recipeCount === 1 ? "" : "s"} across ${weekCount} week${weekCount === 1 ? "" : "s"}`,
+    frequency_empty: "Select some recipes in different weeks to see the frequency table.",
     shopping_list: "Auto Shopping List",
     shopping_list_sub: "Aggregated ingredients from your planned recipes. Check items as you shop.",
     shopping_checked: "Already have",
@@ -1787,7 +1815,7 @@ const translations = {
     ready_sub: "Pick a recipe from your plan to start cooking.",
     tip_text: "Tip: You can edit servings in cook mode and the ingredient list will update.",
     servings_label: "servings",
-    pick_summary_empty: "Pick 3-6 recipes for the week to get started.",
+    pick_summary_empty: "Pick recipes for the week to get started.",
     pick_summary: (count) => `You have ${count} recipe${count === 1 ? "" : "s"} selected.`,
     remove: "Remove",
     add_to_picks: "Add to picks",
@@ -1838,7 +1866,7 @@ const translations = {
     ingredients_empty: "Pas d'ingredients pour le moment.",
     language: "Langue",
     recipe_picker: "Sélection de recettes",
-    recipe_picker_sub: "Choisissez 3 à 6 recettes pour la semaine, sans planning par jour.",
+    recipe_picker_sub: "Choisissez vos recettes pour la semaine, sans planning par jour.",
     week_starting: "Semaine du",
     cook_week: "Semaine a cuisiner",
     top_week: "Semaine",
@@ -1879,6 +1907,13 @@ const translations = {
     pantry_matches_none: "Aucune recette ne correspond aux quantités/unités choisies.",
     pantry_match_count: (count) => `${count} ingrédient${count === 1 ? "" : "s"} correspondant${count === 1 ? "" : "s"}`,
     pantry_matched_items: "Ingrédients correspondants",
+    frequency_view: "Vue fréquence",
+    frequency_title: "Fréquence des recettes",
+    frequency_back: "Retour au planning",
+    frequency_recipe: "Recette",
+    frequency_subtitle: (recipeCount, weekCount) =>
+      `${recipeCount} recette${recipeCount === 1 ? "" : "s"} sur ${weekCount} semaine${weekCount === 1 ? "" : "s"}`,
+    frequency_empty: "Sélectionnez des recettes sur différentes semaines pour afficher le tableau de fréquence.",
     shopping_list: "Liste de courses",
     shopping_list_sub: "Ingrédients regroupés de vos recettes. Cochez au fur et à mesure.",
     shopping_checked: "Deja dans le placard",
@@ -1895,7 +1930,7 @@ const translations = {
     ready_sub: "Choisissez une recette pour commencer.",
     tip_text: "Astuce : vous pouvez ajuster les portions en mode cuisine et la liste s'actualise.",
     servings_label: "portions",
-    pick_summary_empty: "Choisissez 3 à 6 recettes pour démarrer.",
+    pick_summary_empty: "Choisissez des recettes pour démarrer.",
     pick_summary: (count) => `Vous avez ${count} recette${count === 1 ? "" : "s"} sélectionnée${count === 1 ? "" : "s"}.`,
     remove: "Retirer",
     add_to_picks: "Ajouter",
@@ -2079,7 +2114,7 @@ const ingredientTranslationsFr = {
 function translateIngredientItem(item) {
   const canonical = canonicalIngredientItem(item);
   const key = canonical.toLowerCase();
-  if (currentLanguage !== "fr") {
+  if (!isFrenchLanguage()) {
     if (key === "creme fraiche") return "cream";
     return canonical;
   }
@@ -2169,19 +2204,18 @@ function formatStepWithQuantities(step, recipe, servings) {
 }
 
 function getRecipeName(recipe) {
-  if (currentLanguage === "fr" && recipe.name_fr) return recipe.name_fr;
+  if (isFrenchLanguage() && recipe.name_fr) return recipe.name_fr;
   return recipe.name;
 }
 
 function getRecipeSteps(recipe) {
-  if (currentLanguage === "fr" && recipe.steps_fr) return recipe.steps_fr;
+  if (isFrenchLanguage() && recipe.steps_fr) return recipe.steps_fr;
   return recipe.steps;
 }
 const jumpPlanner = document.getElementById("jump-planner");
 const jumpCook = document.getElementById("jump-cook");
 const jumpLibrary = document.getElementById("jump-library");
 const jumpMatch = document.getElementById("jump-match");
-const jumpPicker = document.getElementById("jump-picker");
 const openSettings = document.getElementById("open-settings");
 const settingsModal = document.getElementById("settings-modal");
 const plannerSection = document.getElementById("planner");
@@ -2189,7 +2223,6 @@ const cookSection = document.getElementById("cook");
 const shoppingSection = document.getElementById("shopping");
 const plannerLibrary = document.getElementById("planner-library");
 const plannerMatch = document.getElementById("planner-match");
-const plannerPicker = document.getElementById("planner-picker");
 
 function setView(view) {
   const isCook = view === "cook";
@@ -2235,14 +2268,6 @@ if (jumpMatch) {
   jumpMatch.addEventListener("click", () => {
     if (plannerMatch) {
       plannerMatch.scrollIntoView({ behavior: "smooth" });
-    }
-  });
-}
-
-if (jumpPicker) {
-  jumpPicker.addEventListener("click", () => {
-    if (plannerPicker) {
-      plannerPicker.scrollIntoView({ behavior: "smooth" });
     }
   });
 }
@@ -2345,7 +2370,7 @@ function applyPlanPayload(payload) {
   ratingsByRecipe = { ...(payload.ratingsByRecipe || {}) };
   recipeNotesById = { ...(payload.recipeNotesById || {}) };
   preferredRetailer = payload.preferredRetailer || preferredRetailer;
-  currentLanguage = payload.language || currentLanguage;
+  currentLanguage = normalizeLanguageCode(payload.language || currentLanguage);
   lastSyncedAt = payload.updatedAt || lastSyncedAt;
   safeSetItem("pantryPicksByWeek", JSON.stringify(selectedRecipesByWeek));
   safeSetItem("pantryChecksByWeek", JSON.stringify(checkedItemsByWeek));
@@ -2471,12 +2496,13 @@ function getRecipeById(id) {
   return recipes.find((recipe) => recipe.id === id);
 }
 
-function renderPickList() {
-  pickList.innerHTML = "";
+function renderSelectedInLibrary() {
+  if (!selectedList) return;
+  selectedList.innerHTML = "";
   const count = selectedRecipes.length;
   const summary = document.createElement("p");
   summary.textContent = count ? t("pick_summary", count) : t("pick_summary_empty");
-  pickList.appendChild(summary);
+  selectedList.appendChild(summary);
 
   if (!count) return;
 
@@ -2487,13 +2513,14 @@ function renderPickList() {
     row.className = "pick-item";
 
     const left = document.createElement("div");
+    left.className = "pick-main";
     const title = document.createElement("strong");
     title.textContent = getRecipeName(recipe);
     const meta = document.createElement("span");
+    meta.className = "pick-meta";
     const utensil = getUtensilLabel(recipe);
     const protein = getProteinLabel(recipe);
-    const servingCount = selectedServings[recipeId] || DEFAULT_SERVINGS;
-    meta.textContent = `${recipe.time} · ${servingCount} ${t("servings_label")} · ${utensil} · ${protein}`;
+    meta.textContent = `${recipe.time} · ${utensil} · ${protein}`;
     left.append(title, meta);
 
     const controls = document.createElement("div");
@@ -2524,10 +2551,10 @@ function renderPickList() {
       saveState();
       refreshAll();
     });
-    controls.append(label, plus, count, minus);
+    controls.append(label, minus, count, plus);
 
     const removeBtn = document.createElement("button");
-    removeBtn.className = "ghost";
+    removeBtn.className = "ghost pick-remove";
     removeBtn.textContent = t("remove");
     removeBtn.addEventListener("click", () => {
       selectedRecipes = selectedRecipes.filter((id) => id !== recipeId);
@@ -2535,9 +2562,10 @@ function renderPickList() {
       saveState();
       refreshAll();
     });
+    controls.appendChild(removeBtn);
 
-    row.append(left, controls, removeBtn);
-    pickList.appendChild(row);
+    row.append(left, controls);
+    selectedList.appendChild(row);
 
     if (recipeId === lastAddedRecipeId) {
       row.classList.add("pick-item-highlight");
@@ -2546,6 +2574,173 @@ function renderPickList() {
       }, 900);
     }
   });
+}
+
+function getFrequencyWeekKeys() {
+  const fromSelections = Object.keys(selectedRecipesByWeek)
+    .filter((weekKey) => {
+      const [yearPart, weekPart] = weekKey.split("-W");
+      const year = parseInt(yearPart, 10);
+      const week = parseInt(weekPart, 10);
+      return Boolean(year && week);
+    })
+    .sort((a, b) => {
+      const [yearA, weekA] = a.split("-W").map((value) => parseInt(value, 10));
+      const [yearB, weekB] = b.split("-W").map((value) => parseInt(value, 10));
+      return getDateFromISOWeek(yearA, weekA) - getDateFromISOWeek(yearB, weekB);
+    });
+
+  const comingWeekKey = getNextWeekKey();
+  const [comingYear, comingWeek] = comingWeekKey.split("-W").map((value) => parseInt(value, 10));
+  const comingDate = getDateFromISOWeek(comingYear, comingWeek);
+  const sixWeeksBeforeComing = new Date(comingDate);
+  sixWeeksBeforeComing.setDate(sixWeeksBeforeComing.getDate() - 6 * 7);
+
+  const earliestSelected = fromSelections[0]
+    ? (() => {
+      const [year, week] = fromSelections[0].split("-W").map((value) => parseInt(value, 10));
+      return getDateFromISOWeek(year, week);
+    })()
+    : null;
+  const latestSelected = fromSelections[fromSelections.length - 1]
+    ? (() => {
+      const [year, week] = fromSelections[fromSelections.length - 1].split("-W").map((value) => parseInt(value, 10));
+      return getDateFromISOWeek(year, week);
+    })()
+    : null;
+
+  const rangeStart = earliestSelected && earliestSelected < sixWeeksBeforeComing
+    ? earliestSelected
+    : sixWeeksBeforeComing;
+  const rangeEnd = latestSelected && latestSelected > comingDate
+    ? latestSelected
+    : comingDate;
+
+  const weeks = [];
+  const cursor = new Date(rangeStart);
+  while (cursor <= rangeEnd) {
+    weeks.push(getWeekKeyFromDate(cursor));
+    cursor.setDate(cursor.getDate() + 7);
+  }
+  return Array.from(new Set(weeks));
+}
+
+function getFrequencyWindowStartKey() {
+  const comingWeekKey = getNextWeekKey();
+  const [year, week] = comingWeekKey.split("-W").map((value) => parseInt(value, 10));
+  const date = getDateFromISOWeek(year, week);
+  date.setDate(date.getDate() - 6 * 7);
+  return getWeekKeyFromDate(date);
+}
+
+function focusFrequencyRecentWindow() {
+  if (!frequencyTableWrap || !frequencyTable) return;
+  const targetWeekKey = getFrequencyWindowStartKey();
+  const targetHeader = frequencyTable.querySelector(`th[data-week-key="${targetWeekKey}"]`);
+  if (!targetHeader) return;
+  const recipeColWidth = 190;
+  frequencyTableWrap.scrollLeft = Math.max(0, targetHeader.offsetLeft - recipeColWidth);
+}
+
+function getFrequencyRows(weekKeys) {
+  const known = recipes.map((recipe) => {
+    const count = weekKeys.reduce((acc, weekKey) => {
+      const picks = selectedRecipesByWeek[weekKey] || [];
+      return acc + (picks.includes(recipe.id) ? 1 : 0);
+    }, 0);
+    return {
+      id: recipe.id,
+      label: getRecipeName(recipe),
+      count,
+    };
+  });
+
+  const knownIds = new Set(recipes.map((recipe) => recipe.id));
+  const unknownIdCounts = new Map();
+  weekKeys.forEach((weekKey) => {
+    const picks = selectedRecipesByWeek[weekKey] || [];
+    picks.forEach((recipeId) => {
+      if (!recipeId || knownIds.has(recipeId)) return;
+      const count = unknownIdCounts.get(recipeId) || 0;
+      unknownIdCounts.set(recipeId, count + 1);
+    });
+  });
+
+  const unknown = Array.from(unknownIdCounts.entries()).map(([id, count]) => ({
+    id,
+    label: id,
+    count,
+  }));
+
+  return [...known, ...unknown].sort((a, b) => a.label.localeCompare(b.label));
+}
+
+function renderFrequencyTable() {
+  if (!frequencyTable || !frequencyTableWrap || !frequencySubtitle || !frequencyEmpty) return;
+  const weekKeys = getFrequencyWeekKeys();
+  const rows = getFrequencyRows(weekKeys);
+
+  frequencySubtitle.textContent = t("frequency_subtitle", rows.length, weekKeys.length);
+  frequencyTable.innerHTML = "";
+
+  if (!weekKeys.length) {
+    frequencyTableWrap.style.display = "none";
+    frequencyEmpty.style.display = "block";
+    return;
+  }
+
+  frequencyTableWrap.style.display = "block";
+  frequencyEmpty.style.display = "none";
+
+  const thead = document.createElement("thead");
+  const headRow = document.createElement("tr");
+  const corner = document.createElement("th");
+  corner.className = "freq-recipe-head";
+  corner.textContent = t("frequency_recipe");
+  headRow.appendChild(corner);
+
+  weekKeys.forEach((weekKey) => {
+    const th = document.createElement("th");
+    th.className = "freq-week-head";
+    th.dataset.weekKey = weekKey;
+    const weekPart = weekKey.split("-W")[1] || "";
+    const [yearPart] = weekKey.split("-W");
+    const year = parseInt(yearPart, 10);
+    const week = parseInt(weekPart, 10);
+    const date = getDateFromISOWeek(year, week);
+    const shortDate = date.toLocaleDateString(getDateLocale(), { day: "numeric", month: "short" });
+    th.innerHTML = `<span>W${weekPart}</span><small>${shortDate}</small>`;
+    th.title = formatWeekLabel(weekKey);
+    headRow.appendChild(th);
+  });
+  thead.appendChild(headRow);
+
+  const tbody = document.createElement("tbody");
+  rows.forEach(({ id, label: recipeLabel, count }) => {
+    const row = document.createElement("tr");
+
+    const labelCell = document.createElement("th");
+    labelCell.className = "freq-recipe-cell";
+    labelCell.innerHTML = `<span class="freq-recipe-name">${recipeLabel}</span><span class="freq-recipe-ratio">${count}/${weekKeys.length}</span>`;
+    row.appendChild(labelCell);
+
+    weekKeys.forEach((weekKey) => {
+      const td = document.createElement("td");
+      const isSelected = (selectedRecipesByWeek[weekKey] || []).includes(id);
+      td.className = "freq-cell";
+      if (isSelected) {
+        const tick = document.createElement("span");
+        tick.className = "freq-tick";
+        tick.textContent = "✓";
+        td.appendChild(tick);
+      }
+      row.appendChild(td);
+    });
+
+    tbody.appendChild(row);
+  });
+
+  frequencyTable.append(thead, tbody);
 }
 
 function getUtensilLabel(recipe) {
@@ -2679,9 +2874,28 @@ function getLastSelectedLabel(recipeId) {
   return t("last_selected", weeks);
 }
 
+const MATCHER_INGREDIENT_ALIASES = {
+  "round zucchini": "zucchini",
+  "eggplants": "eggplant",
+  "garlic clove": "garlic cloves",
+  "brown onion": "onion",
+  "red onion": "onion",
+  "white onion": "onion",
+  "yellow onion": "onion",
+  "fresh spinach": "spinach",
+  "fresh thyme": "thyme",
+  "dried thyme": "thyme",
+  "dried oregano": "oregano",
+  "dried basil": "basil",
+  "fresh coriander": "coriander",
+  "beef mince": "ground beef",
+  "egg": "eggs",
+};
+
 function normalizeMatcherIngredientKey(item) {
   const key = canonicalIngredientItem(item).toLowerCase().replace(/\s+/g, " ").trim();
   if (!key) return "";
+  if (MATCHER_INGREDIENT_ALIASES[key]) return MATCHER_INGREDIENT_ALIASES[key];
   if (key === "capsicums") return "capsicum";
   if (/^(red|green|yellow|orange)\s+capsicum$/.test(key)) return "capsicum";
   if (
@@ -2735,12 +2949,23 @@ function sanitizePantryInventory() {
   const catalogKeys = new Set(getPantryIngredientCatalog().map((entry) => entry.key));
   const clean = {};
   Object.keys(pantryInventory || {}).forEach((key) => {
-    if (!catalogKeys.has(key)) return;
+    const normalizedKey = normalizeMatcherIngredientKey(key);
+    if (!catalogKeys.has(normalizedKey)) return;
     const qty = normalizePantryQuantity(pantryInventory[key]?.qty);
-    const unit = String(pantryInventory[key]?.unit || "any").toLowerCase();
-    clean[key] = {
-      qty,
-      unit: unit || "any",
+    const unit = String(pantryInventory[key]?.unit || "any").toLowerCase() || "any";
+    const existing = clean[normalizedKey];
+    if (!existing) {
+      clean[normalizedKey] = {
+        qty,
+        unit,
+      };
+      return;
+    }
+    const mergedQty = Math.max(existing.qty, qty);
+    const mergedUnit = existing.unit === unit ? unit : "any";
+    clean[normalizedKey] = {
+      qty: mergedQty,
+      unit: mergedUnit,
     };
   });
   pantryInventory = clean;
@@ -3617,7 +3842,7 @@ function renderCookCard(recipeId) {
       if (!selectedServingsByWeek[cookWeekKey]) selectedServingsByWeek[cookWeekKey] = {};
       selectedServingsByWeek[cookWeekKey][recipeId] = servings;
       saveState();
-      renderPickList();
+      renderSelectedInLibrary();
       renderShoppingList();
       render();
     });
@@ -3629,7 +3854,7 @@ function renderCookCard(recipeId) {
       if (!selectedServingsByWeek[cookWeekKey]) selectedServingsByWeek[cookWeekKey] = {};
       selectedServingsByWeek[cookWeekKey][recipeId] = servings;
       saveState();
-      renderPickList();
+      renderSelectedInLibrary();
       renderShoppingList();
       render();
     });
@@ -3760,9 +3985,9 @@ function formatWeekLabel(weekKey) {
   const week = parseInt(weekPart, 10);
   if (!year || !week) return "";
   const date = getDateFromISOWeek(year, week);
-  const locale = currentLanguage === "fr" ? "fr-FR" : "en-AU";
+  const locale = getDateLocale();
   const label = date.toLocaleDateString(locale, { weekday: "long", day: "numeric", month: "short", year: "numeric" });
-  return currentLanguage === "fr" ? `Semaine du ${label}` : `Week starting ${label}`;
+  return `${t("week_starting")} ${label}`;
 }
 
 function getDateFromISOWeek(year, week) {
@@ -3828,7 +4053,7 @@ function setupWeekPicker({ input, trigger, popover, labelNode, onChange }) {
 
   const render = () => {
     popover.innerHTML = "";
-    const locale = currentLanguage === "fr" ? "fr-FR" : "en-AU";
+    const locale = getDateLocale();
     const monthLabel = currentMonth.toLocaleDateString(locale, { month: "long", year: "numeric" });
 
     const header = document.createElement("div");
@@ -3854,7 +4079,7 @@ function setupWeekPicker({ input, trigger, popover, labelNode, onChange }) {
 
     const grid = document.createElement("div");
     grid.className = "week-grid";
-    const dayNames = currentLanguage === "fr"
+    const dayNames = isFrenchLanguage()
       ? ["L", "M", "M", "J", "V", "S", "D"]
       : ["M", "T", "W", "T", "F", "S", "S"];
     dayNames.forEach((label) => {
@@ -3977,18 +4202,19 @@ function refreshAll() {
   if (topWeekLabel) {
     topWeekLabel.textContent = currentWeekKey ? formatWeekLabel(currentWeekKey) : "";
   }
-  if (currentWeekKey) {
+  if (currentWeekKey && weekLabel) {
     weekLabel.textContent = formatWeekLabel(currentWeekKey);
   }
   if (cookWeekKey) {
     if (cookWeekLabel) cookWeekLabel.textContent = formatWeekLabel(cookWeekKey);
   }
-  renderPickList();
+  renderSelectedInLibrary();
   renderShoppingList();
   renderCookSelect();
   renderMiniGrid();
   renderRecipeGrid();
   renderPantryPickerSection();
+  renderFrequencyTable();
   renderRecentWeeks();
   if (heroCount) {
     const weekLabel = formatWeekLabel(currentWeekKey);
@@ -4028,19 +4254,6 @@ if (filterProtein) {
 }
 if (filterMeal) {
   filterMeal.addEventListener("change", () => renderRecipeGrid());
-}
-
-const startCook = document.getElementById("start-cook");
-if (startCook) {
-  startCook.addEventListener("click", () => {
-    const selected = cookSelect.value;
-    if (!selected) {
-      renderCookEmpty();
-      return;
-    }
-    currentCookRecipeId = selected;
-    renderCookCard(selected);
-  });
 }
 
 if (cookSelect) {
@@ -4089,9 +4302,32 @@ if (topWeekPicker) {
 
 if (languageSelect) {
   languageSelect.addEventListener("change", (event) => {
-    currentLanguage = event.target.value;
+    currentLanguage = normalizeLanguageCode(event.target.value);
     safeSetItem("pantryLanguage", currentLanguage);
+    const selectedWeekKey = topWeekPicker ? topWeekPicker.value : "";
+    populateTopWeekOptions();
+    if (topWeekPicker && selectedWeekKey) {
+      topWeekPicker.value = selectedWeekKey;
+    }
     refreshAll();
+  });
+}
+
+if (openFrequency && frequencyModal) {
+  openFrequency.addEventListener("click", () => {
+    renderFrequencyTable();
+    frequencyModal.classList.add("is-open");
+    frequencyModal.setAttribute("aria-hidden", "false");
+    requestAnimationFrame(() => {
+      focusFrequencyRecentWindow();
+    });
+  });
+}
+
+if (closeFrequency && frequencyModal) {
+  closeFrequency.addEventListener("click", () => {
+    frequencyModal.classList.remove("is-open");
+    frequencyModal.setAttribute("aria-hidden", "true");
   });
 }
 
@@ -4110,5 +4346,14 @@ if (chilliModal) {
     if (!shouldClose) return;
     chilliModal.classList.remove("is-open");
     chilliModal.setAttribute("aria-hidden", "true");
+  });
+}
+
+if (frequencyModal) {
+  frequencyModal.addEventListener("click", (event) => {
+    const shouldClose = event.target?.dataset?.modalClose === "true";
+    if (!shouldClose) return;
+    frequencyModal.classList.remove("is-open");
+    frequencyModal.setAttribute("aria-hidden", "true");
   });
 }

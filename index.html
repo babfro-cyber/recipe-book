@@ -24,6 +24,7 @@
           <div class="hero-actions">
             <button class="primary" id="jump-planner" data-i18n="plan_week">Plan the week</button>
             <button class="ghost" id="jump-cook" data-i18n="start_cooking">Start cooking</button>
+            <button class="ghost" id="open-frequency" data-i18n="frequency_view">Frequency view</button>
           </div>
         </div>
         <div class="hero-count" id="hero-count"></div>
@@ -43,7 +44,6 @@
         <div class="planner-jump" aria-hidden="false">
           <button class="ghost" id="jump-library" data-i18n="recipe_library">Recipe Library</button>
           <button class="ghost" id="jump-match" data-i18n="pantry_matcher">Recipe Matcher</button>
-          <button class="ghost" id="jump-picker" data-i18n="recipe_picker">Recipe Picker</button>
         </div>
         <div class="panel" id="planner-library">
           <div class="panel-header">
@@ -78,6 +78,13 @@
               <option value="bake" data-i18n="meal_bake">Bake</option>
             </select>
           </div>
+          <div class="selected-week" id="selected-week">
+            <div class="selected-week-head">
+              <strong data-i18n="selected_recipes">Selected recipes</strong>
+              <span class="week-label" id="week-label"></span>
+            </div>
+            <div class="selected-list" id="selected-list"></div>
+          </div>
           <div class="recipe-grid" id="recipe-grid"></div>
           <div class="recipe-details" id="recipe-details"></div>
         </div>
@@ -101,17 +108,6 @@
             <button class="ghost" id="pantry-clear" data-i18n="pantry_clear">Clear pantry picks</button>
           </div>
           <div class="pantry-match-list" id="pantry-match-list"></div>
-        </div>
-
-        <div class="panel" id="planner-picker">
-          <div class="panel-header">
-            <h2 data-i18n="recipe_picker">Recipe Picker</h2>
-            <p data-i18n="recipe_picker_sub">Select 3-6 recipes for the week. No day-by-day planning required.</p>
-          </div>
-          <div class="week-controls">
-            <div class="week-label" id="week-label"></div>
-          </div>
-          <div class="pick-list" id="pick-list"></div>
         </div>
       </section>
 
@@ -139,7 +135,6 @@
           <div class="cook-controls">
             <div class="week-label" id="cook-week-label"></div>
             <select id="cook-select"></select>
-            <button class="primary" id="start-cook" data-i18n="load_instructions">Load instructions</button>
           </div>
           <div class="cook-card" id="cook-card">
             <div class="empty-state">
@@ -195,6 +190,23 @@
               <option value="colruyt">Colruyt</option>
             </select>
           </div>
+        </div>
+      </div>
+    </div>
+    <div class="modal" id="frequency-modal" aria-hidden="true">
+      <div class="modal-backdrop" data-modal-close="true"></div>
+      <div class="modal-card modal-card-wide" role="dialog" aria-modal="true" aria-labelledby="frequency-title">
+        <button class="modal-close" type="button" data-modal-close="true">×</button>
+        <div class="modal-body">
+          <h4 id="frequency-title" data-i18n="frequency_title">Cooking frequency</h4>
+          <div class="frequency-toolbar">
+            <button class="ghost" id="close-frequency" type="button" data-i18n="frequency_back">Back to planner</button>
+            <p id="frequency-subtitle"></p>
+          </div>
+          <div class="frequency-table-wrap" id="frequency-table-wrap">
+            <table class="frequency-table" id="frequency-table"></table>
+          </div>
+          <p class="pantry-hint" id="frequency-empty" data-i18n="frequency_empty">Select some recipes in different weeks to see the frequency table.</p>
         </div>
       </div>
     </div>

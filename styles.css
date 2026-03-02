@@ -370,137 +370,26 @@ body.view-cook #shopping {
   margin-bottom: 16px;
 }
 
-.pick-list {
+.selected-week {
+  margin-bottom: 14px;
+  padding: 12px;
+  border-radius: 14px;
+  background: rgba(122, 167, 249, 0.12);
   display: grid;
-  gap: 12px;
+  gap: 10px;
 }
 
-.week-controls {
+.selected-week-head {
   display: flex;
   flex-wrap: wrap;
-  gap: 12px;
   align-items: center;
-  margin-bottom: 12px;
-}
-
-.week-controls label {
-  display: grid;
-  gap: 6px;
-  font-size: 0.9rem;
-  color: var(--slate);
-}
-
-.week-controls input {
-  padding: 8px 12px;
-  border-radius: 10px;
-  border: 1px solid rgba(26, 26, 26, 0.15);
-}
-
-.week-picker {
-  position: relative;
-  display: inline-flex;
-  align-items: center;
+  justify-content: space-between;
   gap: 8px;
 }
 
-.week-input {
-  display: none;
-}
-
-.week-trigger {
-  background: white;
-  border: 1px solid rgba(26, 26, 26, 0.2);
-  border-radius: 12px;
-  padding: 8px 12px;
-  min-width: 220px;
-  text-align: left;
-  cursor: pointer;
-  box-shadow: 0 8px 18px rgba(26, 26, 26, 0.08);
-}
-
-.week-popover {
-  position: absolute;
-  top: calc(100% + 8px);
-  left: 0;
-  background: var(--card);
-  border-radius: 16px;
-  padding: 12px;
-  box-shadow: var(--shadow);
-  border: 1px solid rgba(26, 26, 26, 0.08);
-  width: 280px;
-  display: none;
-  z-index: 20;
-}
-
-.week-popover.open {
-  display: block;
-}
-
-.week-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 8px;
-}
-
-.week-header button {
-  border: none;
-  background: rgba(26, 26, 26, 0.08);
-  border-radius: 10px;
-  padding: 4px 8px;
-  cursor: pointer;
-}
-
-.week-month {
-  font-weight: 600;
-}
-
-.week-grid {
+.selected-list {
   display: grid;
-  grid-template-columns: repeat(7, 1fr);
-  gap: 4px;
-  font-size: 0.85rem;
-}
-
-.week-day {
-  text-align: center;
-  padding: 6px 0;
-  border-radius: 8px;
-  cursor: pointer;
-}
-
-.week-day-label {
-  cursor: default;
-  font-weight: 600;
-  color: var(--slate);
-  background: transparent;
-}
-
-.week-day.is-out {
-  opacity: 0.3;
-}
-
-.week-day.is-in-week {
-  background: rgba(122, 167, 249, 0.2);
-}
-
-.week-day.is-selected {
-  background: var(--sky);
-  color: white;
-}
-
-.week-actions {
-  display: flex;
-  justify-content: space-between;
-  margin-top: 8px;
-}
-
-.week-actions button {
-  border: none;
-  background: none;
-  color: var(--sage);
-  cursor: pointer;
-  font-size: 0.85rem;
+  gap: 10px;
 }
 
 .week-label {
@@ -512,33 +401,49 @@ body.view-cook #shopping {
 .pick-item {
   background: rgba(78, 141, 124, 0.1);
   border-radius: 14px;
-  padding: 12px;
+  padding: 10px 12px;
   display: grid;
-  grid-template-columns: 1fr auto auto;
-  gap: 8px;
+  grid-template-columns: 1fr auto;
+  gap: 10px;
   align-items: center;
 }
 
 .pick-item strong {
   display: block;
+  line-height: 1.2;
 }
 
-.pick-item span {
+.pick-meta {
   color: var(--slate);
-  font-size: 0.9rem;
+  font-size: 0.82rem;
+  line-height: 1.2;
 }
 
 .serving-controls {
-  display: grid;
+  display: flex;
   gap: 6px;
-  justify-items: center;
-  font-size: 0.8rem;
+  align-items: center;
+  justify-content: flex-end;
+  font-size: 0.75rem;
   color: var(--slate);
+  white-space: nowrap;
+}
+
+.serving-controls .ghost {
+  padding: 4px 8px;
+  min-width: 30px;
+  line-height: 1;
 }
 
 .serving-controls .count {
+  min-width: 24px;
+  text-align: center;
   font-weight: 600;
   color: var(--ink);
+}
+
+.pick-remove {
+  margin-left: 4px;
 }
 
 .recipe-grid {
@@ -777,6 +682,10 @@ body.view-cook #shopping {
   z-index: 1;
 }
 
+.modal-card.modal-card-wide {
+  width: min(1320px, 98vw);
+}
+
 .modal-close {
   position: absolute;
   top: 10px;
@@ -815,6 +724,123 @@ body.view-cook #shopping {
   height: auto;
   border-radius: 14px;
   display: block;
+}
+
+.frequency-toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  margin-bottom: 12px;
+}
+
+.frequency-toolbar p {
+  margin: 0;
+  color: var(--slate);
+  font-size: 0.9rem;
+}
+
+.frequency-table-wrap {
+  border: 1px solid rgba(26, 26, 26, 0.12);
+  border-radius: 14px;
+  overflow: auto;
+  max-height: 80vh;
+  background: linear-gradient(180deg, rgba(122, 167, 249, 0.08), rgba(122, 167, 249, 0.02));
+}
+
+.frequency-table {
+  width: max-content;
+  min-width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+}
+
+.frequency-table thead th {
+  position: sticky;
+  top: 0;
+  z-index: 3;
+  background: #f4f8ff;
+}
+
+.freq-recipe-head,
+.freq-recipe-cell {
+  position: sticky;
+  left: 0;
+  z-index: 2;
+  background: #fff;
+  min-width: 190px;
+  text-align: left;
+  font-weight: 600;
+  border-right: 1px solid rgba(26, 26, 26, 0.08);
+}
+
+.freq-recipe-head {
+  z-index: 4;
+  background: #eef5ff;
+}
+
+.freq-recipe-cell {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  padding: 5px 8px;
+}
+
+.freq-recipe-name {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.freq-recipe-ratio {
+  flex-shrink: 0;
+  color: var(--slate);
+  font-weight: 600;
+  font-size: 0.72rem;
+  background: rgba(26, 26, 26, 0.06);
+  border-radius: 999px;
+  padding: 1px 7px;
+}
+
+.freq-week-head {
+  min-width: 72px;
+  text-align: center;
+  padding: 6px 4px;
+  font-size: 0.78rem;
+  border-bottom: 1px solid rgba(26, 26, 26, 0.1);
+}
+
+.freq-week-head span,
+.freq-week-head small {
+  display: block;
+}
+
+.freq-week-head small {
+  color: var(--slate);
+  font-size: 0.72rem;
+}
+
+.freq-cell {
+  text-align: center;
+  padding: 4px;
+  border-bottom: 1px solid rgba(26, 26, 26, 0.06);
+  border-right: 1px solid rgba(26, 26, 26, 0.06);
+  height: 30px;
+}
+
+.freq-tick {
+  width: 18px;
+  height: 18px;
+  border-radius: 999px;
+  display: inline-grid;
+  place-items: center;
+  font-weight: 700;
+  font-size: 0.72rem;
+  color: #fff;
+  background: #4f9f60;
+  box-shadow: 0 4px 10px rgba(79, 159, 96, 0.35);
 }
 
 .recipe-icon {
@@ -1210,6 +1236,17 @@ body.view-cook #shopping {
     padding-right: 0;
   }
 
+  .pick-item {
+    grid-template-columns: 1fr;
+  }
+
+  .serving-controls {
+    justify-content: flex-start;
+    align-items: center;
+    gap: 8px;
+    flex-wrap: wrap;
+  }
+
   .pantry-row {
     grid-template-columns: 1fr;
     grid-template-areas:
@@ -1223,6 +1260,15 @@ body.view-cook #shopping {
   .pantry-control input,
   .pantry-control select {
     width: 100%;
+  }
+
+  .freq-recipe-head,
+  .freq-recipe-cell {
+    min-width: 170px;
+  }
+
+  .freq-week-head {
+    min-width: 66px;
   }
 }
 
