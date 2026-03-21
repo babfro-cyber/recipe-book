@@ -113,19 +113,6 @@ p {
   border: 1px solid rgba(26, 26, 26, 0.15);
 }
 
-.settings-actions {
-  display: flex;
-  gap: 10px;
-  flex-wrap: wrap;
-  margin-bottom: 10px;
-}
-
-.settings-divider {
-  height: 1px;
-  background: rgba(26, 26, 26, 0.08);
-  margin: 16px 0;
-}
-
 .note-section {
   margin: 12px 0;
   display: grid;
@@ -214,11 +201,6 @@ p {
   flex-wrap: wrap;
   gap: 12px;
   margin-top: 16px;
-}
-
-.sync-status {
-  font-size: 0.9rem;
-  color: var(--sage);
 }
 
 .hero-actions .primary,

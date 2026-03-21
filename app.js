@@ -1276,6 +1276,66 @@ const recipes = [
       "Cuire 25 minutes jusqu'a ce que ce soit bouillonnant et dore.",
     ],
   },
+  {
+    id: "poulet-curry-butternut-coco-semoule",
+    name: "Chicken Curry with Butternut, Coconut Milk and Couscous",
+    name_fr: "Poulet au curry, butternut et lait de coco (avec semoule)",
+    time: "35 min",
+    servings: 4,
+    tags: ["pan", "batch"],
+    ingredients: [
+      { item: "chicken breast", qty: 4, unit: "pcs" },
+      { item: "butternut pumpkin", qty: 0.5, unit: "pcs" },
+      { item: "coconut milk", qty: 200, unit: "ml" },
+      { item: "curry powder", qty: 1, unit: "tsp" },
+      { item: "garlic clove", qty: 1, unit: "pcs" },
+      { item: "olive oil", qty: 2, unit: "tbsp" },
+      { item: "salt", qty: 1, unit: "pinch" },
+      { item: "couscous", qty: 200, unit: "g" },
+      { item: "water", qty: 400, unit: "ml" },
+    ],
+    steps: [
+      "Cook the butternut: peel it, remove seeds and cut into chunks. Boil in salted water for 10 to 15 minutes. Drain and set aside.",
+      "Cook the chicken: slice the chicken breasts. Heat oil in a large pan, add chopped garlic, then add chicken and cook until nicely golden.",
+      "Make the sauce: once chicken is golden, add coconut milk (200 ml), then add the same amount of hot unsalted water. Add curry powder and cooked butternut chunks. Mix and simmer for 5 minutes.",
+      "Prepare couscous: put couscous in a bowl, add the same volume of hot unsalted water, cover for 5 minutes, then fluff with a fork.",
+    ],
+    steps_fr: [
+      "Cuire la butternut : eplucher la butternut, retirer les graines, puis couper en morceaux. Faire cuire dans une casserole d'eau salee pendant 10 a 15 minutes. Egoutter et reserver.",
+      "Cuire le poulet : couper les blancs de poulet en eminces. Faire chauffer l'huile dans une grande poele, ajouter l'ail hache, puis le poulet et faire revenir jusqu'a ce qu'il soit bien dore.",
+      "Faire la sauce : quand le poulet est dore, ajouter le lait de coco (200 ml), puis le meme volume d'eau chaude non salee. Ajouter le curry et les morceaux de butternut cuits. Melanger et laisser mijoter 5 minutes.",
+      "Preparer la semoule : mettre la semoule dans un bol, ajouter le meme volume d'eau chaude non salee, couvrir 5 minutes puis egrainer a la fourchette.",
+    ],
+  },
+  {
+    id: "barramundi-curry-butternut-coco-semoule",
+    name: "Barramundi Curry with Butternut, Coconut Milk and Couscous",
+    name_fr: "Barramundi au curry, butternut et lait de coco (avec semoule)",
+    time: "35 min",
+    servings: 4,
+    tags: ["oven", "batch"],
+    ingredients: [
+      { item: "barramundi fish fillets", qty: 700, unit: "g" },
+      { item: "butternut pumpkin", qty: 0.5, unit: "pcs" },
+      { item: "coconut milk", qty: 200, unit: "ml" },
+      { item: "curry powder", qty: 1, unit: "tsp" },
+      { item: "salt", qty: 1, unit: "pinch" },
+      { item: "couscous", qty: 200, unit: "g" },
+      { item: "water", qty: 250, unit: "ml" },
+    ],
+    steps: [
+      "Cook the butternut: peel it, remove seeds and cut into chunks. Boil in salted water for 10 to 15 minutes. Drain and set aside.",
+      "Preheat the oven to 180°C. Place the barramundi chunks and cooked butternut in an oven dish.",
+      "In a bowl, mix coconut milk (200 ml), curry powder and salt, then pour this mixture over the fish and butternut. Bake for 15 to 20 minutes, until the fish is cooked through.",
+      "Prepare couscous: put couscous in a bowl, add the same volume of hot unsalted water, cover for 5 minutes, then fluff with a fork.",
+    ],
+    steps_fr: [
+      "Cuire la butternut : eplucher la butternut, retirer les graines, puis couper en morceaux. Faire cuire dans une casserole d'eau salee pendant 10 a 15 minutes. Egoutter et reserver.",
+      "Prechauffer le four a 180°C. Mettre les morceaux de barramundi et la butternut cuite dans un plat allant au four.",
+      "Dans un bol, melanger le lait de coco (200 ml), le curry et le sel, puis verser ce melange sur le poisson et la butternut. Enfourner 15 a 20 minutes, jusqu'a cuisson du poisson.",
+      "Preparer la semoule : mettre la semoule dans un bol, ajouter le meme volume d'eau chaude non salee, couvrir 5 minutes puis egrainer a la fourchette.",
+    ],
+  },
 ];
 
 const NUTRITION_PROFILES = {
@@ -1480,7 +1540,7 @@ function getNutritionProfileForItem(item) {
   if (NUTRITION_OVERRIDES[key]) return NUTRITION_OVERRIDES[key];
 
   if (key.includes("oil")) return NUTRITION_PROFILES.oil;
-  if (key.includes("butter")) return NUTRITION_PROFILES.butter;
+  if (/\bbutter\b/.test(key)) return NUTRITION_PROFILES.butter;
   if (key.includes("cream") || key.includes("creme")) return NUTRITION_PROFILES.cream;
   if (key.includes("cheese") || key.includes("mozzarella") || key.includes("parmesan") || key.includes("gruyere") || key.includes("ricotta")) {
     return NUTRITION_PROFILES.cheese;
@@ -1592,6 +1652,8 @@ const recipeImageMap = {
   "fajitas": "https://www.foodiecrush.com/wp-content/uploads/2020/06/Chicken-Fajitas-foodiecrush.com-008.jpg",
   "bolognese-thermomix": "https://static01.nyt.com/images/2024/10/29/multimedia/Marcella-Hazans-Bolognese-Saucerex-wptg-sub/Marcella-Hazans-Bolognese-Saucerex-wptg-sub-videoSixteenByNineJumbo1600-v2.jpg",
   "eggplant-parmigiana": "https://www.recipetineats.com/tachyon/2021/05/Eggplant-Parmigiana_1-SQ.jpg",
+  "poulet-curry-butternut-coco-semoule": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSg2QPGVSBI-FkvK_fZf3ePsxKhmLC7IZlA4A&s",
+  "barramundi-curry-butternut-coco-semoule": "Recipes/9144d146-b224-4438-b0a3-29d9d8d76031.png",
   "spinach-ricotta-lasagne": "https://api.photon.aremedia.net.au/wp-content/uploads/sites/4/2015/03/19/e45f8cf903ef47ec94feb52dce841000/spinach-and-ricotta-lasagne.jpg?fit=2048%2C1536",
   "curry-epinards-pois-chiche": "https://mygoodnesskitchen.com/wp-content/uploads/2022/02/Chickpea-and-Spinach-Curry-Hero-1061.jpg.webp",
   "dahl-lentilles-epinards": "https://rainbowplantlife.com/wp-content/uploads/2024/05/Dal-Palak-hero-shots-3-of-4.jpg",
@@ -1625,6 +1687,14 @@ function safeGetItem(key) {
 function safeSetItem(key, value) {
   try {
     localStorage.setItem(key, value);
+  } catch (error) {
+    // Ignore storage errors for file://
+  }
+}
+
+function safeRemoveItem(key) {
+  try {
+    localStorage.removeItem(key);
   } catch (error) {
     // Ignore storage errors for file://
   }
@@ -1674,14 +1744,8 @@ let currentLanguage = normalizeLanguageCode(safeGetItem("pantryLanguage") || "en
 let selectedServings = {};
 let currentCookRecipeId = "";
 let lastAddedRecipeId = "";
-let syncTimer = null;
-let syncPoller = null;
-let lastSyncedAt = safeGetItem("pantryLastSync") || "";
-let syncCode = safeGetItem("pantrySyncCode") || "";
-
-const SUPABASE_URL = "https://jscczxnmujsimeidltdt.supabase.co";
-const SUPABASE_KEY = "sb_publishable_sg_e1rUxUxwQacU0le5D_Q_VYhYe980";
-const supabaseClient = window.supabase ? window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY) : null;
+safeRemoveItem("pantrySyncCode");
+safeRemoveItem("pantryLastSync");
 
 const selectedList = document.getElementById("selected-list");
 const recipeGrid = document.getElementById("recipe-grid");
@@ -1718,10 +1782,6 @@ const filterUtensil = document.getElementById("filter-utensil");
 const filterProtein = document.getElementById("filter-protein");
 const filterMeal = document.getElementById("filter-meal");
 const languageSelect = document.getElementById("language-select");
-const syncCodeInput = document.getElementById("sync-code");
-const syncConnect = document.getElementById("sync-connect");
-const syncNow = document.getElementById("sync-now");
-const syncStatus = document.getElementById("sync-status");
 const retailerSelect = document.getElementById("retailer-select");
 
 const translations = {
@@ -2009,6 +2069,7 @@ const ingredientTranslationsFr = {
   "black pepper": "poivre noir",
   "chicken thighs": "hauts de cuisse de poulet",
   "chicken breast": "blanc de poulet",
+  "barramundi fish fillets": "filets de barramundi",
   "chicken tenderloins": "aiguillettes de poulet",
   "red capsicum": "poivron rouge",
   "capsicum": "poivron",
@@ -2273,38 +2334,6 @@ if (jumpMatch) {
 }
 
 setView("plan");
-updateSyncStatus();
-if (syncCode) {
-  pullPlan();
-  startAutoPull();
-}
-
-if (syncCodeInput) {
-  syncCodeInput.value = syncCode;
-}
-
-if (syncConnect) {
-  syncConnect.addEventListener("click", async () => {
-    const value = (syncCodeInput?.value || "").trim();
-    if (!value) {
-      updateSyncStatus("Enter a household code.");
-      return;
-    }
-    syncCode = value;
-    safeSetItem("pantrySyncCode", syncCode);
-    updateSyncStatus("Connecting...");
-    await pullPlan();
-    scheduleSync();
-    startAutoPull();
-  });
-}
-
-if (syncNow) {
-  syncNow.addEventListener("click", async () => {
-    await pullPlan();
-    pushPlan();
-  });
-}
 
 if (retailerSelect) {
   retailerSelect.value = preferredRetailer;
@@ -2341,134 +2370,6 @@ function saveState() {
   safeSetItem("pantryChecksByWeek", JSON.stringify(checkedItemsByWeek));
   safeSetItem("pantryServingsByWeek", JSON.stringify(selectedServingsByWeek));
   safeSetItem("pantryRatingsByRecipe", JSON.stringify(ratingsByRecipe));
-  scheduleSync();
-}
-
-function updateSyncStatus(message) {
-  if (!syncStatus) return;
-  syncStatus.textContent = message || (syncCode ? "Sync on." : "Sync off.");
-}
-
-
-function getPlanPayload() {
-  return {
-    picksByWeek: selectedRecipesByWeek,
-    checksByWeek: checkedItemsByWeek,
-    servingsByWeek: selectedServingsByWeek,
-    ratingsByRecipe: ratingsByRecipe,
-    recipeNotesById: recipeNotesById,
-    preferredRetailer: preferredRetailer,
-    language: currentLanguage,
-    updatedAt: new Date().toISOString(),
-  };
-}
-
-function applyPlanPayload(payload) {
-  selectedRecipesByWeek = { ...(payload.picksByWeek || {}) };
-  checkedItemsByWeek = { ...(payload.checksByWeek || {}) };
-  selectedServingsByWeek = { ...(payload.servingsByWeek || {}) };
-  ratingsByRecipe = { ...(payload.ratingsByRecipe || {}) };
-  recipeNotesById = { ...(payload.recipeNotesById || {}) };
-  preferredRetailer = payload.preferredRetailer || preferredRetailer;
-  currentLanguage = normalizeLanguageCode(payload.language || currentLanguage);
-  lastSyncedAt = payload.updatedAt || lastSyncedAt;
-  safeSetItem("pantryPicksByWeek", JSON.stringify(selectedRecipesByWeek));
-  safeSetItem("pantryChecksByWeek", JSON.stringify(checkedItemsByWeek));
-  safeSetItem("pantryServingsByWeek", JSON.stringify(selectedServingsByWeek));
-  safeSetItem("pantryRatingsByRecipe", JSON.stringify(ratingsByRecipe));
-  safeSetItem("pantryRecipeNotes", JSON.stringify(recipeNotesById));
-  safeSetItem("pantryRetailer", preferredRetailer);
-  if (retailerSelect) retailerSelect.value = preferredRetailer;
-  safeSetItem("pantryLanguage", currentLanguage);
-  if (lastSyncedAt) safeSetItem("pantryLastSync", lastSyncedAt);
-  if (languageSelect) languageSelect.value = currentLanguage;
-  setWeekFromTopPicker();
-  refreshAll();
-}
-
-function scheduleSync() {
-  if (!supabaseClient || !syncCode) return;
-  if (syncTimer) clearTimeout(syncTimer);
-  syncTimer = setTimeout(() => {
-    pushPlan();
-  }, 800);
-}
-
-function startAutoPull() {
-  if (!supabaseClient || !syncCode) return;
-  if (syncPoller) clearInterval(syncPoller);
-  syncPoller = setInterval(() => {
-    pullPlan();
-  }, 15000);
-}
-
-async function pushPlan() {
-  if (!syncCode) {
-    updateSyncStatus("Enter a household code.");
-    return;
-  }
-  if (!supabaseClient) {
-    updateSyncStatus("Sync unavailable (Supabase not loaded).");
-    return;
-  }
-  const payload = getPlanPayload();
-  safeSetItem("pantryLastSync", payload.updatedAt);
-  lastSyncedAt = payload.updatedAt;
-  updateSyncStatus("Syncing...");
-  try {
-    const { error } = await supabaseClient.from("plans").upsert(
-      {
-        code: syncCode,
-        payload,
-        updated_at: payload.updatedAt,
-      },
-      { onConflict: "code" }
-    );
-    if (error) {
-      updateSyncStatus("Sync failed. Check Supabase setup.");
-      console.warn("Sync push failed:", error);
-      return;
-    }
-  } catch (error) {
-    updateSyncStatus("Sync failed. Check network.");
-    console.warn("Sync push exception:", error);
-    return;
-  }
-  updateSyncStatus(`Synced at ${new Date().toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" })}.`);
-}
-
-async function pullPlan() {
-  if (!syncCode) {
-    updateSyncStatus("Enter a household code.");
-    return;
-  }
-  if (!supabaseClient) {
-    updateSyncStatus("Sync unavailable (Supabase not loaded).");
-    return;
-  }
-  updateSyncStatus("Syncing...");
-  try {
-    const { data, error } = await supabaseClient.from("plans").select("payload, updated_at").eq("code", syncCode).maybeSingle();
-    if (error) {
-      updateSyncStatus("Sync failed. Check Supabase setup.");
-      console.warn("Sync pull failed:", error);
-      return;
-    }
-    if (data?.payload) {
-      const remoteUpdated = data.updated_at || data.payload.updatedAt || "";
-      const localUpdated = safeGetItem("pantryLastSync") || "";
-      if (!localUpdated || (remoteUpdated && remoteUpdated > localUpdated)) {
-        applyPlanPayload(data.payload);
-        lastSyncedAt = remoteUpdated;
-        safeSetItem("pantryLastSync", remoteUpdated);
-      }
-    }
-  } catch (error) {
-    updateSyncStatus("Sync failed. Check network.");
-    console.warn("Sync pull exception:", error);
-    return;
-  }
-  updateSyncStatus(`Synced at ${new Date().toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" })}.`);
 }
 
 function renderRatingStars(target, recipeId) {
