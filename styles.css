@@ -9,7 +9,7 @@
   --sage: #4e8d7c;
   --sky: #7aa7f9;
   --card: #ffffff;
-  --shadow: 0 18px 40px rgba(26, 26, 26, 0.15);
+  --shadow: 0 10px 28px rgba(26, 26, 26, 0.08);
   --radius: 18px;
 }
 
@@ -21,7 +21,7 @@ body {
   margin: 0;
   font-family: "Space Grotesk", sans-serif;
   color: var(--ink);
-  background: radial-gradient(circle at top left, #fff3dd 0%, #fdf1f5 35%, #f6f3ee 70%);
+  background: linear-gradient(180deg, #fbfaf7 0%, #f6f3ee 100%);
 }
 
 h1,
@@ -47,13 +47,14 @@ p {
   grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
   gap: 32px;
   align-items: center;
-  background: linear-gradient(135deg, rgba(255, 179, 71, 0.25), rgba(122, 167, 249, 0.15));
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.92), rgba(248, 244, 237, 0.96));
   padding: 28px;
   border-radius: 28px;
   box-shadow: var(--shadow);
   margin-bottom: 32px;
   animation: fadeIn 0.8s ease;
   position: relative;
+  border: 1px solid rgba(26, 26, 26, 0.06);
 }
 
 .language-switch {
@@ -346,6 +347,7 @@ body.view-cook #shopping {
   border-radius: var(--radius);
   padding: 24px;
   box-shadow: var(--shadow);
+  border: 1px solid rgba(26, 26, 26, 0.06);
 }
 
 .panel-header {
@@ -356,9 +358,10 @@ body.view-cook #shopping {
   margin-bottom: 14px;
   padding: 12px;
   border-radius: 14px;
-  background: rgba(122, 167, 249, 0.12);
+  background: rgba(248, 244, 237, 0.9);
   display: grid;
   gap: 10px;
+  border: 1px solid rgba(26, 26, 26, 0.05);
 }
 
 .selected-week-head {
@@ -381,13 +384,14 @@ body.view-cook #shopping {
 }
 
 .pick-item {
-  background: rgba(78, 141, 124, 0.1);
+  background: rgba(255, 255, 255, 0.95);
   border-radius: 14px;
   padding: 10px 12px;
   display: grid;
   grid-template-columns: 1fr auto;
   gap: 10px;
   align-items: center;
+  border: 1px solid rgba(26, 26, 26, 0.05);
 }
 
 .pick-item strong {
@@ -430,8 +434,8 @@ body.view-cook #shopping {
 
 .recipe-grid {
   display: grid;
-  gap: 14px;
-  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 18px;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
   max-height: 520px;
   overflow: auto;
   padding-right: 6px;
@@ -446,10 +450,10 @@ body.view-cook #shopping {
 
 .library-filters input,
 .library-filters select {
-  padding: 8px 12px;
+  padding: 10px 14px;
   border-radius: 12px;
-  border: 1px solid rgba(26, 26, 26, 0.15);
-  background: white;
+  border: 1px solid rgba(26, 26, 26, 0.1);
+  background: rgba(255, 255, 255, 0.92);
 }
 
 .pantry-search {
@@ -642,6 +646,7 @@ body.view-cook #shopping {
   align-items: center;
   justify-content: center;
   z-index: 9999;
+  padding: 16px;
 }
 
 .modal.is-open {
@@ -666,6 +671,16 @@ body.view-cook #shopping {
 
 .modal-card.modal-card-wide {
   width: min(1320px, 98vw);
+  max-height: calc(100vh - 32px);
+  display: flex;
+  flex-direction: column;
+}
+
+#frequency-modal .modal-body {
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+  flex: 1 1 auto;
 }
 
 .modal-close {
@@ -727,7 +742,9 @@ body.view-cook #shopping {
   border: 1px solid rgba(26, 26, 26, 0.12);
   border-radius: 14px;
   overflow: auto;
-  max-height: 80vh;
+  max-height: none;
+  min-height: 0;
+  flex: 1 1 auto;
   background: linear-gradient(180deg, rgba(122, 167, 249, 0.08), rgba(122, 167, 249, 0.02));
 }
 
@@ -830,31 +847,34 @@ body.view-cook #shopping {
 }
 
 .recipe-card {
-  border-radius: 16px;
-  border: 1px solid rgba(26, 26, 26, 0.1);
+  border-radius: 20px;
+  border: 1px solid rgba(26, 26, 26, 0.08);
   display: flex;
   flex-direction: column;
-  gap: 10px;
-  background: rgba(255, 255, 255, 0.9);
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  gap: 12px;
+  background: rgba(255, 255, 255, 0.98);
+  transition: transform 0.18s ease, box-shadow 0.18s ease, border-color 0.18s ease;
   overflow: hidden;
+  box-shadow: 0 2px 10px rgba(26, 26, 26, 0.03);
 }
 
 .recipe-card.is-selected {
-  border-color: rgba(255, 107, 95, 0.55);
-  box-shadow: 0 0 0 3px rgba(255, 107, 95, 0.18), 0 12px 30px rgba(26, 26, 26, 0.12);
-  background: rgba(255, 255, 255, 1);
+  border-color: rgba(78, 141, 124, 0.32);
+  box-shadow: 0 0 0 3px rgba(78, 141, 124, 0.08), 0 10px 22px rgba(26, 26, 26, 0.06);
+  background: #fff;
 }
 
 .recipe-card:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 12px 30px rgba(26, 26, 26, 0.12);
+  transform: translateY(-1px);
+  box-shadow: 0 12px 24px rgba(26, 26, 26, 0.07);
 }
 
 .recipe-thumb {
-  width: 100%;
-  height: 120px;
-  background: linear-gradient(135deg, rgba(255, 195, 130, 0.5), rgba(255, 255, 255, 0.7));
+  width: auto;
+  height: 96px;
+  margin: 14px 14px 0;
+  border-radius: 16px;
+  background: linear-gradient(135deg, rgba(246, 243, 238, 0.95), rgba(255, 255, 255, 0.98));
   position: relative;
   overflow: hidden;
 }
@@ -880,10 +900,10 @@ body.view-cook #shopping {
   right: 8px;
   padding: 4px 9px;
   border-radius: 999px;
-  background: rgba(255, 107, 95, 0.95);
-  color: #fff;
+  background: rgba(78, 141, 124, 0.14);
+  color: var(--sage);
   font-size: 0.72rem;
-  font-weight: 700;
+  font-weight: 600;
   letter-spacing: 0.01em;
 }
 
@@ -922,18 +942,20 @@ body.view-cook #shopping {
 }
 
 .recipe-info {
-  padding: 0 12px;
+  padding: 0 16px;
 }
 
 .recipe-title {
-  font-size: 1rem;
-  margin: 0 0 6px;
+  font-size: 1.18rem;
+  line-height: 1.16;
+  margin: 0 0 8px;
 }
 
-.rating {
-  display: flex;
-  gap: 4px;
-  margin-bottom: 8px;
+.recipe-quiet-meta {
+  margin: 0 0 10px;
+  font-size: 0.95rem;
+  color: rgba(60, 59, 59, 0.88);
+  line-height: 1.35;
 }
 
 .star {
@@ -952,18 +974,25 @@ body.view-cook #shopping {
 .recipe-line {
   display: flex;
   flex-wrap: wrap;
-  gap: 6px;
+  gap: 8px;
 }
 
 .recipe-pill {
-  font-size: 0.7rem;
-  padding: 4px 8px;
+  font-size: 0.75rem;
+  padding: 5px 9px;
   border-radius: 999px;
+  background: rgba(26, 26, 26, 0.045);
+  color: rgba(60, 59, 59, 0.92);
+  font-weight: 500;
 }
 
 .recipe-card .ghost {
-  margin: 0 12px 12px;
-  align-self: flex-start;
+  margin: 0 16px 16px;
+  align-self: stretch;
+  text-align: center;
+  background: rgba(248, 244, 237, 0.9);
+  border-color: rgba(26, 26, 26, 0.08);
+  padding: 10px 14px;
 }
 
 .recipe-meta {

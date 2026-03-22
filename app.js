@@ -1336,6 +1336,313 @@ const recipes = [
       "Preparer la semoule : mettre la semoule dans un bol, ajouter le meme volume d'eau chaude non salee, couvrir 5 minutes puis egrainer a la fourchette.",
     ],
   },
+  {
+    id: "red-lentil-dal",
+    name: "Red Lentil Dal",
+    name_fr: "Dal de lentilles corail",
+    time: "50 min",
+    servings: 6,
+    tags: ["pan", "vegetarian", "batch", "gluten-free", "high-protein"],
+    ingredients: [
+      { item: "red lentils", qty: 500, unit: "g" },
+      { item: "olive oil", qty: 2, unit: "tbsp" },
+      { item: "brown onion", qty: 2, unit: "pcs" },
+      { item: "garlic cloves", qty: 4, unit: "pcs" },
+      { item: "fresh ginger", qty: 1, unit: "tbsp" },
+      { item: "ground cumin", qty: 2, unit: "tsp" },
+      { item: "ground coriander", qty: 2, unit: "tsp" },
+      { item: "turmeric", qty: 1, unit: "tsp" },
+      { item: "garam masala", qty: 1, unit: "tsp" },
+      { item: "canned chopped tomatoes", qty: 1, unit: "cans" },
+      { item: "vegetable stock", qty: 1.2, unit: "L" },
+      { item: "coconut milk", qty: 200, unit: "ml" },
+      { item: "baby spinach", qty: 2, unit: "handful" },
+      { item: "salt", qty: 1, unit: "tsp" },
+      { item: "lemon juice", qty: 1, unit: "pcs" },
+    ],
+    steps: [
+      "Heat olive oil in a large pot over medium heat. Add the onions and cook for 8 minutes until golden.",
+      "Add garlic and ginger, cook for 2 minutes. Add cumin, coriander, turmeric and garam masala, then stir for 1 minute until fragrant.",
+      "Add chopped tomatoes, lentils and stock. Bring to a boil, then simmer uncovered for 20 minutes, stirring occasionally.",
+      "Stir in coconut milk and simmer 5 more minutes until the lentils are fully broken down.",
+      "Add spinach and stir until wilted. Season with salt and lemon juice. Thin with water if needed.",
+    ],
+    steps_fr: [
+      "Faire chauffer l'huile d'olive dans une grande casserole a feu moyen. Ajouter les oignons et cuire 8 minutes jusqu'a ce qu'ils soient dores.",
+      "Ajouter l'ail et le gingembre, cuire 2 minutes. Ajouter le cumin, la coriandre, le curcuma et le garam masala, puis remuer 1 minute jusqu'a ce que les epices soient bien parfumees.",
+      "Ajouter les tomates concassees, les lentilles et le bouillon. Porter a ebullition, puis laisser mijoter a decouvert pendant 20 minutes en remuant de temps en temps.",
+      "Incorporer le lait de coco et laisser mijoter 5 minutes de plus jusqu'a ce que les lentilles soient bien fondues.",
+      "Ajouter les epinards et remuer jusqu'a ce qu'ils tombent. Assaisonner avec le sel et le jus de citron. Ajouter un peu d'eau si besoin.",
+    ],
+  },
+  {
+    id: "chickpea-roasted-tomato-stew",
+    name: "Chickpea & Roasted Tomato Stew",
+    name_fr: "Ragout de pois chiches et tomates roties",
+    time: "55 min",
+    servings: 6,
+    tags: ["batch", "vegetarian", "gluten-free"],
+    ingredients: [
+      { item: "canned chickpeas", qty: 2, unit: "cans" },
+      { item: "cherry tomatoes", qty: 800, unit: "g" },
+      { item: "red capsicum", qty: 2, unit: "pcs" },
+      { item: "brown onion", qty: 1, unit: "pcs" },
+      { item: "garlic cloves", qty: 6, unit: "pcs" },
+      { item: "olive oil", qty: 3, unit: "tbsp" },
+      { item: "smoked paprika", qty: 1, unit: "tsp" },
+      { item: "ground cumin", qty: 1, unit: "tsp" },
+      { item: "vegetable stock", qty: 400, unit: "ml" },
+      { item: "baby spinach", qty: 2, unit: "handful" },
+      { item: "salt", qty: 1, unit: "tsp" },
+      { item: "black pepper", qty: 1, unit: "tsp" },
+    ],
+    steps: [
+      "Preheat the oven to 200°C. Toss tomatoes, capsicum, onion, garlic and chickpeas with olive oil, smoked paprika, cumin, salt and pepper.",
+      "Spread on a large roasting tray in a single layer. Roast for 35 to 40 minutes until the tomatoes burst and the edges caramelise.",
+      "Transfer everything to a large pot. Squeeze the roasted garlic from the skins, add the stock and simmer for 10 minutes.",
+      "Crush some of the chickpeas against the side of the pot for a thicker stew. Stir in the spinach until wilted. Taste and adjust seasoning.",
+    ],
+    steps_fr: [
+      "Prechauffer le four a 200°C. Melanger les tomates, le poivron, l'oignon, l'ail et les pois chiches avec l'huile d'olive, le paprika fume, le cumin, le sel et le poivre.",
+      "Etaler sur une grande plaque en une seule couche. Faire rotir 35 a 40 minutes jusqu'a ce que les tomates eclatent et que les bords soient caramelises.",
+      "Transvaser le tout dans une grande casserole. Presser l'ail roti hors de sa peau, ajouter le bouillon et laisser mijoter 10 minutes.",
+      "Ecraser une partie des pois chiches contre le bord de la casserole pour epaissir le ragout. Ajouter les epinards jusqu'a ce qu'ils tombent. Gouter et ajuster l'assaisonnement.",
+    ],
+  },
+  {
+    id: "turkey-vegetable-bolognese",
+    name: "Turkey & Vegetable Bolognese",
+    name_fr: "Bolognaise de dinde aux legumes",
+    time: "55 min",
+    servings: 6,
+    tags: ["pan", "batch"],
+    ingredients: [
+      { item: "turkey mince", qty: 800, unit: "g" },
+      { item: "olive oil", qty: 2, unit: "tbsp" },
+      { item: "brown onion", qty: 2, unit: "pcs" },
+      { item: "garlic cloves", qty: 3, unit: "pcs" },
+      { item: "carrot", qty: 2, unit: "pcs" },
+      { item: "zucchini", qty: 2, unit: "pcs" },
+      { item: "mushrooms", qty: 200, unit: "g" },
+      { item: "crushed tomatoes", qty: 2, unit: "cans" },
+      { item: "tomato paste", qty: 2, unit: "tbsp" },
+      { item: "chicken stock", qty: 200, unit: "ml" },
+      { item: "dried oregano", qty: 1, unit: "tsp" },
+      { item: "dried basil", qty: 1, unit: "tsp" },
+      { item: "salt", qty: 1, unit: "tsp" },
+      { item: "black pepper", qty: 1, unit: "tsp" },
+    ],
+    steps: [
+      "Heat oil in a large heavy pot. Add the onions and cook for 8 minutes until soft. Add garlic and cook for 2 more minutes.",
+      "Add carrots, zucchini and mushrooms. Cook for 5 minutes until softened.",
+      "Increase the heat. Add turkey mince and cook, breaking it up, until browned all over, about 8 minutes.",
+      "Add tomato paste and stir for 1 minute. Add crushed tomatoes, stock and herbs. Season well.",
+      "Bring to a boil, then simmer uncovered for 40 minutes until the sauce is thick and rich.",
+    ],
+    steps_fr: [
+      "Faire chauffer l'huile dans une grande casserole a fond epais. Ajouter les oignons et cuire 8 minutes jusqu'a ce qu'ils soient tendres. Ajouter l'ail et cuire 2 minutes de plus.",
+      "Ajouter les carottes, les courgettes et les champignons. Cuire 5 minutes jusqu'a ce qu'ils soient attendris.",
+      "Augmenter le feu. Ajouter la dinde hachee et cuire en l'emiettant jusqu'a ce qu'elle soit bien doree, environ 8 minutes.",
+      "Ajouter le concentre de tomate et remuer 1 minute. Ajouter les tomates concassees, le bouillon et les herbes. Bien assaisonner.",
+      "Porter a ebullition, puis laisser mijoter a decouvert pendant 40 minutes jusqu'a obtenir une sauce epaisse et riche.",
+    ],
+  },
+  {
+    id: "greek-white-bean-soup",
+    name: "Greek White Bean Soup (Fasolada)",
+    name_fr: "Soupe grecque aux haricots blancs (fasolada)",
+    time: "55 min",
+    servings: 6,
+    tags: ["pan", "batch", "vegetarian"],
+    ingredients: [
+      { item: "cannellini beans", qty: 2, unit: "cans" },
+      { item: "olive oil", qty: 3, unit: "tbsp" },
+      { item: "brown onion", qty: 2, unit: "pcs" },
+      { item: "carrot", qty: 3, unit: "pcs" },
+      { item: "celery stalks", qty: 3, unit: "pcs" },
+      { item: "garlic cloves", qty: 4, unit: "pcs" },
+      { item: "crushed tomatoes", qty: 2, unit: "cans" },
+      { item: "vegetable stock", qty: 1, unit: "L" },
+      { item: "tomato paste", qty: 2, unit: "tbsp" },
+      { item: "dried oregano", qty: 2, unit: "tsp" },
+      { item: "lemon juice", qty: 1, unit: "pcs" },
+      { item: "olive oil", qty: 4, unit: "tbsp" },
+      { item: "salt", qty: 1, unit: "tsp" },
+      { item: "black pepper", qty: 1, unit: "tsp" },
+    ],
+    steps: [
+      "Heat olive oil in a large pot. Add onions, carrots and celery. Cook on medium heat for 10 minutes until softened.",
+      "Add garlic and cook for 2 minutes. Add tomato paste and stir for 1 minute.",
+      "Add beans, crushed tomatoes, stock and oregano. Season well.",
+      "Bring to a boil, then reduce to a gentle simmer. Cook for 40 minutes until the vegetables are very tender.",
+      "Stir in lemon juice and the finishing olive oil. Taste and adjust seasoning.",
+    ],
+    steps_fr: [
+      "Faire chauffer l'huile d'olive dans une grande casserole. Ajouter les oignons, les carottes et le celeri. Cuire a feu moyen pendant 10 minutes jusqu'a ce qu'ils soient tendres.",
+      "Ajouter l'ail et cuire 2 minutes. Ajouter le concentre de tomate et remuer 1 minute.",
+      "Ajouter les haricots, les tomates concassees, le bouillon et l'origan. Bien assaisonner.",
+      "Porter a ebullition, puis baisser sur feu doux. Cuire 40 minutes jusqu'a ce que les legumes soient tres tendres.",
+      "Ajouter le jus de citron et l'huile d'olive de finition. Gouter et ajuster l'assaisonnement.",
+    ],
+  },
+  {
+    id: "baked-salmon-tray-bake",
+    name: "Baked Salmon Tray Bake",
+    name_fr: "Saumon roti sur plaque",
+    time: "30 min",
+    servings: 6,
+    tags: ["oven", "batch"],
+    ingredients: [
+      { item: "salmon fillets", qty: 6, unit: "pcs" },
+      { item: "sweet potato", qty: 600, unit: "g" },
+      { item: "zucchini", qty: 3, unit: "pcs" },
+      { item: "broccolini", qty: 300, unit: "g" },
+      { item: "soy sauce", qty: 3, unit: "tbsp" },
+      { item: "honey", qty: 1.5, unit: "tbsp" },
+      { item: "garlic cloves", qty: 3, unit: "pcs" },
+      { item: "sesame oil", qty: 1.5, unit: "tsp" },
+      { item: "olive oil", qty: 3, unit: "tbsp" },
+      { item: "sesame seeds", qty: 1.5, unit: "tbsp" },
+      { item: "lemon", qty: 1.5, unit: "pcs" },
+      { item: "salt", qty: 1.5, unit: "tsp" },
+    ],
+    steps: [
+      "Preheat the oven to 200°C. Mix soy sauce, honey, garlic and sesame oil into a glaze.",
+      "Toss the sweet potato with 1 tbsp olive oil and salt. Spread on a large baking tray and roast for 15 minutes.",
+      "Add zucchini and broccolini to the tray. Nestle the salmon fillets among the vegetables and brush generously with the glaze.",
+      "Roast for a further 15 minutes until the salmon is cooked through and flakes easily.",
+      "Sprinkle with sesame seeds and squeeze over the lemon to serve.",
+    ],
+    steps_fr: [
+      "Prechauffer le four a 200°C. Melanger la sauce soja, le miel, l'ail et l'huile de sesame pour faire une laque.",
+      "Melanger la patate douce avec 1 c. a soupe d'huile d'olive et du sel. Etaler sur une grande plaque et faire rotir 15 minutes.",
+      "Ajouter les courgettes et le broccolini sur la plaque. Disposer les filets de saumon parmi les legumes et les badigeonner genereusement de laque.",
+      "Poursuivre la cuisson 15 minutes jusqu'a ce que le saumon soit cuit et s'effeuille facilement.",
+      "Parsemer de graines de sesame et arroser de jus de citron au moment de servir.",
+    ],
+  },
+  {
+    id: "black-bean-sweet-potato-filling",
+    name: "Black Bean & Sweet Potato Filling",
+    name_fr: "Garniture haricots noirs et patate douce",
+    time: "40 min",
+    servings: 6,
+    tags: ["oven", "pan", "batch", "vegetarian", "gluten-free"],
+    ingredients: [
+      { item: "black beans", qty: 2, unit: "cans" },
+      { item: "sweet potato", qty: 600, unit: "g" },
+      { item: "olive oil", qty: 2, unit: "tbsp" },
+      { item: "red onion", qty: 1, unit: "pcs" },
+      { item: "red capsicum", qty: 1, unit: "pcs" },
+      { item: "garlic cloves", qty: 3, unit: "pcs" },
+      { item: "ground cumin", qty: 2, unit: "tsp" },
+      { item: "smoked paprika", qty: 1, unit: "tsp" },
+      { item: "chilli powder", qty: 0.5, unit: "tsp" },
+      { item: "crushed tomatoes", qty: 1, unit: "cans" },
+      { item: "salt", qty: 1, unit: "tsp" },
+      { item: "lime", qty: 1, unit: "pcs" },
+    ],
+    steps: [
+      "Toss the sweet potato with 1 tbsp olive oil, salt and half the cumin. Roast at 200°C for 20 minutes until tender.",
+      "Heat the remaining oil in a large pan. Cook the onion and capsicum for 6 minutes until softened.",
+      "Add the garlic and remaining spices. Stir for 1 minute. Add the crushed tomatoes and simmer for 5 minutes.",
+      "Add the black beans and roasted sweet potato. Simmer gently for 5 minutes. Season and add the lime juice.",
+      "Serve in tortillas, over rice, or in a bowl with avocado and yoghurt.",
+    ],
+    steps_fr: [
+      "Melanger la patate douce avec 1 c. a soupe d'huile d'olive, le sel et la moitie du cumin. Faire rotir a 200°C pendant 20 minutes jusqu'a ce qu'elle soit tendre.",
+      "Faire chauffer le reste d'huile dans une grande poele. Cuire l'oignon et le poivron 6 minutes jusqu'a ce qu'ils soient tendres.",
+      "Ajouter l'ail et le reste des epices. Remuer 1 minute. Ajouter les tomates concassees et laisser mijoter 5 minutes.",
+      "Ajouter les haricots noirs et la patate douce rotie. Laisser mijoter doucement 5 minutes. Assaisonner et ajouter le jus de citron vert.",
+      "Servir dans des tortillas, avec du riz, ou en bowl avec avocat et yaourt.",
+    ],
+  },
+  {
+    id: "green-goddess-pasta-sauce",
+    name: "Green Goddess Pasta Sauce",
+    name_fr: "Sauce pasta green goddess",
+    time: "20 min",
+    servings: 6,
+    tags: ["pan", "batch", "vegetarian"],
+    ingredients: [
+      { item: "olive oil", qty: 2, unit: "tbsp" },
+      { item: "spinach", qty: 2, unit: "cups" },
+      { item: "kale", qty: 2, unit: "cups" },
+      { item: "basil", qty: 2, unit: "cups" },
+      { item: "onion", qty: 0.5, unit: "pcs" },
+      { item: "garlic cloves", qty: 2, unit: "pcs" },
+      { item: "white beans", qty: 1, unit: "cup" },
+      { item: "raw pistachios", qty: 0.33, unit: "cup" },
+      { item: "parmesan", qty: 1, unit: "cup" },
+      { item: "salt", qty: 1, unit: "tsp" },
+      { item: "water", qty: 0.33, unit: "cup" },
+    ],
+    steps: [
+      "Blanch the spinach and kale for 1 minute, then drain and squeeze dry.",
+      "Saute the diced onion for 6 minutes, then add the garlic and cook for 2 more minutes.",
+      "Blend the greens, basil, onion, garlic, olive oil and pasta water until smooth.",
+      "Add the white beans and blend until creamy.",
+      "Add the pistachios, parmesan, salt and remaining pasta water, then blend again. Loosen with more water if needed.",
+      "Toss through hot pasta and top with burrata, pan-fried scampi, basil leaves, chilli flakes and pepper if using.",
+    ],
+    steps_fr: [
+      "Blanchir les epinards et le kale 1 minute, puis egoutter et bien presser pour retirer l'excedent d'eau.",
+      "Faire revenir l'oignon emince 6 minutes, puis ajouter l'ail et cuire 2 minutes de plus.",
+      "Mixer les feuilles vertes, le basilic, l'oignon, l'ail, l'huile d'olive et l'eau de cuisson des pates jusqu'a obtention d'une sauce lisse.",
+      "Ajouter les haricots blancs et mixer jusqu'a ce que la sauce soit bien cremeuse.",
+      "Ajouter les pistaches, le parmesan, le sel et le reste d'eau de cuisson, puis mixer de nouveau. Ajouter un peu plus d'eau si besoin.",
+      "Melanger avec des pates chaudes et garnir de burrata, scampi poeles, feuilles de basilic, flocons de piment et poivre si souhaite.",
+    ],
+  },
+  {
+    id: "chili-sin-carne",
+    name: "Chili Sin Carne",
+    name_fr: "Chili sin carne",
+    time: "45 min",
+    servings: 6,
+    tags: ["pan", "batch", "vegetarian"],
+    ingredients: [
+      { item: "red kidney beans", qty: 1, unit: "can" },
+      { item: "black beans", qty: 1, unit: "can" },
+      { item: "canned chickpeas", qty: 1, unit: "can" },
+      { item: "olive oil", qty: 2, unit: "tbsp" },
+      { item: "brown onion", qty: 2, unit: "pcs" },
+      { item: "garlic cloves", qty: 4, unit: "pcs" },
+      { item: "red capsicum", qty: 2, unit: "pcs" },
+      { item: "carrot", qty: 2, unit: "pcs" },
+      { item: "ground cumin", qty: 2, unit: "tsp" },
+      { item: "smoked paprika", qty: 2, unit: "tsp" },
+      { item: "chilli powder", qty: 1, unit: "tsp" },
+      { item: "dried oregano", qty: 1, unit: "tsp" },
+      { item: "cinnamon", qty: 0.5, unit: "tsp" },
+      { item: "tomato paste", qty: 2, unit: "tbsp" },
+      { item: "crushed tomatoes", qty: 2, unit: "cans" },
+      { item: "vegetable stock", qty: 300, unit: "ml" },
+      { item: "soy sauce", qty: 1, unit: "tbsp" },
+      { item: "brown sugar", qty: 1, unit: "tsp" },
+      { item: "salt", qty: 1, unit: "tsp" },
+      { item: "black pepper", qty: 1, unit: "tsp" },
+      { item: "lime", qty: 1, unit: "pcs" },
+    ],
+    steps: [
+      "Heat olive oil in a large heavy-based pot. Add the onions and cook over medium heat for 8 minutes until golden.",
+      "Add the garlic, capsicum and carrots. Cook for 5 minutes until slightly softened.",
+      "Add the cumin, smoked paprika, chilli powder, oregano and cinnamon. Stir for 1 to 2 minutes until fragrant.",
+      "Add the tomato paste and stir for 1 minute.",
+      "Add the beans, crushed tomatoes, stock, soy sauce and brown sugar. Bring to a boil.",
+      "Simmer uncovered for 30 minutes until thick.",
+      "Season with salt, pepper and lime juice. Taste and adjust.",
+    ],
+    steps_fr: [
+      "Faire chauffer l'huile d'olive dans une grande casserole a fond epais. Ajouter les oignons et cuire a feu moyen pendant 8 minutes jusqu'a ce qu'ils soient dores.",
+      "Ajouter l'ail, les poivrons et les carottes. Cuire 5 minutes jusqu'a ce qu'ils commencent a s'attendrir.",
+      "Ajouter le cumin, le paprika fume, la poudre de chili, l'origan et la cannelle. Remuer 1 a 2 minutes jusqu'a ce que les epices soient bien parfumees.",
+      "Ajouter le concentre de tomate et remuer 1 minute.",
+      "Ajouter les haricots, les tomates concassees, le bouillon, la sauce soja et le sucre roux. Porter a ebullition.",
+      "Laisser mijoter a decouvert pendant 30 minutes jusqu'a ce que le chili epaississe.",
+      "Assaisonner avec le sel, le poivre et le jus de citron vert. Gouter et ajuster.",
+    ],
+  },
 ];
 
 const NUTRITION_PROFILES = {
@@ -1442,6 +1749,12 @@ const ITEM_UNIT_WEIGHTS = {
   "pineapple": { pcs: 800 },
   "butternut pumpkin": { pcs: 800 },
   "cauliflower": { head: 600 },
+  "spinach": { cup: 30, cups: 30 },
+  "kale": { cup: 25, cups: 25 },
+  "white beans": { cup: 170, cups: 170 },
+  "raw pistachios": { cup: 120, cups: 120 },
+  "celery stalks": { pcs: 40 },
+  "salmon fillets": { pcs: 150 },
   "couscous": { glass: 180 },
   "quinoa": { glass: 170 },
   "pepitas": { glass: 120, cup: 120 },
@@ -1457,6 +1770,7 @@ const ITEM_UNIT_WEIGHTS = {
   "ground cumin": { tsp: 2 },
   "ground coriander": { tsp: 2 },
   "ground ginger": { tsp: 2 },
+  "garam masala": { tsp: 2 },
   "turmeric": { tsp: 2, tbsp: 6, pinch: 0.3 },
   "cinnamon": { tsp: 2.6, pinch: 0.3 },
   "nutmeg": { tsp: 2, pinch: 0.3 },
@@ -1547,15 +1861,17 @@ function getNutritionProfileForItem(item) {
   }
   if (key.includes("milk")) return NUTRITION_PROFILES.milk;
   if (key.includes("chicken")) return NUTRITION_PROFILES.chicken;
+  if (key.includes("turkey")) return NUTRITION_PROFILES.chicken;
   if (key.includes("beef")) return NUTRITION_PROFILES.beef;
   if (key.includes("pork")) return NUTRITION_PROFILES.pork;
   if (key.includes("fish")) return NUTRITION_PROFILES.fish;
+  if (key.includes("salmon")) return NUTRITION_PROFILES.fish;
   if (key.includes("egg")) return NUTRITION_PROFILES.egg;
   if (key.includes("green beans")) return NUTRITION_PROFILES.vegetable;
   if (key.includes("lentil") || key.includes("beans") || key.includes("chickpeas") || key.includes("peas")) {
     return NUTRITION_PROFILES.legume;
   }
-  if (key.includes("almonds") || key.includes("pepitas") || key.includes("nuts")) return NUTRITION_PROFILES.nuts;
+  if (key.includes("almonds") || key.includes("pepitas") || key.includes("nuts") || key.includes("pistachio")) return NUTRITION_PROFILES.nuts;
   if (key.includes("honey") || key.includes("sugar") || key.includes("syrup")) return NUTRITION_PROFILES.sugar;
   if (key.includes("raisins") || key.includes("cranberries")) return NUTRITION_PROFILES.driedFruit;
   if (
@@ -1574,11 +1890,14 @@ function getNutritionProfileForItem(item) {
     key.includes("onion") ||
     key.includes("garlic") ||
     key.includes("carrot") ||
+    key.includes("celery") ||
     key.includes("capsicum") ||
     key.includes("broccolini") ||
     key.includes("spinach") ||
+    key.includes("kale") ||
     key.includes("zucchini") ||
     key.includes("eggplant") ||
+    key.includes("mushroom") ||
     key.includes("fennel") ||
     key.includes("cabbage") ||
     key.includes("brussels") ||
@@ -1654,6 +1973,14 @@ const recipeImageMap = {
   "eggplant-parmigiana": "https://www.recipetineats.com/tachyon/2021/05/Eggplant-Parmigiana_1-SQ.jpg",
   "poulet-curry-butternut-coco-semoule": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSg2QPGVSBI-FkvK_fZf3ePsxKhmLC7IZlA4A&s",
   "barramundi-curry-butternut-coco-semoule": "Recipes/9144d146-b224-4438-b0a3-29d9d8d76031.png",
+  "red-lentil-dal": "Recipes/red-lentil-dal.jpeg",
+  "chickpea-roasted-tomato-stew": "Recipes/chickpea-roasted-tomato-stew.jpg",
+  "turkey-vegetable-bolognese": "Recipes/turkey-vegetable-bolognese.jpeg",
+  "greek-white-bean-soup": "Recipes/greek-white-bean-soup.jpg",
+  "baked-salmon-tray-bake": "Recipes/baked-salmon-tray-bake.webp",
+  "black-bean-sweet-potato-filling": "Recipes/black-bean-sweet-potato-filling.webp",
+  "green-goddess-pasta-sauce": "Recipes/green-goddess-pasta-sauce.jpeg",
+  "chili-sin-carne": "Recipes/chili-sin-carne.jpeg",
   "spinach-ricotta-lasagne": "https://api.photon.aremedia.net.au/wp-content/uploads/sites/4/2015/03/19/e45f8cf903ef47ec94feb52dce841000/spinach-and-ricotta-lasagne.jpg?fit=2048%2C1536",
   "curry-epinards-pois-chiche": "https://mygoodnesskitchen.com/wp-content/uploads/2022/02/Chickpea-and-Spinach-Curry-Hero-1061.jpg.webp",
   "dahl-lentilles-epinards": "https://rainbowplantlife.com/wp-content/uploads/2024/05/Dal-Palak-hero-shots-3-of-4.jpg",
@@ -2106,11 +2433,20 @@ const ingredientTranslationsFr = {
   "tomato paste": "concentré de tomate",
   "canned tomatoes": "tomates en conserve",
   "canned chickpeas": "pois chiches en conserve",
+  "red lentils": "lentilles corail",
   "red kidney beans": "haricots rouges",
   "black beans": "haricots noirs",
   "coconut milk": "lait de coco",
+  "baby spinach": "jeunes pousses d'epinards",
+  "cherry tomatoes": "tomates cerises",
+  "fresh ginger": "gingembre frais",
+  "kale": "chou kale",
+  "white beans": "haricots blancs",
+  "raw pistachios": "pistaches nature",
   "curry powder": "curry",
+  "garam masala": "garam masala",
   "chilli powder": "poudre de chili",
+  "brown sugar": "sucre roux",
   "turmeric": "curcuma",
   "pineapple": "ananas",
   "couscous": "couscous",
@@ -2144,6 +2480,13 @@ const ingredientTranslationsFr = {
   "round zucchini": "courgettes rondes",
   "eggplants": "aubergines",
   "eggplant": "aubergine",
+  "mushrooms": "champignons",
+  "turkey mince": "dinde hachee",
+  "celery stalks": "branches de celeri",
+  "salmon fillets": "filets de saumon",
+  "sweet potato": "patate douce",
+  "sesame oil": "huile de sesame",
+  "sesame seeds": "graines de sesame",
   "ground beef": "bœuf haché",
   "beef mince": "bœuf haché",
   "cinnamon": "cannelle",
@@ -2554,7 +2897,7 @@ function getFrequencyRows(weekKeys) {
       label: getRecipeName(recipe),
       count,
     };
-  });
+  }).filter((row) => row.count > 0);
 
   const knownIds = new Set(recipes.map((recipe) => recipe.id));
   const unknownIdCounts = new Map();
@@ -2584,7 +2927,7 @@ function renderFrequencyTable() {
   frequencySubtitle.textContent = t("frequency_subtitle", rows.length, weekKeys.length);
   frequencyTable.innerHTML = "";
 
-  if (!weekKeys.length) {
+  if (!weekKeys.length || !rows.length) {
     frequencyTableWrap.style.display = "none";
     frequencyEmpty.style.display = "block";
     return;
@@ -2654,15 +2997,20 @@ function getUtensilLabel(recipe) {
   return t("utensil_multi");
 }
 
+function hasProteinIngredient(items, token) {
+  return items.some((item) => item.includes(token) && !item.includes("stock"));
+}
+
 function getProteinLabel(recipe) {
   const items = recipe.ingredients.map((ing) => ing.item.toLowerCase());
-  if (items.some((item) => item.includes("chicken"))) return t("protein_chicken");
-  if (items.some((item) => item.includes("beef"))) return t("protein_beef");
-  if (items.some((item) => item.includes("pork"))) return t("protein_pork");
-  if (items.some((item) => item.includes("fish"))) return t("protein_fish");
-  if (items.some((item) => item.includes("salmon"))) return t("protein_fish");
-  if (items.some((item) => item.includes("prawn"))) return t("protein_seafood");
-  if (items.some((item) => item.includes("lamb"))) return t("protein_beef");
+  if (hasProteinIngredient(items, "chicken")) return t("protein_chicken");
+  if (hasProteinIngredient(items, "turkey")) return t("protein_chicken");
+  if (hasProteinIngredient(items, "beef")) return t("protein_beef");
+  if (hasProteinIngredient(items, "pork")) return t("protein_pork");
+  if (hasProteinIngredient(items, "fish")) return t("protein_fish");
+  if (hasProteinIngredient(items, "salmon")) return t("protein_fish");
+  if (hasProteinIngredient(items, "prawn")) return t("protein_seafood");
+  if (hasProteinIngredient(items, "lamb")) return t("protein_beef");
   if (items.some((item) => item.includes("chickpea") || item.includes("lentil") || item.includes("bean"))) {
     return t("protein_vegetarian");
   }
@@ -2671,13 +3019,14 @@ function getProteinLabel(recipe) {
 
 function getProteinKey(recipe) {
   const items = recipe.ingredients.map((ing) => ing.item.toLowerCase());
-  if (items.some((item) => item.includes("chicken"))) return "chicken";
-  if (items.some((item) => item.includes("beef"))) return "beef";
-  if (items.some((item) => item.includes("pork"))) return "pork";
-  if (items.some((item) => item.includes("fish"))) return "fish";
-  if (items.some((item) => item.includes("salmon"))) return "fish";
-  if (items.some((item) => item.includes("prawn"))) return "seafood";
-  if (items.some((item) => item.includes("lamb"))) return "beef";
+  if (hasProteinIngredient(items, "chicken")) return "chicken";
+  if (hasProteinIngredient(items, "turkey")) return "chicken";
+  if (hasProteinIngredient(items, "beef")) return "beef";
+  if (hasProteinIngredient(items, "pork")) return "pork";
+  if (hasProteinIngredient(items, "fish")) return "fish";
+  if (hasProteinIngredient(items, "salmon")) return "fish";
+  if (hasProteinIngredient(items, "prawn")) return "seafood";
+  if (hasProteinIngredient(items, "lamb")) return "beef";
   return "vegetarian";
 }
 
@@ -2690,6 +3039,10 @@ function getMealType(recipe) {
     return "bake";
   }
   return "main";
+}
+
+function getMealLabel(recipe) {
+  return t(`meal_${getMealType(recipe)}`);
 }
 
 function getRecipeIcon(recipe) {
@@ -2784,12 +3137,16 @@ const MATCHER_INGREDIENT_ALIASES = {
   "white onion": "onion",
   "yellow onion": "onion",
   "fresh spinach": "spinach",
+  "baby spinach": "spinach",
+  "cherry tomatoes": "tomatoes",
+  "kale": "spinach",
   "fresh thyme": "thyme",
   "dried thyme": "thyme",
   "dried oregano": "oregano",
   "dried basil": "basil",
   "fresh coriander": "coriander",
   "beef mince": "ground beef",
+  "turkey mince": "turkey",
   "egg": "eggs",
 };
 
@@ -3221,29 +3578,23 @@ function renderRecipeGrid() {
     title.className = "recipe-title";
     title.textContent = getRecipeName(recipe);
 
-    const rating = document.createElement("div");
-    renderRatingStars(rating, recipe.id);
-    const line = document.createElement("div");
-    line.className = "recipe-line";
     const utensil = getUtensilLabel(recipe);
     const protein = getProteinLabel(recipe);
-    const lastSelected = getLastSelectedLabel(recipe.id);
     const time = computeTimeBreakdown(recipe);
-    const parts = [
-      `${t("time_total")} ${time.total} min`,
-      `${t("time_cook")} ${time.cook} min`,
-      `${DEFAULT_SERVINGS} ${t("servings_label")}`,
-      utensil,
-      protein,
-      lastSelected,
-    ];
+    const meta = document.createElement("p");
+    meta.className = "recipe-quiet-meta";
+    meta.textContent = `${time.total} min · ${recipe.servings} ${t("servings_label")} · ${protein}`;
+
+    const line = document.createElement("div");
+    line.className = "recipe-line";
+    const parts = [utensil, getMealLabel(recipe)];
     parts.forEach((part) => {
       const pill = document.createElement("span");
       pill.className = "recipe-pill";
       pill.textContent = part;
       line.appendChild(pill);
     });
-    info.append(title, rating, line);
+    info.append(title, meta, line);
 
     const actionWrap = document.createElement("div");
 
@@ -3566,6 +3917,7 @@ function groupShoppingItems(items) {
     "paprika",
     "turmeric",
     "curry powder",
+    "garam masala",
     "oregano",
     "thyme",
     "mixed herbs",
@@ -3575,6 +3927,11 @@ function groupShoppingItems(items) {
     "bay leaf",
     "mustard",
     "dijon mustard",
+    "brown sugar",
+    "soy sauce",
+    "honey",
+    "sesame oil",
+    "sesame seeds",
   ]);
 
   const categories = new Map();
