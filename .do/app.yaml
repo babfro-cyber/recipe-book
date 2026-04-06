@@ -4,7 +4,7 @@ static_sites:
     environment_slug: html
     github:
       repo: babfro-cyber/recipe-book
-      branch: main
+      branch: codex/digitalocean-redeploy
       deploy_on_push: true
     source_dir: /
     build_command: sh scripts/build-static-site.sh

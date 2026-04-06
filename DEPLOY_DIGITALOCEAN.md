@@ -6,7 +6,7 @@ The simplest recovery path is DigitalOcean App Platform:
 
 1. Push this repo to GitHub so DigitalOcean can deploy the latest version.
 2. In DigitalOcean, go to `Create -> App Platform`.
-3. Choose GitHub as the source and select `babfro-cyber/recipe-book`, branch `main`.
+3. Choose GitHub as the source and select `babfro-cyber/recipe-book`, branch `codex/digitalocean-redeploy`.
 4. If DigitalOcean asks for manual settings, use:
    - Component type: `Static Site`
    - Source directory: `/`
