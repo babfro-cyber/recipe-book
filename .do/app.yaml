@@ -1,5 +1,4 @@
 name: recipe-book
-region: syd
 static_sites:
   - name: pantry-pilot
     environment_slug: html
