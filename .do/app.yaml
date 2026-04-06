@@ -1,0 +1,12 @@
+name: recipe-book
+static_sites:
+  - name: pantry-pilot
+    environment_slug: html
+    github:
+      repo: babfro-cyber/recipe-book
+      branch: main
+      deploy_on_push: true
+    source_dir: /
+    build_command: sh scripts/build-static-site.sh
+    output_dir: dist
+    index_document: index.html

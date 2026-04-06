@@ -6,7 +6,7 @@
     <title>PantryPilot — Weekly Cooking Planner</title>
     <link rel="stylesheet" href="styles.css" />
   </head>
-  <body>
+  <body class="view-plan">
     <div class="page">
       <header class="hero">
         <div>
@@ -15,25 +15,19 @@
           <p class="subhead" data-i18n="hero_subhead">
             Choose recipes, build the shopping list, and cook.
           </p>
+          <div class="hero-week" id="top-week-shell">
+            <label>
+              <span data-i18n="week_starting">Week starting</span>
+              <select id="top-week-picker"></select>
+            </label>
+          </div>
           <div class="hero-actions">
             <button class="primary" id="jump-planner" data-i18n="plan_week">Plan the week</button>
             <button class="ghost" id="jump-cook" data-i18n="start_cooking">Start cooking</button>
+            <button class="ghost" id="open-frequency" data-i18n="frequency_view">Frequency view</button>
           </div>
         </div>
-        <div class="hero-card">
-          <div class="hero-week">
-            <label>
-              <span data-i18n="top_week">Week</span>
-              <div class="week-picker">
-                <button type="button" class="week-trigger" id="top-week-trigger"></button>
-                <input type="week" id="top-week-picker" class="week-input" />
-                <div class="week-popover" id="top-week-popover" aria-hidden="true"></div>
-              </div>
-            </label>
-            <div class="week-label" id="top-week-label"></div>
-          </div>
-          <div class="hero-count" id="hero-count"></div>
-        </div>
+        <div class="hero-count" id="hero-count"></div>
         <div class="language-switch">
           <label>
             <span data-i18n="language">Language</span>
@@ -43,10 +37,15 @@
             </select>
           </label>
         </div>
+        <button class="settings-btn settings-floating" id="open-settings" type="button" aria-label="Open settings">⚙</button>
       </header>
 
       <section class="layout" id="planner">
-        <div class="panel">
+        <div class="planner-jump" aria-hidden="false">
+          <button class="ghost" id="jump-library" data-i18n="recipe_library">Recipe Library</button>
+          <button class="ghost" id="jump-match" data-i18n="pantry_matcher">Recipe Matcher</button>
+        </div>
+        <div class="panel" id="planner-library">
           <div class="panel-header">
             <h2 data-i18n="recipe_library">Recipe Library</h2>
             <p data-i18n="recipe_library_sub">Tap a recipe to add it to your picks. Scroll inside the list to keep the rest of the page visible.</p>
@@ -54,7 +53,7 @@
           <div class="library-filters">
             <input type="search" id="recipe-search" data-i18n-placeholder="search_placeholder" placeholder="Search recipes" />
             <select id="filter-utensil">
-              <option value="all" data-i18n="filter_all">All</option>
+              <option value="all" data-i18n="filter_utensil">Utensil</option>
               <option value="thermomix" data-i18n="utensil_thermomix">Thermomix</option>
               <option value="oven" data-i18n="utensil_oven">Oven</option>
               <option value="airfryer" data-i18n="utensil_airfryer">Airfryer</option>
@@ -63,7 +62,7 @@
               <option value="multi" data-i18n="utensil_multi">Multi</option>
             </select>
             <select id="filter-protein">
-              <option value="all" data-i18n="filter_all">All</option>
+              <option value="all" data-i18n="filter_protein">Protein</option>
               <option value="chicken" data-i18n="protein_chicken">Chicken</option>
               <option value="beef" data-i18n="protein_beef">Beef</option>
               <option value="pork" data-i18n="protein_pork">Pork</option>
@@ -72,37 +71,47 @@
               <option value="vegetarian" data-i18n="protein_vegetarian">Vegetarian</option>
             </select>
             <select id="filter-meal">
-              <option value="all" data-i18n="filter_all">All</option>
+              <option value="all" data-i18n="filter_meal">Meal</option>
               <option value="main" data-i18n="meal_main">Main</option>
               <option value="soup" data-i18n="meal_soup">Soup</option>
               <option value="salad" data-i18n="meal_salad">Salad</option>
               <option value="bake" data-i18n="meal_bake">Bake</option>
             </select>
           </div>
+          <div class="selected-week" id="selected-week">
+            <div class="selected-week-head">
+              <strong data-i18n="selected_recipes">Selected recipes</strong>
+              <span class="week-label" id="week-label"></span>
+            </div>
+            <div class="selected-list" id="selected-list"></div>
+          </div>
           <div class="recipe-grid" id="recipe-grid"></div>
+          <div class="recipe-details" id="recipe-details"></div>
         </div>
 
-        <div class="panel">
+        <div class="panel" id="planner-match">
           <div class="panel-header">
-            <h2 data-i18n="recipe_picker">Recipe Picker</h2>
-            <p data-i18n="recipe_picker_sub">Select 3-6 recipes for the week. No day-by-day planning required.</p>
+            <h2 data-i18n="pantry_matcher">Recipe Matcher</h2>
+            <p data-i18n="pantry_matcher_sub">Search recipe ingredients, add what you have, then see recipes ranked by matching items.</p>
           </div>
-          <div class="week-controls">
-            <label>
-              <span data-i18n="week_starting">Week starting</span>
-              <div class="week-picker">
-                <button type="button" class="week-trigger" id="week-trigger"></button>
-                <input type="week" id="week-picker" class="week-input" />
-                <div class="week-popover" id="week-popover" aria-hidden="true"></div>
-              </div>
-            </label>
-            <div class="week-label" id="week-label"></div>
+          <div class="pantry-search">
+            <input
+              type="search"
+              id="pantry-ingredient-search"
+              data-i18n-placeholder="pantry_search_placeholder"
+              placeholder="Search ingredients from recipes"
+            />
+            <div class="pantry-search-results" id="pantry-search-results"></div>
           </div>
-          <div class="pick-list" id="pick-list"></div>
+          <div class="pantry-selected" id="pantry-selected"></div>
+          <div class="list-actions">
+            <button class="ghost" id="pantry-clear" data-i18n="pantry_clear">Clear pantry picks</button>
+          </div>
+          <div class="pantry-match-list" id="pantry-match-list"></div>
         </div>
       </section>
 
-      <section class="layout">
+      <section class="layout" id="shopping">
         <div class="panel">
           <div class="panel-header">
             <h2 data-i18n="shopping_list">Auto Shopping List</h2>
@@ -111,9 +120,6 @@
           <div class="shopping-list" id="shopping-list"></div>
           <div class="recent-weeks" id="recent-weeks"></div>
           <div class="list-actions">
-            <a class="primary link-btn" id="woolworths-link" href="https://www.woolworths.com.au/" target="_blank" rel="noopener noreferrer">
-              <span data-i18n="order_woolworths">Order on Woolworths</span>
-            </a>
             <button class="ghost" id="clear-checks" data-i18n="clear_checks">Clear checks</button>
             <button class="ghost" id="clear-plan" data-i18n="clear_plan">Clear plan</button>
           </div>
@@ -127,18 +133,8 @@
             <p data-i18n="cook_mode_sub">Select a planned recipe to follow the steps.</p>
           </div>
           <div class="cook-controls">
-            <label class="cook-week">
-              <span data-i18n="cook_week">Week to cook</span>
-              <div class="week-picker">
-                <button type="button" class="week-trigger" id="cook-week-trigger"></button>
-                <input type="week" id="cook-week-picker" class="week-input" />
-                <div class="week-popover" id="cook-week-popover" aria-hidden="true"></div>
-              </div>
-            </label>
             <div class="week-label" id="cook-week-label"></div>
-            <button class="ghost" id="cook-sync-week" data-i18n="cook_sync_week">Sync to plan week</button>
             <select id="cook-select"></select>
-            <button class="primary" id="start-cook" data-i18n="load_instructions">Load instructions</button>
           </div>
           <div class="cook-card" id="cook-card">
             <div class="empty-state">
@@ -154,6 +150,56 @@
       </footer>
     </div>
 
+    <div class="modal" id="recipe-modal" aria-hidden="true">
+      <div class="modal-backdrop" data-modal-close="true"></div>
+      <div class="modal-card" role="dialog" aria-modal="true" aria-labelledby="recipe-modal-title">
+        <button class="modal-close" type="button" data-modal-close="true">×</button>
+        <div class="modal-body" id="recipe-modal-body"></div>
+      </div>
+    </div>
+    <div class="modal" id="chilli-modal" aria-hidden="true">
+      <div class="modal-backdrop" data-modal-close="true"></div>
+      <div class="modal-card" role="dialog" aria-modal="true" aria-labelledby="chilli-modal-title">
+        <button class="modal-close" type="button" data-modal-close="true">×</button>
+        <div class="modal-body">
+          <h4 id="chilli-modal-title">Chilli</h4>
+          <img class="fun-modal-image" src="https://www.publicdomainpictures.net/pictures/390000/nahled/pin-up-girl-vargas-girl-40s-50s-1613546874pDF.png" alt="Pin-up illustration" />
+        </div>
+      </div>
+    </div>
+    <div class="modal" id="settings-modal" aria-hidden="true">
+      <div class="modal-backdrop" data-modal-close="true"></div>
+      <div class="modal-card" role="dialog" aria-modal="true" aria-labelledby="settings-modal-title">
+        <button class="modal-close" type="button" data-modal-close="true">×</button>
+        <div class="modal-body">
+          <h4 id="settings-modal-title">Settings</h4>
+          <div class="settings-group">
+            <label class="settings-label" for="retailer-select">Retailer</label>
+            <select id="retailer-select">
+              <option value="woolworths">Woolworths</option>
+              <option value="colruyt">Colruyt</option>
+            </select>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="modal" id="frequency-modal" aria-hidden="true">
+      <div class="modal-backdrop" data-modal-close="true"></div>
+      <div class="modal-card modal-card-wide" role="dialog" aria-modal="true" aria-labelledby="frequency-title">
+        <button class="modal-close" type="button" data-modal-close="true">×</button>
+        <div class="modal-body">
+          <h4 id="frequency-title" data-i18n="frequency_title">Cooking frequency</h4>
+          <div class="frequency-toolbar">
+            <button class="ghost" id="close-frequency" type="button" data-i18n="frequency_back">Back to planner</button>
+            <p id="frequency-subtitle"></p>
+          </div>
+          <div class="frequency-table-wrap" id="frequency-table-wrap">
+            <table class="frequency-table" id="frequency-table"></table>
+          </div>
+          <p class="pantry-hint" id="frequency-empty" data-i18n="frequency_empty">Select some recipes in different weeks to see the frequency table.</p>
+        </div>
+      </div>
+    </div>
     <script src="app.js"></script>
   </body>
 </html>
