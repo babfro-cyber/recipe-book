@@ -2014,6 +2014,13 @@ function escapeSvgText(value) {
     .replace(/'/g, "&#39;");
 }
 
+function escapeCssUrl(value) {
+  return String(value)
+    .replace(/\\/g, "\\\\")
+    .replace(/"/g, '\\"')
+    .replace(/\r?\n/g, "");
+}
+
 function splitPosterTitle(title, maxChars = 22, maxLines = 3) {
   const words = String(title).split(/\s+/).filter(Boolean);
   const lines = [];
@@ -3978,23 +3985,33 @@ function renderRecipeGrid() {
     const imageSrc = getRecipeImage(recipe);
     const fallbackSrc = buildRecipeFallbackImage(recipe);
     const img = document.createElement("img");
+    const isBookPageImageSrc = isRecipeBookPageImage(imageSrc);
+    img.className = "recipe-thumb-image";
     img.src = imageSrc || fallbackSrc;
     img.alt = getRecipeName(recipe);
     // Safari can fail to fetch/decode lazy images inside scrollable containers.
     img.loading = "eager";
     img.decoding = "async";
+    img.draggable = false;
     if (!imageSrc) {
       thumb.classList.add("is-fallback");
       img.dataset.synthetic = "true";
       img.classList.add("fit-fallback-art");
     }
-    if (isRecipeBookPageImage(imageSrc)) {
+    if (isBookPageImageSrc) {
+      thumb.classList.add("is-book-page");
+      thumb.style.setProperty("--recipe-thumb-backdrop", `url("${escapeCssUrl(imageSrc)}")`);
       img.classList.add("fit-book-page");
     }
+    const clearBookPagePresentation = () => {
+      thumb.classList.remove("is-book-page");
+      thumb.style.removeProperty("--recipe-thumb-backdrop");
+      img.classList.remove("fit-book-page");
+    };
     const swapToFallbackArt = () => {
       thumb.classList.add("is-fallback");
       img.dataset.synthetic = "true";
-      img.classList.remove("fit-book-page");
+      clearBookPagePresentation();
       img.classList.add("fit-fallback-art");
       img.src = fallbackSrc;
     };
