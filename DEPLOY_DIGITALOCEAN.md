@@ -5,15 +5,14 @@ This app is a static site. It does not need a Droplet to run.
 The simplest recovery path is DigitalOcean App Platform:
 
 1. Push this repo to GitHub so DigitalOcean can deploy the latest version.
-2. In DigitalOcean, go to `Create -> App Platform`.
-3. Choose GitHub as the source and select `babfro-cyber/recipe-book`, branch `codex/digitalocean-redeploy`.
-4. If DigitalOcean asks for manual settings, use:
+2. Use the included app spec with `doctl apps create --spec .do/app.yaml`, or create an App Platform app from the public repo `https://github.com/babfro-cyber/recipe-book.git` on branch `codex/digitalocean-redeploy`.
+3. If DigitalOcean asks for manual settings, use:
    - Component type: `Static Site`
    - Source directory: `/`
    - Build command: `sh scripts/build-static-site.sh`
    - Output directory: `dist`
-5. Deploy the app.
-6. If you used a custom domain before, attach the same domain to the new app.
+4. Deploy the app.
+5. If you used a custom domain before, attach the same domain to the new app.
 
 ## Why reuse the same domain
 

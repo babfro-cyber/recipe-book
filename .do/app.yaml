@@ -2,10 +2,9 @@ name: recipe-book
 static_sites:
   - name: pantry-pilot
     environment_slug: html
-    github:
-      repo: babfro-cyber/recipe-book
+    git:
+      repo_clone_url: https://github.com/babfro-cyber/recipe-book.git
       branch: codex/digitalocean-redeploy
-      deploy_on_push: true
     source_dir: /
     build_command: sh scripts/build-static-site.sh
     output_dir: dist
