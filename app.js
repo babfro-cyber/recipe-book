@@ -2151,6 +2151,7 @@ const storedChecksByWeek = safeParseStorage("pantryChecksByWeek", {});
 const storedServingsByWeek = safeParseStorage("pantryServingsByWeek", {});
 const storedCookDoneByWeek = safeParseStorage("pantryCookDoneByWeek", {});
 const storedCookStepChecksByWeek = safeParseStorage("pantryCookStepChecksByWeek", {});
+const storedFavoriteRecipes = safeParseStorage("pantryFavoriteRecipes", {});
 const storedRatings = safeParseStorage("pantryRatingsByRecipe", {});
 const storedRecipeNotes = safeParseStorage("pantryRecipeNotes", {});
 const storedPantryInventory = safeParseStorage("pantryIngredientInventory", {});
@@ -2160,6 +2161,7 @@ let checkedItemsByWeek = { ...storedChecksByWeek };
 let selectedServingsByWeek = { ...storedServingsByWeek };
 let cookDoneByWeek = { ...storedCookDoneByWeek };
 let cookStepChecksByWeek = { ...storedCookStepChecksByWeek };
+let favoriteRecipesById = { ...storedFavoriteRecipes };
 let ratingsByRecipe = { ...storedRatings };
 let recipeNotesById = { ...storedRecipeNotes };
 let pantryInventory = { ...storedPantryInventory };
@@ -2215,6 +2217,9 @@ const weekLabel = document.getElementById("week-label");
 const recentWeeks = document.getElementById("recent-weeks");
 const cookWeekLabel = document.getElementById("cook-week-label");
 const topWeekPicker = document.getElementById("top-week-picker");
+const duplicateLastWeekButton = document.getElementById("duplicate-last-week");
+const clearWeekButton = document.getElementById("clear-week");
+const weekShortcutsNote = document.getElementById("week-shortcuts-note");
 const topWeekLabel = document.getElementById("top-week-label");
 const topWeekShell = document.getElementById("top-week-shell");
 const topWeekLabelBlock = document.getElementById("top-week-label");
@@ -2286,6 +2291,10 @@ const translations = {
     flow_action_continue: "Continue cooking",
     plan_week: "Plan the week",
     start_cooking: "Start cooking",
+    duplicate_last_week: "Duplicate last week",
+    duplicate_last_week_note: (count, weekLabel) =>
+      count ? `Copy ${count} recipe${count === 1 ? "" : "s"} from ${weekLabel}.` : "Nothing was planned last week yet.",
+    clear_week_confirm: (weekLabel) => `Clear recipes, servings, checks, and cooking progress for ${weekLabel}?`,
     selected_recipes: "Selected recipes",
     summary_title: "Plan summary",
     summary_week: "Planning",
@@ -2393,9 +2402,14 @@ const translations = {
     last_selected: (weeks) =>
       weeks === 0 ? "Last selected this week" : `Last selected ${weeks} week${weeks === 1 ? "" : "s"} ago`,
     never_selected: "Never selected",
+    selected_last_week: "Last week",
+    selected_previously: (weeks) => weeks <= 1 ? "Last week" : `${weeks} weeks ago`,
+    favorite_badge: "Favorite",
+    favorite_add: "Add to favorites",
+    favorite_remove: "Remove from favorites",
     order_woolworths: "Order on Woolworths",
     clear_checks: "Clear checks",
-    clear_plan: "Clear plan",
+    clear_plan: "Clear week",
     cook_mode: "Cook Mode",
     cook_mode_sub: "Use this week's selected recipes in a focused cooking view.",
     load_instructions: "Load instructions",
@@ -2491,6 +2505,10 @@ const translations = {
     flow_action_continue: "Reprendre la recette",
     plan_week: "Planifier la semaine",
     start_cooking: "Commencer à cuisiner",
+    duplicate_last_week: "Dupliquer la semaine passée",
+    duplicate_last_week_note: (count, weekLabel) =>
+      count ? `Copier ${count} recette${count === 1 ? "" : "s"} depuis ${weekLabel}.` : "Aucune recette n'était prévue la semaine passée.",
+    clear_week_confirm: (weekLabel) => `Effacer les recettes, portions, coches et progrès de cuisine pour ${weekLabel} ?`,
     selected_recipes: "Recettes sélectionnées",
     summary_title: "Résumé du planning",
     summary_week: "Semaine",
@@ -2598,9 +2616,14 @@ const translations = {
     last_selected: (weeks) =>
       weeks === 0 ? "Selectionnee cette semaine" : `Selectionnee il y a ${weeks} semaine${weeks === 1 ? "" : "s"}`,
     never_selected: "Jamais selectionnee",
+    selected_last_week: "Semaine passée",
+    selected_previously: (weeks) => weeks <= 1 ? "Semaine passée" : `Il y a ${weeks} semaines`,
+    favorite_badge: "Favori",
+    favorite_add: "Ajouter aux favoris",
+    favorite_remove: "Retirer des favoris",
     order_woolworths: "Commander sur Woolworths",
     clear_checks: "Effacer les coches",
-    clear_plan: "Vider la sélection",
+    clear_plan: "Effacer la semaine",
     cook_mode: "Mode cuisine",
     cook_mode_sub: "Utilisez seulement les recettes sélectionnées cette semaine dans une vue cuisine ciblée.",
     load_instructions: "Charger les instructions",
@@ -2757,6 +2780,7 @@ function persistLocalState() {
   safeSetItem("pantryServingsByWeek", JSON.stringify(selectedServingsByWeek));
   safeSetItem("pantryCookDoneByWeek", JSON.stringify(cookDoneByWeek));
   safeSetItem("pantryCookStepChecksByWeek", JSON.stringify(cookStepChecksByWeek));
+  safeSetItem("pantryFavoriteRecipes", JSON.stringify(favoriteRecipesById));
   safeSetItem("pantryRatingsByRecipe", JSON.stringify(ratingsByRecipe));
   safeSetItem("pantryRecipeNotes", JSON.stringify(recipeNotesById));
   safeSetItem("pantryIngredientInventory", JSON.stringify(pantryInventory));
@@ -2789,6 +2813,7 @@ function buildPlannerStateBlob() {
     selectedServingsByWeek,
     cookDoneByWeek,
     cookStepChecksByWeek,
+    favoriteRecipesById,
     ratingsByRecipe,
     recipeNotesById,
     pantryInventory,
@@ -2829,6 +2854,7 @@ function sanitizePlannerStateBlob(blob) {
     selectedServingsByWeek: clonePlainObject(blob.selectedServingsByWeek),
     cookDoneByWeek: cloneTwoLevelObjectMap(blob.cookDoneByWeek),
     cookStepChecksByWeek: cloneThreeLevelObjectMap(blob.cookStepChecksByWeek),
+    favoriteRecipesById: clonePlainObject(blob.favoriteRecipesById),
     ratingsByRecipe: clonePlainObject(blob.ratingsByRecipe),
     recipeNotesById: clonePlainObject(blob.recipeNotesById),
     pantryInventory: clonePlainObject(blob.pantryInventory),
@@ -2847,6 +2873,7 @@ function applyPlannerStateBlob(blob) {
   selectedServingsByWeek = sanitized.selectedServingsByWeek;
   cookDoneByWeek = sanitized.cookDoneByWeek;
   cookStepChecksByWeek = sanitized.cookStepChecksByWeek;
+  favoriteRecipesById = sanitized.favoriteRecipesById;
   ratingsByRecipe = sanitized.ratingsByRecipe;
   recipeNotesById = sanitized.recipeNotesById;
   pantryInventory = sanitized.pantryInventory;
@@ -3321,6 +3348,224 @@ function openCookRecipe(recipeId, { scroll = false } = {}) {
   }
 }
 
+function normalizeWeekRecipeIds(value) {
+  return Array.from(new Set(Array.isArray(value) ? value : [])).filter((recipeId) => Boolean(getRecipeById(recipeId)));
+}
+
+function cleanupWeekState(weekKey) {
+  if (!weekKey) return;
+  const picks = normalizeWeekRecipeIds(selectedRecipesByWeek[weekKey]);
+  if (picks.length) {
+    selectedRecipesByWeek[weekKey] = picks;
+  } else {
+    delete selectedRecipesByWeek[weekKey];
+  }
+
+  const checks = clonePlainObject(checkedItemsByWeek[weekKey]);
+  if (Object.keys(checks).length) {
+    checkedItemsByWeek[weekKey] = checks;
+  } else {
+    delete checkedItemsByWeek[weekKey];
+  }
+
+  const servings = clonePlainObject(selectedServingsByWeek[weekKey]);
+  const validServings = {};
+  Object.keys(servings).forEach((recipeId) => {
+    const value = Number(servings[recipeId]);
+    if (picks.includes(recipeId) && Number.isFinite(value) && value > 0) {
+      validServings[recipeId] = value;
+    }
+  });
+  if (Object.keys(validServings).length) {
+    selectedServingsByWeek[weekKey] = validServings;
+  } else {
+    delete selectedServingsByWeek[weekKey];
+  }
+
+  pruneCookProgressForWeek(weekKey);
+
+  const doneForWeek = clonePlainObject(cookDoneByWeek[weekKey]);
+  if (Object.keys(doneForWeek).length) {
+    cookDoneByWeek[weekKey] = doneForWeek;
+  } else {
+    delete cookDoneByWeek[weekKey];
+  }
+
+  const stepsForWeek = clonePlainObject(cookStepChecksByWeek[weekKey]);
+  if (Object.keys(stepsForWeek).length) {
+    cookStepChecksByWeek[weekKey] = stepsForWeek;
+  } else {
+    delete cookStepChecksByWeek[weekKey];
+  }
+}
+
+function getAdjacentWeekKey(weekKey, offset) {
+  if (!weekKey) return "";
+  const [yearPart, weekPart] = weekKey.split("-W");
+  const year = parseInt(yearPart, 10);
+  const week = parseInt(weekPart, 10);
+  if (!year || !week || !Number.isFinite(offset)) return "";
+  const date = getDateFromISOWeek(year, week);
+  date.setDate(date.getDate() + offset * 7);
+  return getWeekKeyFromDate(date);
+}
+
+function getLastWeekKey(weekKey = currentWeekKey) {
+  return getAdjacentWeekKey(weekKey, -1);
+}
+
+function getWeekRecipeIds(weekKey) {
+  return normalizeWeekRecipeIds(selectedRecipesByWeek[weekKey]);
+}
+
+function hasWeekSelections(weekKey) {
+  return getWeekRecipeIds(weekKey).length > 0;
+}
+
+function hasWeekPlanningData(weekKey) {
+  return Boolean(
+    hasWeekSelections(weekKey) ||
+    Object.keys(clonePlainObject(checkedItemsByWeek[weekKey])).length ||
+    Object.keys(clonePlainObject(selectedServingsByWeek[weekKey])).length ||
+    Object.keys(clonePlainObject(cookDoneByWeek[weekKey])).length ||
+    Object.keys(clonePlainObject(cookStepChecksByWeek[weekKey])).length
+  );
+}
+
+function getLastWeekPlanningMeta(weekKey = currentWeekKey) {
+  const sourceWeekKey = getLastWeekKey(weekKey);
+  const recipeIds = getWeekRecipeIds(sourceWeekKey);
+  return {
+    sourceWeekKey,
+    recipeIds,
+  };
+}
+
+function isFavoriteRecipe(recipeId) {
+  return Boolean(favoriteRecipesById[recipeId]);
+}
+
+function toggleFavoriteRecipe(recipeId) {
+  if (!recipeId) return;
+  if (favoriteRecipesById[recipeId]) {
+    delete favoriteRecipesById[recipeId];
+  } else {
+    favoriteRecipesById[recipeId] = true;
+  }
+  saveState();
+}
+
+function getHistoricalSelectedWeekKey(recipeId, referenceWeekKey = currentWeekKey) {
+  if (!recipeId) return "";
+  let lastKey = "";
+  let lastDate = null;
+  const referenceDate = referenceWeekKey
+    ? (() => {
+      const [yearPart, weekPart] = referenceWeekKey.split("-W");
+      const year = parseInt(yearPart, 10);
+      const week = parseInt(weekPart, 10);
+      return year && week ? getDateFromISOWeek(year, week) : null;
+    })()
+    : null;
+
+  Object.keys(selectedRecipesByWeek).forEach((weekKey) => {
+    if (weekKey === referenceWeekKey) return;
+    const picks = selectedRecipesByWeek[weekKey] || [];
+    if (!picks.includes(recipeId)) return;
+    const [yearPart, weekPart] = weekKey.split("-W");
+    const year = parseInt(yearPart, 10);
+    const week = parseInt(weekPart, 10);
+    if (!year || !week) return;
+    const date = getDateFromISOWeek(year, week);
+    if (referenceDate && date >= referenceDate) return;
+    if (!lastDate || date > lastDate) {
+      lastDate = date;
+      lastKey = weekKey;
+    }
+  });
+
+  return lastKey;
+}
+
+function getHistoricalSelectionLabel(recipeId, referenceWeekKey = currentWeekKey) {
+  const lastKey = getHistoricalSelectedWeekKey(recipeId, referenceWeekKey);
+  if (!lastKey) return "";
+  const baseWeekKey = referenceWeekKey || getCurrentWeekKey();
+  const diff = getWeeksBetween(baseWeekKey, lastKey);
+  const weeks = diff === null ? 0 : Math.max(1, diff);
+  return weeks <= 1 ? t("selected_last_week") : t("selected_previously", weeks);
+}
+
+function isRecipePreviouslySelected(recipeId, referenceWeekKey = currentWeekKey) {
+  return Boolean(getHistoricalSelectedWeekKey(recipeId, referenceWeekKey));
+}
+
+function applyWeekPlan({ weekKey, recipeIds, servingsByRecipe }) {
+  if (!weekKey) return;
+  const normalizedRecipeIds = normalizeWeekRecipeIds(recipeIds);
+  const nextServings = {};
+  normalizedRecipeIds.forEach((recipeId) => {
+    const sourceValue = Number(servingsByRecipe?.[recipeId]);
+    if (Number.isFinite(sourceValue) && sourceValue > 0) {
+      nextServings[recipeId] = sourceValue;
+    }
+  });
+
+  selectedRecipes = [...normalizedRecipeIds];
+  selectedServings = { ...nextServings };
+  checkedItems = {};
+  currentCookRecipeId = "";
+  delete checkedItemsByWeek[weekKey];
+  delete cookDoneByWeek[weekKey];
+  delete cookStepChecksByWeek[weekKey];
+  saveState();
+  refreshAll();
+}
+
+function duplicateLastWeekPlan() {
+  const { sourceWeekKey, recipeIds } = getLastWeekPlanningMeta(currentWeekKey);
+  if (!sourceWeekKey || !recipeIds.length) return;
+  currentStage = "plan";
+  setView("plan");
+  applyWeekPlan({
+    weekKey: currentWeekKey,
+    recipeIds,
+    servingsByRecipe: selectedServingsByWeek[sourceWeekKey] || {},
+  });
+}
+
+function clearCurrentWeekPlan() {
+  const weekLabelText = formatWeekLabel(currentWeekKey);
+  if (typeof window !== "undefined" && window.confirm && !window.confirm(t("clear_week_confirm", weekLabelText))) {
+    return;
+  }
+  currentStage = "plan";
+  setView("plan");
+  applyWeekPlan({
+    weekKey: currentWeekKey,
+    recipeIds: [],
+    servingsByRecipe: {},
+  });
+}
+
+function renderPlanningShortcuts() {
+  const { sourceWeekKey, recipeIds } = getLastWeekPlanningMeta(currentWeekKey);
+  const currentHasSelections = hasWeekPlanningData(currentWeekKey);
+  if (duplicateLastWeekButton) {
+    duplicateLastWeekButton.disabled = !sourceWeekKey || !recipeIds.length;
+  }
+  if (clearWeekButton) {
+    clearWeekButton.disabled = !currentHasSelections;
+  }
+  if (weekShortcutsNote) {
+    weekShortcutsNote.textContent = t(
+      "duplicate_last_week_note",
+      recipeIds.length,
+      sourceWeekKey ? formatWeekLabel(sourceWeekKey) : ""
+    );
+  }
+}
+
 const jumpPlanner = document.getElementById("jump-planner");
 const jumpCook = document.getElementById("jump-cook");
 const jumpLibrary = document.getElementById("jump-library");
@@ -3593,7 +3838,7 @@ function saveState() {
   selectedRecipesByWeek[currentWeekKey] = [...selectedRecipes];
   checkedItemsByWeek[currentWeekKey] = { ...checkedItems };
   selectedServingsByWeek[currentWeekKey] = { ...selectedServings };
-  pruneCookProgressForWeek(currentWeekKey);
+  cleanupWeekState(currentWeekKey);
   persistLocalState();
   scheduleRemoteSync();
 }
@@ -3641,14 +3886,24 @@ function renderSelectedInLibrary() {
 
     const left = document.createElement("div");
     left.className = "pick-main";
+    const titleRow = document.createElement("div");
+    titleRow.className = "pick-title-row";
     const title = document.createElement("strong");
     title.textContent = getRecipeName(recipe);
+    titleRow.appendChild(title);
+    if (isFavoriteRecipe(recipeId)) {
+      const favoriteBadge = document.createElement("span");
+      favoriteBadge.className = "pick-favorite-badge";
+      favoriteBadge.textContent = "★";
+      favoriteBadge.title = t("favorite_badge");
+      titleRow.appendChild(favoriteBadge);
+    }
     const meta = document.createElement("span");
     meta.className = "pick-meta";
     const utensil = getUtensilLabel(recipe);
     const protein = getProteinLabel(recipe);
     meta.textContent = `${recipe.time} · ${utensil} · ${protein}`;
-    left.append(title, meta);
+    left.append(titleRow, meta);
 
     const controls = document.createElement("div");
     controls.className = "serving-controls";
@@ -4346,7 +4601,10 @@ function renderPantryPickerSection() {
 
 function renderRecentWeeks() {
   recentWeeks.innerHTML = "";
-  const weeks = Object.keys(selectedRecipesByWeek).sort().reverse();
+  const weeks = Object.keys(selectedRecipesByWeek)
+    .filter((weekKey) => getWeekRecipeIds(weekKey).length)
+    .sort()
+    .reverse();
   if (!weeks.length) return;
 
   const title = document.createElement("strong");
@@ -4394,6 +4652,12 @@ function renderRecipeGrid() {
       const selectedA = selectedRecipes.includes(a.id);
       const selectedB = selectedRecipes.includes(b.id);
       if (selectedA !== selectedB) return selectedA ? -1 : 1;
+      const favoriteA = isFavoriteRecipe(a.id);
+      const favoriteB = isFavoriteRecipe(b.id);
+      if (favoriteA !== favoriteB) return favoriteA ? -1 : 1;
+      const previousA = isRecipePreviouslySelected(a.id);
+      const previousB = isRecipePreviouslySelected(b.id);
+      if (previousA !== previousB) return previousA ? -1 : 1;
       const ratingA = ratingsByRecipe[a.id] || 0;
       const ratingB = ratingsByRecipe[b.id] || 0;
       if (ratingA !== ratingB) return ratingB - ratingA;
@@ -4401,12 +4665,31 @@ function renderRecipeGrid() {
     })
     .forEach((recipe) => {
     const isSelected = selectedRecipes.includes(recipe.id);
+    const isFavorite = isFavoriteRecipe(recipe.id);
+    const historyLabel = getHistoricalSelectionLabel(recipe.id);
     const card = document.createElement("div");
     card.className = "recipe-card";
     if (isSelected) card.classList.add("is-selected");
+    if (isFavorite) card.classList.add("is-favorite");
+    if (historyLabel) card.classList.add("is-previously-selected");
 
     const thumb = document.createElement("div");
     thumb.className = "recipe-thumb";
+    const thumbControls = document.createElement("div");
+    thumbControls.className = "recipe-thumb-controls";
+    const favoriteButton = document.createElement("button");
+    favoriteButton.type = "button";
+    favoriteButton.className = "recipe-favorite-toggle";
+    if (isFavorite) favoriteButton.classList.add("is-active");
+    favoriteButton.textContent = "★";
+    favoriteButton.title = isFavorite ? t("favorite_remove") : t("favorite_add");
+    favoriteButton.setAttribute("aria-label", isFavorite ? t("favorite_remove") : t("favorite_add"));
+    favoriteButton.addEventListener("click", (event) => {
+      event.stopPropagation();
+      toggleFavoriteRecipe(recipe.id);
+      refreshAll();
+    });
+    thumbControls.appendChild(favoriteButton);
     const imageSrc = getRecipeImage(recipe);
     const fallbackSrc = buildRecipeFallbackImage(recipe);
     const img = document.createElement("img");
@@ -4451,6 +4734,7 @@ function renderRecipeGrid() {
       }
       swapToFallbackArt();
     });
+    thumb.appendChild(thumbControls);
     thumb.appendChild(img);
     if (isSelected) {
       const selectedBadge = document.createElement("span");
@@ -4472,6 +4756,21 @@ function renderRecipeGrid() {
     meta.className = "recipe-quiet-meta";
     meta.textContent = `${time.total} min · ${recipe.servings} ${t("servings_label")} · ${protein}`;
 
+    const contextLine = document.createElement("div");
+    contextLine.className = "recipe-context";
+    if (historyLabel) {
+      const historyPill = document.createElement("span");
+      historyPill.className = "recipe-history-pill";
+      historyPill.textContent = historyLabel;
+      contextLine.appendChild(historyPill);
+    }
+    if (isFavorite) {
+      const favoritePill = document.createElement("span");
+      favoritePill.className = "recipe-history-pill is-favorite";
+      favoritePill.textContent = t("favorite_badge");
+      contextLine.appendChild(favoritePill);
+    }
+
     const line = document.createElement("div");
     line.className = "recipe-line";
     const parts = [utensil, getMealLabel(recipe)];
@@ -4481,7 +4780,9 @@ function renderRecipeGrid() {
       pill.textContent = part;
       line.appendChild(pill);
     });
-    info.append(title, meta, line);
+    info.append(title, meta);
+    if (contextLine.childElementCount) info.appendChild(contextLine);
+    info.append(line);
 
     const actionWrap = document.createElement("div");
 
@@ -4504,7 +4805,7 @@ function renderRecipeGrid() {
     actionWrap.appendChild(actionBtn);
 
     card.addEventListener("click", (event) => {
-      if (event.target === actionBtn) return;
+      if (event.target === actionBtn || event.target.closest?.(".recipe-favorite-toggle")) return;
       renderRecipeDetails(recipe);
     });
 
@@ -4530,6 +4831,7 @@ function renderRecipeDetails(recipe) {
   const nutritionNote = nutrition.missing
     ? t("nutrition_note_missing")
     : t("nutrition_note");
+  const favoriteLabel = isFavoriteRecipe(recipe.id) ? t("favorite_remove") : t("favorite_add");
   const nutritionHtml = `
     <div class="nutrition-panel">
       <h5>${t("nutrition_title")}</h5>
@@ -4563,6 +4865,7 @@ function renderRecipeDetails(recipe) {
     <h4 id="recipe-modal-title"><span class="recipe-icon">${getRecipeIcon(recipe)}</span>${getRecipeName(recipe)}</h4>
     <div class="detail-meta">${recipe.time} · ${servings} ${t("servings_label")}</div>
     <div class="rating" data-rating-for="${recipe.id}"></div>
+    <button class="ghost detail-favorite-toggle" data-favorite-toggle="${recipe.id}">${favoriteLabel}</button>
     <ul>${ingredients}</ul>
     ${nutritionHtml}
     <div class="note-section">
@@ -4580,9 +4883,18 @@ function renderRecipeDetails(recipe) {
     recipeModalBody.innerHTML = html;
     const ratingTarget = recipeModalBody.querySelector(`[data-rating-for="${recipe.id}"]`);
     if (ratingTarget) renderRatingStars(ratingTarget, recipe.id);
+    const favoriteBtn = recipeModalBody.querySelector(`[data-favorite-toggle="${recipe.id}"]`);
     const noteInput = recipeModalBody.querySelector(`#note-${recipe.id}`);
     const saveBtn = recipeModalBody.querySelector(`[data-note-save="${recipe.id}"]`);
     const clearBtn = recipeModalBody.querySelector(`[data-note-clear="${recipe.id}"]`);
+    if (favoriteBtn) {
+      favoriteBtn.addEventListener("click", () => {
+        toggleFavoriteRecipe(recipe.id);
+        renderRecipeDetails(recipe);
+        renderSelectedInLibrary();
+        renderRecipeGrid();
+      });
+    }
     if (saveBtn && noteInput) {
       saveBtn.addEventListener("click", () => {
         recipeNotesById[recipe.id] = noteInput.value.trim();
@@ -5732,6 +6044,7 @@ function refreshAll() {
   renderCookMode();
   renderMiniGrid();
   renderRecipeGrid();
+  renderPlanningShortcuts();
   renderPantryPickerSection();
   renderFrequencyTable();
   renderRecentWeeks();
@@ -5780,6 +6093,12 @@ if (filterMeal) {
 }
 
 const clearChecks = document.getElementById("clear-checks");
+if (duplicateLastWeekButton) {
+  duplicateLastWeekButton.addEventListener("click", () => {
+    duplicateLastWeekPlan();
+  });
+}
+
 if (shoppingToggleChecked) {
   shoppingToggleChecked.addEventListener("click", () => {
     hideCheckedShoppingItems = !hideCheckedShoppingItems;
@@ -5797,15 +6116,15 @@ if (clearChecks) {
 }
 
 const clearPlan = document.getElementById("clear-plan");
+if (clearWeekButton) {
+  clearWeekButton.addEventListener("click", () => {
+    clearCurrentWeekPlan();
+  });
+}
+
 if (clearPlan) {
   clearPlan.addEventListener("click", () => {
-    selectedRecipes = [];
-    checkedItems = {};
-    currentCookRecipeId = "";
-    currentStage = "plan";
-    setView("plan");
-    saveState();
-    refreshAll();
+    clearCurrentWeekPlan();
   });
 }
 
