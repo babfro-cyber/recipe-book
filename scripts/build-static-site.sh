@@ -10,6 +10,7 @@ mkdir -p "$DIST_DIR"
 cp index.html "$DIST_DIR"/
 cp styles.css "$DIST_DIR"/
 cp app.js "$DIST_DIR"/
+cp sync-config.js "$DIST_DIR"/
 cp -R Recipes "$DIST_DIR"/Recipes
 
 for optional_file in 404.html favicon.ico favicon.png favicon.svg; do

@@ -180,6 +180,28 @@
               <option value="colruyt">Colruyt</option>
             </select>
           </div>
+          <div class="settings-group">
+            <label class="settings-label" for="sync-code-input" data-i18n="sync_code_label">Sync code</label>
+            <input
+              id="sync-code-input"
+              type="text"
+              autocapitalize="none"
+              autocomplete="off"
+              autocorrect="off"
+              spellcheck="false"
+              data-i18n-placeholder="sync_code_placeholder"
+              placeholder="family-home"
+            />
+            <p class="settings-help" id="sync-help" data-i18n="sync_code_help">
+              Use the same code on your iPhone and laptop to share one planner.
+            </p>
+            <div class="note-actions">
+              <button class="ghost" id="save-sync-code" type="button" data-i18n="sync_save">Save sync code</button>
+              <button class="ghost" id="sync-now" type="button" data-i18n="sync_now">Sync now</button>
+              <button class="ghost" id="clear-sync-code" type="button" data-i18n="sync_clear">Disconnect</button>
+            </div>
+            <p class="settings-status" id="sync-status" aria-live="polite"></p>
+          </div>
         </div>
       </div>
     </div>
@@ -200,6 +222,7 @@
         </div>
       </div>
     </div>
+    <script src="sync-config.js"></script>
     <script src="app.js"></script>
   </body>
 </html>

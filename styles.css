@@ -114,6 +114,25 @@ p {
   border: 1px solid rgba(26, 26, 26, 0.15);
 }
 
+.settings-help,
+.settings-status {
+  margin: 0;
+  font-size: 0.85rem;
+  color: var(--slate);
+}
+
+.settings-status {
+  min-height: 1.2em;
+}
+
+.settings-status.is-error {
+  color: #b53a2d;
+}
+
+.settings-status.is-success {
+  color: var(--sage);
+}
+
 .note-section {
   margin: 12px 0;
   display: grid;
@@ -889,9 +908,18 @@ body.view-cook #shopping {
   display: block;
 }
 
+.recipe-thumb img.fit-book-page {
+  object-position: 50% 14%;
+}
+
 .recipe-thumb img.fit-contain {
   object-fit: contain;
   background: #f6f3ee;
+}
+
+.recipe-thumb img.fit-fallback-art {
+  object-fit: cover;
+  object-position: center;
 }
 
 .selected-badge {
@@ -907,10 +935,6 @@ body.view-cook #shopping {
   letter-spacing: 0.01em;
 }
 
-.recipe-thumb.thumb-dahl {
-  height: 160px;
-}
-
 @media (max-width: 720px) {
   .recipe-thumb {
     height: auto;
@@ -922,15 +946,15 @@ body.view-cook #shopping {
     background: transparent;
   }
 
+  .recipe-thumb img.fit-book-page {
+    object-position: 50% 14%;
+  }
+
   .recipe-thumb img.fit-contain {
     object-fit: contain;
     background: #f6f3ee;
   }
 
-  .recipe-thumb.thumb-dahl {
-    height: auto;
-    aspect-ratio: 4 / 3;
-  }
 }
 
 .recipe-thumb.is-fallback span {

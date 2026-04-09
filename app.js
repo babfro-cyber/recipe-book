@@ -149,14 +149,14 @@ const recipes = [
       { item: "chicken breast", qty: 700, unit: "g" },
       { item: "pineapple", qty: 600, unit: "g" },
       { item: "creme fraiche", qty: 3, unit: "tbsp" },
-      { item: "couscous", qty: 2, unit: "glass" },
+      { item: "couscous", qty: 360, unit: "g" },
     ],
     steps: [
       "Peel and cut the pineapple into small pieces.",
       "Saute the pineapple with a little olive oil in a pan.",
       "Meanwhile, cut the chicken into small pieces.",
       "Add the chicken to the pineapple (after about 5 minutes of cooking). Saute until the chicken is grilled and the pineapple caramelised.",
-      "Meanwhile, cook the couscous in water: 1.5 glass of water for 1 glass of couscous.",
+      "Meanwhile, cook the couscous with 750 ml hot water, cover for 5 minutes, then fluff with a fork.",
       "When the couscous and the chicken/pineapple mixture are cooked, add the couscous to the chicken/pineapple pan, add the creme fraiche, mix, and cook for 2 minutes.",
     ],
     steps_fr: [
@@ -164,7 +164,7 @@ const recipes = [
       "Faire revenir l'ananas avec un peu d'huile d'olive dans une poele.",
       "Pendant ce temps, couper le poulet en petits morceaux.",
       "Ajouter le poulet a l'ananas (au bout de 5min de cuisson environ). Faire revenir le tout jusqu'a ce que le poulet soit grille et l'ananas caramelise.",
-      "Pendant ce temps, faire cuire le couscous dans l'eau : 1.5 verre d'eau pour 1 verre de couscous.",
+      "Pendant ce temps, faire gonfler la semoule avec 750 ml d'eau chaude, couvrir 5 minutes puis egrainer a la fourchette.",
       "Lorsque la semoule et le melange poulet/ananas sont cuits, ajouter la semoule a la poele poulet/ananas, ajouter la creme fraiche, melanger et faire revenir 2 minutes.",
     ],
   },
@@ -213,22 +213,22 @@ const recipes = [
     servings: 4,
     tags: ["oven", "salad", "vegetarian", "batch"],
     ingredients: [
-      { item: "quinoa", qty: 1, unit: "glass" },
+      { item: "quinoa", qty: 170, unit: "g" },
       { item: "butternut pumpkin", qty: 1, unit: "pcs" },
-      { item: "dried cranberries", qty: 1, unit: "handful" },
+      { item: "dried cranberries", qty: 30, unit: "g" },
       { item: "goat cheese", qty: 6, unit: "cubes" },
       { item: "salt", qty: 1, unit: "pinch" },
       { item: "black pepper", qty: 1, unit: "pinch" },
       { item: "turmeric", qty: 0.5, unit: "tsp" },
       { item: "honey", qty: 1, unit: "tbsp" },
       { item: "olive oil", qty: 1.5, unit: "tbsp" },
-      { item: "pepitas", qty: 0.5, unit: "glass" },
+      { item: "pepitas", qty: 60, unit: "g" },
     ],
     steps: [
       "Peel the butternut squash and cut it into small pieces.",
       "Place them in a bowl and add olive oil, turmeric, honey, salt, and pepper. Mix well.",
       "Spread the mixture in an oven-safe dish and roast for 20 minutes at 200C until the butternut is tender.",
-      "Cook the quinoa in boiling water for 10-15 minutes. Drain and set aside.",
+      "Cook the 170 g quinoa in boiling water for 10-15 minutes. Drain and set aside.",
       "Chop the dried cranberries into small pieces.",
       "Once the butternut is cooked, assemble the salad by mixing in the quinoa, goat cheese cubes, cranberries, and pepitas.",
     ],
@@ -236,7 +236,7 @@ const recipes = [
       "Eplucher le butternut squash et le couper en petits morceaux.",
       "Les placer dans un bol et ajouter huile d'olive, curcuma, miel, sel et poivre. Bien melanger.",
       "Etaler le melange dans un plat allant au four et faire rôtir 20 minutes a 200C jusqu'a ce que le butternut soit tendre.",
-      "Cuire le quinoa dans l'eau bouillante pendant 10-15 minutes. Egoutter et reserver.",
+      "Cuire les 170 g de quinoa dans l'eau bouillante pendant 10-15 minutes. Egoutter et reserver.",
       "Couper les cranberries sechees en petits morceaux.",
       "Une fois le butternut cuit, assembler la salade en melangeant le quinoa, les cubes de chevre, les cranberries et les pepitas.",
     ],
@@ -392,7 +392,7 @@ const recipes = [
       { item: "chicken breast", qty: 2, unit: "pcs" },
       { item: "carrot", qty: 2, unit: "pcs" },
       { item: "brown onion", qty: 1, unit: "pcs" },
-      { item: "green beans", qty: 2, unit: "handful" },
+      { item: "green beans", qty: 160, unit: "g" },
       { item: "olive oil", qty: 1, unit: "tbsp" },
       { item: "salt", qty: 1, unit: "pinch" },
       { item: "ground ginger", qty: 0.5, unit: "tsp" },
@@ -530,7 +530,7 @@ const recipes = [
       { item: "black pepper", qty: 1, unit: "pinch" },
     ],
     steps: [
-      "Cook the lentils: Add 1 cup green lentils to a pot with 3 cups boiling water. Cover and simmer on medium for 15–20 minutes, until tender. Drain any extra water and set aside.",
+      "Cook the lentils: Add 200 g green lentils to a pot with 600 ml boiling water. Cover and simmer on medium for 15–20 minutes, until tender. Drain any extra water and set aside.",
       "Prep the Brussels sprouts: Wash them, trim the ends, remove loose outer leaves, and cut in half.",
       "Prep aromatics: Slice the onion thinly into half-moons. Thinly slice the garlic.",
       "Start cooking: Heat 1–2 Tbsp olive oil in a large pan. Add the onion and garlic and cook 3–4 minutes, until softened.",
@@ -540,7 +540,7 @@ const recipes = [
       "Finish: Season with salt and pepper to taste. Squeeze in lemon juice and taste again — add more chili, salt, or lemon if you like.",
     ],
     steps_fr: [
-      "Cuire les lentilles : Ajouter 1 tasse de lentilles vertes dans une casserole avec 3 tasses d'eau bouillante. Couvrir et mijoter a feu moyen 15–20 minutes, jusqu'a tendres. Egoutter et reserver.",
+      "Cuire les lentilles : Ajouter 200 g de lentilles vertes dans une casserole avec 600 ml d'eau bouillante. Couvrir et mijoter a feu moyen 15–20 minutes, jusqu'a tendres. Egoutter et reserver.",
       "Preparer les choux de Bruxelles : Les laver, couper les extremites, enlever les feuilles abimees, et couper en deux.",
       "Preparer les aromates : Emincer l'oignon en demi-lunes. Emincer finement l'ail.",
       "Commencer la cuisson : Chauffer 1–2 c. a soupe d'huile d'olive dans une grande poele. Ajouter oignon et ail et cuire 3–4 minutes, jusqu'a ce qu'ils soient tendres.",
@@ -605,7 +605,7 @@ const recipes = [
       { item: "egg", qty: 1, unit: "pcs" },
       { item: "ground beef", qty: 250, unit: "g" },
       { item: "ground pork", qty: 250, unit: "g" },
-      { item: "milk", qty: 1, unit: "cup" },
+      { item: "milk", qty: 250, unit: "ml" },
       { item: "breadcrumbs", qty: 40, unit: "g" },
       { item: "mixed herbs", qty: 1, unit: "tbsp" },
       { item: "garlic cloves", qty: 4, unit: "pcs" },
@@ -824,7 +824,7 @@ const recipes = [
       { item: "black pepper", qty: 1, unit: "pinch" },
       { item: "cannellini beans", qty: 2, unit: "cans" },
       { item: "green olives (optional)", qty: 12, unit: "pcs" },
-      { item: "pepitas (optional)", qty: 0.25, unit: "cup" },
+      { item: "pepitas (optional)", qty: 30, unit: "g" },
       { item: "lemon juice (optional)", qty: 1, unit: "tsp" },
       { item: "sugar or date syrup (optional)", qty: 1, unit: "tsp" },
     ],
@@ -1233,7 +1233,7 @@ const recipes = [
     ingredients: [
       { item: "eggplant", qty: 4, unit: "pcs" },
       { item: "parmesan", qty: 170, unit: "g" },
-      { item: "basil", qty: 2, unit: "cups" },
+      { item: "basil", qty: 30, unit: "g" },
       { item: "mozzarella", qty: 150, unit: "g" },
       { item: "brown onion", qty: 1, unit: "pcs" },
       { item: "garlic cloves", qty: 5, unit: "pcs" },
@@ -1356,7 +1356,7 @@ const recipes = [
       { item: "canned chopped tomatoes", qty: 1, unit: "cans" },
       { item: "vegetable stock", qty: 1.2, unit: "L" },
       { item: "coconut milk", qty: 200, unit: "ml" },
-      { item: "baby spinach", qty: 2, unit: "handful" },
+      { item: "baby spinach", qty: 60, unit: "g" },
       { item: "salt", qty: 1, unit: "tsp" },
       { item: "lemon juice", qty: 1, unit: "pcs" },
     ],
@@ -1392,7 +1392,7 @@ const recipes = [
       { item: "smoked paprika", qty: 1, unit: "tsp" },
       { item: "ground cumin", qty: 1, unit: "tsp" },
       { item: "vegetable stock", qty: 400, unit: "ml" },
-      { item: "baby spinach", qty: 2, unit: "handful" },
+      { item: "baby spinach", qty: 60, unit: "g" },
       { item: "salt", qty: 1, unit: "tsp" },
       { item: "black pepper", qty: 1, unit: "tsp" },
     ],
@@ -1566,31 +1566,31 @@ const recipes = [
     tags: ["pan", "batch", "vegetarian"],
     ingredients: [
       { item: "olive oil", qty: 2, unit: "tbsp" },
-      { item: "spinach", qty: 2, unit: "cups" },
-      { item: "kale", qty: 2, unit: "cups" },
-      { item: "basil", qty: 2, unit: "cups" },
+      { item: "spinach", qty: 60, unit: "g" },
+      { item: "kale", qty: 50, unit: "g" },
+      { item: "basil", qty: 30, unit: "g" },
       { item: "onion", qty: 0.5, unit: "pcs" },
       { item: "garlic cloves", qty: 2, unit: "pcs" },
-      { item: "white beans", qty: 1, unit: "cup" },
-      { item: "raw pistachios", qty: 0.33, unit: "cup" },
-      { item: "parmesan", qty: 1, unit: "cup" },
+      { item: "white beans", qty: 170, unit: "g" },
+      { item: "raw pistachios", qty: 40, unit: "g" },
+      { item: "parmesan", qty: 100, unit: "g" },
       { item: "salt", qty: 1, unit: "tsp" },
-      { item: "water", qty: 0.33, unit: "cup" },
+      { item: "water", qty: 80, unit: "ml" },
     ],
     steps: [
       "Blanch the spinach and kale for 1 minute, then drain and squeeze dry.",
       "Saute the diced onion for 6 minutes, then add the garlic and cook for 2 more minutes.",
-      "Blend the greens, basil, onion, garlic, olive oil and pasta water until smooth.",
+      "Blend the greens, basil, onion, garlic, olive oil and half of the pasta water until smooth.",
       "Add the white beans and blend until creamy.",
-      "Add the pistachios, parmesan, salt and remaining pasta water, then blend again. Loosen with more water if needed.",
+      "Add the pistachios, parmesan, salt and the remaining pasta water, then blend again. Loosen with more water if needed.",
       "Toss through hot pasta and top with burrata, pan-fried scampi, basil leaves, chilli flakes and pepper if using.",
     ],
     steps_fr: [
       "Blanchir les epinards et le kale 1 minute, puis egoutter et bien presser pour retirer l'excedent d'eau.",
       "Faire revenir l'oignon emince 6 minutes, puis ajouter l'ail et cuire 2 minutes de plus.",
-      "Mixer les feuilles vertes, le basilic, l'oignon, l'ail, l'huile d'olive et l'eau de cuisson des pates jusqu'a obtention d'une sauce lisse.",
+      "Mixer les feuilles vertes, le basilic, l'oignon, l'ail, l'huile d'olive et la moitie de l'eau de cuisson des pates jusqu'a obtention d'une sauce lisse.",
       "Ajouter les haricots blancs et mixer jusqu'a ce que la sauce soit bien cremeuse.",
-      "Ajouter les pistaches, le parmesan, le sel et le reste d'eau de cuisson, puis mixer de nouveau. Ajouter un peu plus d'eau si besoin.",
+      "Ajouter les pistaches, le parmesan, le sel et le reste de l'eau de cuisson, puis mixer de nouveau. Ajouter un peu plus d'eau si besoin.",
       "Melanger avec des pates chaudes et garnir de burrata, scampi poeles, feuilles de basilic, flocons de piment et poivre si souhaite.",
     ],
   },
@@ -1953,24 +1953,24 @@ function calculateRecipeNutrition(recipe) {
 }
 
 const recipeImageMap = {
-  "gratin-dauphinois": "https://d194ip2226q57d.cloudfront.net/images/GratinDauphinois.original.jpg",
-  "chickpeas-swiss-chard": "https://static1.squarespace.com/static/56801b350e4c11744888ec37/t/602d95369cbd8f1dc15d2d7a/1613600058892/Chick+Pea+Swiss+Chard+landscape.jpg?format=1500w",
-  "poulet-courgettes-creme": "https://littlesunnykitchen.com/wp-content/uploads/2025/08/Chicken-Zucchini-Pasta-1.jpg",
-  "chilli-con-carne-thermomix": "https://www.parentclub.scot/sites/default/files/2025-02/chilli-con-carne-iStock-1353857212.jpg",
-  "quiche-courgettes-poivrons-onions": "https://assets.tmecosys.com/image/upload/t_web_shared_recipe_221x240/img/recipe/ras/Assets/D4D985E0-2D3E-4F7D-B9A9-C2E38CA4CD3A/Derivates/5B707963-499E-43CA-9800-BB5CE0FC3CAD.jpg",
+  "gratin-dauphinois": "Recipes/Recipe book - all_1 (1).JPG",
+  "chickpeas-swiss-chard": "Recipes/Recipe book - all_2.JPG",
+  "poulet-courgettes-creme": "Recipes/Recipe book - all_3.JPG",
+  "chilli-con-carne-thermomix": "Recipes/Recipe book - all_5.JPG",
+  "quiche-courgettes-poivrons-onions": "Recipes/Recipe book - all_6.JPG",
   "tian-de-legumes": "Recipes/vegetable-tian.jpg",
-  "tabbouleh": "https://images.pexels.com/photos/15832880/pexels-photo-15832880.jpeg?cs=srgb&dl=pexels-esmihel-15832880.jpg&fm=jpg",
-  "poulet-ananas-couscous": "https://skinnyfitalicious.com/wp-content/uploads/2018/12/pineapple-chicken-quinoa-img4.jpg",
-  "ratatouille-thermomix": "https://lacuisinedegeraldine.fr/wp-content/uploads/2025/06/Ratatouille-333-500x500.jpg",
-  "lentil-soup-thermomix": "https://hips.hearstapps.com/hmg-prod/images/lentil-soup-recipe-2-677c54158ad10.jpg?crop=0.6667718689179948xw:1xh;center,top&resize=1200:*",
-  "split-pea-soup-thermomix": "https://www.allrecipes.com/thmb/VbJpto2PNNZNCemQU-Hk-1J0nZg=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/219170-HamAndSplitPeaSoup-DDMFS-4x3-154b6d4968b14fa190ea733b66bbbc8e.jpg",
-  "pea-mint-soup": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS6V0K0v29CpPl1fivBUzW9hKu3XnLWolPj_w&s",
+  "tabbouleh": "Recipes/Recipe book - all_9.JPG",
+  "poulet-ananas-couscous": "Recipes/Recipe book - all_10.JPG",
+  "ratatouille-thermomix": "Recipes/Recipe book - all_11.JPG",
+  "lentil-soup-thermomix": "Recipes/Recipe book - all_12.JPG",
+  "split-pea-soup-thermomix": "Recipes/Recipe book - all_14.JPG",
+  "pea-mint-soup": "Recipes/Recipe book - all_16.JPG",
   "poelee-poulet-carottes-haricots": "https://assets.afcdn.com/recipe/20150901/53198_w1024h768c1cx1500cy2250.jpg",
   "ramen-boeuf-thermomix": "https://assets.afcdn.com/recipe/20191204/103427_w1024h768c1cx3150cy2237cxt0cyt0cxb7952cyb4473.jpg",
-  "quinoa-butternut-cranberries": "https://foolproofliving.com/wp-content/uploads/2023/01/Butternut-Squash-Quinoa-Salad-with-Pomegranate.jpg",
-  "fajitas": "https://www.foodiecrush.com/wp-content/uploads/2020/06/Chicken-Fajitas-foodiecrush.com-008.jpg",
-  "bolognese-thermomix": "https://static01.nyt.com/images/2024/10/29/multimedia/Marcella-Hazans-Bolognese-Saucerex-wptg-sub/Marcella-Hazans-Bolognese-Saucerex-wptg-sub-videoSixteenByNineJumbo1600-v2.jpg",
-  "eggplant-parmigiana": "https://www.recipetineats.com/tachyon/2021/05/Eggplant-Parmigiana_1-SQ.jpg",
+  "quinoa-butternut-cranberries": "Recipes/Recipe book - all_17.JPG",
+  "fajitas": "Recipes/Recipe book - all_18.JPG",
+  "bolognese-thermomix": "Recipes/Recipe book - all_20.JPG",
+  "eggplant-parmigiana": "Recipes/Recipe book - all_22.JPG",
   "poulet-curry-butternut-coco-semoule": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSg2QPGVSBI-FkvK_fZf3ePsxKhmLC7IZlA4A&s",
   "barramundi-curry-butternut-coco-semoule": "Recipes/9144d146-b224-4438-b0a3-29d9d8d76031.png",
   "red-lentil-dal": "Recipes/red-lentil-dal.jpeg",
@@ -1981,24 +1981,116 @@ const recipeImageMap = {
   "black-bean-sweet-potato-filling": "Recipes/black-bean-sweet-potato-filling.webp",
   "green-goddess-pasta-sauce": "Recipes/green-goddess-pasta-sauce.jpeg",
   "chili-sin-carne": "Recipes/chili-sin-carne.jpeg",
-  "spinach-ricotta-lasagne": "https://api.photon.aremedia.net.au/wp-content/uploads/sites/4/2015/03/19/e45f8cf903ef47ec94feb52dce841000/spinach-and-ricotta-lasagne.jpg?fit=2048%2C1536",
-  "curry-epinards-pois-chiche": "https://mygoodnesskitchen.com/wp-content/uploads/2022/02/Chickpea-and-Spinach-Curry-Hero-1061.jpg.webp",
-  "dahl-lentilles-epinards": "https://rainbowplantlife.com/wp-content/uploads/2024/05/Dal-Palak-hero-shots-3-of-4.jpg",
-  "gratin-choufleur": "https://www.naomicrisante.com.au/wp-content/uploads/2019/05/134F22CC-1F9B-4399-A0CA-61A55733987D.jpeg",
-  "legumes-farcis": "https://ichef.bbc.co.uk/ace/standard/1600/food/recipes/stuffed_vegetables_56352_16x9.jpg.webp",
-  "poulet-basquaise": "https://www.foodandwine.com/thmb/7_y1SLSmabv8G3X6-bjZkNFfgOE=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/Poulet-Basquaise-FT-RECIPE1023-1e5c2fc9a9324247bb91968a096066e3.jpg",
-  "curry-poisson": "https://www.gimmesomeoven.com/wp-content/uploads/2025/04/Cod-Curry-6-1.jpg",
-  "moussaka": "https://www.recipetineats.com/tachyon/2019/03/Greek-Moussaka_3-re-edited-SQ.jpg?resize=500%2C500",
-  "lasagne-lentilles": "https://vancouverwithlove.com/wp-content/uploads/2025/03/vegan-red-lentil-lasagna.jpg",
-  "harira-lentil-chickpea": "https://www.crowdedkitchen.com/wp-content/uploads/2020/08/moroccan-chickpea-lentil-stew.jpg",
-  "lentils-brussels-skillet": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT-dmcczJg4HopMx2RMc-hfgz5zVwqUztU8Uw&s",
-  "chicken-broccolini-mustard": "https://thefoodcharlatan.com/wp-content/uploads/2016/10/IMG_6395.jpg",
-  "vegan-bean-stew-fennel": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcShQY6ikrhJtwXIntF8g9PGJu3BMvzZCWgW-g&s",
-  "roasted-veg-cannellini": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTHZ-LLkszTKNyIGnEuZ4fl3UvVWNpZYlvNrw&s",
+  "spinach-ricotta-lasagne": "Recipes/Recipe book - all_24.JPG",
+  "curry-epinards-pois-chiche": "Recipes/Recipe book - all_26.JPG",
+  "dahl-lentilles-epinards": "Recipes/Recipe book - all_28.JPG",
+  "gratin-choufleur": "Recipes/Recipe book - all_30.JPG",
+  "legumes-farcis": "Recipes/Recipe book - all_31.JPG",
+  "poulet-basquaise": "Recipes/Recipe book - all_32.JPG",
+  "curry-poisson": "Recipes/Recipe book - all_33.JPG",
+  "moussaka": "Recipes/Recipe book - all_34.JPG",
+  "lasagne-lentilles": "Recipes/Recipe book - all_35.JPG",
+  "harira-lentil-chickpea": "Recipes/Recipe book - all_36.JPG",
+  "lentils-brussels-skillet": "Recipes/Recipe book - all_37.JPG",
+  "chicken-broccolini-mustard": "Recipes/Recipe book - all_39.JPG",
+  "vegan-bean-stew-fennel": "Recipes/Recipe book - all_41.JPG",
+  "roasted-veg-cannellini": "Recipes/Recipe book - all_43.JPG",
 };
 
 function getRecipeImage(recipe) {
   return recipeImageMap[recipe.id] || "";
+}
+
+function isRecipeBookPageImage(src) {
+  return typeof src === "string" && src.includes("Recipe book - all_");
+}
+
+function escapeSvgText(value) {
+  return String(value)
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/\"/g, "&quot;")
+    .replace(/'/g, "&#39;");
+}
+
+function splitPosterTitle(title, maxChars = 22, maxLines = 3) {
+  const words = String(title).split(/\s+/).filter(Boolean);
+  const lines = [];
+  let current = "";
+
+  words.forEach((word) => {
+    const next = current ? `${current} ${word}` : word;
+    if (!current) {
+      current = next;
+      return;
+    }
+    if (next.length <= maxChars || lines.length === maxLines - 1) {
+      current = next;
+      return;
+    }
+    lines.push(current);
+    current = word;
+  });
+
+  if (current) lines.push(current);
+  if (!lines.length) lines.push(String(title));
+  if (lines.length > maxLines) {
+    const remaining = lines.slice(maxLines - 1).join(" ");
+    lines.length = maxLines - 1;
+    lines.push(remaining);
+  }
+
+  const lastIndex = lines.length - 1;
+  if (lines[lastIndex].length > maxChars) {
+    lines[lastIndex] = `${lines[lastIndex].slice(0, maxChars - 1).trimEnd()}...`;
+  }
+
+  return lines;
+}
+
+function getRecipePosterPalette(recipe) {
+  const mealType = getMealType(recipe);
+  const protein = getProteinKey(recipe);
+
+  if (mealType === "soup") return { start: "#ffd59e", end: "#d36a42", accent: "#fff3dc" };
+  if (mealType === "salad") return { start: "#a8df8e", end: "#4e8d7c", accent: "#eefadf" };
+  if (mealType === "bake") return { start: "#f0c36c", end: "#c96a3b", accent: "#fff0cc" };
+  if (protein === "fish" || protein === "seafood") return { start: "#88b9ff", end: "#4e8d7c", accent: "#edf6ff" };
+  if (protein === "chicken") return { start: "#ffc46b", end: "#ff7a5c", accent: "#fff3dd" };
+  if (protein === "beef" || protein === "pork") return { start: "#ff9a76", end: "#a4473b", accent: "#ffe3d8" };
+  return { start: "#7fcf88", end: "#3f7e64", accent: "#eef9ef" };
+}
+
+function buildRecipeFallbackImage(recipe) {
+  const palette = getRecipePosterPalette(recipe);
+  const titleLines = splitPosterTitle(getRecipeName(recipe));
+  const icon = escapeSvgText(getRecipeIcon(recipe));
+  const footer = escapeSvgText(`${recipe.time} / ${recipe.servings} ${t("servings_label")}`);
+  const titleSvg = titleLines
+    .map((line, index) => `<text x="72" y="${235 + index * 54}" font-family="Georgia, serif" font-size="42" font-weight="700" fill="#13201d">${escapeSvgText(line)}</text>`)
+    .join("");
+  const svg = `
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 480" role="img" aria-label="${escapeSvgText(getRecipeName(recipe))}">
+      <defs>
+        <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" stop-color="${palette.start}" />
+          <stop offset="100%" stop-color="${palette.end}" />
+        </linearGradient>
+      </defs>
+      <rect width="800" height="480" rx="38" fill="url(#bg)" />
+      <circle cx="686" cy="108" r="118" fill="rgba(255,255,255,0.16)" />
+      <circle cx="742" cy="414" r="136" fill="rgba(255,255,255,0.10)" />
+      <rect x="52" y="54" width="430" height="372" rx="30" fill="rgba(255,255,255,0.78)" />
+      <text x="72" y="132" font-size="70">${icon}</text>
+      <text x="160" y="124" font-family="Arial, sans-serif" font-size="26" font-weight="700" fill="#20463e">PantryPilot</text>
+      ${titleSvg}
+      <rect x="72" y="360" width="230" height="42" rx="21" fill="${palette.accent}" />
+      <text x="96" y="388" font-family="Arial, sans-serif" font-size="21" font-weight="700" fill="#20463e">${footer}</text>
+    </svg>
+  `;
+
+  return `data:image/svg+xml;charset=UTF-8,${encodeURIComponent(svg)}`;
 }
 
 
@@ -2036,12 +2128,24 @@ function safeParseStorage(key, fallback) {
   }
 }
 
+function normalizeSyncCode(value) {
+  return String(value || "").trim().toLowerCase();
+}
+
+const syncConfig = window.PANTRY_PILOT_SYNC_CONFIG || {};
+const SUPABASE_SYNC_URL = String(syncConfig.supabaseUrl || "").trim().replace(/\/+$/, "");
+const SUPABASE_SYNC_ANON_KEY = String(syncConfig.supabaseAnonKey || "").trim();
+const SYNC_META_STORAGE_KEY = "pantrySyncMeta";
+const SYNC_POLL_INTERVAL_MS = 60000;
+const SYNC_SAVE_DEBOUNCE_MS = 1200;
+
 const storedPicksByWeek = safeParseStorage("pantryPicksByWeek", {});
 const storedChecksByWeek = safeParseStorage("pantryChecksByWeek", {});
 const storedServingsByWeek = safeParseStorage("pantryServingsByWeek", {});
 const storedRatings = safeParseStorage("pantryRatingsByRecipe", {});
 const storedRecipeNotes = safeParseStorage("pantryRecipeNotes", {});
 const storedPantryInventory = safeParseStorage("pantryIngredientInventory", {});
+const storedSyncMeta = safeParseStorage(SYNC_META_STORAGE_KEY, {});
 let selectedRecipesByWeek = { ...storedPicksByWeek };
 let checkedItemsByWeek = { ...storedChecksByWeek };
 let selectedServingsByWeek = { ...storedServingsByWeek };
@@ -2050,6 +2154,7 @@ let recipeNotesById = { ...storedRecipeNotes };
 let pantryInventory = { ...storedPantryInventory };
 const DEFAULT_SERVINGS = 4;
 let preferredRetailer = safeGetItem("pantryRetailer") || "woolworths";
+let syncCode = normalizeSyncCode(safeGetItem("pantrySyncCode") || "");
 let selectedRecipes = [];
 let checkedItems = {};
 let currentWeekKey = "";
@@ -2071,8 +2176,13 @@ let currentLanguage = normalizeLanguageCode(safeGetItem("pantryLanguage") || "en
 let selectedServings = {};
 let currentCookRecipeId = "";
 let lastAddedRecipeId = "";
-safeRemoveItem("pantrySyncCode");
-safeRemoveItem("pantryLastSync");
+let syncKnownUpdatedAt = String(storedSyncMeta.updatedAt || "");
+let syncStatusMessage = "";
+let syncStatusTone = "";
+let syncSaveTimer = null;
+let syncPullTimer = null;
+let syncRequestInFlight = false;
+let syncSuppressRemoteSave = false;
 
 const selectedList = document.getElementById("selected-list");
 const recipeGrid = document.getElementById("recipe-grid");
@@ -2110,6 +2220,11 @@ const filterProtein = document.getElementById("filter-protein");
 const filterMeal = document.getElementById("filter-meal");
 const languageSelect = document.getElementById("language-select");
 const retailerSelect = document.getElementById("retailer-select");
+const syncCodeInput = document.getElementById("sync-code-input");
+const saveSyncCodeButton = document.getElementById("save-sync-code");
+const clearSyncCodeButton = document.getElementById("clear-sync-code");
+const syncNowButton = document.getElementById("sync-now");
+const syncStatus = document.getElementById("sync-status");
 
 const translations = {
   en: {
@@ -2137,6 +2252,19 @@ const translations = {
     note_clear: "Delete note",
     ingredients_empty: "No ingredients yet.",
     language: "Language",
+    sync_code_label: "Sync code",
+    sync_code_placeholder: "family-home",
+    sync_code_help: "Use the same code on your iPhone and laptop to share one planner.",
+    sync_save: "Save sync code",
+    sync_now: "Sync now",
+    sync_clear: "Disconnect",
+    sync_not_configured: "Cloud sync is not configured yet. Add your Supabase URL and anon key in sync-config.js.",
+    sync_idle: "Enter a sync code to connect this device to a shared planner.",
+    sync_connecting: "Connecting to shared planner...",
+    sync_syncing: "Syncing changes...",
+    sync_ready: (code, label) => `Syncing with "${code}"${label ? ` · Last synced ${label}` : ""}`,
+    sync_disabled: "Cloud sync is disconnected on this device.",
+    sync_failed: "Sync failed. Keeping local data for now.",
     recipe_picker: "Recipe Picker",
     recipe_picker_sub: "Select recipes for the week. No day-by-day planning required.",
     week_starting: "Week starting",
@@ -2252,6 +2380,19 @@ const translations = {
     note_clear: "Supprimer",
     ingredients_empty: "Pas d'ingredients pour le moment.",
     language: "Langue",
+    sync_code_label: "Code de synchronisation",
+    sync_code_placeholder: "family-home",
+    sync_code_help: "Utilisez le meme code sur votre iPhone et votre ordinateur pour partager le meme planning.",
+    sync_save: "Enregistrer le code",
+    sync_now: "Synchroniser",
+    sync_clear: "Deconnecter",
+    sync_not_configured: "La synchronisation cloud n'est pas encore configuree. Ajoutez l'URL Supabase et la cle anon dans sync-config.js.",
+    sync_idle: "Entrez un code de synchronisation pour connecter cet appareil a un planning partage.",
+    sync_connecting: "Connexion au planning partage...",
+    sync_syncing: "Synchronisation en cours...",
+    sync_ready: (code, label) => `Synchronise avec "${code}"${label ? ` · Derniere synchro ${label}` : ""}`,
+    sync_disabled: "La synchronisation cloud est desactivee sur cet appareil.",
+    sync_failed: "La synchronisation a echoue. Les donnees locales sont conservees pour le moment.",
     recipe_picker: "Sélection de recettes",
     recipe_picker_sub: "Choisissez vos recettes pour la semaine, sans planning par jour.",
     week_starting: "Semaine du",
@@ -2380,6 +2521,253 @@ function applyTranslations() {
     node.setAttribute("placeholder", t(key));
   });
   if (languageSelect) languageSelect.value = currentLanguage;
+}
+
+function hasSupabaseSyncConfig() {
+  return Boolean(SUPABASE_SYNC_URL && SUPABASE_SYNC_ANON_KEY);
+}
+
+function isSyncEnabled() {
+  return hasSupabaseSyncConfig() && Boolean(syncCode);
+}
+
+function formatSyncTimestamp(value) {
+  const date = new Date(value);
+  if (Number.isNaN(date.getTime())) return "";
+  return date.toLocaleString(getDateLocale(), {
+    hour: "numeric",
+    minute: "2-digit",
+    day: "numeric",
+    month: "short",
+  });
+}
+
+function setSyncStatus(message, tone = "") {
+  syncStatusMessage = message;
+  syncStatusTone = tone;
+  if (!syncStatus) return;
+  syncStatus.textContent = message;
+  syncStatus.classList.remove("is-error", "is-success");
+  if (tone === "error") syncStatus.classList.add("is-error");
+  if (tone === "success") syncStatus.classList.add("is-success");
+}
+
+function refreshSyncStatus() {
+  if (!syncStatus) return;
+  if (syncCodeInput && document.activeElement !== syncCodeInput) {
+    syncCodeInput.value = syncCode;
+  }
+  if (!hasSupabaseSyncConfig()) {
+    setSyncStatus(t("sync_not_configured"), "error");
+    return;
+  }
+  if (!syncCode) {
+    setSyncStatus(t("sync_idle"));
+    return;
+  }
+  if (syncRequestInFlight) {
+    setSyncStatus(t("sync_syncing"));
+    return;
+  }
+  const label = syncKnownUpdatedAt ? formatSyncTimestamp(syncKnownUpdatedAt) : "";
+  setSyncStatus(t("sync_ready", syncCode, label), "success");
+}
+
+function persistLocalState() {
+  safeSetItem("pantryPicksByWeek", JSON.stringify(selectedRecipesByWeek));
+  safeSetItem("pantryChecksByWeek", JSON.stringify(checkedItemsByWeek));
+  safeSetItem("pantryServingsByWeek", JSON.stringify(selectedServingsByWeek));
+  safeSetItem("pantryRatingsByRecipe", JSON.stringify(ratingsByRecipe));
+  safeSetItem("pantryRecipeNotes", JSON.stringify(recipeNotesById));
+  safeSetItem("pantryIngredientInventory", JSON.stringify(pantryInventory));
+  safeSetItem("pantryRetailer", preferredRetailer);
+  safeSetItem("pantryLanguage", currentLanguage);
+}
+
+function persistSyncMeta() {
+  safeSetItem("pantrySyncCode", syncCode);
+  safeSetItem(
+    SYNC_META_STORAGE_KEY,
+    JSON.stringify({
+      code: syncCode,
+      updatedAt: syncKnownUpdatedAt,
+    })
+  );
+}
+
+function clearSyncMeta() {
+  safeRemoveItem("pantrySyncCode");
+  safeRemoveItem(SYNC_META_STORAGE_KEY);
+  syncKnownUpdatedAt = "";
+}
+
+function buildPlannerStateBlob() {
+  return {
+    version: 1,
+    selectedRecipesByWeek,
+    checkedItemsByWeek,
+    selectedServingsByWeek,
+    ratingsByRecipe,
+    recipeNotesById,
+    pantryInventory,
+    preferredRetailer,
+    currentLanguage,
+  };
+}
+
+function clonePlainObject(value) {
+  return value && typeof value === "object" && !Array.isArray(value) ? { ...value } : {};
+}
+
+function sanitizePlannerStateBlob(blob) {
+  if (!blob || typeof blob !== "object") return null;
+  return {
+    selectedRecipesByWeek: clonePlainObject(blob.selectedRecipesByWeek),
+    checkedItemsByWeek: clonePlainObject(blob.checkedItemsByWeek),
+    selectedServingsByWeek: clonePlainObject(blob.selectedServingsByWeek),
+    ratingsByRecipe: clonePlainObject(blob.ratingsByRecipe),
+    recipeNotesById: clonePlainObject(blob.recipeNotesById),
+    pantryInventory: clonePlainObject(blob.pantryInventory),
+    preferredRetailer: String(blob.preferredRetailer || "woolworths") || "woolworths",
+    currentLanguage: normalizeLanguageCode(blob.currentLanguage || currentLanguage || "en"),
+  };
+}
+
+function applyPlannerStateBlob(blob) {
+  const sanitized = sanitizePlannerStateBlob(blob);
+  if (!sanitized) return false;
+
+  syncSuppressRemoteSave = true;
+  selectedRecipesByWeek = sanitized.selectedRecipesByWeek;
+  checkedItemsByWeek = sanitized.checkedItemsByWeek;
+  selectedServingsByWeek = sanitized.selectedServingsByWeek;
+  ratingsByRecipe = sanitized.ratingsByRecipe;
+  recipeNotesById = sanitized.recipeNotesById;
+  pantryInventory = sanitized.pantryInventory;
+  preferredRetailer = sanitized.preferredRetailer;
+  currentLanguage = sanitized.currentLanguage;
+  persistLocalState();
+
+  if (retailerSelect) retailerSelect.value = preferredRetailer;
+  if (languageSelect) languageSelect.value = currentLanguage;
+
+  if (currentWeekKey) {
+    selectedRecipes = [...(selectedRecipesByWeek[currentWeekKey] || [])];
+    checkedItems = { ...(checkedItemsByWeek[currentWeekKey] || {}) };
+    selectedServings = { ...(selectedServingsByWeek[currentWeekKey] || {}) };
+  }
+
+  refreshAll();
+  syncSuppressRemoteSave = false;
+  return true;
+}
+
+function getSupabaseSyncHeaders() {
+  return {
+    apikey: SUPABASE_SYNC_ANON_KEY,
+    Authorization: `Bearer ${SUPABASE_SYNC_ANON_KEY}`,
+    "Content-Type": "application/json",
+    "x-sync-code": syncCode,
+  };
+}
+
+async function fetchRemotePlannerState() {
+  if (!isSyncEnabled()) return null;
+  const response = await fetch(
+    `${SUPABASE_SYNC_URL}/rest/v1/plans?select=code,payload,updated_at&code=eq.${encodeURIComponent(syncCode)}&limit=1`,
+    {
+      headers: getSupabaseSyncHeaders(),
+    }
+  );
+  if (!response.ok) {
+    throw new Error(`Supabase load failed (${response.status})`);
+  }
+  const rows = await response.json();
+  return rows[0] || null;
+}
+
+async function pushPlannerStateToRemote() {
+  if (!isSyncEnabled()) return null;
+  syncRequestInFlight = true;
+  refreshSyncStatus();
+  try {
+    const response = await fetch(`${SUPABASE_SYNC_URL}/rest/v1/plans?on_conflict=code&select=code,updated_at,payload`, {
+      method: "POST",
+      headers: {
+        ...getSupabaseSyncHeaders(),
+        Prefer: "resolution=merge-duplicates,return=representation",
+      },
+      body: JSON.stringify([
+        {
+          code: syncCode,
+          payload: buildPlannerStateBlob(),
+        },
+      ]),
+    });
+    if (!response.ok) {
+      throw new Error(`Supabase save failed (${response.status})`);
+    }
+    const rows = await response.json();
+    return rows[0] || null;
+  } finally {
+    syncRequestInFlight = false;
+  }
+}
+
+async function pullPlannerStateFromRemote() {
+  if (!isSyncEnabled() || syncRequestInFlight) return false;
+  syncRequestInFlight = true;
+  refreshSyncStatus();
+  try {
+    const row = await fetchRemotePlannerState();
+    if (!row) {
+      const created = await pushPlannerStateToRemote();
+      syncKnownUpdatedAt = String(created?.updated_at || syncKnownUpdatedAt || "");
+      persistSyncMeta();
+      refreshSyncStatus();
+      return true;
+    }
+    const remoteUpdatedAt = String(row.updated_at || "");
+    const shouldApply = !syncKnownUpdatedAt || (remoteUpdatedAt && remoteUpdatedAt > syncKnownUpdatedAt);
+    if (shouldApply) {
+      applyPlannerStateBlob(row.payload);
+      syncKnownUpdatedAt = remoteUpdatedAt;
+      persistSyncMeta();
+    }
+    refreshSyncStatus();
+    return true;
+  } catch (error) {
+    syncRequestInFlight = false;
+    setSyncStatus(t("sync_failed"), "error");
+    return false;
+  } finally {
+    syncRequestInFlight = false;
+  }
+}
+
+function scheduleRemoteSync() {
+  if (!isSyncEnabled() || syncSuppressRemoteSave) return;
+  if (syncSaveTimer) clearTimeout(syncSaveTimer);
+  syncSaveTimer = setTimeout(async () => {
+    try {
+      const row = await pushPlannerStateToRemote();
+      syncKnownUpdatedAt = String(row?.updated_at || syncKnownUpdatedAt || "");
+      persistSyncMeta();
+      refreshSyncStatus();
+    } catch (error) {
+      setSyncStatus(t("sync_failed"), "error");
+    }
+  }, SYNC_SAVE_DEBOUNCE_MS);
+}
+
+function restartSyncPolling() {
+  if (syncPullTimer) clearInterval(syncPullTimer);
+  syncPullTimer = null;
+  if (!isSyncEnabled()) return;
+  syncPullTimer = setInterval(() => {
+    if (document.hidden) return;
+    void pullPlannerStateFromRemote();
+  }, SYNC_POLL_INTERVAL_MS);
 }
 
 const ingredientTranslationsFr = {
@@ -2682,7 +3070,7 @@ if (retailerSelect) {
   retailerSelect.value = preferredRetailer;
   retailerSelect.addEventListener("change", () => {
     preferredRetailer = retailerSelect.value;
-    safeSetItem("pantryRetailer", preferredRetailer);
+    persistLocalState();
     renderShoppingList();
     saveState();
   });
@@ -2705,14 +3093,77 @@ if (settingsModal) {
   });
 }
 
+async function connectSyncCode(nextCode) {
+  syncCode = normalizeSyncCode(nextCode);
+  if (!syncCode) {
+    clearSyncMeta();
+    restartSyncPolling();
+    refreshSyncStatus();
+    return;
+  }
+  syncKnownUpdatedAt = "";
+  persistSyncMeta();
+  setSyncStatus(t("sync_connecting"));
+  restartSyncPolling();
+  await pullPlannerStateFromRemote();
+  refreshSyncStatus();
+}
+
+if (syncCodeInput) {
+  syncCodeInput.value = syncCode;
+  syncCodeInput.addEventListener("keydown", (event) => {
+    if (event.key !== "Enter") return;
+    event.preventDefault();
+    if (saveSyncCodeButton) saveSyncCodeButton.click();
+  });
+}
+
+if (saveSyncCodeButton) {
+  saveSyncCodeButton.addEventListener("click", async () => {
+    const nextCode = normalizeSyncCode(syncCodeInput?.value || "");
+    if (syncCodeInput) syncCodeInput.value = nextCode;
+    await connectSyncCode(nextCode);
+  });
+}
+
+if (clearSyncCodeButton) {
+  clearSyncCodeButton.addEventListener("click", () => {
+    syncCode = "";
+    if (syncCodeInput) syncCodeInput.value = "";
+    clearSyncMeta();
+    restartSyncPolling();
+    refreshSyncStatus();
+  });
+}
+
+if (syncNowButton) {
+  syncNowButton.addEventListener("click", async () => {
+    if (!isSyncEnabled()) {
+      refreshSyncStatus();
+      return;
+    }
+    if (syncSaveTimer) {
+      clearTimeout(syncSaveTimer);
+      syncSaveTimer = null;
+    }
+    try {
+      const row = await pushPlannerStateToRemote();
+      syncKnownUpdatedAt = String(row?.updated_at || syncKnownUpdatedAt || "");
+      persistSyncMeta();
+      await pullPlannerStateFromRemote();
+      refreshSyncStatus();
+    } catch (error) {
+      setSyncStatus(t("sync_failed"), "error");
+    }
+  });
+}
+
 function saveState() {
   selectedRecipesByWeek[currentWeekKey] = [...selectedRecipes];
   checkedItemsByWeek[currentWeekKey] = { ...checkedItems };
   selectedServingsByWeek[currentWeekKey] = { ...selectedServings };
-  safeSetItem("pantryPicksByWeek", JSON.stringify(selectedRecipesByWeek));
-  safeSetItem("pantryChecksByWeek", JSON.stringify(checkedItemsByWeek));
-  safeSetItem("pantryServingsByWeek", JSON.stringify(selectedServingsByWeek));
-  safeSetItem("pantryRatingsByRecipe", JSON.stringify(ratingsByRecipe));
+  persistLocalState();
+  scheduleRemoteSync();
 }
 
 function renderRatingStars(target, recipeId) {
@@ -3200,7 +3651,8 @@ function getPantryIngredientCatalog() {
 }
 
 function savePantryInventory() {
-  safeSetItem("pantryIngredientInventory", JSON.stringify(pantryInventory));
+  persistLocalState();
+  scheduleRemoteSync();
 }
 
 function sanitizePantryInventory() {
@@ -3523,48 +3975,56 @@ function renderRecipeGrid() {
 
     const thumb = document.createElement("div");
     thumb.className = "recipe-thumb";
-    if (recipe.id === "dahl-lentilles-epinards") {
-      thumb.classList.add("thumb-dahl");
-    }
     const imageSrc = getRecipeImage(recipe);
-    if (imageSrc) {
-      const img = document.createElement("img");
-      img.src = imageSrc;
-      img.alt = getRecipeName(recipe);
-      // Safari can fail to fetch/decode lazy images inside scrollable containers.
-      img.loading = "eager";
-      img.decoding = "async";
-      const setBestImageFit = () => {
-        const width = img.naturalWidth || 0;
-        const height = img.naturalHeight || 0;
-        if (!width || !height) return;
-        const ratio = width / height;
-        // Wide landscape images are the ones that get visibly cropped in cards.
-        if (ratio >= 1.35) {
-          img.classList.add("fit-contain");
-        } else {
-          img.classList.remove("fit-contain");
-        }
-      };
-      img.addEventListener("load", setBestImageFit);
-      img.addEventListener("error", () => {
+    const fallbackSrc = buildRecipeFallbackImage(recipe);
+    const img = document.createElement("img");
+    img.src = imageSrc || fallbackSrc;
+    img.alt = getRecipeName(recipe);
+    // Safari can fail to fetch/decode lazy images inside scrollable containers.
+    img.loading = "eager";
+    img.decoding = "async";
+    if (!imageSrc) {
+      thumb.classList.add("is-fallback");
+      img.dataset.synthetic = "true";
+      img.classList.add("fit-fallback-art");
+    }
+    if (isRecipeBookPageImage(imageSrc)) {
+      img.classList.add("fit-book-page");
+    }
+    const setBestImageFit = () => {
+      if (img.dataset.synthetic === "true" || img.classList.contains("fit-book-page")) return;
+      const width = img.naturalWidth || 0;
+      const height = img.naturalHeight || 0;
+      if (!width || !height) return;
+      const ratio = width / height;
+      // Wide landscape images are the ones that get visibly cropped in cards.
+      if (ratio >= 1.35) {
+        img.classList.add("fit-contain");
+      } else {
+        img.classList.remove("fit-contain");
+      }
+    };
+    const swapToFallbackArt = () => {
+      thumb.classList.add("is-fallback");
+      img.dataset.synthetic = "true";
+      img.classList.remove("fit-contain", "fit-book-page");
+      img.classList.add("fit-fallback-art");
+      img.src = fallbackSrc;
+    };
+    img.addEventListener("load", setBestImageFit);
+    img.addEventListener("error", () => {
+      if (img.dataset.synthetic === "true") {
         thumb.classList.add("is-fallback");
         thumb.innerHTML = "";
         const fallback = document.createElement("span");
         fallback.textContent = getRecipeIcon(recipe);
         thumb.appendChild(fallback);
-      });
-      if (recipe.id === "dahl-lentilles-epinards") {
-        img.classList.add("fit-contain");
+        return;
       }
-      if (img.complete) setBestImageFit();
-      thumb.appendChild(img);
-    } else {
-      thumb.classList.add("is-fallback");
-      const fallback = document.createElement("span");
-      fallback.textContent = getRecipeIcon(recipe);
-      thumb.appendChild(fallback);
-    }
+      swapToFallbackArt();
+    });
+    if (img.complete) setBestImageFit();
+    thumb.appendChild(img);
     if (isSelected) {
       const selectedBadge = document.createElement("span");
       selectedBadge.className = "selected-badge";
@@ -4481,6 +4941,7 @@ function refreshAll() {
   if (currentCookRecipeId && (selectedRecipesByWeek[cookWeekKey] || []).includes(currentCookRecipeId)) {
     renderCookCard(currentCookRecipeId);
   }
+  refreshSyncStatus();
 }
 
 refreshAll();
@@ -4490,6 +4951,11 @@ if (topWeekPicker) {
   topWeekPicker.value = getNextWeekKey();
 }
 setWeekFromTopPicker();
+refreshSyncStatus();
+restartSyncPolling();
+if (isSyncEnabled()) {
+  void pullPlannerStateFromRemote();
+}
 
 if (recipeSearch) {
   recipeSearch.addEventListener("input", () => renderRecipeGrid());
@@ -4558,10 +5024,16 @@ if (topWeekPicker) {
   });
 }
 
+window.addEventListener("focus", () => {
+  if (!isSyncEnabled()) return;
+  void pullPlannerStateFromRemote();
+});
+
 if (languageSelect) {
   languageSelect.addEventListener("change", (event) => {
     currentLanguage = normalizeLanguageCode(event.target.value);
-    safeSetItem("pantryLanguage", currentLanguage);
+    persistLocalState();
+    scheduleRemoteSync();
     const selectedWeekKey = topWeekPicker ? topWeekPicker.value : "";
     populateTopWeekOptions();
     if (topWeekPicker && selectedWeekKey) {
