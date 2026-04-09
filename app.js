@@ -3991,27 +3991,13 @@ function renderRecipeGrid() {
     if (isRecipeBookPageImage(imageSrc)) {
       img.classList.add("fit-book-page");
     }
-    const setBestImageFit = () => {
-      if (img.dataset.synthetic === "true" || img.classList.contains("fit-book-page")) return;
-      const width = img.naturalWidth || 0;
-      const height = img.naturalHeight || 0;
-      if (!width || !height) return;
-      const ratio = width / height;
-      // Wide landscape images are the ones that get visibly cropped in cards.
-      if (ratio >= 1.35) {
-        img.classList.add("fit-contain");
-      } else {
-        img.classList.remove("fit-contain");
-      }
-    };
     const swapToFallbackArt = () => {
       thumb.classList.add("is-fallback");
       img.dataset.synthetic = "true";
-      img.classList.remove("fit-contain", "fit-book-page");
+      img.classList.remove("fit-book-page");
       img.classList.add("fit-fallback-art");
       img.src = fallbackSrc;
     };
-    img.addEventListener("load", setBestImageFit);
     img.addEventListener("error", () => {
       if (img.dataset.synthetic === "true") {
         thumb.classList.add("is-fallback");
@@ -4023,7 +4009,6 @@ function renderRecipeGrid() {
       }
       swapToFallbackArt();
     });
-    if (img.complete) setBestImageFit();
     thumb.appendChild(img);
     if (isSelected) {
       const selectedBadge = document.createElement("span");

@@ -890,7 +890,7 @@ body.view-cook #shopping {
 
 .recipe-thumb {
   width: auto;
-  height: 96px;
+  aspect-ratio: 4 / 3;
   margin: 14px 14px 0;
   border-radius: 16px;
   background: linear-gradient(135deg, rgba(246, 243, 238, 0.95), rgba(255, 255, 255, 0.98));
@@ -909,12 +909,7 @@ body.view-cook #shopping {
 }
 
 .recipe-thumb img.fit-book-page {
-  object-position: 50% 14%;
-}
-
-.recipe-thumb img.fit-contain {
-  object-fit: contain;
-  background: #f6f3ee;
+  object-position: 50% 18%;
 }
 
 .recipe-thumb img.fit-fallback-art {
@@ -933,28 +928,6 @@ body.view-cook #shopping {
   font-size: 0.72rem;
   font-weight: 600;
   letter-spacing: 0.01em;
-}
-
-@media (max-width: 720px) {
-  .recipe-thumb {
-    height: auto;
-    aspect-ratio: 4 / 3;
-  }
-
-  .recipe-thumb img {
-    object-fit: cover;
-    background: transparent;
-  }
-
-  .recipe-thumb img.fit-book-page {
-    object-position: 50% 14%;
-  }
-
-  .recipe-thumb img.fit-contain {
-    object-fit: contain;
-    background: #f6f3ee;
-  }
-
 }
 
 .recipe-thumb.is-fallback span {
