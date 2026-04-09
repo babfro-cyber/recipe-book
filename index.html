@@ -21,11 +21,6 @@
               <select id="top-week-picker"></select>
             </label>
           </div>
-          <div class="hero-actions">
-            <button class="primary" id="jump-planner" data-i18n="plan_week">Plan the week</button>
-            <button class="ghost" id="jump-cook" data-i18n="start_cooking">Start cooking</button>
-            <button class="ghost" id="open-frequency" data-i18n="frequency_view">Frequency view</button>
-          </div>
         </div>
         <div class="hero-count" id="hero-count"></div>
         <div class="language-switch">
@@ -39,6 +34,47 @@
         </div>
         <button class="settings-btn settings-floating" id="open-settings" type="button" aria-label="Open settings">⚙</button>
       </header>
+
+      <section class="weekly-flow" aria-labelledby="weekly-flow-title">
+        <div class="weekly-flow-header">
+          <p class="eyebrow" data-i18n="weekly_flow_label">Weekly flow</p>
+          <h2 id="weekly-flow-title" data-i18n="weekly_flow_title">Plan → Shop → Cook</h2>
+          <p data-i18n="weekly_flow_sub">Use the same three steps each week so the next action is always clear.</p>
+        </div>
+        <div class="weekly-flow-steps" role="navigation" aria-label="Weekly flow steps">
+          <button class="flow-step" id="jump-planner" data-stage="plan" type="button">
+            <span class="flow-step-number">1</span>
+            <span class="flow-step-copy">
+              <strong data-i18n="flow_plan">Plan</strong>
+              <small data-i18n="flow_plan_sub">Choose around 4 recipes</small>
+            </span>
+          </button>
+          <button class="flow-step" id="jump-shopping" data-stage="shop" type="button">
+            <span class="flow-step-number">2</span>
+            <span class="flow-step-copy">
+              <strong data-i18n="flow_shop">Shop</strong>
+              <small data-i18n="flow_shop_sub">Review the shopping list</small>
+            </span>
+          </button>
+          <button class="flow-step" id="jump-cook" data-stage="cook" type="button">
+            <span class="flow-step-number">3</span>
+            <span class="flow-step-copy">
+              <strong data-i18n="flow_cook">Cook</strong>
+              <small data-i18n="flow_cook_sub">Use your planned recipes</small>
+            </span>
+          </button>
+        </div>
+        <div class="flow-guidance">
+          <div class="flow-guidance-copy">
+            <span class="flow-guidance-label" id="flow-guidance-label"></span>
+            <p class="flow-guidance-text" id="flow-guidance-text"></p>
+          </div>
+          <div class="flow-guidance-actions">
+            <button class="primary" id="flow-primary-action" type="button"></button>
+            <button class="ghost" id="open-frequency" data-i18n="frequency_view" type="button">Frequency view</button>
+          </div>
+        </div>
+      </section>
 
       <section class="layout" id="planner">
         <div class="planner-jump" aria-hidden="false">

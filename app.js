@@ -2215,6 +2215,11 @@ const pantrySearchResults = document.getElementById("pantry-search-results");
 const pantrySelected = document.getElementById("pantry-selected");
 const pantryMatchList = document.getElementById("pantry-match-list");
 const pantryClear = document.getElementById("pantry-clear");
+const jumpShopping = document.getElementById("jump-shopping");
+const flowPrimaryAction = document.getElementById("flow-primary-action");
+const flowGuidanceLabel = document.getElementById("flow-guidance-label");
+const flowGuidanceText = document.getElementById("flow-guidance-text");
+const flowSteps = Array.from(document.querySelectorAll(".flow-step"));
 const openFrequency = document.getElementById("open-frequency");
 const frequencyModal = document.getElementById("frequency-modal");
 const closeFrequency = document.getElementById("close-frequency");
@@ -2233,10 +2238,40 @@ const clearSyncCodeButton = document.getElementById("clear-sync-code");
 const syncNowButton = document.getElementById("sync-now");
 const syncStatus = document.getElementById("sync-status");
 
+const WEEKLY_RECIPE_TARGET = 4;
+
 const translations = {
   en: {
     hero_title: "Weekly recipe planner",
     hero_subhead: "Choose recipes, build the shopping list, and cook.",
+    weekly_flow_label: "Weekly flow",
+    weekly_flow_title: "Plan → Shop → Cook",
+    weekly_flow_sub: "Use the same three steps each week so the next action is always clear.",
+    flow_plan: "Plan",
+    flow_plan_sub: "Choose around 4 recipes",
+    flow_shop: "Shop",
+    flow_shop_sub: "Review the shopping list",
+    flow_cook: "Cook",
+    flow_cook_sub: "Use your planned recipes",
+    flow_current_step: (stage) => `Current step: ${stage}`,
+    flow_plan_empty: (goal) =>
+      `Start by choosing around ${goal} recipes for the week. When your plan is set, PantryPilot will turn it into one shopping list.`,
+    flow_plan_in_progress: (count, goal) =>
+      `${count} of ${goal} recipes selected. Keep planning your week, or jump to Shop any time to preview the combined list.`,
+    flow_plan_ready: (count) =>
+      `${count} recipes are selected for the week. Your shopping list is ready when you are.`,
+    flow_shop_locked: "Add at least one recipe first so PantryPilot can build your shopping list.",
+    flow_shop_ready: (itemCount) =>
+      `Review the combined shopping list${itemCount ? ` with ${itemCount} ingredient line${itemCount === 1 ? "" : "s"}` : ""}, tick off what you already have, and use Woolworths links when needed.`,
+    flow_cook_locked: "Plan at least one recipe before moving into Cook.",
+    flow_cook_ready:
+      "Use your planned recipes during the week. Pick one recipe in Cook mode to see the ingredients and steps.",
+    flow_cook_active: (recipeName) =>
+      `You're set to cook ${recipeName}. Keep the recipe open and adjust servings if needed.`,
+    flow_action_plan: "Choose recipes",
+    flow_action_shop: "Review shopping list",
+    flow_action_cook: "Open cook mode",
+    flow_action_continue: "Continue cooking",
     plan_week: "Plan the week",
     start_cooking: "Start cooking",
     selected_recipes: "Selected recipes",
@@ -2365,6 +2400,34 @@ const translations = {
   fr: {
     hero_title: "Planificateur de recettes",
     hero_subhead: "Choisissez vos recettes, la liste de courses et cuisinez.",
+    weekly_flow_label: "Routine hebdomadaire",
+    weekly_flow_title: "Planifier → Courses → Cuisine",
+    weekly_flow_sub: "Suivez les mêmes trois étapes chaque semaine pour savoir quoi faire ensuite.",
+    flow_plan: "Planifier",
+    flow_plan_sub: "Choisir environ 4 recettes",
+    flow_shop: "Courses",
+    flow_shop_sub: "Relire la liste de courses",
+    flow_cook: "Cuisine",
+    flow_cook_sub: "Utiliser les recettes choisies",
+    flow_current_step: (stage) => `Étape actuelle : ${stage}`,
+    flow_plan_empty: (goal) =>
+      `Commencez par choisir environ ${goal} recettes pour la semaine. Une fois le planning prêt, PantryPilot crée une seule liste de courses.`,
+    flow_plan_in_progress: (count, goal) =>
+      `${count} recette${count === 1 ? "" : "s"} sur ${goal} sélectionnée${count === 1 ? "" : "s"}. Continuez à planifier, ou passez aux courses pour prévisualiser la liste.`,
+    flow_plan_ready: (count) =>
+      `${count} recettes sont sélectionnées pour la semaine. Votre liste de courses est prête.`,
+    flow_shop_locked: "Ajoutez au moins une recette pour que PantryPilot crée la liste de courses.",
+    flow_shop_ready: (itemCount) =>
+      `Relisez la liste de courses regroupée${itemCount ? ` avec ${itemCount} ligne${itemCount === 1 ? "" : "s"} d'ingrédients` : ""}, cochez ce que vous avez déjà et utilisez les liens Woolworths si besoin.`,
+    flow_cook_locked: "Planifiez au moins une recette avant de passer à la cuisine.",
+    flow_cook_ready:
+      "Utilisez vos recettes prévues pendant la semaine. Choisissez une recette en mode cuisine pour voir les ingrédients et les étapes.",
+    flow_cook_active: (recipeName) =>
+      `Vous êtes prêt à cuisiner ${recipeName}. Gardez la recette ouverte et ajustez les portions si besoin.`,
+    flow_action_plan: "Choisir des recettes",
+    flow_action_shop: "Relire la liste",
+    flow_action_cook: "Ouvrir le mode cuisine",
+    flow_action_continue: "Reprendre la recette",
     plan_week: "Planifier la semaine",
     start_cooking: "Commencer à cuisiner",
     selected_recipes: "Recettes sélectionnées",
@@ -3022,36 +3085,133 @@ const cookSection = document.getElementById("cook");
 const shoppingSection = document.getElementById("shopping");
 const plannerLibrary = document.getElementById("planner-library");
 const plannerMatch = document.getElementById("planner-match");
+let currentStage = "plan";
 
 function setView(view) {
   const isCook = view === "cook";
   document.body.classList.toggle("view-cook", isCook);
   document.body.classList.toggle("view-plan", !isCook);
-  if (jumpPlanner) {
-    jumpPlanner.classList.toggle("primary", !isCook);
-    jumpPlanner.classList.toggle("ghost", isCook);
+}
+
+function getStageLabel(stage) {
+  if (stage === "shop") return t("flow_shop");
+  if (stage === "cook") return t("flow_cook");
+  return t("flow_plan");
+}
+
+function syncCurrentStage() {
+  if (document.body.classList.contains("view-cook")) {
+    currentStage = "cook";
+    return;
   }
-  if (jumpCook) {
-    jumpCook.classList.toggle("primary", isCook);
-    jumpCook.classList.toggle("ghost", !isCook);
+  currentStage = selectedRecipes.length >= WEEKLY_RECIPE_TARGET ? "shop" : "plan";
+}
+
+function scrollToStage(stage) {
+  const target =
+    stage === "shop"
+      ? shoppingSection
+      : stage === "cook"
+        ? cookSection
+        : plannerSection;
+  if (target) {
+    target.scrollIntoView({ behavior: "smooth", block: "start" });
+  }
+}
+
+function renderWeeklyFlow() {
+  if (!flowGuidanceLabel || !flowGuidanceText || !flowPrimaryAction) return;
+
+  document.body.classList.toggle("stage-plan", currentStage === "plan");
+  document.body.classList.toggle("stage-shop", currentStage === "shop");
+  document.body.classList.toggle("stage-cook", currentStage === "cook");
+
+  const selectedCount = selectedRecipes.length;
+  const shoppingCount = selectedCount ? aggregateShoppingList().length : 0;
+  const activeCookRecipe = currentCookRecipeId ? getRecipeById(currentCookRecipeId) : null;
+
+  flowSteps.forEach((button) => {
+    const stage = button.dataset.stage || "plan";
+    const isLocked = stage !== "plan" && selectedCount === 0;
+    const isActive = stage === currentStage;
+    button.classList.toggle("is-active", isActive);
+    button.classList.toggle("is-ready", !isActive && !isLocked);
+    button.classList.toggle("is-locked", isLocked);
+    button.setAttribute("aria-current", isActive ? "step" : "false");
+    button.disabled = isLocked;
+  });
+
+  let guidance = "";
+  let actionLabel = t("flow_action_plan");
+  let actionStage = "plan";
+
+  if (currentStage === "cook") {
+    if (!selectedCount) {
+      guidance = t("flow_cook_locked");
+      actionStage = "plan";
+      actionLabel = t("flow_action_plan");
+    } else if (activeCookRecipe) {
+      guidance = t("flow_cook_active", getRecipeName(activeCookRecipe));
+      actionStage = "cook";
+      actionLabel = t("flow_action_continue");
+    } else {
+      guidance = t("flow_cook_ready");
+      actionStage = "cook";
+      actionLabel = t("flow_action_cook");
+    }
+  } else if (currentStage === "shop") {
+    if (!selectedCount) {
+      guidance = t("flow_shop_locked");
+      actionStage = "plan";
+      actionLabel = t("flow_action_plan");
+    } else {
+      guidance = t("flow_shop_ready", shoppingCount);
+      actionStage = "shop";
+      actionLabel = t("flow_action_shop");
+    }
+  } else if (!selectedCount) {
+    guidance = t("flow_plan_empty", WEEKLY_RECIPE_TARGET);
+  } else if (selectedCount < WEEKLY_RECIPE_TARGET) {
+    guidance = t("flow_plan_in_progress", selectedCount, WEEKLY_RECIPE_TARGET);
+  } else {
+    guidance = t("flow_plan_ready", selectedCount);
+    actionStage = "shop";
+    actionLabel = t("flow_action_shop");
+  }
+
+  flowGuidanceLabel.textContent = t("flow_current_step", getStageLabel(currentStage));
+  flowGuidanceText.textContent = guidance;
+  flowPrimaryAction.textContent = actionLabel;
+  flowPrimaryAction.onclick = () => {
+    focusStage(actionStage);
+  };
+}
+
+function focusStage(stage, { scroll = true } = {}) {
+  const resolvedStage = stage !== "plan" && selectedRecipes.length === 0 ? "plan" : stage;
+  currentStage = resolvedStage;
+  setView(resolvedStage === "cook" ? "cook" : "plan");
+  renderWeeklyFlow();
+  if (scroll) {
+    scrollToStage(resolvedStage);
   }
 }
 
 if (jumpPlanner) {
   jumpPlanner.addEventListener("click", () => {
-    setView("plan");
-    if (plannerSection) {
-      plannerSection.scrollIntoView({ behavior: "smooth" });
-    }
+    focusStage("plan");
+  });
+}
+
+if (jumpShopping) {
+  jumpShopping.addEventListener("click", () => {
+    focusStage("shop");
   });
 }
 
 if (jumpCook) {
   jumpCook.addEventListener("click", () => {
-    setView("cook");
-    if (cookSection) {
-      cookSection.scrollIntoView({ behavior: "smooth" });
-    }
+    focusStage("cook");
   });
 }
 
@@ -3072,6 +3232,7 @@ if (jumpMatch) {
 }
 
 setView("plan");
+renderWeeklyFlow();
 
 if (retailerSelect) {
   retailerSelect.value = preferredRetailer;
@@ -4894,6 +5055,7 @@ function setWeekFromTopPicker() {
     if (cookSelect) cookSelect.value = "";
     renderCookEmpty();
   }
+  syncCurrentStage();
   refreshAll();
 }
 
@@ -4919,6 +5081,7 @@ function populateTopWeekOptions() {
 
 function refreshAll() {
   applyTranslations();
+  syncCurrentStage();
   if (topWeekLabel) {
     topWeekLabel.textContent = currentWeekKey ? formatWeekLabel(currentWeekKey) : "";
   }
@@ -4940,6 +5103,7 @@ function refreshAll() {
     const weekLabel = formatWeekLabel(currentWeekKey);
     heroCount.textContent = t("planned_count", selectedRecipes.length, weekLabel);
   }
+  renderWeeklyFlow();
   if (currentCookRecipeId && (selectedRecipesByWeek[cookWeekKey] || []).includes(currentCookRecipeId)) {
     renderCookCard(currentCookRecipeId);
   }
@@ -4988,10 +5152,13 @@ if (cookSelect) {
     if (!selected) {
       currentCookRecipeId = "";
       renderCookEmpty();
+      renderWeeklyFlow();
       return;
     }
     currentCookRecipeId = selected;
     renderCookCard(selected);
+    currentStage = "cook";
+    renderWeeklyFlow();
   });
 }
 
@@ -5009,6 +5176,8 @@ if (clearPlan) {
   clearPlan.addEventListener("click", () => {
     selectedRecipes = [];
     checkedItems = {};
+    currentStage = "plan";
+    setView("plan");
     saveState();
     refreshAll();
     cookCard.innerHTML = `
