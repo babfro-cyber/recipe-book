@@ -173,16 +173,24 @@
         <div class="panel full-width">
           <div class="panel-header">
             <h2 data-i18n="cook_mode">Cook Mode</h2>
-            <p data-i18n="cook_mode_sub">Select a planned recipe to follow the steps.</p>
+            <p data-i18n="cook_mode_sub">Use this week's selected recipes in a focused cooking view.</p>
           </div>
           <div class="cook-controls">
             <div class="week-label" id="cook-week-label"></div>
-            <select id="cook-select"></select>
+            <div class="cook-overview" id="cook-overview"></div>
           </div>
-          <div class="cook-card" id="cook-card">
-            <div class="empty-state">
-              <h3 data-i18n="ready_title">Ready when you are</h3>
-              <p data-i18n="ready_sub">Pick a recipe from your plan to start cooking.</p>
+          <div class="cook-shell">
+            <div class="cook-recipe-list" id="cook-recipe-list">
+              <div class="empty-state">
+                <h3 data-i18n="ready_title">Ready when you are</h3>
+                <p data-i18n="ready_sub">Pick a recipe from your plan to start cooking.</p>
+              </div>
+            </div>
+            <div class="cook-card" id="cook-card">
+              <div class="empty-state">
+                <h3 data-i18n="ready_title">Ready when you are</h3>
+                <p data-i18n="ready_sub">Pick a recipe from your plan to start cooking.</p>
+              </div>
             </div>
           </div>
         </div>

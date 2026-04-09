@@ -2149,6 +2149,8 @@ const SYNC_SAVE_DEBOUNCE_MS = 1200;
 const storedPicksByWeek = safeParseStorage("pantryPicksByWeek", {});
 const storedChecksByWeek = safeParseStorage("pantryChecksByWeek", {});
 const storedServingsByWeek = safeParseStorage("pantryServingsByWeek", {});
+const storedCookDoneByWeek = safeParseStorage("pantryCookDoneByWeek", {});
+const storedCookStepChecksByWeek = safeParseStorage("pantryCookStepChecksByWeek", {});
 const storedRatings = safeParseStorage("pantryRatingsByRecipe", {});
 const storedRecipeNotes = safeParseStorage("pantryRecipeNotes", {});
 const storedPantryInventory = safeParseStorage("pantryIngredientInventory", {});
@@ -2156,6 +2158,8 @@ const storedSyncMeta = safeParseStorage(SYNC_META_STORAGE_KEY, {});
 let selectedRecipesByWeek = { ...storedPicksByWeek };
 let checkedItemsByWeek = { ...storedChecksByWeek };
 let selectedServingsByWeek = { ...storedServingsByWeek };
+let cookDoneByWeek = { ...storedCookDoneByWeek };
+let cookStepChecksByWeek = { ...storedCookStepChecksByWeek };
 let ratingsByRecipe = { ...storedRatings };
 let recipeNotesById = { ...storedRecipeNotes };
 let pantryInventory = { ...storedPantryInventory };
@@ -2203,8 +2207,9 @@ const shoppingTools = document.getElementById("shopping-tools");
 const shoppingStats = document.getElementById("shopping-stats");
 const shoppingNextLink = document.getElementById("shopping-next-link");
 const shoppingToggleChecked = document.getElementById("shopping-toggle-checked");
-const cookSelect = document.getElementById("cook-select");
+const cookOverview = document.getElementById("cook-overview");
 const cookCard = document.getElementById("cook-card");
+const cookRecipeList = document.getElementById("cook-recipe-list");
 const miniGrid = document.getElementById("mini-grid");
 const weekLabel = document.getElementById("week-label");
 const recentWeeks = document.getElementById("recent-weeks");
@@ -2270,7 +2275,9 @@ const translations = {
       `Review the combined shopping list${itemCount ? ` with ${itemCount} ingredient line${itemCount === 1 ? "" : "s"}` : ""}, tick off what you already have, and use Woolworths links when needed.`,
     flow_cook_locked: "Plan at least one recipe before moving into Cook.",
     flow_cook_ready:
-      "Use your planned recipes during the week. Pick one recipe in Cook mode to see the ingredients and steps.",
+      "Use your planned recipes during the week. Cook mode keeps only this week's recipes in view so the next dish is easy to open.",
+    flow_cook_done: (recipeName) =>
+      `${recipeName} is marked done. Open the next recipe when you're ready.`,
     flow_cook_active: (recipeName) =>
       `You're set to cook ${recipeName}. Keep the recipe open and adjust servings if needed.`,
     flow_action_plan: "Choose recipes",
@@ -2390,22 +2397,50 @@ const translations = {
     clear_checks: "Clear checks",
     clear_plan: "Clear plan",
     cook_mode: "Cook Mode",
-    cook_mode_sub: "Select a planned recipe to follow the steps.",
+    cook_mode_sub: "Use this week's selected recipes in a focused cooking view.",
     load_instructions: "Load instructions",
     ready_title: "Ready when you are",
     ready_sub: "Pick a recipe from your plan to start cooking.",
     tip_text: "Tip: You can edit servings in cook mode and the ingredient list will update.",
     servings_label: "servings",
+    cook_summary_title: "Cooking this week",
+    cook_summary_sub: "Only your selected recipes appear here, with a simple next-recipe flow.",
+    cook_summary_status: (total, done) => {
+      if (!total) return "Choose recipes in Plan to start cooking.";
+      if (done >= total) return `All ${total} recipe${total === 1 ? "" : "s"} marked done.`;
+      if (done > 0) return `${done} of ${total} recipe${total === 1 ? "" : "s"} marked done.`;
+      return `${total} recipe${total === 1 ? "" : "s"} ready to cook this week.`;
+    },
+    cook_list_title: "Selected recipes",
+    cook_list_sub: "Open one recipe at a time and move to the next when you're done.",
+    cook_list_empty: "Your selected recipes will appear here.",
+    cook_badge_active: "Now cooking",
+    cook_badge_done: "Done",
+    cook_badge_next: "Next up",
+    cook_recipe_position: (index, total) => `Recipe ${index} of ${total}`,
+    cook_focus_tip: "Check off steps as you go, then move straight to the next recipe.",
+    cook_section_ingredients: "Ingredients",
+    cook_section_ingredients_count: (count) => `${count} item${count === 1 ? "" : "s"}`,
+    cook_section_steps: "Method",
+    cook_section_steps_count: (checked, total) =>
+      checked ? `${checked} of ${total} checked` : `${total} step${total === 1 ? "" : "s"}`,
+    cook_step_done: "Done",
+    cook_steps_empty: "No steps added yet.",
+    cook_mark_done: "Mark recipe done",
+    cook_mark_undone: "Mark as not done",
+    cook_status_complete: "Completed",
+    cook_status_in_progress: "In progress",
+    cook_next_recipe: "Next recipe",
+    cook_no_next_recipe: "No more recipes",
+    cook_open_link: "Open recipe link",
+    cook_empty_plan_title: "Nothing planned for this week",
+    cook_empty_plan_sub: "Choose recipes in Plan first, then return here for a focused cooking view.",
     pick_summary_empty: "Pick recipes for the week to get started.",
     pick_summary: (count) => `You have ${count} recipe${count === 1 ? "" : "s"} selected.`,
     remove: "Remove",
     add_to_picks: "Add to picks",
     remove_from_picks: "Remove from picks",
     shopping_empty: "Add recipes to see your list.",
-    cook_placeholder: "Pick recipes to cook",
-    cook_select: "Select a recipe",
-    cook_empty_title: "Pick a planned recipe first",
-    cook_empty_sub: "Once you select a recipe, we will show the steps here.",
     recent_weeks: "Recent weeks",
     view: "View",
     utensil_thermomix: "Thermomix",
@@ -2445,7 +2480,9 @@ const translations = {
       `Relisez la liste de courses regroupée${itemCount ? ` avec ${itemCount} ligne${itemCount === 1 ? "" : "s"} d'ingrédients` : ""}, cochez ce que vous avez déjà et utilisez les liens Woolworths si besoin.`,
     flow_cook_locked: "Planifiez au moins une recette avant de passer à la cuisine.",
     flow_cook_ready:
-      "Utilisez vos recettes prévues pendant la semaine. Choisissez une recette en mode cuisine pour voir les ingrédients et les étapes.",
+      "Utilisez vos recettes prévues pendant la semaine. Le mode cuisine garde seulement les recettes de la semaine en vue pour ouvrir la suivante plus facilement.",
+    flow_cook_done: (recipeName) =>
+      `${recipeName} est marquée comme faite. Ouvrez la recette suivante quand vous voulez.`,
     flow_cook_active: (recipeName) =>
       `Vous êtes prêt à cuisiner ${recipeName}. Gardez la recette ouverte et ajustez les portions si besoin.`,
     flow_action_plan: "Choisir des recettes",
@@ -2565,22 +2602,50 @@ const translations = {
     clear_checks: "Effacer les coches",
     clear_plan: "Vider la sélection",
     cook_mode: "Mode cuisine",
-    cook_mode_sub: "Sélectionnez une recette pour suivre les étapes.",
+    cook_mode_sub: "Utilisez seulement les recettes sélectionnées cette semaine dans une vue cuisine ciblée.",
     load_instructions: "Charger les instructions",
     ready_title: "Prêt quand vous l'êtes",
     ready_sub: "Choisissez une recette pour commencer.",
     tip_text: "Astuce : vous pouvez ajuster les portions en mode cuisine et la liste s'actualise.",
     servings_label: "portions",
+    cook_summary_title: "Cuisine cette semaine",
+    cook_summary_sub: "Seules vos recettes sélectionnées apparaissent ici, avec un passage simple à la suivante.",
+    cook_summary_status: (total, done) => {
+      if (!total) return "Choisissez des recettes dans Plan pour commencer à cuisiner.";
+      if (done >= total) return `${total} recette${total === 1 ? "" : "s"} marquée${total === 1 ? "" : "s"} comme faite${total === 1 ? "" : "s"}.`;
+      if (done > 0) return `${done} recette${done === 1 ? "" : "s"} sur ${total} marquée${done === 1 ? "" : "s"} comme faite${done === 1 ? "" : "s"}.`;
+      return `${total} recette${total === 1 ? "" : "s"} prête${total === 1 ? "" : "s"} à cuisiner cette semaine.`;
+    },
+    cook_list_title: "Recettes sélectionnées",
+    cook_list_sub: "Ouvrez une recette à la fois puis passez à la suivante quand c'est fini.",
+    cook_list_empty: "Vos recettes sélectionnées apparaîtront ici.",
+    cook_badge_active: "En cours",
+    cook_badge_done: "Fait",
+    cook_badge_next: "Ensuite",
+    cook_recipe_position: (index, total) => `Recette ${index} sur ${total}`,
+    cook_focus_tip: "Cochez les étapes au fur et à mesure puis passez directement à la recette suivante.",
+    cook_section_ingredients: "Ingrédients",
+    cook_section_ingredients_count: (count) => `${count} élément${count === 1 ? "" : "s"}`,
+    cook_section_steps: "Étapes",
+    cook_section_steps_count: (checked, total) =>
+      checked ? `${checked} sur ${total} cochée${checked === 1 ? "" : "s"}` : `${total} étape${total === 1 ? "" : "s"}`,
+    cook_step_done: "Fait",
+    cook_steps_empty: "Aucune étape ajoutée pour l'instant.",
+    cook_mark_done: "Marquer la recette comme faite",
+    cook_mark_undone: "Marquer comme non faite",
+    cook_status_complete: "Terminée",
+    cook_status_in_progress: "En cours",
+    cook_next_recipe: "Recette suivante",
+    cook_no_next_recipe: "Plus de recettes",
+    cook_open_link: "Ouvrir le lien recette",
+    cook_empty_plan_title: "Rien de prévu cette semaine",
+    cook_empty_plan_sub: "Choisissez d'abord des recettes dans Plan, puis revenez ici pour une vue cuisine ciblée.",
     pick_summary_empty: "Choisissez des recettes pour démarrer.",
     pick_summary: (count) => `Vous avez ${count} recette${count === 1 ? "" : "s"} sélectionnée${count === 1 ? "" : "s"}.`,
     remove: "Retirer",
     add_to_picks: "Ajouter",
     remove_from_picks: "Retirer",
     shopping_empty: "Ajoutez des recettes pour voir la liste.",
-    cook_placeholder: "Choisissez des recettes",
-    cook_select: "Sélectionnez une recette",
-    cook_empty_title: "Choisissez d'abord une recette",
-    cook_empty_sub: "Après sélection, les étapes s'afficheront ici.",
     recent_weeks: "Semaines récentes",
     view: "Voir",
     utensil_thermomix: "Thermomix",
@@ -2690,6 +2755,8 @@ function persistLocalState() {
   safeSetItem("pantryPicksByWeek", JSON.stringify(selectedRecipesByWeek));
   safeSetItem("pantryChecksByWeek", JSON.stringify(checkedItemsByWeek));
   safeSetItem("pantryServingsByWeek", JSON.stringify(selectedServingsByWeek));
+  safeSetItem("pantryCookDoneByWeek", JSON.stringify(cookDoneByWeek));
+  safeSetItem("pantryCookStepChecksByWeek", JSON.stringify(cookStepChecksByWeek));
   safeSetItem("pantryRatingsByRecipe", JSON.stringify(ratingsByRecipe));
   safeSetItem("pantryRecipeNotes", JSON.stringify(recipeNotesById));
   safeSetItem("pantryIngredientInventory", JSON.stringify(pantryInventory));
@@ -2720,6 +2787,8 @@ function buildPlannerStateBlob() {
     selectedRecipesByWeek,
     checkedItemsByWeek,
     selectedServingsByWeek,
+    cookDoneByWeek,
+    cookStepChecksByWeek,
     ratingsByRecipe,
     recipeNotesById,
     pantryInventory,
@@ -2732,12 +2801,34 @@ function clonePlainObject(value) {
   return value && typeof value === "object" && !Array.isArray(value) ? { ...value } : {};
 }
 
+function cloneTwoLevelObjectMap(value) {
+  const outer = clonePlainObject(value);
+  Object.keys(outer).forEach((key) => {
+    outer[key] = clonePlainObject(outer[key]);
+  });
+  return outer;
+}
+
+function cloneThreeLevelObjectMap(value) {
+  const outer = clonePlainObject(value);
+  Object.keys(outer).forEach((key) => {
+    const mid = clonePlainObject(outer[key]);
+    Object.keys(mid).forEach((innerKey) => {
+      mid[innerKey] = clonePlainObject(mid[innerKey]);
+    });
+    outer[key] = mid;
+  });
+  return outer;
+}
+
 function sanitizePlannerStateBlob(blob) {
   if (!blob || typeof blob !== "object") return null;
   return {
     selectedRecipesByWeek: clonePlainObject(blob.selectedRecipesByWeek),
     checkedItemsByWeek: clonePlainObject(blob.checkedItemsByWeek),
     selectedServingsByWeek: clonePlainObject(blob.selectedServingsByWeek),
+    cookDoneByWeek: cloneTwoLevelObjectMap(blob.cookDoneByWeek),
+    cookStepChecksByWeek: cloneThreeLevelObjectMap(blob.cookStepChecksByWeek),
     ratingsByRecipe: clonePlainObject(blob.ratingsByRecipe),
     recipeNotesById: clonePlainObject(blob.recipeNotesById),
     pantryInventory: clonePlainObject(blob.pantryInventory),
@@ -2754,6 +2845,8 @@ function applyPlannerStateBlob(blob) {
   selectedRecipesByWeek = sanitized.selectedRecipesByWeek;
   checkedItemsByWeek = sanitized.checkedItemsByWeek;
   selectedServingsByWeek = sanitized.selectedServingsByWeek;
+  cookDoneByWeek = sanitized.cookDoneByWeek;
+  cookStepChecksByWeek = sanitized.cookStepChecksByWeek;
   ratingsByRecipe = sanitized.ratingsByRecipe;
   recipeNotesById = sanitized.recipeNotesById;
   pantryInventory = sanitized.pantryInventory;
@@ -3117,6 +3210,117 @@ function getRecipeSteps(recipe) {
   if (isFrenchLanguage() && recipe.steps_fr) return recipe.steps_fr;
   return recipe.steps;
 }
+
+function getCookPlanIds(weekKey = cookWeekKey) {
+  return Array.from(new Set(selectedRecipesByWeek[weekKey] || [])).filter((recipeId) => Boolean(getRecipeById(recipeId)));
+}
+
+function pruneRecipeMapForWeek(store, weekKey, validIds) {
+  if (!weekKey || !store[weekKey]) return;
+  const next = {};
+  Object.keys(store[weekKey]).forEach((recipeId) => {
+    if (validIds.has(recipeId)) next[recipeId] = store[weekKey][recipeId];
+  });
+  if (Object.keys(next).length) {
+    store[weekKey] = next;
+  } else {
+    delete store[weekKey];
+  }
+}
+
+function pruneCookProgressForWeek(weekKey = currentWeekKey) {
+  if (!weekKey) return;
+  const validIds = new Set(selectedRecipesByWeek[weekKey] || []);
+  pruneRecipeMapForWeek(cookDoneByWeek, weekKey, validIds);
+  pruneRecipeMapForWeek(cookStepChecksByWeek, weekKey, validIds);
+  if (cookWeekKey === weekKey && currentCookRecipeId && !validIds.has(currentCookRecipeId)) {
+    currentCookRecipeId = "";
+  }
+}
+
+function isCookRecipeDone(recipeId, weekKey = cookWeekKey) {
+  return Boolean(cookDoneByWeek[weekKey]?.[recipeId]);
+}
+
+function getCookStepChecks(recipeId, weekKey = cookWeekKey) {
+  return cookStepChecksByWeek[weekKey]?.[recipeId] || {};
+}
+
+function setCookRecipeDone(recipeId, isDone, weekKey = cookWeekKey) {
+  const nextWeek = clonePlainObject(cookDoneByWeek[weekKey]);
+  if (isDone) {
+    nextWeek[recipeId] = true;
+  } else {
+    delete nextWeek[recipeId];
+  }
+  if (Object.keys(nextWeek).length) {
+    cookDoneByWeek[weekKey] = nextWeek;
+  } else {
+    delete cookDoneByWeek[weekKey];
+  }
+  saveState();
+}
+
+function setCookStepChecked(recipeId, stepIndex, isChecked, weekKey = cookWeekKey) {
+  const stepKey = String(stepIndex);
+  const nextWeek = clonePlainObject(cookStepChecksByWeek[weekKey]);
+  const nextRecipe = clonePlainObject(nextWeek[recipeId]);
+  if (isChecked) {
+    nextRecipe[stepKey] = true;
+  } else {
+    delete nextRecipe[stepKey];
+  }
+  if (Object.keys(nextRecipe).length) {
+    nextWeek[recipeId] = nextRecipe;
+  } else {
+    delete nextWeek[recipeId];
+  }
+  if (Object.keys(nextWeek).length) {
+    cookStepChecksByWeek[weekKey] = nextWeek;
+  } else {
+    delete cookStepChecksByWeek[weekKey];
+  }
+  saveState();
+}
+
+function getPreferredCookRecipeId(weekKey = cookWeekKey) {
+  const planIds = getCookPlanIds(weekKey);
+  if (!planIds.length) return "";
+  if (currentCookRecipeId && planIds.includes(currentCookRecipeId)) {
+    return currentCookRecipeId;
+  }
+  return planIds.find((recipeId) => !isCookRecipeDone(recipeId, weekKey)) || planIds[0];
+}
+
+function ensureCookRecipeSelection(weekKey = cookWeekKey) {
+  currentCookRecipeId = getPreferredCookRecipeId(weekKey);
+  return currentCookRecipeId;
+}
+
+function getNextCookRecipeId(recipeId, weekKey = cookWeekKey) {
+  const planIds = getCookPlanIds(weekKey);
+  if (!planIds.length) return "";
+  const currentIndex = planIds.indexOf(recipeId);
+  const candidates =
+    currentIndex === -1
+      ? [...planIds]
+      : [...planIds.slice(currentIndex + 1), ...planIds.slice(0, currentIndex)];
+  const nextPending = candidates.find((candidateId) => !isCookRecipeDone(candidateId, weekKey));
+  return nextPending || candidates[0] || "";
+}
+
+function openCookRecipe(recipeId, { scroll = false } = {}) {
+  if (!recipeId) return;
+  currentCookRecipeId = recipeId;
+  currentStage = "cook";
+  setView("cook");
+  renderCookMode();
+  renderWeeklyFlow();
+  if (scroll && cookCard) {
+    cookCard.scrollIntoView({ behavior: "smooth", block: "start" });
+  }
+}
+
 const jumpPlanner = document.getElementById("jump-planner");
 const jumpCook = document.getElementById("jump-cook");
 const jumpLibrary = document.getElementById("jump-library");
@@ -3172,6 +3376,8 @@ function renderWeeklyFlow() {
   const selectedCount = selectedRecipes.length;
   const shoppingCount = selectedCount ? aggregateShoppingList().length : 0;
   const activeCookRecipe = currentCookRecipeId ? getRecipeById(currentCookRecipeId) : null;
+  const activeCookRecipeDone = activeCookRecipe ? isCookRecipeDone(activeCookRecipe.id) : false;
+  const nextCookRecipeId = activeCookRecipe ? getNextCookRecipeId(activeCookRecipe.id) : "";
 
   flowSteps.forEach((button) => {
     const stage = button.dataset.stage || "plan";
@@ -3193,6 +3399,10 @@ function renderWeeklyFlow() {
       guidance = t("flow_cook_locked");
       actionStage = "plan";
       actionLabel = t("flow_action_plan");
+    } else if (activeCookRecipe && activeCookRecipeDone) {
+      guidance = t("flow_cook_done", getRecipeName(activeCookRecipe));
+      actionStage = "cook";
+      actionLabel = nextCookRecipeId ? t("cook_next_recipe") : t("flow_action_continue");
     } else if (activeCookRecipe) {
       guidance = t("flow_cook_active", getRecipeName(activeCookRecipe));
       actionStage = "cook";
@@ -3226,6 +3436,10 @@ function renderWeeklyFlow() {
   flowGuidanceText.textContent = guidance;
   flowPrimaryAction.textContent = actionLabel;
   flowPrimaryAction.onclick = () => {
+    if (currentStage === "cook" && activeCookRecipeDone && nextCookRecipeId) {
+      openCookRecipe(nextCookRecipeId, { scroll: true });
+      return;
+    }
     focusStage(actionStage);
   };
 }
@@ -3233,7 +3447,13 @@ function renderWeeklyFlow() {
 function focusStage(stage, { scroll = true } = {}) {
   const resolvedStage = stage !== "plan" && selectedRecipes.length === 0 ? "plan" : stage;
   currentStage = resolvedStage;
+  if (resolvedStage === "cook") {
+    ensureCookRecipeSelection();
+  }
   setView(resolvedStage === "cook" ? "cook" : "plan");
+  if (resolvedStage === "cook") {
+    renderCookMode();
+  }
   renderWeeklyFlow();
   if (scroll) {
     scrollToStage(resolvedStage);
@@ -3373,6 +3593,7 @@ function saveState() {
   selectedRecipesByWeek[currentWeekKey] = [...selectedRecipes];
   checkedItemsByWeek[currentWeekKey] = { ...checkedItems };
   selectedServingsByWeek[currentWeekKey] = { ...selectedServings };
+  pruneCookProgressForWeek(currentWeekKey);
   persistLocalState();
   scheduleRemoteSync();
 }
@@ -4865,158 +5086,387 @@ function playTimerSound() {
   }
 }
 
-function renderCookSelect() {
-  cookSelect.innerHTML = "";
-  const planIds = Array.from(new Set(selectedRecipesByWeek[cookWeekKey] || []));
-  const placeholder = document.createElement("option");
-  placeholder.value = "";
-  placeholder.textContent = planIds.length ? t("cook_select") : t("cook_placeholder");
-  cookSelect.appendChild(placeholder);
+function renderCookOverview(planIds) {
+  if (!cookOverview) return;
+  cookOverview.innerHTML = "";
 
-  planIds.forEach((recipeId) => {
+  const doneCount = planIds.filter((recipeId) => isCookRecipeDone(recipeId)).length;
+  const summary = document.createElement("div");
+  summary.className = "cook-summary";
+
+  const copy = document.createElement("div");
+  copy.className = "cook-summary-copy";
+  const title = document.createElement("h3");
+  title.textContent = t("cook_summary_title");
+  const text = document.createElement("p");
+  text.textContent = t("cook_summary_sub");
+  const status = document.createElement("p");
+  status.className = "cook-summary-status";
+  status.textContent = t("cook_summary_status", planIds.length, doneCount);
+  copy.append(title, text, status);
+
+  const actions = document.createElement("div");
+  actions.className = "cook-summary-actions";
+  const startButton = document.createElement("button");
+  startButton.type = "button";
+  startButton.className = "primary";
+  startButton.textContent = t("start_cooking");
+  startButton.disabled = !planIds.length;
+  startButton.addEventListener("click", () => {
+    const nextRecipeId = ensureCookRecipeSelection();
+    if (nextRecipeId) {
+      openCookRecipe(nextRecipeId, { scroll: true });
+    }
+  });
+  actions.appendChild(startButton);
+
+  summary.append(copy, actions);
+  cookOverview.appendChild(summary);
+}
+
+function renderCookRecipeList(planIds) {
+  if (!cookRecipeList) return;
+  cookRecipeList.innerHTML = "";
+
+  const header = document.createElement("div");
+  header.className = "cook-list-header";
+  const title = document.createElement("h3");
+  title.textContent = t("cook_list_title");
+  const text = document.createElement("p");
+  text.textContent = t("cook_list_sub");
+  header.append(title, text);
+  cookRecipeList.appendChild(header);
+
+  if (!planIds.length) {
+    const empty = document.createElement("div");
+    empty.className = "empty-state";
+    empty.innerHTML = `<p>${t("cook_list_empty")}</p>`;
+    cookRecipeList.appendChild(empty);
+    return;
+  }
+
+  const nextRecipeId = planIds.find((recipeId) => !isCookRecipeDone(recipeId)) || "";
+  const list = document.createElement("div");
+  list.className = "cook-list-stack";
+
+  planIds.forEach((recipeId, index) => {
     const recipe = getRecipeById(recipeId);
     if (!recipe) return;
-    const option = document.createElement("option");
-    option.value = recipe.id;
-    option.textContent = getRecipeName(recipe);
-    cookSelect.appendChild(option);
+    const isActive = recipeId === currentCookRecipeId;
+    const isDone = isCookRecipeDone(recipeId);
+    const button = document.createElement("button");
+    button.type = "button";
+    button.className = "cook-recipe-button";
+    if (isActive) button.classList.add("is-active");
+    if (isDone) button.classList.add("is-done");
+    button.addEventListener("click", () => {
+      openCookRecipe(recipeId);
+    });
+
+    const copy = document.createElement("div");
+    copy.className = "cook-recipe-copy";
+    const name = document.createElement("strong");
+    name.textContent = getRecipeName(recipe);
+    const meta = document.createElement("span");
+    meta.textContent = `${t("cook_recipe_position", index + 1, planIds.length)} · ${recipe.time}`;
+    copy.append(name, meta);
+
+    const badge = document.createElement("span");
+    badge.className = "cook-recipe-badge";
+    if (isActive) {
+      badge.textContent = t("cook_badge_active");
+      badge.classList.add("is-active");
+    } else if (isDone) {
+      badge.textContent = t("cook_badge_done");
+      badge.classList.add("is-done");
+    } else if (recipeId === nextRecipeId) {
+      badge.textContent = t("cook_badge_next");
+    } else {
+      badge.textContent = "";
+      badge.classList.add("is-hidden");
+    }
+
+    button.append(copy, badge);
+    list.appendChild(button);
   });
+
+  cookRecipeList.appendChild(list);
 }
 
 function renderCookCard(recipeId) {
   const recipe = getRecipeById(recipeId);
-  if (!recipe) return;
-  let servings =
+  if (!recipe || !cookCard) {
+    renderCookEmpty();
+    return;
+  }
+
+  const planIds = getCookPlanIds();
+  const recipeIndex = planIds.indexOf(recipeId);
+  const isDone = isCookRecipeDone(recipeId);
+  const servings =
     (selectedServingsByWeek[cookWeekKey] || {})[recipeId] ||
     selectedServings[recipeId] ||
     DEFAULT_SERVINGS;
+  const stepsForRecipe = getRecipeSteps(recipe);
+  const checkedStepCount = stepsForRecipe.filter((_, index) => Boolean(getCookStepChecks(recipeId)[String(index)])).length;
+  const nextRecipeId = getNextCookRecipeId(recipeId);
 
-  const render = () => {
-    cookCard.innerHTML = "";
-    const header = document.createElement("div");
-    header.className = "cook-header";
+  cookCard.innerHTML = "";
 
-    const title = document.createElement("div");
-    const h3 = document.createElement("h3");
-    h3.textContent = getRecipeName(recipe);
-    const meta = document.createElement("p");
-    meta.textContent = `${recipe.time} · ${servings} ${t("servings_label")}`;
-    title.append(h3, meta);
+  const shell = document.createElement("div");
+  shell.className = "cook-focus";
+  if (isDone) shell.classList.add("is-done");
 
-    const controls = document.createElement("div");
-    const minus = document.createElement("button");
-    minus.className = "ghost";
-    minus.textContent = "-";
-    minus.addEventListener("click", () => {
-      if (servings > 1) servings -= 1;
-      if (!selectedServingsByWeek[cookWeekKey]) selectedServingsByWeek[cookWeekKey] = {};
-      selectedServingsByWeek[cookWeekKey][recipeId] = servings;
-      saveState();
-      renderSelectedInLibrary();
-      renderShoppingList();
-      render();
+  const header = document.createElement("div");
+  header.className = "cook-header";
+
+  const titleWrap = document.createElement("div");
+  titleWrap.className = "cook-title-wrap";
+  const position = document.createElement("span");
+  position.className = "cook-position";
+  position.textContent = t("cook_recipe_position", Math.max(recipeIndex + 1, 1), planIds.length);
+  const heading = document.createElement("h3");
+  heading.textContent = getRecipeName(recipe);
+  const meta = document.createElement("p");
+  meta.className = "cook-meta";
+  meta.textContent = `${recipe.time} · ${servings} ${t("servings_label")}`;
+  const status = document.createElement("span");
+  status.className = "cook-status-pill";
+  status.textContent = isDone ? t("cook_status_complete") : t("cook_status_in_progress");
+  if (isDone) status.classList.add("is-done");
+  titleWrap.append(position, heading, meta, status);
+
+  const actions = document.createElement("div");
+  actions.className = "cook-header-actions";
+  const servingControls = document.createElement("div");
+  servingControls.className = "serving-controls cook-serving-controls";
+  const servingLabel = document.createElement("span");
+  servingLabel.textContent = t("servings_label");
+  const minus = document.createElement("button");
+  minus.type = "button";
+  minus.className = "ghost";
+  minus.textContent = "-";
+  minus.addEventListener("click", () => {
+    const nextServings = Math.max(1, servings - 1);
+    if (!selectedServingsByWeek[cookWeekKey]) selectedServingsByWeek[cookWeekKey] = {};
+    selectedServingsByWeek[cookWeekKey][recipeId] = nextServings;
+    selectedServings[recipeId] = nextServings;
+    saveState();
+    renderSelectedInLibrary();
+    renderShoppingList();
+    renderCookCard(recipeId);
+  });
+  const servingCount = document.createElement("span");
+  servingCount.className = "count";
+  servingCount.textContent = String(servings);
+  const plus = document.createElement("button");
+  plus.type = "button";
+  plus.className = "ghost";
+  plus.textContent = "+";
+  plus.addEventListener("click", () => {
+    const nextServings = servings + 1;
+    if (!selectedServingsByWeek[cookWeekKey]) selectedServingsByWeek[cookWeekKey] = {};
+    selectedServingsByWeek[cookWeekKey][recipeId] = nextServings;
+    selectedServings[recipeId] = nextServings;
+    saveState();
+    renderSelectedInLibrary();
+    renderShoppingList();
+    renderCookCard(recipeId);
+  });
+  servingControls.append(servingLabel, minus, servingCount, plus);
+
+  const doneButton = document.createElement("button");
+  doneButton.type = "button";
+  doneButton.className = isDone ? "primary cook-done-button" : "ghost cook-done-button";
+  doneButton.textContent = isDone ? t("cook_mark_undone") : t("cook_mark_done");
+  doneButton.addEventListener("click", () => {
+    setCookRecipeDone(recipeId, !isDone);
+    renderCookOverview(planIds);
+    renderCookRecipeList(planIds);
+    renderCookCard(recipeId);
+    renderWeeklyFlow();
+  });
+
+  actions.append(servingControls, doneButton);
+  header.append(titleWrap, actions);
+
+  const tip = document.createElement("p");
+  tip.className = "cook-focus-tip";
+  tip.textContent = t("cook_focus_tip");
+
+  const body = document.createElement("div");
+  body.className = "cook-body";
+
+  const ingredientsSection = document.createElement("section");
+  ingredientsSection.className = "cook-panel-block";
+  const ingredientsHead = document.createElement("div");
+  ingredientsHead.className = "cook-section-head";
+  const ingredientsTitle = document.createElement("h4");
+  ingredientsTitle.textContent = t("cook_section_ingredients");
+  const ingredientsCount = document.createElement("span");
+  ingredientsCount.textContent = t("cook_section_ingredients_count", recipe.ingredients.length);
+  ingredientsHead.append(ingredientsTitle, ingredientsCount);
+  const ingredientsList = document.createElement("div");
+  ingredientsList.className = "cook-ingredients";
+  if (recipe.ingredients.length) {
+    recipe.ingredients.forEach((ingredient) => {
+      const item = document.createElement("div");
+      item.className = "cook-ingredient-item";
+      const scaled = (ingredient.qty / recipe.servings) * servings;
+      item.textContent = formatIngredientForDisplay(ingredient, scaled);
+      ingredientsList.appendChild(item);
     });
-    const plus = document.createElement("button");
-    plus.className = "ghost";
-    plus.textContent = "+";
-    plus.addEventListener("click", () => {
-      servings += 1;
-      if (!selectedServingsByWeek[cookWeekKey]) selectedServingsByWeek[cookWeekKey] = {};
-      selectedServingsByWeek[cookWeekKey][recipeId] = servings;
-      saveState();
-      renderSelectedInLibrary();
-      renderShoppingList();
-      render();
-    });
+  } else {
+    const empty = document.createElement("div");
+    empty.className = "cook-ingredient-item is-empty";
+    empty.textContent = t("ingredients_empty");
+    ingredientsList.appendChild(empty);
+  }
+  ingredientsSection.append(ingredientsHead, ingredientsList);
 
-    controls.append(minus, plus);
-    header.append(title, controls);
+  const stepsSection = document.createElement("section");
+  stepsSection.className = "cook-panel-block cook-steps-panel";
+  const stepsHead = document.createElement("div");
+  stepsHead.className = "cook-section-head";
+  const stepsTitle = document.createElement("h4");
+  stepsTitle.textContent = t("cook_section_steps");
+  const stepsCount = document.createElement("span");
+  stepsCount.textContent = t("cook_section_steps_count", checkedStepCount, stepsForRecipe.length);
+  stepsHead.append(stepsTitle, stepsCount);
+  const steps = document.createElement("div");
+  steps.className = "cook-steps";
+  if (stepsForRecipe.length) {
+    stepsForRecipe.forEach((step, index) => {
+      const isChecked = Boolean(getCookStepChecks(recipeId)[String(index)]);
+      const row = document.createElement("label");
+      row.className = "cook-step";
+      if (isChecked) row.classList.add("is-checked");
 
-    const ingredients = document.createElement("div");
-    ingredients.className = "cook-ingredients";
-    if (recipe.ingredients.length) {
-      recipe.ingredients.forEach((ingredient) => {
-        const item = document.createElement("div");
-        const scaled = (ingredient.qty / recipe.servings) * servings;
-        item.textContent = `• ${formatIngredientForDisplay(ingredient, scaled)}`;
-        ingredients.appendChild(item);
+      const checkbox = document.createElement("input");
+      checkbox.type = "checkbox";
+      checkbox.className = "cook-step-checkbox";
+      checkbox.checked = isChecked;
+      checkbox.addEventListener("change", () => {
+        setCookStepChecked(recipeId, index, checkbox.checked);
+        renderCookCard(recipeId);
       });
-    } else {
-      const empty = document.createElement("div");
-      empty.textContent = t("ingredients_empty");
-      ingredients.appendChild(empty);
-    }
 
-    const steps = document.createElement("div");
-    steps.className = "cook-steps";
-    getRecipeSteps(recipe).forEach((step, index) => {
-      const stepCard = document.createElement("div");
-      stepCard.className = "step";
+      const number = document.createElement("span");
+      number.className = "cook-step-number";
+      number.textContent = String(index + 1);
+
+      const copy = document.createElement("div");
+      copy.className = "cook-step-copy";
       const stepText = document.createElement("div");
       stepText.className = "step-text";
-      stepText.textContent = `${index + 1}. ${formatStepWithQuantities(step, recipe, servings)}`;
-      stepCard.appendChild(stepText);
+      stepText.textContent = formatStepWithQuantities(step, recipe, servings);
+      const stepDone = document.createElement("span");
+      stepDone.className = "cook-step-status";
+      stepDone.textContent = t("cook_step_done");
+      copy.append(stepText, stepDone);
 
-      steps.appendChild(stepCard);
+      row.append(checkbox, number, copy);
+      steps.appendChild(row);
     });
+  } else {
+    const empty = document.createElement("div");
+    empty.className = "step";
+    empty.textContent = t("cook_steps_empty");
+    steps.appendChild(empty);
+  }
+  stepsSection.append(stepsHead, steps);
 
-    const noteSection = document.createElement("div");
-    noteSection.className = "note-section";
-    const noteLabel = document.createElement("label");
-    noteLabel.className = "note-label";
-    noteLabel.textContent = t("recipe_note");
-    const noteInput = document.createElement("textarea");
-    noteInput.className = "note-input";
-    noteInput.rows = 3;
-    noteInput.placeholder = t("recipe_note_placeholder");
-    noteInput.value = recipeNotesById[recipe.id] || "";
-    const noteActions = document.createElement("div");
-    noteActions.className = "note-actions";
-    const saveBtn = document.createElement("button");
-    saveBtn.className = "ghost";
-    saveBtn.textContent = t("note_save");
-    saveBtn.addEventListener("click", () => {
-      recipeNotesById[recipe.id] = noteInput.value.trim();
-      safeSetItem("pantryRecipeNotes", JSON.stringify(recipeNotesById));
-      saveState();
-    });
-    const clearBtn = document.createElement("button");
-    clearBtn.className = "ghost";
-    clearBtn.textContent = t("note_clear");
-    clearBtn.addEventListener("click", () => {
-      noteInput.value = "";
-      delete recipeNotesById[recipe.id];
-      safeSetItem("pantryRecipeNotes", JSON.stringify(recipeNotesById));
-      saveState();
-    });
-    noteActions.append(saveBtn, clearBtn);
-    noteSection.append(noteLabel, noteInput, noteActions);
+  body.append(ingredientsSection, stepsSection);
 
-    if (recipe.source_url) {
-      const linkWrap = document.createElement("div");
-      const link = document.createElement("a");
-      link.className = "ghost link-btn";
-      link.href = recipe.source_url;
-      link.target = "_blank";
-      link.rel = "noopener";
-      link.textContent = "Open recipe link";
-      linkWrap.appendChild(link);
-      cookCard.append(header, linkWrap, noteSection, ingredients, steps);
+  const noteSection = document.createElement("div");
+  noteSection.className = "note-section cook-note-section";
+  const noteLabel = document.createElement("label");
+  noteLabel.className = "note-label";
+  noteLabel.textContent = t("recipe_note");
+  const noteInput = document.createElement("textarea");
+  noteInput.className = "note-input";
+  noteInput.rows = 3;
+  noteInput.placeholder = t("recipe_note_placeholder");
+  noteInput.value = recipeNotesById[recipe.id] || "";
+  const persistNote = () => {
+    const value = noteInput.value.trim();
+    if (value) {
+      recipeNotesById[recipe.id] = value;
     } else {
-      cookCard.append(header, noteSection, ingredients, steps);
+      delete recipeNotesById[recipe.id];
     }
+    saveState();
   };
+  noteInput.addEventListener("blur", persistNote);
+  const noteActions = document.createElement("div");
+  noteActions.className = "note-actions";
+  const saveBtn = document.createElement("button");
+  saveBtn.type = "button";
+  saveBtn.className = "ghost";
+  saveBtn.textContent = t("note_save");
+  saveBtn.addEventListener("click", persistNote);
+  const clearBtn = document.createElement("button");
+  clearBtn.type = "button";
+  clearBtn.className = "ghost";
+  clearBtn.textContent = t("note_clear");
+  clearBtn.addEventListener("click", () => {
+    noteInput.value = "";
+    delete recipeNotesById[recipe.id];
+    saveState();
+  });
+  noteActions.append(saveBtn, clearBtn);
+  noteSection.append(noteLabel, noteInput, noteActions);
 
-  render();
+  const footer = document.createElement("div");
+  footer.className = "cook-footer";
+  if (recipe.source_url) {
+    const link = document.createElement("a");
+    link.className = "ghost link-btn";
+    link.href = recipe.source_url;
+    link.target = "_blank";
+    link.rel = "noopener";
+    link.textContent = t("cook_open_link");
+    footer.appendChild(link);
+  }
+  const nextButton = document.createElement("button");
+  nextButton.type = "button";
+  nextButton.className = "primary";
+  nextButton.textContent = nextRecipeId ? t("cook_next_recipe") : t("cook_no_next_recipe");
+  nextButton.disabled = !nextRecipeId;
+  nextButton.addEventListener("click", () => {
+    if (nextRecipeId) openCookRecipe(nextRecipeId, { scroll: true });
+  });
+  footer.appendChild(nextButton);
+
+  shell.append(header, tip, body, noteSection, footer);
+  cookCard.appendChild(shell);
 }
 
 function renderCookEmpty() {
+  if (!cookCard) return;
   cookCard.innerHTML = `
     <div class="empty-state">
-      <h3>${t("cook_empty_title")}</h3>
-      <p>${t("cook_empty_sub")}</p>
+      <h3>${t("cook_empty_plan_title")}</h3>
+      <p>${t("cook_empty_plan_sub")}</p>
     </div>
   `;
+}
+
+function renderCookMode() {
+  const planIds = getCookPlanIds();
+  renderCookOverview(planIds);
+  renderCookRecipeList(planIds);
+  if (!planIds.length) {
+    currentCookRecipeId = "";
+    renderCookEmpty();
+    return;
+  }
+  const nextRecipeId = ensureCookRecipeSelection();
+  if (!nextRecipeId) {
+    renderCookEmpty();
+    return;
+  }
+  renderCookCard(nextRecipeId);
 }
 
 function renderMiniGrid() {
@@ -5237,12 +5687,9 @@ function setWeekFromTopPicker() {
   if (weekLabel) weekLabel.textContent = formatWeekLabel(currentWeekKey);
   if (cookWeekLabel) cookWeekLabel.textContent = formatWeekLabel(cookWeekKey);
   if (topWeekLabel) topWeekLabel.textContent = formatWeekLabel(currentWeekKey);
-  renderCookSelect();
   const cookIds = selectedRecipesByWeek[cookWeekKey] || [];
   if (!currentCookRecipeId || !cookIds.includes(currentCookRecipeId)) {
     currentCookRecipeId = "";
-    if (cookSelect) cookSelect.value = "";
-    renderCookEmpty();
   }
   syncCurrentStage();
   refreshAll();
@@ -5282,7 +5729,7 @@ function refreshAll() {
   }
   renderSelectedInLibrary();
   renderShoppingList();
-  renderCookSelect();
+  renderCookMode();
   renderMiniGrid();
   renderRecipeGrid();
   renderPantryPickerSection();
@@ -5293,9 +5740,6 @@ function refreshAll() {
     heroCount.textContent = t("planned_count", selectedRecipes.length, weekLabel);
   }
   renderWeeklyFlow();
-  if (currentCookRecipeId && (selectedRecipesByWeek[cookWeekKey] || []).includes(currentCookRecipeId)) {
-    renderCookCard(currentCookRecipeId);
-  }
   refreshSyncStatus();
 }
 
@@ -5335,22 +5779,6 @@ if (filterMeal) {
   filterMeal.addEventListener("change", () => renderRecipeGrid());
 }
 
-if (cookSelect) {
-  cookSelect.addEventListener("change", () => {
-    const selected = cookSelect.value;
-    if (!selected) {
-      currentCookRecipeId = "";
-      renderCookEmpty();
-      renderWeeklyFlow();
-      return;
-    }
-    currentCookRecipeId = selected;
-    renderCookCard(selected);
-    currentStage = "cook";
-    renderWeeklyFlow();
-  });
-}
-
 const clearChecks = document.getElementById("clear-checks");
 if (shoppingToggleChecked) {
   shoppingToggleChecked.addEventListener("click", () => {
@@ -5373,16 +5801,11 @@ if (clearPlan) {
   clearPlan.addEventListener("click", () => {
     selectedRecipes = [];
     checkedItems = {};
+    currentCookRecipeId = "";
     currentStage = "plan";
     setView("plan");
     saveState();
     refreshAll();
-    cookCard.innerHTML = `
-      <div class="empty-state">
-        <h3>${t("ready_title")}</h3>
-        <p>${t("ready_sub")}</p>
-      </div>
-    `;
   });
 }
 
