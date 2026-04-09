@@ -2161,6 +2161,7 @@ let recipeNotesById = { ...storedRecipeNotes };
 let pantryInventory = { ...storedPantryInventory };
 const DEFAULT_SERVINGS = 4;
 let preferredRetailer = safeGetItem("pantryRetailer") || "woolworths";
+let hideCheckedShoppingItems = safeGetItem("pantryHideCheckedShoppingItems") === "true";
 let syncCode = normalizeSyncCode(safeGetItem("pantrySyncCode") || "");
 let selectedRecipes = [];
 let checkedItems = {};
@@ -2198,6 +2199,10 @@ const recipeModal = document.getElementById("recipe-modal");
 const recipeModalBody = document.getElementById("recipe-modal-body");
 const chilliModal = document.getElementById("chilli-modal");
 const shoppingList = document.getElementById("shopping-list");
+const shoppingTools = document.getElementById("shopping-tools");
+const shoppingStats = document.getElementById("shopping-stats");
+const shoppingNextLink = document.getElementById("shopping-next-link");
+const shoppingToggleChecked = document.getElementById("shopping-toggle-checked");
 const cookSelect = document.getElementById("cook-select");
 const cookCard = document.getElementById("cook-card");
 const miniGrid = document.getElementById("mini-grid");
@@ -2358,6 +2363,25 @@ const translations = {
     frequency_empty: "Select some recipes in different weeks to see the frequency table.",
     shopping_list: "Auto Shopping List",
     shopping_list_sub: "Aggregated ingredients from your planned recipes. Check items as you shop.",
+    shopping_stat_recipes: "Recipes",
+    shopping_stat_remaining: "Left to buy",
+    shopping_stat_checked: "Checked off",
+    shopping_stat_sections: "Sections",
+    shopping_hide_checked: (count) => count ? `Hide checked (${count})` : "Hide checked",
+    shopping_show_checked: (count) => count ? `Show checked (${count})` : "Show checked",
+    shopping_next_link: (item, retailer) => item ? `Search ${item} on ${retailer}` : `Open ${retailer}`,
+    shopping_done: "Everything on this week's shopping list is checked off.",
+    shopping_category_summary: (remaining, total) =>
+      remaining === total
+        ? `${total} item${total === 1 ? "" : "s"}`
+        : `${remaining} left of ${total}`,
+    shopping_category_produce: "Produce",
+    shopping_category_meat: "Meat & Seafood",
+    shopping_category_dairy: "Dairy",
+    shopping_category_grains: "Grains & Pasta",
+    shopping_category_canned: "Canned & Jarred",
+    shopping_category_frozen: "Frozen",
+    shopping_category_pantry: "Pantry",
     shopping_checked: "Already have",
     last_selected: (weeks) =>
       weeks === 0 ? "Last selected this week" : `Last selected ${weeks} week${weeks === 1 ? "" : "s"} ago`,
@@ -2514,6 +2538,25 @@ const translations = {
     frequency_empty: "Sélectionnez des recettes sur différentes semaines pour afficher le tableau de fréquence.",
     shopping_list: "Liste de courses",
     shopping_list_sub: "Ingrédients regroupés de vos recettes. Cochez au fur et à mesure.",
+    shopping_stat_recipes: "Recettes",
+    shopping_stat_remaining: "A acheter",
+    shopping_stat_checked: "Déjà cochés",
+    shopping_stat_sections: "Rayons",
+    shopping_hide_checked: (count) => count ? `Masquer cochés (${count})` : "Masquer cochés",
+    shopping_show_checked: (count) => count ? `Afficher cochés (${count})` : "Afficher cochés",
+    shopping_next_link: (item, retailer) => item ? `Chercher ${item} sur ${retailer}` : `Ouvrir ${retailer}`,
+    shopping_done: "Tout est coché dans la liste de courses de cette semaine.",
+    shopping_category_summary: (remaining, total) =>
+      remaining === total
+        ? `${total} article${total === 1 ? "" : "s"}`
+        : `${remaining} restants sur ${total}`,
+    shopping_category_produce: "Fruits & légumes",
+    shopping_category_meat: "Viande & poisson",
+    shopping_category_dairy: "Produits frais",
+    shopping_category_grains: "Céréales & pâtes",
+    shopping_category_canned: "Conserves & bocaux",
+    shopping_category_frozen: "Surgelés",
+    shopping_category_pantry: "Placard",
     shopping_checked: "Deja dans le placard",
     last_selected: (weeks) =>
       weeks === 0 ? "Selectionnee cette semaine" : `Selectionnee il y a ${weeks} semaine${weeks === 1 ? "" : "s"}`,
@@ -4400,74 +4443,220 @@ function consolidateShoppingUnits(list) {
   return result;
 }
 
+function getRetailerName() {
+  return preferredRetailer === "colruyt" ? "Colruyt" : "Woolworths";
+}
+
+function getRetailerSearchUrl(item) {
+  if (preferredRetailer === "colruyt") {
+    const translatedItem = translateIngredientItem(item);
+    return `https://www.colruyt.be/fr/produits?method=suggestion&o=product%20overview&page=1&searchTerm=${encodeURIComponent(translatedItem)}&suggestion=products&type=product`;
+  }
+  return `https://www.woolworths.com.au/shop/search/products?searchTerm=${encodeURIComponent(item)}`;
+}
+
+function translateShoppingCategory(category) {
+  const map = {
+    "Produce": "shopping_category_produce",
+    "Meat & Seafood": "shopping_category_meat",
+    "Dairy": "shopping_category_dairy",
+    "Grains & Pasta": "shopping_category_grains",
+    "Canned & Jarred": "shopping_category_canned",
+    "Frozen": "shopping_category_frozen",
+    "Pantry": "shopping_category_pantry",
+  };
+  return t(map[category] || category);
+}
+
 function renderShoppingList() {
   shoppingList.innerHTML = "";
+  if (shoppingTools) shoppingTools.hidden = false;
   const items = aggregateShoppingList();
+  if (shoppingStats) shoppingStats.innerHTML = "";
+  if (shoppingNextLink) {
+    shoppingNextLink.removeAttribute("href");
+    shoppingNextLink.classList.add("is-disabled");
+    shoppingNextLink.textContent = getRetailerName();
+  }
+  if (shoppingToggleChecked) {
+    shoppingToggleChecked.textContent = hideCheckedShoppingItems ? t("shopping_show_checked", 0) : t("shopping_hide_checked", 0);
+  }
   if (!items.length) {
+    if (shoppingTools) shoppingTools.hidden = true;
     shoppingList.innerHTML = `<p>${t("shopping_empty")}</p>`;
     return;
   }
 
-  const grouped = groupShoppingItems(items);
-  grouped.forEach(([category, list]) => {
-    const heading = document.createElement("div");
-    heading.className = "shop-heading";
-    heading.textContent = category;
-    shoppingList.appendChild(heading);
+  const grouped = groupShoppingItems(items).map(([category, list]) => {
+    const entries = consolidateShoppingUnits(list)
+      .map((ingredient) => {
+        const key = ingredient.unit === "mixed" ? `${ingredient.item}|mixed` : `${ingredient.item}|${ingredient.unit}`;
+        return {
+          ...ingredient,
+          key,
+          checked: Boolean(checkedItems[key]),
+          displayItem: translateIngredientItem(ingredient.item),
+          displayQty: ingredient.compositeText || `${formatQuantity(ingredient.qty, ingredient.unit)} ${ingredient.unit}`.trim(),
+        };
+      })
+      .sort((a, b) => {
+        if (a.checked !== b.checked) return a.checked ? 1 : -1;
+        return a.item.localeCompare(b.item);
+      });
 
-    const consolidated = consolidateShoppingUnits(list);
-    consolidated.forEach((ingredient) => {
-      const key = ingredient.unit === "mixed" ? `${ingredient.item}|mixed` : `${ingredient.item}|${ingredient.unit}`;
+    return {
+      category,
+      items: entries,
+      totalCount: entries.length,
+      remainingCount: entries.filter((entry) => !entry.checked).length,
+    };
+  });
+
+  const flattened = grouped.flatMap((group) => group.items);
+  const checkedCount = flattened.filter((item) => item.checked).length;
+  const remainingCount = flattened.length - checkedCount;
+  const nextItem = flattened.find((item) => !item.checked) || null;
+  const visibleGroups = grouped
+    .map((group) => ({
+      ...group,
+      items: hideCheckedShoppingItems ? group.items.filter((item) => !item.checked) : group.items,
+    }))
+    .filter((group) => group.items.length);
+
+  if (shoppingStats) {
+    const stats = [
+      { value: selectedRecipes.length, label: t("shopping_stat_recipes") },
+      { value: remainingCount, label: t("shopping_stat_remaining") },
+      { value: checkedCount, label: t("shopping_stat_checked") },
+      { value: grouped.length, label: t("shopping_stat_sections") },
+    ];
+    stats.forEach(({ value, label }) => {
+      const stat = document.createElement("div");
+      stat.className = "shopping-stat";
+      const strong = document.createElement("strong");
+      strong.textContent = String(value);
+      const span = document.createElement("span");
+      span.textContent = label;
+      stat.append(strong, span);
+      shoppingStats.appendChild(stat);
+    });
+  }
+
+  if (shoppingToggleChecked) {
+    shoppingToggleChecked.textContent = hideCheckedShoppingItems
+      ? t("shopping_show_checked", checkedCount)
+      : t("shopping_hide_checked", checkedCount);
+  }
+
+  if (shoppingNextLink) {
+    const retailerName = getRetailerName();
+    shoppingNextLink.textContent = nextItem
+      ? t("shopping_next_link", nextItem.displayItem, retailerName)
+      : t("shopping_done");
+    if (nextItem) {
+      shoppingNextLink.href = getRetailerSearchUrl(nextItem.item);
+      shoppingNextLink.classList.remove("is-disabled");
+      shoppingNextLink.removeAttribute("aria-disabled");
+      shoppingNextLink.setAttribute("aria-label", t("shopping_next_link", nextItem.displayItem, retailerName));
+    } else {
+      shoppingNextLink.removeAttribute("href");
+      shoppingNextLink.classList.add("is-disabled");
+      shoppingNextLink.setAttribute("aria-disabled", "true");
+    }
+  }
+
+  if (!visibleGroups.length) {
+    shoppingList.innerHTML = `<p>${t("shopping_done")}</p>`;
+    return;
+  }
+
+  visibleGroups.forEach((group) => {
+    const section = document.createElement("section");
+    section.className = "shop-category";
+
+    const header = document.createElement("div");
+    header.className = "shop-category-head";
+
+    const headingWrap = document.createElement("div");
+    const heading = document.createElement("h3");
+    heading.className = "shop-heading";
+    heading.textContent = translateShoppingCategory(group.category);
+    const sub = document.createElement("p");
+    sub.className = "shop-category-meta";
+    sub.textContent = t("shopping_category_summary", group.remainingCount, group.totalCount);
+    headingWrap.append(heading, sub);
+
+    const countBadge = document.createElement("span");
+    countBadge.className = "shop-category-count";
+    countBadge.textContent = String(group.totalCount);
+
+    header.append(headingWrap, countBadge);
+    section.appendChild(header);
+
+    const itemList = document.createElement("div");
+    itemList.className = "shop-category-items";
+
+    group.items.forEach((ingredient) => {
       const row = document.createElement("label");
       row.className = "shop-item";
 
-      const left = document.createElement("span");
-      const displayItem = translateIngredientItem(ingredient.item);
-      const displayQty = ingredient.compositeText || `${formatQuantity(ingredient.qty, ingredient.unit)} ${ingredient.unit}`.trim();
-      if (category === "Pantry" && /chilli/i.test(displayItem)) {
-        const safeItem = displayItem.replace(/chilli/gi, (match) => `<span class="chilli-trigger">${match}</span>`);
-        left.innerHTML = `${safeItem} — ${displayQty}`;
+      const checkbox = document.createElement("input");
+      checkbox.type = "checkbox";
+      checkbox.className = "shop-checkbox";
+      checkbox.checked = ingredient.checked;
+
+      const copy = document.createElement("span");
+      copy.className = "shop-copy";
+
+      const itemName = document.createElement("strong");
+      itemName.className = "shop-item-name";
+      if (group.category === "Pantry" && /chilli/i.test(ingredient.displayItem)) {
+        itemName.innerHTML = ingredient.displayItem.replace(/chilli/gi, (match) => `<span class="chilli-trigger">${match}</span>`);
       } else {
-        left.textContent = `${displayItem} — ${displayQty}`;
+        itemName.textContent = ingredient.displayItem;
       }
+
+      const itemMeta = document.createElement("small");
+      itemMeta.className = "shop-item-meta";
+      itemMeta.textContent = ingredient.displayQty;
+      copy.append(itemName, itemMeta);
 
       const retailerLink = document.createElement("a");
       const isColruyt = preferredRetailer === "colruyt";
-      retailerLink.className = isColruyt ? "colruyt-link" : "woolworths-link";
-      if (isColruyt) {
-        const colruytTerm = translateIngredientItem(ingredient.item);
-        retailerLink.href = `https://www.colruyt.be/fr/produits?method=suggestion&o=product%20overview&page=1&searchTerm=${encodeURIComponent(colruytTerm)}&suggestion=products&type=product`;
-        retailerLink.setAttribute("aria-label", `Rechercher ${ingredient.item} sur Colruyt`);
-      } else {
-        retailerLink.href = `https://www.woolworths.com.au/shop/search/products?searchTerm=${encodeURIComponent(ingredient.item)}`;
-        retailerLink.setAttribute("aria-label", `Search ${ingredient.item} on Woolworths`);
-      }
+      retailerLink.className = `shop-retailer-link ${isColruyt ? "colruyt-link" : "woolworths-link"}`;
+      retailerLink.href = getRetailerSearchUrl(ingredient.item);
       retailerLink.target = "_blank";
       retailerLink.rel = "noopener noreferrer";
+      retailerLink.setAttribute(
+        "aria-label",
+        isColruyt ? `Rechercher ${ingredient.displayItem} sur Colruyt` : `Search ${ingredient.displayItem} on Woolworths`
+      );
       const logo = document.createElement("img");
       logo.src = isColruyt
         ? "https://www.element61.be/sites/default/files/styles/max_325x325/public/img_company_logos/Colruyt.png.webp?itok=5VR0mLrI"
         : "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTyZ8o4wGHBjezVaPKrg-ffgW-ph2TzVuMCEw&s";
       logo.alt = isColruyt ? "Colruyt" : "Woolworths";
       logo.loading = "lazy";
-      retailerLink.appendChild(logo);
+      const retailerText = document.createElement("span");
+      retailerText.textContent = getRetailerName();
+      retailerLink.append(logo, retailerText);
       retailerLink.addEventListener("click", (event) => {
         event.stopPropagation();
       });
 
-      const checkbox = document.createElement("input");
-      checkbox.type = "checkbox";
-      checkbox.checked = Boolean(checkedItems[key]);
-      if (checkbox.checked) row.classList.add("is-checked");
+      row.classList.toggle("is-checked", ingredient.checked);
       checkbox.addEventListener("change", (event) => {
-        checkedItems[key] = event.target.checked;
-        row.classList.toggle("is-checked", event.target.checked);
+        checkedItems[ingredient.key] = event.target.checked;
         saveState();
+        renderShoppingList();
       });
 
-      row.append(left, retailerLink, checkbox);
-      shoppingList.appendChild(row);
+      row.append(checkbox, copy, retailerLink);
+      itemList.appendChild(row);
     });
+
+    section.appendChild(itemList);
+    shoppingList.appendChild(section);
   });
 
   const chilliTriggers = shoppingList.querySelectorAll(".chilli-trigger");
@@ -5163,6 +5352,14 @@ if (cookSelect) {
 }
 
 const clearChecks = document.getElementById("clear-checks");
+if (shoppingToggleChecked) {
+  shoppingToggleChecked.addEventListener("click", () => {
+    hideCheckedShoppingItems = !hideCheckedShoppingItems;
+    safeSetItem("pantryHideCheckedShoppingItems", hideCheckedShoppingItems ? "true" : "false");
+    renderShoppingList();
+  });
+}
+
 if (clearChecks) {
   clearChecks.addEventListener("click", () => {
     checkedItems = {};
