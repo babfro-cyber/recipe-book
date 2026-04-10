@@ -24,6 +24,10 @@ body {
   background: linear-gradient(180deg, #fbfaf7 0%, #f6f3ee 100%);
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 h1,
 h2,
 h3 {
@@ -1734,6 +1738,10 @@ body.view-cook #shopping {
   justify-content: center;
 }
 
+.mobile-action-bar {
+  display: none;
+}
+
 .cook-controls {
   display: grid;
   gap: 12px;
@@ -2184,6 +2192,11 @@ body.view-cook #shopping {
 }
 
 @media (max-width: 720px) {
+  html {
+    scroll-padding-top: 84px;
+    scroll-padding-bottom: calc(96px + env(safe-area-inset-bottom));
+  }
+
   .hero {
     padding: 20px;
   }
@@ -2228,6 +2241,15 @@ body.view-cook #shopping {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
+  .primary,
+  .ghost,
+  .link-btn,
+  .shop-retailer-link,
+  .cook-recipe-button {
+    min-height: 48px;
+    touch-action: manipulation;
+  }
+
   .shopping-quick-actions {
     display: grid;
     grid-template-columns: 1fr;
@@ -2240,6 +2262,18 @@ body.view-cook #shopping {
 
   .cook-summary {
     display: grid;
+  }
+
+  .shopping-list,
+  .cook-shell,
+  .cook-card,
+  .cook-recipe-list {
+    -webkit-overflow-scrolling: touch;
+  }
+
+  #shopping .panel,
+  #cook .panel {
+    padding-bottom: calc(104px + env(safe-area-inset-bottom));
   }
 
   .cook-summary-actions,
@@ -2263,12 +2297,13 @@ body.view-cook #shopping {
 
   .cook-step {
     grid-template-columns: auto auto minmax(0, 1fr);
-    padding: 14px;
+    padding: 16px;
+    gap: 14px;
   }
 
   .cook-step-number {
-    width: 30px;
-    height: 30px;
+    width: 34px;
+    height: 34px;
   }
 
   .cook-footer {
@@ -2288,12 +2323,105 @@ body.view-cook #shopping {
   .shop-item {
     grid-template-columns: auto minmax(0, 1fr);
     align-items: start;
+    gap: 14px;
+    padding: 15px 16px;
   }
 
   .shop-retailer-link {
     grid-column: 2;
     justify-self: start;
     margin-top: 4px;
+    min-height: 44px;
+    padding-inline: 16px;
+  }
+
+  .shop-checkbox,
+  .cook-step-checkbox {
+    width: 28px;
+    height: 28px;
+  }
+
+  .shop-item-name {
+    font-size: 1rem;
+    line-height: 1.35;
+  }
+
+  .shop-item-meta,
+  .cook-recipe-copy span {
+    font-size: 0.9rem;
+    line-height: 1.45;
+  }
+
+  .cook-summary,
+  .cook-card,
+  .cook-recipe-list,
+  .cook-panel-block,
+  .cook-note-section {
+    gap: 16px;
+  }
+
+  .cook-summary,
+  .cook-card,
+  .cook-recipe-list {
+    border-radius: 22px;
+  }
+
+  .cook-ingredient-item {
+    padding: 14px 16px;
+    font-size: 1rem;
+    line-height: 1.45;
+  }
+
+  .step-text {
+    font-size: 1.06rem;
+    line-height: 1.65;
+  }
+
+  .serving-controls .ghost {
+    min-width: 42px;
+    min-height: 42px;
+  }
+
+  .mobile-action-bar {
+    position: fixed;
+    left: max(12px, env(safe-area-inset-left));
+    right: max(12px, env(safe-area-inset-right));
+    bottom: calc(12px + env(safe-area-inset-bottom));
+    z-index: 30;
+    display: none;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 10px;
+    padding: 12px;
+    border-radius: 20px;
+    background: rgba(255, 255, 255, 0.96);
+    border: 1px solid rgba(26, 26, 26, 0.08);
+    box-shadow: 0 18px 30px rgba(26, 26, 26, 0.16);
+    backdrop-filter: blur(12px);
+  }
+
+  .mobile-action-bar[hidden] {
+    display: none !important;
+  }
+
+  body.view-plan.stage-shop #shopping-mobile-bar,
+  body.view-cook.stage-cook #cook-mobile-bar {
+    display: grid;
+  }
+
+  .mobile-action-bar .primary,
+  .mobile-action-bar .ghost,
+  .mobile-action-bar .link-btn {
+    width: 100%;
+    min-height: 52px;
+    text-align: center;
+  }
+
+  .mobile-action-bar .shopping-next-link {
+    max-width: none;
+  }
+
+  .mobile-action-bar .ghost:disabled {
+    opacity: 0.6;
   }
 
   .panel {

@@ -2209,9 +2209,11 @@ const shoppingTools = document.getElementById("shopping-tools");
 const shoppingStats = document.getElementById("shopping-stats");
 const shoppingNextLink = document.getElementById("shopping-next-link");
 const shoppingToggleChecked = document.getElementById("shopping-toggle-checked");
+const shoppingMobileBar = document.getElementById("shopping-mobile-bar");
 const cookOverview = document.getElementById("cook-overview");
 const cookCard = document.getElementById("cook-card");
 const cookRecipeList = document.getElementById("cook-recipe-list");
+const cookMobileBar = document.getElementById("cook-mobile-bar");
 const miniGrid = document.getElementById("mini-grid");
 const weekLabel = document.getElementById("week-label");
 const recentWeeks = document.getElementById("recent-weeks");
@@ -3352,6 +3354,37 @@ function getNextCookRecipeId(recipeId, weekKey = cookWeekKey) {
       : [...planIds.slice(currentIndex + 1), ...planIds.slice(0, currentIndex)];
   const nextPending = candidates.find((candidateId) => !isCookRecipeDone(candidateId, weekKey));
   return nextPending || candidates[0] || "";
+}
+
+function renderCookMobileBar({ recipeId, nextRecipeId, isDone }) {
+  if (!cookMobileBar) return;
+  cookMobileBar.innerHTML = "";
+  cookMobileBar.hidden = !recipeId;
+  if (!recipeId) return;
+
+  const doneButton = document.createElement("button");
+  doneButton.type = "button";
+  doneButton.className = isDone ? "ghost cook-mobile-done" : "primary cook-mobile-done";
+  doneButton.textContent = isDone ? t("cook_mark_undone") : t("cook_mark_done");
+  doneButton.addEventListener("click", () => {
+    const planIds = getCookPlanIds();
+    setCookRecipeDone(recipeId, !isDone);
+    renderCookOverview(planIds);
+    renderCookRecipeList(planIds);
+    renderCookCard(recipeId);
+    renderWeeklyFlow();
+  });
+
+  const nextButton = document.createElement("button");
+  nextButton.type = "button";
+  nextButton.className = nextRecipeId ? "ghost" : "ghost is-disabled";
+  nextButton.textContent = nextRecipeId ? t("cook_next_recipe") : t("cook_no_next_recipe");
+  nextButton.disabled = !nextRecipeId;
+  nextButton.addEventListener("click", () => {
+    if (nextRecipeId) openCookRecipe(nextRecipeId, { scroll: true });
+  });
+
+  cookMobileBar.append(doneButton, nextButton);
 }
 
 function openCookRecipe(recipeId, { scroll = false } = {}) {
@@ -5078,6 +5111,48 @@ function getRetailerSearchUrl(item) {
   return `https://www.woolworths.com.au/shop/search/products?searchTerm=${encodeURIComponent(item)}`;
 }
 
+function toggleHideCheckedShoppingItems() {
+  hideCheckedShoppingItems = !hideCheckedShoppingItems;
+  safeSetItem("pantryHideCheckedShoppingItems", hideCheckedShoppingItems ? "true" : "false");
+  renderShoppingList();
+}
+
+function renderShoppingMobileBar({ hasItems, nextItem, checkedCount }) {
+  if (!shoppingMobileBar) return;
+  shoppingMobileBar.innerHTML = "";
+  shoppingMobileBar.hidden = !hasItems;
+  if (!hasItems) return;
+
+  const retailerName = getRetailerName();
+  const nextLink = document.createElement("a");
+  nextLink.className = "primary link-btn shopping-next-link";
+  nextLink.textContent = nextItem
+    ? t("shopping_next_link", nextItem.displayItem, retailerName)
+    : t("shopping_done");
+  if (nextItem) {
+    nextLink.href = getRetailerSearchUrl(nextItem.item);
+    nextLink.target = "_blank";
+    nextLink.rel = "noopener noreferrer";
+    nextLink.setAttribute("aria-label", t("shopping_next_link", nextItem.displayItem, retailerName));
+  } else {
+    nextLink.classList.add("is-disabled");
+    nextLink.removeAttribute("href");
+    nextLink.setAttribute("aria-disabled", "true");
+  }
+
+  const toggleButton = document.createElement("button");
+  toggleButton.type = "button";
+  toggleButton.className = "ghost";
+  toggleButton.textContent = hideCheckedShoppingItems
+    ? t("shopping_show_checked", checkedCount)
+    : t("shopping_hide_checked", checkedCount);
+  toggleButton.addEventListener("click", () => {
+    toggleHideCheckedShoppingItems();
+  });
+
+  shoppingMobileBar.append(nextLink, toggleButton);
+}
+
 function translateShoppingCategory(category) {
   const map = {
     "Produce": "shopping_category_produce",
@@ -5094,6 +5169,10 @@ function translateShoppingCategory(category) {
 function renderShoppingList() {
   shoppingList.innerHTML = "";
   if (shoppingTools) shoppingTools.hidden = false;
+  if (shoppingMobileBar) {
+    shoppingMobileBar.innerHTML = "";
+    shoppingMobileBar.hidden = true;
+  }
   const items = aggregateShoppingList();
   if (shoppingStats) shoppingStats.innerHTML = "";
   if (shoppingNextLink) {
@@ -5187,6 +5266,12 @@ function renderShoppingList() {
       shoppingNextLink.setAttribute("aria-disabled", "true");
     }
   }
+
+  renderShoppingMobileBar({
+    hasItems: items.length > 0,
+    nextItem,
+    checkedCount,
+  });
 
   if (!visibleGroups.length) {
     shoppingList.innerHTML = `<p>${t("shopping_done")}</p>`;
@@ -5613,6 +5698,8 @@ function renderCookCard(recipeId) {
   const checkedStepCount = stepsForRecipe.filter((_, index) => Boolean(getCookStepChecks(recipeId)[String(index)])).length;
   const nextRecipeId = getNextCookRecipeId(recipeId);
 
+  renderCookMobileBar({ recipeId, nextRecipeId, isDone });
+
   cookCard.innerHTML = "";
 
   const shell = document.createElement("div");
@@ -5846,6 +5933,10 @@ function renderCookCard(recipeId) {
 
 function renderCookEmpty() {
   if (!cookCard) return;
+  if (cookMobileBar) {
+    cookMobileBar.innerHTML = "";
+    cookMobileBar.hidden = true;
+  }
   cookCard.innerHTML = `
     <div class="empty-state">
       <h3>${t("cook_empty_plan_title")}</h3>
@@ -6190,9 +6281,7 @@ if (duplicateLastWeekButton) {
 
 if (shoppingToggleChecked) {
   shoppingToggleChecked.addEventListener("click", () => {
-    hideCheckedShoppingItems = !hideCheckedShoppingItems;
-    safeSetItem("pantryHideCheckedShoppingItems", hideCheckedShoppingItems ? "true" : "false");
-    renderShoppingList();
+    toggleHideCheckedShoppingItems();
   });
 }
 
