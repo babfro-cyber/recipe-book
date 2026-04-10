@@ -2334,8 +2334,8 @@ const translations = {
     cook_week: "Week to cook",
     top_week: "Week",
     selected_count: (count) => `${count} recipe${count === 1 ? "" : "s"} selected`,
-    planned_count: (count, weekLabel) =>
-      `${count} recipe${count === 1 ? "" : "s"} planned for ${weekLabel}`,
+    planned_count: (count, goal) =>
+      `${count} / ${goal} recipe${goal === 1 ? "" : "s"} selected`,
     cook_sync_week: "Sync to plan week",
     week_select: "Select week",
     week_clear: "Clear",
@@ -2451,6 +2451,15 @@ const translations = {
     cook_empty_plan_sub: "Choose recipes in Plan first, then return here for a focused cooking view.",
     pick_summary_empty: "Pick recipes for the week to get started.",
     pick_summary: (count) => `You have ${count} recipe${count === 1 ? "" : "s"} selected.`,
+    selection_progress: (count, goal) => `${count} / ${goal} recipes selected`,
+    selection_progress_empty: (goal) => `A good weekly target is around ${goal} recipes.`,
+    selection_progress_remaining: (remaining) =>
+      `${remaining} more recipe${remaining === 1 ? "" : "s"} would round out the week.`,
+    selection_progress_ready: "This week's plan looks set.",
+    selection_progress_extra: (count, goal) =>
+      `${count} recipes are selected. ${goal} is the usual target, but you can keep going.`,
+    selection_summary_label: "This week",
+    selection_summary_more: (count) => `+${count} more`,
     remove: "Remove",
     add_to_picks: "Add to picks",
     remove_from_picks: "Remove from picks",
@@ -2548,8 +2557,8 @@ const translations = {
     cook_week: "Semaine a cuisiner",
     top_week: "Semaine",
     selected_count: (count) => `${count} recette${count === 1 ? "" : "s"} sélectionnée${count === 1 ? "" : "s"}`,
-    planned_count: (count, weekLabel) =>
-      `${count} recette${count === 1 ? "" : "s"} planifiée${count === 1 ? "" : "s"} pour ${weekLabel}`,
+    planned_count: (count, goal) =>
+      `${count} / ${goal} recette${goal === 1 ? "" : "s"} sélectionnée${goal === 1 ? "" : "s"}`,
     cook_sync_week: "Synchroniser avec la semaine planifiee",
     week_select: "Choisir la semaine",
     week_clear: "Effacer",
@@ -2665,6 +2674,15 @@ const translations = {
     cook_empty_plan_sub: "Choisissez d'abord des recettes dans Plan, puis revenez ici pour une vue cuisine ciblée.",
     pick_summary_empty: "Choisissez des recettes pour démarrer.",
     pick_summary: (count) => `Vous avez ${count} recette${count === 1 ? "" : "s"} sélectionnée${count === 1 ? "" : "s"}.`,
+    selection_progress: (count, goal) => `${count} / ${goal} recettes sélectionnées`,
+    selection_progress_empty: (goal) => `Un bon rythme hebdo est d'environ ${goal} recettes.`,
+    selection_progress_remaining: (remaining) =>
+      `Encore ${remaining} recette${remaining === 1 ? "" : "s"} et la semaine est bien cadrée.`,
+    selection_progress_ready: "Le plan de la semaine semble prêt.",
+    selection_progress_extra: (count, goal) =>
+      `${count} recettes sont sélectionnées. ${goal} reste le repère habituel, mais vous pouvez continuer.`,
+    selection_summary_label: "Cette semaine",
+    selection_summary_more: (count) => `+${count} en plus`,
     remove: "Retirer",
     add_to_picks: "Ajouter",
     remove_from_picks: "Retirer",
@@ -3868,12 +3886,84 @@ function getRecipeById(id) {
   return recipes.find((recipe) => recipe.id === id);
 }
 
+function getSelectionGuidance(count) {
+  if (!count) return t("selection_progress_empty", WEEKLY_RECIPE_TARGET);
+  if (count < WEEKLY_RECIPE_TARGET) {
+    return t("selection_progress_remaining", WEEKLY_RECIPE_TARGET - count);
+  }
+  if (count === WEEKLY_RECIPE_TARGET) return t("selection_progress_ready");
+  return t("selection_progress_extra", count, WEEKLY_RECIPE_TARGET);
+}
+
 function renderSelectedInLibrary() {
   if (!selectedList) return;
   selectedList.innerHTML = "";
   const count = selectedRecipes.length;
-  const summary = document.createElement("p");
-  summary.textContent = count ? t("pick_summary", count) : t("pick_summary_empty");
+  const progressCard = document.createElement("section");
+  progressCard.className = `selection-progress${count >= WEEKLY_RECIPE_TARGET ? " is-ready" : ""}`;
+
+  const progressTop = document.createElement("div");
+  progressTop.className = "selection-progress-top";
+
+  const progressCopy = document.createElement("div");
+  progressCopy.className = "selection-progress-copy";
+
+  const progressCount = document.createElement("strong");
+  progressCount.className = "selection-progress-count";
+  progressCount.textContent = t("selection_progress", count, WEEKLY_RECIPE_TARGET);
+
+  const progressText = document.createElement("p");
+  progressText.className = "selection-progress-text";
+  progressText.textContent = getSelectionGuidance(count);
+  progressCopy.append(progressCount, progressText);
+
+  const progressTarget = document.createElement("span");
+  progressTarget.className = "selection-target";
+  progressTarget.textContent = `~${WEEKLY_RECIPE_TARGET}`;
+  progressTarget.title = t("selection_progress_empty", WEEKLY_RECIPE_TARGET);
+  progressTop.append(progressCopy, progressTarget);
+
+  const progressMeter = document.createElement("div");
+  progressMeter.className = "selection-meter";
+  const progressFill = document.createElement("span");
+  progressFill.className = "selection-meter-fill";
+  progressFill.style.width = `${Math.min(100, (count / WEEKLY_RECIPE_TARGET) * 100)}%`;
+  progressMeter.appendChild(progressFill);
+  progressCard.append(progressTop, progressMeter);
+  selectedList.appendChild(progressCard);
+
+  const summary = document.createElement("section");
+  summary.className = "selection-summary";
+  const summaryLabel = document.createElement("span");
+  summaryLabel.className = "selection-summary-label";
+  summaryLabel.textContent = t("selection_summary_label");
+  summary.appendChild(summaryLabel);
+
+  if (count) {
+    const chipList = document.createElement("div");
+    chipList.className = "selection-chip-list";
+    selectedRecipes.slice(0, WEEKLY_RECIPE_TARGET).forEach((recipeId) => {
+      const recipe = getRecipeById(recipeId);
+      if (!recipe) return;
+      const chip = document.createElement("span");
+      chip.className = "selection-chip";
+      chip.textContent = getRecipeName(recipe);
+      chipList.appendChild(chip);
+    });
+    if (count > WEEKLY_RECIPE_TARGET) {
+      const extraChip = document.createElement("span");
+      extraChip.className = "selection-chip is-overflow";
+      extraChip.textContent = t("selection_summary_more", count - WEEKLY_RECIPE_TARGET);
+      chipList.appendChild(extraChip);
+    }
+    summary.appendChild(chipList);
+  } else {
+    const empty = document.createElement("p");
+    empty.className = "selection-summary-empty";
+    empty.textContent = t("pick_summary_empty");
+    summary.appendChild(empty);
+  }
+
   selectedList.appendChild(summary);
 
   if (!count) return;
@@ -6049,8 +6139,7 @@ function refreshAll() {
   renderFrequencyTable();
   renderRecentWeeks();
   if (heroCount) {
-    const weekLabel = formatWeekLabel(currentWeekKey);
-    heroCount.textContent = t("planned_count", selectedRecipes.length, weekLabel);
+    heroCount.textContent = t("planned_count", selectedRecipes.length, WEEKLY_RECIPE_TARGET);
   }
   renderWeeklyFlow();
   refreshSyncStatus();
