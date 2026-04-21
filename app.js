@@ -7309,6 +7309,12 @@ function renderRecipeDetails(recipe) {
         })
         .join("")
     : `<li>${t("ingredients_empty")}</li>`;
+  const stepsForRecipe = getRecipeSteps(recipe);
+  const methodSteps = stepsForRecipe.length
+    ? stepsForRecipe
+        .map((step, index) => `<li><span>${index + 1}</span><p>${formatStepWithQuantities(step, recipe, servings)}</p></li>`)
+        .join("")
+    : `<li class="is-empty"><p>${t("cook_steps_empty")}</p></li>`;
   const nutrition = calculateRecipeNutrition(recipe);
   const nutritionNote = nutrition.missing
     ? t("nutrition_note_missing")
@@ -7348,8 +7354,25 @@ function renderRecipeDetails(recipe) {
     <div class="detail-meta">${recipe.time} · ${servings} ${t("servings_label")}</div>
     <div class="rating" data-rating-for="${recipe.id}"></div>
     <button class="ghost detail-favorite-toggle" data-favorite-toggle="${recipe.id}">${favoriteLabel}</button>
-    <ul>${ingredients}</ul>
-    ${nutritionHtml}
+    <div class="recipe-detail-tabs" role="tablist">
+      <button class="recipe-detail-tab is-active" type="button" role="tab" aria-selected="true" data-recipe-panel-target="ingredients-${recipe.id}">${t("cook_section_ingredients")}</button>
+      <button class="recipe-detail-tab" type="button" role="tab" aria-selected="false" data-recipe-panel-target="method-${recipe.id}">${t("cook_section_steps")}</button>
+    </div>
+    <section class="recipe-detail-panel is-active" id="ingredients-${recipe.id}" data-recipe-panel="ingredients-${recipe.id}" role="tabpanel">
+      <div class="recipe-section-head">
+        <h5>${t("cook_section_ingredients")}</h5>
+        <span>${t("cook_section_ingredients_count", recipe.ingredients.length)}</span>
+      </div>
+      <ul class="recipe-ingredient-list">${ingredients}</ul>
+      ${nutritionHtml}
+    </section>
+    <section class="recipe-detail-panel" id="method-${recipe.id}" data-recipe-panel="method-${recipe.id}" role="tabpanel" hidden>
+      <div class="recipe-section-head">
+        <h5>${t("cook_section_steps")}</h5>
+        <span>${t("cook_section_steps_count", 0, stepsForRecipe.length)}</span>
+      </div>
+      <ol class="recipe-method-list">${methodSteps}</ol>
+    </section>
     <div class="note-section">
       <label class="note-label" for="note-${recipe.id}">${t("recipe_note")}</label>
       <textarea id="note-${recipe.id}" class="note-input" rows="3" placeholder="${t("recipe_note_placeholder")}">${noteValue}</textarea>
@@ -7369,6 +7392,23 @@ function renderRecipeDetails(recipe) {
     const noteInput = recipeModalBody.querySelector(`#note-${recipe.id}`);
     const saveBtn = recipeModalBody.querySelector(`[data-note-save="${recipe.id}"]`);
     const clearBtn = recipeModalBody.querySelector(`[data-note-clear="${recipe.id}"]`);
+    const detailTabs = Array.from(recipeModalBody.querySelectorAll("[data-recipe-panel-target]"));
+    const detailPanels = Array.from(recipeModalBody.querySelectorAll("[data-recipe-panel]"));
+    detailTabs.forEach((tab) => {
+      tab.addEventListener("click", () => {
+        const target = tab.dataset.recipePanelTarget;
+        detailTabs.forEach((candidate) => {
+          const isActive = candidate === tab;
+          candidate.classList.toggle("is-active", isActive);
+          candidate.setAttribute("aria-selected", isActive ? "true" : "false");
+        });
+        detailPanels.forEach((panel) => {
+          const isActive = panel.dataset.recipePanel === target;
+          panel.classList.toggle("is-active", isActive);
+          panel.hidden = !isActive;
+        });
+      });
+    });
     if (favoriteBtn) {
       favoriteBtn.addEventListener("click", () => {
         toggleFavoriteRecipe(recipe.id);

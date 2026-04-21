@@ -1075,12 +1075,112 @@ body.view-cook #shopping {
   margin-bottom: 10px;
 }
 
-.modal-body ul {
+.modal-body ul,
+.modal-body ol {
   list-style: none;
   padding: 0;
   margin: 0;
   display: grid;
   gap: 6px;
+}
+
+.recipe-detail-tabs {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 6px;
+  padding: 4px;
+  margin: 14px 0;
+  border-radius: 12px;
+  background: rgba(26, 26, 26, 0.06);
+}
+
+.recipe-detail-tab {
+  border: 0;
+  border-radius: 9px;
+  background: transparent;
+  color: var(--slate);
+  cursor: pointer;
+  font: inherit;
+  font-weight: 700;
+  min-height: 38px;
+  padding: 8px 10px;
+}
+
+.recipe-detail-tab.is-active {
+  background: var(--card);
+  color: var(--ink);
+  box-shadow: 0 2px 8px rgba(26, 26, 26, 0.08);
+}
+
+.recipe-detail-panel {
+  display: grid;
+  gap: 10px;
+}
+
+.recipe-detail-panel[hidden] {
+  display: none;
+}
+
+.recipe-section-head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.recipe-section-head h5 {
+  margin: 0;
+  font-size: 0.86rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--sage);
+}
+
+.recipe-section-head span {
+  color: var(--slate);
+  font-size: 0.82rem;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.recipe-ingredient-list li {
+  line-height: 1.35;
+}
+
+.recipe-method-list {
+  gap: 10px;
+}
+
+.recipe-method-list li {
+  display: grid;
+  grid-template-columns: 30px minmax(0, 1fr);
+  gap: 10px;
+  padding: 12px;
+  border-radius: 12px;
+  background: rgba(122, 167, 249, 0.08);
+  border: 1px solid rgba(26, 26, 26, 0.08);
+}
+
+.recipe-method-list li > span {
+  display: inline-grid;
+  place-items: center;
+  width: 30px;
+  height: 30px;
+  border-radius: 999px;
+  background: var(--sage);
+  color: #fff;
+  font-weight: 700;
+  font-size: 0.85rem;
+}
+
+.recipe-method-list p {
+  margin: 0;
+  color: var(--ink);
+  line-height: 1.45;
+}
+
+.recipe-method-list .is-empty {
+  grid-template-columns: 1fr;
 }
 
 .fun-modal-image {
