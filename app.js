@@ -3769,6 +3769,211 @@ const recipes = [
       "Mix the yogurt with the lemon juice, lemon zest, fresh dill and a small pinch of salt while the chili simmers.",
       "Serve the chili warm with the lemon-herb yogurt and fresh parsley on top."
     ]
+  },
+  {
+    "id": "golden-cauliflower-fried-rice",
+    "name": "Golden Cauliflower Fried Rice",
+    "name_fr": "Riz frit de chou-fleur dore",
+    "time": "25 min",
+    "servings": 4,
+    "source_url": "https://yuka.io/en/recipes/cauliflower-fried-rice/",
+    "tags": [
+      "pan",
+      "vegetarian",
+      "gluten-free"
+    ],
+    "ingredients": [
+      {
+        "item": "cauliflower",
+        "qty": 1,
+        "unit": "head"
+      },
+      {
+        "item": "brown onion",
+        "qty": 1,
+        "unit": "pcs"
+      },
+      {
+        "item": "carrot",
+        "qty": 130,
+        "unit": "g"
+      },
+      {
+        "item": "capsicum",
+        "qty": 1,
+        "unit": "pcs"
+      },
+      {
+        "item": "garlic cloves",
+        "qty": 2,
+        "unit": "pcs"
+      },
+      {
+        "item": "eggs",
+        "qty": 3,
+        "unit": "pcs"
+      },
+      {
+        "item": "frozen peas",
+        "qty": 80,
+        "unit": "g"
+      },
+      {
+        "item": "olive oil",
+        "qty": 1,
+        "unit": "tbsp"
+      },
+      {
+        "item": "turmeric",
+        "qty": 1,
+        "unit": "tsp"
+      },
+      {
+        "item": "spring onions",
+        "qty": 2,
+        "unit": "pcs"
+      },
+      {
+        "item": "sesame seeds",
+        "qty": 1,
+        "unit": "tbsp"
+      },
+      {
+        "item": "salt",
+        "qty": 0.5,
+        "unit": "tsp"
+      },
+      {
+        "item": "black pepper",
+        "qty": 0.25,
+        "unit": "tsp"
+      }
+    ],
+    "steps": [
+      "Grate the cauliflower with a box grater or food processor until it resembles rice, then prepare the brown onion, carrot, capsicum, garlic cloves and frozen peas.",
+      "Heat the olive oil in a large skillet over medium heat. Add the brown onion, carrot, capsicum and garlic cloves, then saute for about 5 minutes until tender.",
+      "Push the vegetables to one side of the skillet. Pour in the beaten eggs and scramble until cooked.",
+      "Stir in the frozen peas, cauliflower, turmeric, salt and black pepper. Cook for 5 to 7 minutes until the cauliflower is tender.",
+      "Serve hot with sliced spring onions and sesame seeds."
+    ]
+  },
+  {
+    "id": "turkey-chili",
+    "name": "Hearty Turkey & Veggie Chili",
+    "name_fr": "Chili de dinde et legumes",
+    "time": "40 min",
+    "servings": 4,
+    "source_url": "https://yuka.io/en/recipes/turkey-chili/",
+    "tags": [
+      "pan",
+      "batch",
+      "gluten-free"
+    ],
+    "ingredients": [
+      {
+        "item": "turkey mince",
+        "qty": 450,
+        "unit": "g"
+      },
+      {
+        "item": "chicken stock",
+        "qty": 375,
+        "unit": "ml"
+      },
+      {
+        "item": "diced tomatoes",
+        "qty": 410,
+        "unit": "g"
+      },
+      {
+        "item": "canned black beans",
+        "qty": 425,
+        "unit": "g"
+      },
+      {
+        "item": "brown onion",
+        "qty": 1,
+        "unit": "pcs"
+      },
+      {
+        "item": "capsicum",
+        "qty": 1,
+        "unit": "pcs"
+      },
+      {
+        "item": "sweet potato",
+        "qty": 300,
+        "unit": "g"
+      },
+      {
+        "item": "olive oil",
+        "qty": 1,
+        "unit": "tbsp"
+      },
+      {
+        "item": "garlic cloves",
+        "qty": 2,
+        "unit": "pcs"
+      },
+      {
+        "item": "ground cumin",
+        "qty": 1,
+        "unit": "tsp"
+      },
+      {
+        "item": "smoked paprika",
+        "qty": 1,
+        "unit": "tsp"
+      },
+      {
+        "item": "chilli powder",
+        "qty": 0.5,
+        "unit": "tsp"
+      },
+      {
+        "item": "cayenne pepper",
+        "qty": 0.25,
+        "unit": "tsp"
+      },
+      {
+        "item": "cinnamon",
+        "qty": 0.25,
+        "unit": "tsp"
+      },
+      {
+        "item": "yogurt",
+        "qty": 125,
+        "unit": "g"
+      },
+      {
+        "item": "lime",
+        "qty": 1,
+        "unit": "pcs"
+      },
+      {
+        "item": "fresh coriander",
+        "qty": 8,
+        "unit": "g"
+      },
+      {
+        "item": "salt",
+        "qty": 1,
+        "unit": "tsp"
+      },
+      {
+        "item": "black pepper",
+        "qty": 0.5,
+        "unit": "tsp"
+      }
+    ],
+    "steps": [
+      "Heat the olive oil in a large pot over medium heat. Add the brown onion and garlic cloves, then saute for 3 to 4 minutes until fragrant and translucent.",
+      "Stir in the capsicum and cook for another 2 minutes.",
+      "Add the turkey mince and break it apart with a wooden spoon. Cook for 5 to 6 minutes until browned.",
+      "Add the sweet potato, ground cumin, smoked paprika, chilli powder, cinnamon, cayenne pepper, salt and black pepper, then stir to coat everything in the spices.",
+      "Add the diced tomatoes, canned black beans and chicken stock. Bring to a boil, reduce to low heat, cover and simmer for 25 to 30 minutes until the sweet potato is tender.",
+      "Adjust seasoning, then serve with yogurt, fresh coriander and a squeeze of lime juice."
+    ]
   }
 ];
 
@@ -4118,6 +4323,8 @@ const recipeImageMap = {
   "green-goddess-pasta-sauce": "Recipes/green-goddess-pasta-sauce.jpeg",
   "chili-sin-carne": "Recipes/chili-sin-carne.jpeg",
   "eggplant-chickpea-chili": "Recipes/eggplant-chickpea-chili.jpg",
+  "golden-cauliflower-fried-rice": "Recipes/golden-cauliflower-fried-rice.jpg",
+  "turkey-chili": "Recipes/hearty-turkey-veggie-chili.jpg",
   "spinach-ricotta-lasagne": "Recipes/spinach-ricotta-lasagne.jpg",
   "curry-epinards-pois-chiche": "Recipes/curry-epinards-pois-chiche.jpg",
   "dahl-lentilles-epinards": "Recipes/dahl-lentilles-epinards.jpg",
@@ -5229,6 +5436,7 @@ const ingredientTranslationsFr = {
   "garam masala": "garam masala",
   "ground cumin": "cumin moulu",
   "chilli powder": "poudre de chili",
+  "cayenne pepper": "piment de Cayenne",
   "brown sugar": "sucre roux",
   "turmeric": "curcuma",
   "pineapple": "ananas",
@@ -5240,6 +5448,7 @@ const ingredientTranslationsFr = {
   "lime": "citron vert",
   "mint": "menthe",
   "fresh mint": "menthe fraîche",
+  "spring onions": "oignons verts",
   "quinoa": "quinoa",
   "rice": "riz",
   "butternut pumpkin": "courge butternut",
