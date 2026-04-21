@@ -3651,6 +3651,124 @@ const recipes = [
       "Bring to a boil, then simmer uncovered for 30 minutes until thick.",
       "Finish with lime juice."
     ]
+  },
+  {
+    "id": "eggplant-chickpea-chili",
+    "name": "Eggplant & Chickpea Chili",
+    "name_fr": "Chili aubergine et pois chiches",
+    "time": "40 min",
+    "servings": 4,
+    "source_url": "https://yuka.io/en/recipes/eggplant-chili/",
+    "tags": [
+      "pan",
+      "batch",
+      "vegetarian"
+    ],
+    "ingredients": [
+      {
+        "item": "canned chickpeas",
+        "qty": 425,
+        "unit": "g"
+      },
+      {
+        "item": "diced tomatoes",
+        "qty": 410,
+        "unit": "g"
+      },
+      {
+        "item": "vegetable stock",
+        "qty": 375,
+        "unit": "ml"
+      },
+      {
+        "item": "eggplant",
+        "qty": 1,
+        "unit": "pcs"
+      },
+      {
+        "item": "capsicum",
+        "qty": 1,
+        "unit": "pcs"
+      },
+      {
+        "item": "brown onion",
+        "qty": 1,
+        "unit": "pcs"
+      },
+      {
+        "item": "garlic cloves",
+        "qty": 3,
+        "unit": "pcs"
+      },
+      {
+        "item": "olive oil",
+        "qty": 2,
+        "unit": "tbsp"
+      },
+      {
+        "item": "tomato paste",
+        "qty": 1,
+        "unit": "tbsp"
+      },
+      {
+        "item": "smoked paprika",
+        "qty": 1,
+        "unit": "tsp"
+      },
+      {
+        "item": "ground cumin",
+        "qty": 1,
+        "unit": "tsp"
+      },
+      {
+        "item": "chilli powder",
+        "qty": 0.5,
+        "unit": "tsp"
+      },
+      {
+        "item": "yogurt",
+        "qty": 250,
+        "unit": "g"
+      },
+      {
+        "item": "fresh dill",
+        "qty": 8,
+        "unit": "g"
+      },
+      {
+        "item": "lemon juice",
+        "qty": 1,
+        "unit": "tbsp"
+      },
+      {
+        "item": "lemon zest",
+        "qty": 1,
+        "unit": "tsp"
+      },
+      {
+        "item": "fresh parsley",
+        "qty": 8,
+        "unit": "g"
+      },
+      {
+        "item": "salt",
+        "qty": 1,
+        "unit": "tsp"
+      },
+      {
+        "item": "black pepper",
+        "qty": 0.5,
+        "unit": "tsp"
+      }
+    ],
+    "steps": [
+      "Dice the eggplant into 2 cm cubes, toss with half of the olive oil and a pinch of salt, then brown in a hot skillet or grill pan for 8 to 10 minutes. Work in batches if needed, then set aside.",
+      "Warm the remaining olive oil in a large pot over medium heat. Add the brown onion, garlic cloves and capsicum, then cook for 5 minutes until softened.",
+      "Stir in the tomato paste and cook for 1 to 2 minutes until darker and fragrant.",
+      "Add the eggplant, canned chickpeas, diced tomatoes, vegetable stock, smoked paprika, ground cumin, chilli powder, salt and black pepper. Bring to a boil, then cover and simmer gently for 25 to 35 minutes, stirring occasionally.",
+      "Mix the yogurt with the lemon juice, lemon zest, fresh dill and a small pinch of salt while the chili simmers.",
+      "Serve the chili warm with the lemon-herb yogurt and fresh parsley on top."
+    ]
   }
 ];
 
@@ -3999,6 +4117,7 @@ const recipeImageMap = {
   "black-bean-sweet-potato-filling": "Recipes/black-bean-sweet-potato-filling.webp",
   "green-goddess-pasta-sauce": "Recipes/green-goddess-pasta-sauce.jpeg",
   "chili-sin-carne": "Recipes/chili-sin-carne.jpeg",
+  "eggplant-chickpea-chili": "Recipes/eggplant-chickpea-chili.jpg",
   "spinach-ricotta-lasagne": "Recipes/spinach-ricotta-lasagne.jpg",
   "curry-epinards-pois-chiche": "Recipes/curry-epinards-pois-chiche.jpg",
   "dahl-lentilles-epinards": "Recipes/dahl-lentilles-epinards.jpg",
@@ -5108,6 +5227,7 @@ const ingredientTranslationsFr = {
   "raw pistachios": "pistaches nature",
   "curry powder": "curry",
   "garam masala": "garam masala",
+  "ground cumin": "cumin moulu",
   "chilli powder": "poudre de chili",
   "brown sugar": "sucre roux",
   "turmeric": "curcuma",
@@ -5115,6 +5235,7 @@ const ingredientTranslationsFr = {
   "couscous": "couscous",
   "pearl couscous": "couscous perlé",
   "lemon juice": "jus de citron",
+  "lemon zest": "zeste de citron",
   "lemon": "citron",
   "lime": "citron vert",
   "mint": "menthe",
@@ -5179,6 +5300,8 @@ const ingredientTranslationsFr = {
   "fennel bulb": "bulbe de fenouil",
   "fennel seeds": "graines de fenouil",
   "yogurt": "yaourt",
+  "fresh dill": "aneth frais",
+  "fresh parsley": "persil frais",
   "chicken stock cubes": "cubes de bouillon de poulet",
   "cauliflower": "chou-fleur",
 };
