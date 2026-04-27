@@ -1095,7 +1095,7 @@ const recipes = [
       "Add olive oil to the Thermomix bowl.",
       "Add the lid with the measuring cup.",
       "Saute 5 min/120C/speed 1.",
-      "Add 200 g green lentils, 1 tsp vegetable stock and 900 g water to the Thermomix bowl.",
+      "Add 200 g green lentils, 1 tsp vegetable stock and 900 ml water to the Thermomix bowl.",
       "Add the lid with the measuring cup.",
       "Cook 35 min/100C/speed 1.",
       "Add salt, black pepper and 1 tsp sour cream to the Thermomix bowl.",
@@ -1134,6 +1134,11 @@ const recipes = [
         "item": "green lentils",
         "qty": 200,
         "unit": "g"
+      },
+      {
+        "item": "water",
+        "qty": 600,
+        "unit": "ml"
       },
       {
         "item": "brussels sprouts",
@@ -1293,7 +1298,7 @@ const recipes = [
     "steps": [
       "Heat the olive oil in a large pot and cook the brown onion, carrot and garlic cloves for 5 minutes.",
       "Add the cumin, ground coriander, paprika and turmeric and cook for 1 minute.",
-      "Add the diced tomatoes, vegetable stock and green lentils. Simmer for 25 minutes.",
+      "Add the diced tomatoes, 800 ml vegetable stock and green lentils. Simmer for 25 minutes.",
       "Add the canned chickpeas and cook for 10 minutes more.",
       "Finish with salt, black pepper, lemon juice and fresh coriander."
     ]
@@ -1623,7 +1628,7 @@ const recipes = [
       "Add the olive oil to the Thermomix bowl.",
       "Add the lid with the measuring cup.",
       "Saute 5 min/120C/speed 1.",
-      "Add 200 g split peas, 1 tsp vegetable stock and 900 g water to the Thermomix bowl.",
+      "Add 200 g split peas, 1 tsp vegetable stock and 900 ml water to the Thermomix bowl.",
       "Add the lid with the measuring cup.",
       "Cook 45 min/100C/speed 2.",
       "Add salt, black pepper and 1 tsp sour cream to the Thermomix bowl.",
@@ -1920,8 +1925,8 @@ const recipes = [
       "Rinse the red lentils.",
       "Dice the brown onion, garlic cloves and carrot.",
       "Heat the olive oil in a saucepan and cook the brown onion, garlic cloves and carrot for 5 minutes.",
-      "Add the red lentils, coconut milk, water, turmeric, curry powder, salt and black pepper.",
-      "Cover and simmer for 25 to 30 minutes, stirring regularly and adding a little water if needed.",
+      "Add the red lentils, 320 ml coconut milk, 450 ml water, turmeric, curry powder, salt and black pepper.",
+      "Cover and simmer for 25 to 30 minutes, stirring regularly and reducing the heat if it thickens too quickly.",
       "Stir in the fresh spinach for the final 5 minutes.",
       "Finish with lime juice and serve with the rice."
     ]
@@ -2382,6 +2387,11 @@ const recipes = [
         "item": "green lentils",
         "qty": 150,
         "unit": "g"
+      },
+      {
+        "item": "water",
+        "qty": 300,
+        "unit": "ml"
       },
       {
         "item": "crushed tomatoes",
@@ -3004,8 +3014,8 @@ const recipes = [
       "Heat the olive oil in a large pot and cook the brown onion for 6 minutes until soft.",
       "Add the garlic cloves and fresh ginger and cook for 2 minutes.",
       "Add the ground cumin, ground coriander, turmeric and garam masala and cook for 1 minute.",
-      "Add the diced tomatoes, red lentils and vegetable stock. Bring to a boil, then simmer for 20 minutes, stirring regularly.",
-      "Stir in the coconut milk and cook for 5 minutes more.",
+      "Add the diced tomatoes, red lentils and 900 ml vegetable stock. Bring to a boil, then simmer for 20 minutes, stirring regularly.",
+      "Stir in 150 ml coconut milk and cook for 5 minutes more.",
       "Add the fresh spinach and cook until wilted.",
       "Finish with salt, black pepper and lemon juice."
     ]
