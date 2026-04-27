@@ -324,7 +324,7 @@ const recipes = [
         "unit": "g"
       },
       {
-        "item": "creme fraiche",
+        "item": "sour cream",
         "qty": 3,
         "unit": "tbsp"
       },
@@ -350,7 +350,7 @@ const recipes = [
       "Cook the couscous with 750 ml hot water, cover for 5 minutes, then fluff with a fork and keep separate.",
       "Cook the pineapple in a pan until lightly caramelised.",
       "Add the chicken to the pan and cook until golden and cooked through.",
-      "Stir in the creme fraiche and cook for 2 minutes.",
+      "Stir in the sour cream and cook for 2 minutes.",
       "Serve the chicken and pineapple over the couscous."
     ]
   },
@@ -1072,7 +1072,7 @@ const recipes = [
         "unit": "ml"
       },
       {
-        "item": "creme fraiche",
+        "item": "sour cream",
         "qty": 1,
         "unit": "tsp"
       },
@@ -1095,10 +1095,10 @@ const recipes = [
       "Add olive oil to the Thermomix bowl.",
       "Add the lid with the measuring cup.",
       "Saute 5 min/120C/speed 1.",
-      "Add 200 g green lentils, the small spoon of vegetable stock and 900 g water to the Thermomix bowl.",
+      "Add 200 g green lentils, 1 tsp vegetable stock and 900 g water to the Thermomix bowl.",
       "Add the lid with the measuring cup.",
       "Cook 35 min/100C/speed 1.",
-      "Add salt, pepper and the small spoon of creme fraiche to the Thermomix bowl.",
+      "Add salt, black pepper and 1 tsp sour cream to the Thermomix bowl.",
       "Add the lid with the measuring cup.",
       "Blend 1 min/speed 5. Increase speed gradually up to 10."
     ],
@@ -1600,7 +1600,7 @@ const recipes = [
         "unit": "ml"
       },
       {
-        "item": "creme fraiche",
+        "item": "sour cream",
         "qty": 1,
         "unit": "tsp"
       },
@@ -1623,10 +1623,10 @@ const recipes = [
       "Add the olive oil to the Thermomix bowl.",
       "Add the lid with the measuring cup.",
       "Saute 5 min/120C/speed 1.",
-      "Add 200 g split peas, the small spoon of vegetable stock and 900 g water to the Thermomix bowl.",
+      "Add 200 g split peas, 1 tsp vegetable stock and 900 g water to the Thermomix bowl.",
       "Add the lid with the measuring cup.",
       "Cook 45 min/100C/speed 2.",
-      "Add salt, pepper and the small spoon of creme fraiche to the Thermomix bowl.",
+      "Add salt, black pepper and 1 tsp sour cream to the Thermomix bowl.",
       "Add the lid with the measuring cup.",
       "Mix 1 min/speed 5. Increase speed progressively up to 10."
     ],
@@ -1673,7 +1673,7 @@ const recipes = [
         "unit": "pcs"
       },
       {
-        "item": "creme fraiche",
+        "item": "sour cream",
         "qty": 2,
         "unit": "tbsp"
       },
@@ -1704,7 +1704,7 @@ const recipes = [
       "Heat the olive oil in a large pan and cook the brown onion for 5 minutes.",
       "Add the zucchini and cook until soft and lightly golden.",
       "Cut the chicken breast into small pieces and cook in a separate pan until golden and cooked through.",
-      "Add the chicken breast to the zucchini mixture and stir in the creme fraiche.",
+      "Add the chicken breast to the zucchini mixture and stir in the sour cream.",
       "Simmer for 2 minutes, then serve with the rice."
     ]
   },
@@ -2254,8 +2254,8 @@ const recipes = [
       "Add beef, cinnamon, and cumin.",
       "Add tomatoes, water, salt, and pepper. Simmer for 15 minutes.",
       "Grill eggplant slices in the oven at 200°C (400°F) for 10 minutes per side.",
-      "Prepare bechamel: Melt butter, whisk in flour, then gradually add milk. Stir until thickened, then add nutmeg.",
-      "In a baking dish, layer eggplants, meat sauce, and bechamel. Repeat layers and finish with bechamel on top.",
+      "Prepare the white sauce: Melt butter, whisk in flour, then gradually add milk. Stir until thickened, then add nutmeg.",
+      "In a baking dish, layer eggplants, meat sauce, and white sauce. Repeat layers and finish with white sauce on top.",
       "Bake for 30 minutes. Serve warm."
     ],
     "steps_fr": [
@@ -2445,11 +2445,11 @@ const recipes = [
       }
     ],
     "steps": [
-      "Peel and finely chop the onion, garlic, and carrots. Cut courgettes and capsicum into small pieces.",
-      "Heat olive oil in a large pan. Add onion and garlic. Cook 3 min on medium heat. Add carrots, courgettes, and capsicum. Cook 5 more min.",
+      "Peel and finely chop the onion, garlic, and carrots. Cut zucchini and capsicum into small pieces.",
+      "Heat olive oil in a large pan. Add onion and garlic. Cook 3 min on medium heat. Add carrots, zucchini, and capsicum. Cook 5 more min.",
       "Add lentils, crushed tomatoes, tomato paste, herbs, and 300 ml of water. Bring to a boil, then cover and simmer 20-25 min until lentils are tender and sauce is reduced.",
-      "Make the béchamel: melt butter in a saucepan, stir in flour, then gradually whisk in milk. Cook 5-7 min until thickened. Add nutmeg.",
-      "Preheat oven to 180°C. In a baking dish, layer lentil sauce, lasagna sheets, béchamel. Repeat for 2-3 layers. Finish with béchamel on top.",
+      "Make the white sauce: melt butter in a saucepan, stir in flour, then gradually whisk in milk. Cook 5-7 min until thickened. Add nutmeg.",
+      "Preheat oven to 180°C. In a baking dish, layer lentil sauce, lasagna sheets, and white sauce. Repeat for 2-3 layers. Finish with white sauce on top.",
       "Bake 30-35 min at 180°C. Let rest 10 min before serving."
     ],
     "steps_fr": [
@@ -2561,12 +2561,12 @@ const recipes = [
     ],
     "steps": [
       "Mix the fresh spinach, ricotta, garlic cloves, egg and half the parmesan to make the filling. Season with salt, black pepper and nutmeg.",
-      "Make the bechamel by melting the butter, stirring in the plain flour, then whisking in the milk until smooth and thickened.",
+      "Make the white sauce by melting the butter, stirring in the plain flour, then whisking in the milk until smooth and thickened.",
       "Heat the olive oil in a pan, cook the brown onion for 2 minutes, then add the diced tomatoes, dried oregano and dried basil and simmer for 5 minutes.",
       "Preheat the oven to 200°C.",
-      "Spread a little tomato sauce in the base of the dish, add a layer of lasagne sheets, half the spinach filling and a third of the bechamel.",
-      "Repeat with another layer of tomato sauce, lasagne sheets, remaining spinach filling and another third of the bechamel.",
-      "Finish with lasagne sheets, the remaining tomato sauce, the remaining bechamel and the rest of the parmesan.",
+      "Spread a little tomato sauce in the base of the dish, add a layer of lasagne sheets, half the spinach filling and a third of the white sauce.",
+      "Repeat with another layer of tomato sauce, lasagne sheets, remaining spinach filling and another third of the white sauce.",
+      "Finish with lasagne sheets, the remaining tomato sauce, the remaining white sauce and the rest of the parmesan.",
       "Bake for 45 minutes until golden."
     ]
   },
@@ -2614,7 +2614,7 @@ const recipes = [
         "unit": "pcs"
       },
       {
-        "item": "creme fraiche",
+        "item": "sour cream",
         "qty": 300,
         "unit": "ml"
       },
@@ -2648,7 +2648,7 @@ const recipes = [
       "Mix the plain flour, butter, water and half of the salt in the Thermomix bowl for 1 min / dough mode, then chill the dough for 15 minutes.",
       "Preheat the oven to 220°C and roll out the dough into a tart dish.",
       "Cook the zucchini, capsicum and brown onion in a pan until soft and lightly golden.",
-      "Whisk the egg, creme fraiche, gruyere, remaining salt and black pepper.",
+      "Whisk the egg, sour cream, gruyere, remaining salt and black pepper.",
       "Spread the vegetables over the pastry, pour over the egg mixture and scatter the goat cheese on top.",
       "Bake for about 30 minutes."
     ]
@@ -5378,6 +5378,7 @@ const ingredientTranslationsFr = {
   "garlic clove": "gousse d'ail",
   "thickened cream": "crème épaisse",
   "creme fraiche": "crème fraîche",
+  "sour cream": "crème fraîche",
   "cream": "crème",
   "milk": "lait",
   "nutmeg": "muscade",
