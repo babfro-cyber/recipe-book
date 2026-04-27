@@ -4497,6 +4497,7 @@ const syncConfig = window.PANTRY_PILOT_SYNC_CONFIG || {};
 const SUPABASE_SYNC_URL = String(syncConfig.supabaseUrl || "").trim().replace(/\/+$/, "");
 const SUPABASE_SYNC_ANON_KEY = String(syncConfig.supabaseAnonKey || "").trim();
 const SYNC_META_STORAGE_KEY = "pantrySyncMeta";
+const UI_STATE_STORAGE_KEY = "pantryUiState";
 const SYNC_POLL_INTERVAL_MS = 60000;
 const SYNC_SAVE_DEBOUNCE_MS = 1200;
 
@@ -4510,6 +4511,7 @@ const storedRatings = safeParseStorage("pantryRatingsByRecipe", {});
 const storedRecipeNotes = safeParseStorage("pantryRecipeNotes", {});
 const storedPantryInventory = safeParseStorage("pantryIngredientInventory", {});
 const storedSyncMeta = safeParseStorage(SYNC_META_STORAGE_KEY, {});
+const storedUiState = safeParseStorage(UI_STATE_STORAGE_KEY, {});
 let selectedRecipesByWeek = { ...storedPicksByWeek };
 let checkedItemsByWeek = { ...storedChecksByWeek };
 let selectedServingsByWeek = { ...storedServingsByWeek };
@@ -4543,6 +4545,11 @@ function getDateLocale() {
 let currentLanguage = normalizeLanguageCode(safeGetItem("pantryLanguage") || "en");
 let selectedServings = {};
 let currentCookRecipeId = "";
+let currentCookStepByRecipe = clonePlainObject(storedUiState.cookStepByRecipe);
+let currentCookRecipeByWeek = clonePlainObject(storedUiState.cookRecipeByWeek);
+let lastOpenedRecipeId = "";
+let recipeDetailsOpen = Boolean(storedUiState.recipeDetailsOpen);
+let shouldRestoreRecipeDetails = false;
 let lastAddedRecipeId = "";
 let syncKnownUpdatedAt = String(storedSyncMeta.updatedAt || "");
 let syncStatusMessage = "";
@@ -4574,6 +4581,7 @@ const recentWeeks = document.getElementById("recent-weeks");
 const cookWeekLabel = document.getElementById("cook-week-label");
 const topWeekPicker = document.getElementById("top-week-picker");
 const duplicateLastWeekButton = document.getElementById("duplicate-last-week");
+const autoFillWeekButton = document.getElementById("auto-fill-week");
 const clearWeekButton = document.getElementById("clear-week");
 const weekShortcutsNote = document.getElementById("week-shortcuts-note");
 const topWeekLabel = document.getElementById("top-week-label");
@@ -4650,6 +4658,8 @@ const translations = {
     duplicate_last_week: "Duplicate last week",
     duplicate_last_week_note: (count, weekLabel) =>
       count ? `Copy ${count} recipe${count === 1 ? "" : "s"} from ${weekLabel}.` : "Nothing was planned last week yet.",
+    auto_fill_week: "Auto-fill week",
+    auto_fill_disabled: "Auto-fill is available until 4 recipes are selected.",
     clear_week_confirm: (weekLabel) => `Clear recipes, servings, checks, and cooking progress for ${weekLabel}?`,
     selected_recipes: "Selected recipes",
     summary_title: "Plan summary",
@@ -4715,15 +4725,15 @@ const translations = {
     pantry_matcher_sub: "Search recipe ingredients, add what you have, then see recipes ranked by matching items.",
     pantry_search_placeholder: "Search ingredients from recipes",
     pantry_search_prompt: "Start typing an ingredient to add it.",
-    pantry_search_empty: "No ingredient match in recipe data.",
+    pantry_search_empty: "No match yet. Try another ingredient name from your kitchen.",
     pantry_selected_title: "Your pantry/fridge items",
-    pantry_selected_empty: "Add at least one ingredient to start matching recipes.",
+    pantry_selected_empty: "Add what you already have, then PantryPilot will surface recipes that fit.",
     pantry_quantity: "Qty",
     pantry_unit: "Unit",
     pantry_unit_any: "Any",
     pantry_clear: "Clear pantry picks",
-    pantry_matches_empty: "Recipes with at least one matching item will appear here.",
-    pantry_matches_none: "No recipes match your current pantry quantities/units.",
+    pantry_matches_empty: "Matched recipes will appear here once you add pantry items.",
+    pantry_matches_none: "No strong matches yet. Adjust quantities or add another pantry item.",
     pantry_match_count: (count) => `${count} matching item${count === 1 ? "" : "s"}`,
     pantry_matched_items: "Matched items",
     frequency_view: "Frequency view",
@@ -4732,7 +4742,7 @@ const translations = {
     frequency_recipe: "Recipe",
     frequency_subtitle: (recipeCount, weekCount) =>
       `${recipeCount} recipe${recipeCount === 1 ? "" : "s"} across ${weekCount} week${weekCount === 1 ? "" : "s"}`,
-    frequency_empty: "Select some recipes in different weeks to see the frequency table.",
+    frequency_empty: "Plan recipes across a few weeks to see repeat patterns here.",
     shopping_list: "Auto Shopping List",
     shopping_list_sub: "Aggregated ingredients from your planned recipes. Check items as you shop.",
     shopping_stat_recipes: "Recipes",
@@ -4783,18 +4793,28 @@ const translations = {
     },
     cook_list_title: "Selected recipes",
     cook_list_sub: "Open one recipe at a time and move to the next when you're done.",
-    cook_list_empty: "Your selected recipes will appear here.",
+    cook_list_empty: "Selected recipes will appear here when this week has a plan.",
     cook_badge_active: "Now cooking",
     cook_badge_done: "Done",
     cook_badge_next: "Next up",
+    cook_recipe_start: "Start",
+    cook_recipe_continue: "Continue",
     cook_recipe_position: (index, total) => `Recipe ${index} of ${total}`,
-    cook_focus_tip: "Check off steps as you go, then move straight to the next recipe.",
+    cook_focus_tip: "Follow one step at a time. Ingredients stay nearby when you need them.",
     cook_section_ingredients: "Ingredients",
     cook_section_ingredients_count: (count) => `${count} item${count === 1 ? "" : "s"}`,
+    cook_ingredients_closed: "Show ingredients",
+    cook_ingredients_open: "Hide ingredients",
     cook_section_steps: "Method",
     cook_section_steps_count: (checked, total) =>
       checked ? `${checked} of ${total} checked` : `${total} step${total === 1 ? "" : "s"}`,
     cook_step_done: "Done",
+    cook_step_progress: (index, total) => `Step ${index} of ${total}`,
+    cook_mark_step_done: "Mark step done",
+    cook_step_complete: "Step done",
+    cook_previous_step: "Previous",
+    cook_next_step: "Next",
+    cook_finish_recipe: "Finish recipe",
     cook_steps_empty: "No steps added yet.",
     cook_mark_done: "Mark recipe done",
     cook_mark_undone: "Mark as not done",
@@ -4805,7 +4825,16 @@ const translations = {
     cook_open_link: "Open recipe link",
     cook_empty_plan_title: "Nothing planned for this week",
     cook_empty_plan_sub: "Choose recipes in Plan first, then return here for a focused cooking view.",
-    pick_summary_empty: "Pick recipes for the week to get started.",
+    card_meta_time: "Time",
+    card_meta_servings: "Serves",
+    card_meta_protein: "Protein",
+    card_tag_quick: "Quick",
+    card_tag_healthy: "Healthy",
+    card_tag_vegetarian: "Vegetarian",
+    card_tag_family: "Family",
+    card_tag_comfort: "Comfort",
+    card_tag_no_cook: "No-cook",
+    pick_summary_empty: "Choose a few recipes and they will stay pinned here for the week.",
     pick_summary: (count) => `You have ${count} recipe${count === 1 ? "" : "s"} selected.`,
     selection_progress: (count, goal) => `${count} / ${goal} recipes selected`,
     selection_progress_empty: (goal) => `A good weekly target is around ${goal} recipes.`,
@@ -4819,7 +4848,7 @@ const translations = {
     remove: "Remove",
     add_to_picks: "Add to picks",
     remove_from_picks: "Remove from picks",
-    shopping_empty: "Add recipes to see your list.",
+    shopping_empty: "Choose recipes in Plan and your combined shopping list will appear here.",
     recent_weeks: "Recent weeks",
     view: "View",
     utensil_thermomix: "Thermomix",
@@ -4873,6 +4902,8 @@ const translations = {
     duplicate_last_week: "Dupliquer la semaine passée",
     duplicate_last_week_note: (count, weekLabel) =>
       count ? `Copier ${count} recette${count === 1 ? "" : "s"} depuis ${weekLabel}.` : "Aucune recette n'était prévue la semaine passée.",
+    auto_fill_week: "Remplir la semaine",
+    auto_fill_disabled: "Le remplissage automatique est disponible jusqu'à 4 recettes.",
     clear_week_confirm: (weekLabel) => `Effacer les recettes, portions, coches et progrès de cuisine pour ${weekLabel} ?`,
     selected_recipes: "Recettes sélectionnées",
     summary_title: "Résumé du planning",
@@ -4938,15 +4969,15 @@ const translations = {
     pantry_matcher_sub: "Recherchez des ingrédients, ajoutez ce que vous avez, puis affichez les recettes par nombre d'articles correspondants.",
     pantry_search_placeholder: "Rechercher des ingrédients des recettes",
     pantry_search_prompt: "Commencez a taper un ingrédient pour l'ajouter.",
-    pantry_search_empty: "Aucun ingrédient correspondant dans les recettes.",
+    pantry_search_empty: "Aucune correspondance pour l'instant. Essayez un autre ingrédient.",
     pantry_selected_title: "Articles dans votre placard/frigo",
-    pantry_selected_empty: "Ajoutez au moins un ingrédient pour commencer.",
+    pantry_selected_empty: "Ajoutez ce que vous avez déjà, puis PantryPilot proposera les recettes adaptées.",
     pantry_quantity: "Qté",
     pantry_unit: "Unité",
     pantry_unit_any: "Toutes",
     pantry_clear: "Effacer la sélection placard",
-    pantry_matches_empty: "Les recettes avec au moins un ingrédient correspondant s'afficheront ici.",
-    pantry_matches_none: "Aucune recette ne correspond aux quantités/unités choisies.",
+    pantry_matches_empty: "Les recettes correspondantes s'afficheront ici après l'ajout d'ingrédients.",
+    pantry_matches_none: "Aucune bonne correspondance pour l'instant. Ajustez les quantités ou ajoutez un ingrédient.",
     pantry_match_count: (count) => `${count} ingrédient${count === 1 ? "" : "s"} correspondant${count === 1 ? "" : "s"}`,
     pantry_matched_items: "Ingrédients correspondants",
     frequency_view: "Vue fréquence",
@@ -4955,7 +4986,7 @@ const translations = {
     frequency_recipe: "Recette",
     frequency_subtitle: (recipeCount, weekCount) =>
       `${recipeCount} recette${recipeCount === 1 ? "" : "s"} sur ${weekCount} semaine${weekCount === 1 ? "" : "s"}`,
-    frequency_empty: "Sélectionnez des recettes sur différentes semaines pour afficher le tableau de fréquence.",
+    frequency_empty: "Planifiez des recettes sur quelques semaines pour voir les répétitions ici.",
     shopping_list: "Liste de courses",
     shopping_list_sub: "Ingrédients regroupés de vos recettes. Cochez au fur et à mesure.",
     shopping_stat_recipes: "Recettes",
@@ -5006,18 +5037,28 @@ const translations = {
     },
     cook_list_title: "Recettes sélectionnées",
     cook_list_sub: "Ouvrez une recette à la fois puis passez à la suivante quand c'est fini.",
-    cook_list_empty: "Vos recettes sélectionnées apparaîtront ici.",
+    cook_list_empty: "Les recettes sélectionnées apparaîtront ici quand la semaine sera planifiée.",
     cook_badge_active: "En cours",
     cook_badge_done: "Fait",
     cook_badge_next: "Ensuite",
+    cook_recipe_start: "Commencer",
+    cook_recipe_continue: "Continuer",
     cook_recipe_position: (index, total) => `Recette ${index} sur ${total}`,
-    cook_focus_tip: "Cochez les étapes au fur et à mesure puis passez directement à la recette suivante.",
+    cook_focus_tip: "Suivez une étape à la fois. Les ingrédients restent à portée quand vous en avez besoin.",
     cook_section_ingredients: "Ingrédients",
     cook_section_ingredients_count: (count) => `${count} élément${count === 1 ? "" : "s"}`,
+    cook_ingredients_closed: "Afficher les ingrédients",
+    cook_ingredients_open: "Masquer les ingrédients",
     cook_section_steps: "Étapes",
     cook_section_steps_count: (checked, total) =>
       checked ? `${checked} sur ${total} cochée${checked === 1 ? "" : "s"}` : `${total} étape${total === 1 ? "" : "s"}`,
     cook_step_done: "Fait",
+    cook_step_progress: (index, total) => `Étape ${index} sur ${total}`,
+    cook_mark_step_done: "Marquer l'étape faite",
+    cook_step_complete: "Étape faite",
+    cook_previous_step: "Précédent",
+    cook_next_step: "Suivant",
+    cook_finish_recipe: "Terminer la recette",
     cook_steps_empty: "Aucune étape ajoutée pour l'instant.",
     cook_mark_done: "Marquer la recette comme faite",
     cook_mark_undone: "Marquer comme non faite",
@@ -5028,7 +5069,16 @@ const translations = {
     cook_open_link: "Ouvrir le lien recette",
     cook_empty_plan_title: "Rien de prévu cette semaine",
     cook_empty_plan_sub: "Choisissez d'abord des recettes dans Plan, puis revenez ici pour une vue cuisine ciblée.",
-    pick_summary_empty: "Choisissez des recettes pour démarrer.",
+    card_meta_time: "Temps",
+    card_meta_servings: "Portions",
+    card_meta_protein: "Protéine",
+    card_tag_quick: "Rapide",
+    card_tag_healthy: "Sain",
+    card_tag_vegetarian: "Végétarien",
+    card_tag_family: "Famille",
+    card_tag_comfort: "Réconfort",
+    card_tag_no_cook: "Sans cuisson",
+    pick_summary_empty: "Choisissez quelques recettes et elles resteront épinglées ici pour la semaine.",
     pick_summary: (count) => `Vous avez ${count} recette${count === 1 ? "" : "s"} sélectionnée${count === 1 ? "" : "s"}.`,
     selection_progress: (count, goal) => `${count} / ${goal} recettes sélectionnées`,
     selection_progress_empty: (goal) => `Un bon rythme hebdo est d'environ ${goal} recettes.`,
@@ -5042,7 +5092,7 @@ const translations = {
     remove: "Retirer",
     add_to_picks: "Ajouter",
     remove_from_picks: "Retirer",
-    shopping_empty: "Ajoutez des recettes pour voir la liste.",
+    shopping_empty: "Choisissez des recettes dans Plan et la liste de courses combinée apparaîtra ici.",
     recent_weeks: "Semaines récentes",
     view: "Voir",
     utensil_thermomix: "Thermomix",
@@ -5653,6 +5703,15 @@ function pruneCookProgressForWeek(weekKey = currentWeekKey) {
   if (cookWeekKey === weekKey && currentCookRecipeId && !validIds.has(currentCookRecipeId)) {
     currentCookRecipeId = "";
   }
+  if (currentCookRecipeByWeek[weekKey] && !validIds.has(currentCookRecipeByWeek[weekKey])) {
+    delete currentCookRecipeByWeek[weekKey];
+  }
+  Object.keys(currentCookStepByRecipe).forEach((stateKey) => {
+    const [stateWeekKey, recipeId] = stateKey.split(":");
+    if (stateWeekKey === weekKey && !validIds.has(recipeId)) {
+      delete currentCookStepByRecipe[stateKey];
+    }
+  });
 }
 
 function isCookRecipeDone(recipeId, weekKey = cookWeekKey) {
@@ -5661,6 +5720,35 @@ function isCookRecipeDone(recipeId, weekKey = cookWeekKey) {
 
 function getCookStepChecks(recipeId, weekKey = cookWeekKey) {
   return cookStepChecksByWeek[weekKey]?.[recipeId] || {};
+}
+
+function getCookStepStateKey(recipeId, weekKey = cookWeekKey) {
+  return `${weekKey || "week"}:${recipeId}`;
+}
+
+function getCurrentCookStepIndex(recipeId, steps, weekKey = cookWeekKey) {
+  const stepCount = steps.length;
+  if (!stepCount) return 0;
+  const stateKey = getCookStepStateKey(recipeId, weekKey);
+  const storedIndex = Number(currentCookStepByRecipe[stateKey]);
+  if (Number.isInteger(storedIndex) && storedIndex >= 0 && storedIndex < stepCount) {
+    return storedIndex;
+  }
+  const checks = getCookStepChecks(recipeId, weekKey);
+  const firstUnchecked = steps.findIndex((_, index) => !checks[String(index)]);
+  const nextIndex = firstUnchecked === -1 ? stepCount - 1 : firstUnchecked;
+  currentCookStepByRecipe[stateKey] = nextIndex;
+  persistUiState();
+  return nextIndex;
+}
+
+function setCurrentCookStepIndex(recipeId, stepIndex, steps, weekKey = cookWeekKey) {
+  const stepCount = steps.length;
+  if (!stepCount) return 0;
+  const nextIndex = Math.min(Math.max(stepIndex, 0), stepCount - 1);
+  currentCookStepByRecipe[getCookStepStateKey(recipeId, weekKey)] = nextIndex;
+  persistUiState();
+  return nextIndex;
 }
 
 function setCookRecipeDone(recipeId, isDone, weekKey = cookWeekKey) {
@@ -5706,11 +5794,19 @@ function getPreferredCookRecipeId(weekKey = cookWeekKey) {
   if (currentCookRecipeId && planIds.includes(currentCookRecipeId)) {
     return currentCookRecipeId;
   }
+  const storedRecipeId = currentCookRecipeByWeek[weekKey];
+  if (storedRecipeId && planIds.includes(storedRecipeId)) {
+    return storedRecipeId;
+  }
   return planIds.find((recipeId) => !isCookRecipeDone(recipeId, weekKey)) || planIds[0];
 }
 
 function ensureCookRecipeSelection(weekKey = cookWeekKey) {
   currentCookRecipeId = getPreferredCookRecipeId(weekKey);
+  if (currentCookRecipeId) {
+    currentCookRecipeByWeek[weekKey] = currentCookRecipeId;
+    persistUiState();
+  }
   return currentCookRecipeId;
 }
 
@@ -5726,42 +5822,60 @@ function getNextCookRecipeId(recipeId, weekKey = cookWeekKey) {
   return nextPending || candidates[0] || "";
 }
 
-function renderCookMobileBar({ recipeId, nextRecipeId, isDone }) {
+function renderCookMobileBar({ recipeId, stepIndex = 0, stepCount = 0 }) {
   if (!cookMobileBar) return;
   cookMobileBar.innerHTML = "";
   cookMobileBar.hidden = !recipeId;
   if (!recipeId) return;
 
-  const doneButton = document.createElement("button");
-  doneButton.type = "button";
-  doneButton.className = isDone ? "ghost cook-mobile-done" : "primary cook-mobile-done";
-  doneButton.textContent = isDone ? t("cook_mark_undone") : t("cook_mark_done");
-  doneButton.addEventListener("click", () => {
-    const planIds = getCookPlanIds();
-    setCookRecipeDone(recipeId, !isDone);
-    renderCookOverview(planIds);
-    renderCookRecipeList(planIds);
+  const previousButton = document.createElement("button");
+  previousButton.type = "button";
+  previousButton.className = "ghost";
+  previousButton.textContent = t("cook_previous_step");
+  previousButton.disabled = stepIndex <= 0;
+  previousButton.addEventListener("click", () => {
+    const recipe = getRecipeById(recipeId);
+    if (!recipe) return;
+    setCurrentCookStepIndex(recipeId, stepIndex - 1, getRecipeSteps(recipe));
     renderCookCard(recipeId);
-    renderWeeklyFlow();
   });
 
   const nextButton = document.createElement("button");
   nextButton.type = "button";
-  nextButton.className = nextRecipeId ? "ghost" : "ghost is-disabled";
-  nextButton.textContent = nextRecipeId ? t("cook_next_recipe") : t("cook_no_next_recipe");
-  nextButton.disabled = !nextRecipeId;
+  nextButton.className = "primary";
+  nextButton.textContent = stepIndex >= stepCount - 1 ? t("cook_finish_recipe") : t("cook_next_step");
+  nextButton.disabled = !stepCount;
   nextButton.addEventListener("click", () => {
-    if (nextRecipeId) openCookRecipe(nextRecipeId, { scroll: true });
+    const recipe = getRecipeById(recipeId);
+    if (!recipe) return;
+    const steps = getRecipeSteps(recipe);
+    if (stepIndex < steps.length - 1) {
+      setCurrentCookStepIndex(recipeId, stepIndex + 1, steps);
+      renderCookCard(recipeId);
+    } else {
+      setCookRecipeDone(recipeId, true);
+      const nextRecipeId = getNextCookRecipeId(recipeId);
+      if (nextRecipeId && nextRecipeId !== recipeId) {
+        openCookRecipe(nextRecipeId, { scroll: true });
+      } else {
+        renderCookMode();
+      }
+      renderWeeklyFlow();
+    }
   });
 
-  cookMobileBar.append(doneButton, nextButton);
+  cookMobileBar.append(previousButton, nextButton);
 }
 
 function openCookRecipe(recipeId, { scroll = false } = {}) {
   if (!recipeId) return;
   currentCookRecipeId = recipeId;
+  if (cookWeekKey) {
+    currentCookRecipeByWeek[cookWeekKey] = recipeId;
+  }
   currentStage = "cook";
   setView("cook");
+  persistUiState();
   renderCookMode();
   renderWeeklyFlow();
   if (scroll && cookCard) {
@@ -5955,11 +6069,65 @@ function duplicateLastWeekPlan() {
   });
 }
 
-function clearCurrentWeekPlan() {
-  const weekLabelText = formatWeekLabel(currentWeekKey);
-  if (typeof window !== "undefined" && window.confirm && !window.confirm(t("clear_week_confirm", weekLabelText))) {
-    return;
+function getAutoFillRecipeIds() {
+  const selectedSet = new Set(selectedRecipes);
+  const selectedProtein = new Set(selectedRecipes.map((recipeId) => getRecipeById(recipeId)).filter(Boolean).map(getProteinKey));
+  const selectedMeal = new Set(selectedRecipes.map((recipeId) => getRecipeById(recipeId)).filter(Boolean).map(getMealType));
+  const needed = Math.max(0, WEEKLY_RECIPE_TARGET - selectedRecipes.length);
+  if (!needed) return [];
+
+  const picked = [];
+  const pickedProtein = new Set(selectedProtein);
+  const pickedMeal = new Set(selectedMeal);
+
+  const scoreRecipe = (recipe) => {
+    const protein = getProteinKey(recipe);
+    const meal = getMealType(recipe);
+    let score = 0;
+    if (!pickedProtein.has(protein)) score += 8;
+    if (!pickedMeal.has(meal)) score += 6;
+    if (isFavoriteRecipe(recipe.id)) score += 4;
+    if (!isRecipePreviouslySelected(recipe.id)) score += 3;
+    if ((recipe.tags || []).includes("batch")) score += 1;
+    score += Math.max(0, 60 - computeTimeBreakdown(recipe).total) / 60;
+    return score;
+  };
+
+  while (picked.length < needed) {
+    const candidates = recipes
+      .filter((recipe) => !selectedSet.has(recipe.id) && !picked.includes(recipe.id))
+      .sort((a, b) => {
+        const scoreDiff = scoreRecipe(b) - scoreRecipe(a);
+        if (scoreDiff !== 0) return scoreDiff;
+        return getRecipeName(a).localeCompare(getRecipeName(b));
+      });
+    const next = candidates[0];
+    if (!next) break;
+    picked.push(next.id);
+    pickedProtein.add(getProteinKey(next));
+    pickedMeal.add(getMealType(next));
   }
+
+  return picked;
+}
+
+function autoFillWeekPlan() {
+  const recipeIds = getAutoFillRecipeIds();
+  if (!recipeIds.length) return;
+  recipeIds.forEach((recipeId) => {
+    const recipe = getRecipeById(recipeId);
+    if (!recipe || selectedRecipes.includes(recipeId)) return;
+    selectedRecipes.push(recipeId);
+    if (!selectedServings[recipeId]) selectedServings[recipeId] = DEFAULT_SERVINGS;
+  });
+  lastAddedRecipeId = recipeIds[recipeIds.length - 1] || "";
+  currentStage = "plan";
+  setView("plan");
+  saveState();
+  refreshAll();
+}
+
+function clearCurrentWeekPlan() {
   currentStage = "plan";
   setView("plan");
   applyWeekPlan({
@@ -5975,6 +6143,10 @@ function renderPlanningShortcuts() {
   if (duplicateLastWeekButton) {
     duplicateLastWeekButton.disabled = !sourceWeekKey || !recipeIds.length;
   }
+  if (autoFillWeekButton) {
+    autoFillWeekButton.disabled = selectedRecipes.length >= WEEKLY_RECIPE_TARGET;
+    autoFillWeekButton.title = autoFillWeekButton.disabled ? t("auto_fill_disabled") : "";
+  }
   if (clearWeekButton) {
     clearWeekButton.disabled = !currentHasSelections;
   }
@@ -5989,6 +6161,7 @@ function renderPlanningShortcuts() {
 
 const jumpPlanner = document.getElementById("jump-planner");
 const jumpCook = document.getElementById("jump-cook");
+const modeNavButtons = Array.from(document.querySelectorAll("[data-mode-nav]"));
 const jumpLibrary = document.getElementById("jump-library");
 const jumpMatch = document.getElementById("jump-match");
 const openSettings = document.getElementById("open-settings");
@@ -6000,10 +6173,53 @@ const plannerLibrary = document.getElementById("planner-library");
 const plannerMatch = document.getElementById("planner-match");
 let currentStage = "plan";
 
+function normalizeStage(value) {
+  return value === "shop" || value === "cook" ? value : "plan";
+}
+
+function sanitizeStoredWeekKey(weekKey) {
+  if (!weekKey || !topWeekPicker) return "";
+  return Array.from(topWeekPicker.options).some((option) => option.value === weekKey) ? weekKey : "";
+}
+
+function pruneUiCookState() {
+  currentCookRecipeByWeek = Object.fromEntries(
+    Object.entries(clonePlainObject(currentCookRecipeByWeek)).filter(([weekKey, recipeId]) =>
+      getCookPlanIds(weekKey).includes(recipeId)
+    )
+  );
+  currentCookStepByRecipe = Object.fromEntries(
+    Object.entries(clonePlainObject(currentCookStepByRecipe)).filter(([stateKey]) => {
+      const [weekKey, recipeId] = String(stateKey).split(":");
+      return Boolean(weekKey && recipeId && getCookPlanIds(weekKey).includes(recipeId));
+    })
+  );
+}
+
+function persistUiState(extra = {}) {
+  pruneUiCookState();
+  safeSetItem(
+    UI_STATE_STORAGE_KEY,
+    JSON.stringify({
+      version: 1,
+      activeMode: normalizeStage(currentStage),
+      selectedWeekKey: currentWeekKey || "",
+      lastOpenedRecipeId: lastOpenedRecipeId && getRecipeById(lastOpenedRecipeId) ? lastOpenedRecipeId : "",
+      recipeDetailsOpen: Boolean(recipeDetailsOpen),
+      cookRecipeByWeek: currentCookRecipeByWeek,
+      cookStepByRecipe: currentCookStepByRecipe,
+      ...extra,
+    })
+  );
+}
+
 function setView(view) {
-  const isCook = view === "cook";
-  document.body.classList.toggle("view-cook", isCook);
-  document.body.classList.toggle("view-plan", !isCook);
+  const resolvedView = view === "shop" || view === "cook" ? view : "plan";
+  document.body.classList.toggle("view-plan", resolvedView === "plan");
+  document.body.classList.toggle("view-shop", resolvedView === "shop");
+  document.body.classList.toggle("view-cook", resolvedView === "cook");
+  currentStage = resolvedView;
+  persistUiState({ activeMode: resolvedView });
 }
 
 function getStageLabel(stage) {
@@ -6013,11 +6229,20 @@ function getStageLabel(stage) {
 }
 
 function syncCurrentStage() {
+  if (selectedRecipes.length === 0 && !document.body.classList.contains("view-plan")) {
+    currentStage = "plan";
+    setView("plan");
+    return;
+  }
+  if (document.body.classList.contains("view-shop")) {
+    currentStage = "shop";
+    return;
+  }
   if (document.body.classList.contains("view-cook")) {
     currentStage = "cook";
     return;
   }
-  currentStage = selectedRecipes.length >= WEEKLY_RECIPE_TARGET ? "shop" : "plan";
+  currentStage = "plan";
 }
 
 function scrollToStage(stage) {
@@ -6044,6 +6269,16 @@ function renderWeeklyFlow() {
   const activeCookRecipe = currentCookRecipeId ? getRecipeById(currentCookRecipeId) : null;
   const activeCookRecipeDone = activeCookRecipe ? isCookRecipeDone(activeCookRecipe.id) : false;
   const nextCookRecipeId = activeCookRecipe ? getNextCookRecipeId(activeCookRecipe.id) : "";
+
+  modeNavButtons.forEach((button) => {
+    const stage = button.dataset.modeNav || "plan";
+    const isLocked = stage !== "plan" && selectedCount === 0;
+    const isActive = stage === currentStage;
+    button.classList.toggle("is-active", isActive);
+    button.classList.toggle("is-locked", isLocked);
+    button.setAttribute("aria-current", isActive ? "page" : "false");
+    button.disabled = isLocked;
+  });
 
   flowSteps.forEach((button) => {
     const stage = button.dataset.stage || "plan";
@@ -6116,7 +6351,7 @@ function focusStage(stage, { scroll = true } = {}) {
   if (resolvedStage === "cook") {
     ensureCookRecipeSelection();
   }
-  setView(resolvedStage === "cook" ? "cook" : "plan");
+  setView(resolvedStage);
   if (resolvedStage === "cook") {
     renderCookMode();
   }
@@ -6125,6 +6360,12 @@ function focusStage(stage, { scroll = true } = {}) {
     scrollToStage(resolvedStage);
   }
 }
+
+modeNavButtons.forEach((button) => {
+  button.addEventListener("click", () => {
+    focusStage(button.dataset.modeNav || "plan");
+  });
+});
 
 if (jumpPlanner) {
   jumpPlanner.addEventListener("click", () => {
@@ -6159,9 +6400,6 @@ if (jumpMatch) {
     }
   });
 }
-
-setView("plan");
-renderWeeklyFlow();
 
 if (retailerSelect) {
   retailerSelect.value = preferredRetailer;
@@ -6332,7 +6570,34 @@ function renderSelectedInLibrary() {
   progressFill.className = "selection-meter-fill";
   progressFill.style.width = `${Math.min(100, (count / WEEKLY_RECIPE_TARGET) * 100)}%`;
   progressMeter.appendChild(progressFill);
-  progressCard.append(progressTop, progressMeter);
+  const quickActions = document.createElement("div");
+  quickActions.className = "selection-quick-actions";
+
+  const duplicateButton = document.createElement("button");
+  duplicateButton.type = "button";
+  duplicateButton.className = "ghost";
+  duplicateButton.textContent = t("duplicate_last_week");
+  const { sourceWeekKey, recipeIds } = getLastWeekPlanningMeta(currentWeekKey);
+  duplicateButton.disabled = !sourceWeekKey || !recipeIds.length;
+  duplicateButton.addEventListener("click", duplicateLastWeekPlan);
+
+  const autoFillButton = document.createElement("button");
+  autoFillButton.type = "button";
+  autoFillButton.className = "ghost";
+  autoFillButton.textContent = t("auto_fill_week");
+  autoFillButton.disabled = count >= WEEKLY_RECIPE_TARGET;
+  autoFillButton.title = autoFillButton.disabled ? t("auto_fill_disabled") : "";
+  autoFillButton.addEventListener("click", autoFillWeekPlan);
+
+  const clearButton = document.createElement("button");
+  clearButton.type = "button";
+  clearButton.className = "ghost";
+  clearButton.textContent = t("clear_plan");
+  clearButton.disabled = !hasWeekPlanningData(currentWeekKey);
+  clearButton.addEventListener("click", clearCurrentWeekPlan);
+
+  quickActions.append(duplicateButton, autoFillButton, clearButton);
+  progressCard.append(progressTop, progressMeter, quickActions);
   selectedList.appendChild(progressCard);
 
   const summary = document.createElement("section");
@@ -6430,7 +6695,9 @@ function renderSelectedInLibrary() {
 
     const removeBtn = document.createElement("button");
     removeBtn.className = "ghost pick-remove";
-    removeBtn.textContent = t("remove");
+    removeBtn.type = "button";
+    removeBtn.setAttribute("aria-label", `${t("remove")} ${getRecipeName(recipe)}`);
+    removeBtn.textContent = `× ${t("remove")}`;
     removeBtn.addEventListener("click", () => {
       selectedRecipes = selectedRecipes.filter((id) => id !== recipeId);
       delete selectedServings[recipeId];
@@ -6674,6 +6941,34 @@ function getMealType(recipe) {
 
 function getMealLabel(recipe) {
   return t(`meal_${getMealType(recipe)}`);
+}
+
+function getRecipeCardTags(recipe, time) {
+  const tags = recipe.tags || [];
+  const mealType = getMealType(recipe);
+  const cardTags = [];
+  const addTag = (key, label) => {
+    if (!cardTags.some((tag) => tag.key === key)) cardTags.push({ key, label });
+  };
+
+  if (time.total <= 30) addTag("quick", t("card_tag_quick"));
+  if (tags.includes("vegetarian") || getProteinKey(recipe) === "vegetarian") {
+    addTag("vegetarian", t("card_tag_vegetarian"));
+  }
+  if (tags.includes("no-cook")) addTag("no-cook", t("card_tag_no_cook"));
+  if (tags.includes("batch")) addTag("family", t("card_tag_family"));
+  if (mealType === "bake" || mealType === "soup") addTag("comfort", t("card_tag_comfort"));
+  if (
+    tags.includes("gluten-free") ||
+    tags.includes("high-protein") ||
+    tags.includes("vegetarian") ||
+    mealType === "salad" ||
+    mealType === "soup"
+  ) {
+    addTag("healthy", t("card_tag_healthy"));
+  }
+
+  return cardTags.slice(0, 4);
 }
 
 function getRecipeIcon(recipe) {
@@ -7232,7 +7527,7 @@ function renderRecipeGrid() {
     if (isSelected) {
       const selectedBadge = document.createElement("span");
       selectedBadge.className = "selected-badge";
-      selectedBadge.textContent = t("selected_badge");
+      selectedBadge.textContent = `✓ ${t("selected_badge")}`;
       thumb.appendChild(selectedBadge);
     }
 
@@ -7244,10 +7539,24 @@ function renderRecipeGrid() {
 
     const utensil = getUtensilLabel(recipe);
     const protein = getProteinLabel(recipe);
+    const meal = getMealLabel(recipe);
     const time = computeTimeBreakdown(recipe);
-    const meta = document.createElement("p");
-    meta.className = "recipe-quiet-meta";
-    meta.textContent = `${time.total} min · ${recipe.servings} ${t("servings_label")} · ${protein}`;
+    const metaGrid = document.createElement("div");
+    metaGrid.className = "recipe-card-meta";
+    [
+      [t("card_meta_time"), `${time.total} min`],
+      [t("card_meta_servings"), String(recipe.servings)],
+      [t("card_meta_protein"), protein],
+    ].forEach(([label, value]) => {
+      const item = document.createElement("span");
+      item.className = "recipe-meta-chip";
+      const metaLabel = document.createElement("small");
+      metaLabel.textContent = label;
+      const metaValue = document.createElement("strong");
+      metaValue.textContent = value;
+      item.append(metaLabel, metaValue);
+      metaGrid.appendChild(item);
+    });
 
     const contextLine = document.createElement("div");
     contextLine.className = "recipe-context";
@@ -7266,18 +7575,29 @@ function renderRecipeGrid() {
 
     const line = document.createElement("div");
     line.className = "recipe-line";
-    const parts = [utensil, getMealLabel(recipe)];
+    const parts = [utensil, meal];
     parts.forEach((part) => {
       const pill = document.createElement("span");
       pill.className = "recipe-pill";
       pill.textContent = part;
       line.appendChild(pill);
     });
-    info.append(title, meta);
+    const cardTags = getRecipeCardTags(recipe, time);
+    const tagLine = document.createElement("div");
+    tagLine.className = "recipe-card-tags";
+    cardTags.forEach((tag) => {
+      const tagPill = document.createElement("span");
+      tagPill.className = `recipe-card-tag is-${tag.key}`;
+      tagPill.textContent = tag.label;
+      tagLine.appendChild(tagPill);
+    });
+
+    info.append(title, metaGrid, line);
     if (contextLine.childElementCount) info.appendChild(contextLine);
-    info.append(line);
+    if (tagLine.childElementCount) info.appendChild(tagLine);
 
     const actionWrap = document.createElement("div");
+    actionWrap.className = "recipe-card-actions";
 
     const actionBtn = document.createElement("button");
     actionBtn.className = "ghost";
@@ -7309,6 +7629,9 @@ function renderRecipeGrid() {
 
 function renderRecipeDetails(recipe) {
   if (!recipeDetails && !recipeModalBody) return;
+  lastOpenedRecipeId = recipe.id;
+  recipeDetailsOpen = true;
+  persistUiState();
   const servings = recipe.servings;
   const noteValue = recipeNotesById[recipe.id] || "";
   const ingredients = recipe.ingredients.length
@@ -8083,7 +8406,11 @@ function renderCookRecipeList(planIds) {
       badge.classList.add("is-hidden");
     }
 
-    button.append(copy, badge);
+    const action = document.createElement("span");
+    action.className = "cook-recipe-start";
+    action.textContent = isActive ? t("cook_recipe_continue") : t("cook_recipe_start");
+
+    button.append(copy, badge, action);
     list.appendChild(button);
   });
 
@@ -8105,10 +8432,14 @@ function renderCookCard(recipeId) {
     selectedServings[recipeId] ||
     DEFAULT_SERVINGS;
   const stepsForRecipe = getRecipeSteps(recipe);
-  const checkedStepCount = stepsForRecipe.filter((_, index) => Boolean(getCookStepChecks(recipeId)[String(index)])).length;
+  const checks = getCookStepChecks(recipeId);
+  const checkedStepCount = stepsForRecipe.filter((_, index) => Boolean(checks[String(index)])).length;
+  const currentStepIndex = getCurrentCookStepIndex(recipeId, stepsForRecipe);
+  const currentStep = stepsForRecipe[currentStepIndex] || "";
+  const isCurrentStepChecked = Boolean(checks[String(currentStepIndex)]);
   const nextRecipeId = getNextCookRecipeId(recipeId);
 
-  renderCookMobileBar({ recipeId, nextRecipeId, isDone });
+  renderCookMobileBar({ recipeId, stepIndex: currentStepIndex, stepCount: stepsForRecipe.length });
 
   cookCard.innerHTML = "";
 
@@ -8128,7 +8459,7 @@ function renderCookCard(recipeId) {
   heading.textContent = getRecipeName(recipe);
   const meta = document.createElement("p");
   meta.className = "cook-meta";
-  meta.textContent = `${recipe.time} · ${servings} ${t("servings_label")}`;
+  meta.textContent = `${recipe.time} · ${servings} ${t("servings_label")} · ${t("cook_section_steps_count", checkedStepCount, stepsForRecipe.length)}`;
   const status = document.createElement("span");
   status.className = "cook-status-pill";
   status.textContent = isDone ? t("cook_status_complete") : t("cook_status_in_progress");
@@ -8173,20 +8504,7 @@ function renderCookCard(recipeId) {
     renderCookCard(recipeId);
   });
   servingControls.append(servingLabel, minus, servingCount, plus);
-
-  const doneButton = document.createElement("button");
-  doneButton.type = "button";
-  doneButton.className = isDone ? "primary cook-done-button" : "ghost cook-done-button";
-  doneButton.textContent = isDone ? t("cook_mark_undone") : t("cook_mark_done");
-  doneButton.addEventListener("click", () => {
-    setCookRecipeDone(recipeId, !isDone);
-    renderCookOverview(planIds);
-    renderCookRecipeList(planIds);
-    renderCookCard(recipeId);
-    renderWeeklyFlow();
-  });
-
-  actions.append(servingControls, doneButton);
+  actions.append(servingControls);
   header.append(titleWrap, actions);
 
   const tip = document.createElement("p");
@@ -8196,15 +8514,15 @@ function renderCookCard(recipeId) {
   const body = document.createElement("div");
   body.className = "cook-body";
 
-  const ingredientsSection = document.createElement("section");
-  ingredientsSection.className = "cook-panel-block";
-  const ingredientsHead = document.createElement("div");
-  ingredientsHead.className = "cook-section-head";
+  const ingredientsSection = document.createElement("details");
+  ingredientsSection.className = "cook-panel-block cook-ingredients-panel";
+  const ingredientsSummary = document.createElement("summary");
+  ingredientsSummary.className = "cook-section-head";
   const ingredientsTitle = document.createElement("h4");
   ingredientsTitle.textContent = t("cook_section_ingredients");
   const ingredientsCount = document.createElement("span");
   ingredientsCount.textContent = t("cook_section_ingredients_count", recipe.ingredients.length);
-  ingredientsHead.append(ingredientsTitle, ingredientsCount);
+  ingredientsSummary.append(ingredientsTitle, ingredientsCount);
   const ingredientsList = document.createElement("div");
   ingredientsList.className = "cook-ingredients";
   if (recipe.ingredients.length) {
@@ -8221,61 +8539,89 @@ function renderCookCard(recipeId) {
     empty.textContent = t("ingredients_empty");
     ingredientsList.appendChild(empty);
   }
-  ingredientsSection.append(ingredientsHead, ingredientsList);
+  ingredientsSection.append(ingredientsSummary, ingredientsList);
 
   const stepsSection = document.createElement("section");
   stepsSection.className = "cook-panel-block cook-steps-panel";
-  const stepsHead = document.createElement("div");
-  stepsHead.className = "cook-section-head";
-  const stepsTitle = document.createElement("h4");
-  stepsTitle.textContent = t("cook_section_steps");
-  const stepsCount = document.createElement("span");
-  stepsCount.textContent = t("cook_section_steps_count", checkedStepCount, stepsForRecipe.length);
-  stepsHead.append(stepsTitle, stepsCount);
-  const steps = document.createElement("div");
-  steps.className = "cook-steps";
   if (stepsForRecipe.length) {
-    stepsForRecipe.forEach((step, index) => {
-      const isChecked = Boolean(getCookStepChecks(recipeId)[String(index)]);
-      const row = document.createElement("label");
-      row.className = "cook-step";
-      if (isChecked) row.classList.add("is-checked");
+    const progress = document.createElement("div");
+    progress.className = "cook-step-progress";
+    const progressText = document.createElement("span");
+    progressText.textContent = t("cook_step_progress", currentStepIndex + 1, stepsForRecipe.length);
+    const progressBar = document.createElement("div");
+    progressBar.className = "cook-progress-bar";
+    const progressFill = document.createElement("span");
+    progressFill.style.width = `${Math.round(((currentStepIndex + 1) / stepsForRecipe.length) * 100)}%`;
+    progressBar.appendChild(progressFill);
+    progress.append(progressText, progressBar);
 
-      const checkbox = document.createElement("input");
-      checkbox.type = "checkbox";
-      checkbox.className = "cook-step-checkbox";
-      checkbox.checked = isChecked;
-      checkbox.addEventListener("change", () => {
-        setCookStepChecked(recipeId, index, checkbox.checked);
-        renderCookCard(recipeId);
-      });
+    const stepCard = document.createElement("article");
+    stepCard.className = "cook-step-card";
+    if (isCurrentStepChecked) stepCard.classList.add("is-checked");
 
-      const number = document.createElement("span");
-      number.className = "cook-step-number";
-      number.textContent = String(index + 1);
+    const stepNumber = document.createElement("span");
+    stepNumber.className = "cook-step-number";
+    stepNumber.textContent = String(currentStepIndex + 1);
 
-      const copy = document.createElement("div");
-      copy.className = "cook-step-copy";
-      const stepText = document.createElement("div");
-      stepText.className = "step-text";
-      stepText.textContent = formatStepWithQuantities(step, recipe, servings);
-      const stepDone = document.createElement("span");
-      stepDone.className = "cook-step-status";
-      stepDone.textContent = t("cook_step_done");
-      copy.append(stepText, stepDone);
+    const stepText = document.createElement("p");
+    stepText.className = "step-text";
+    stepText.textContent = formatStepWithQuantities(currentStep, recipe, servings);
 
-      row.append(checkbox, number, copy);
-      steps.appendChild(row);
+    const stepDoneButton = document.createElement("button");
+    stepDoneButton.type = "button";
+    stepDoneButton.className = isCurrentStepChecked ? "primary cook-step-done-button" : "ghost cook-step-done-button";
+    stepDoneButton.textContent = isCurrentStepChecked ? t("cook_step_complete") : t("cook_mark_step_done");
+    stepDoneButton.addEventListener("click", () => {
+      setCookStepChecked(recipeId, currentStepIndex, !isCurrentStepChecked);
+      renderCookOverview(planIds);
+      renderCookRecipeList(planIds);
+      renderCookCard(recipeId);
     });
+
+    stepCard.append(stepNumber, stepText, stepDoneButton);
+
+    const stepNav = document.createElement("div");
+    stepNav.className = "cook-step-nav";
+
+    const previousButton = document.createElement("button");
+    previousButton.type = "button";
+    previousButton.className = "ghost";
+    previousButton.textContent = t("cook_previous_step");
+    previousButton.disabled = currentStepIndex <= 0;
+    previousButton.addEventListener("click", () => {
+      setCurrentCookStepIndex(recipeId, currentStepIndex - 1, stepsForRecipe);
+      renderCookCard(recipeId);
+    });
+
+    const nextButton = document.createElement("button");
+    nextButton.type = "button";
+    nextButton.className = "primary";
+    nextButton.textContent = currentStepIndex >= stepsForRecipe.length - 1 ? t("cook_finish_recipe") : t("cook_next_step");
+    nextButton.addEventListener("click", () => {
+      if (currentStepIndex < stepsForRecipe.length - 1) {
+        setCurrentCookStepIndex(recipeId, currentStepIndex + 1, stepsForRecipe);
+        renderCookCard(recipeId);
+        return;
+      }
+      setCookRecipeDone(recipeId, true);
+      if (nextRecipeId && nextRecipeId !== recipeId) {
+        openCookRecipe(nextRecipeId, { scroll: true });
+      } else {
+        renderCookMode();
+      }
+      renderWeeklyFlow();
+    });
+
+    stepNav.append(previousButton, nextButton);
+    stepsSection.append(progress, stepCard, stepNav);
   } else {
     const empty = document.createElement("div");
     empty.className = "step";
     empty.textContent = t("cook_steps_empty");
-    steps.appendChild(empty);
+    stepsSection.appendChild(empty);
   }
-  stepsSection.append(stepsHead, steps);
 
-  body.append(ingredientsSection, stepsSection);
+  body.append(stepsSection, ingredientsSection);
 
   const noteSection = document.createElement("div");
   noteSection.className = "note-section cook-note-section";
@@ -8327,15 +8673,26 @@ function renderCookCard(recipeId) {
     link.textContent = t("cook_open_link");
     footer.appendChild(link);
   }
-  const nextButton = document.createElement("button");
-  nextButton.type = "button";
-  nextButton.className = "primary";
-  nextButton.textContent = nextRecipeId ? t("cook_next_recipe") : t("cook_no_next_recipe");
-  nextButton.disabled = !nextRecipeId;
-  nextButton.addEventListener("click", () => {
+  const doneButton = document.createElement("button");
+  doneButton.type = "button";
+  doneButton.className = isDone ? "ghost cook-done-button" : "primary cook-done-button";
+  doneButton.textContent = isDone ? t("cook_mark_undone") : t("cook_mark_done");
+  doneButton.addEventListener("click", () => {
+    setCookRecipeDone(recipeId, !isDone);
+    renderCookOverview(planIds);
+    renderCookRecipeList(planIds);
+    renderCookCard(recipeId);
+    renderWeeklyFlow();
+  });
+  const nextRecipeButton = document.createElement("button");
+  nextRecipeButton.type = "button";
+  nextRecipeButton.className = "ghost";
+  nextRecipeButton.textContent = nextRecipeId ? t("cook_next_recipe") : t("cook_no_next_recipe");
+  nextRecipeButton.disabled = !nextRecipeId;
+  nextRecipeButton.addEventListener("click", () => {
     if (nextRecipeId) openCookRecipe(nextRecipeId, { scroll: true });
   });
-  footer.appendChild(nextButton);
+  footer.append(doneButton, nextRecipeButton);
 
   shell.append(header, tip, body, noteSection, footer);
   cookCard.appendChild(shell);
@@ -8581,7 +8938,8 @@ function setupWeekPicker({ input, trigger, popover, labelNode, onChange }) {
   updateTrigger();
 }
 
-function setWeekFromTopPicker() {
+function setWeekFromTopPicker({ restoreStage = false } = {}) {
+  const desiredStage = normalizeStage(currentStage);
   currentWeekKey = (topWeekPicker && topWeekPicker.value) || getNextWeekKey();
   cookWeekKey = currentWeekKey;
   selectedRecipes = [...(selectedRecipesByWeek[currentWeekKey] || [])];
@@ -8594,7 +8952,14 @@ function setWeekFromTopPicker() {
   if (!currentCookRecipeId || !cookIds.includes(currentCookRecipeId)) {
     currentCookRecipeId = "";
   }
-  syncCurrentStage();
+  if (restoreStage) {
+    const restoredStage = desiredStage !== "plan" && selectedRecipes.length === 0 ? "plan" : desiredStage;
+    setView(restoredStage);
+    if (restoredStage === "cook") ensureCookRecipeSelection();
+  } else {
+    syncCurrentStage();
+  }
+  persistUiState();
   refreshAll();
 }
 
@@ -8643,16 +9008,28 @@ function refreshAll() {
     heroCount.textContent = t("planned_count", selectedRecipes.length, WEEKLY_RECIPE_TARGET);
   }
   renderWeeklyFlow();
+  if (shouldRestoreRecipeDetails && recipeDetailsOpen && currentStage === "plan") {
+    shouldRestoreRecipeDetails = false;
+    const recipe = getRecipeById(lastOpenedRecipeId);
+    if (recipe) {
+      renderRecipeDetails(recipe);
+    } else {
+      recipeDetailsOpen = false;
+      persistUiState();
+    }
+  }
   refreshSyncStatus();
 }
 
-refreshAll();
-
 populateTopWeekOptions();
 if (topWeekPicker) {
-  topWeekPicker.value = getNextWeekKey();
+  const storedWeekKey = sanitizeStoredWeekKey(storedUiState.selectedWeekKey);
+  topWeekPicker.value = storedWeekKey || getNextWeekKey();
 }
-setWeekFromTopPicker();
+lastOpenedRecipeId = getRecipeById(storedUiState.lastOpenedRecipeId) ? storedUiState.lastOpenedRecipeId : "";
+currentStage = normalizeStage(storedUiState.activeMode);
+shouldRestoreRecipeDetails = Boolean(recipeDetailsOpen && lastOpenedRecipeId && currentStage === "plan");
+setWeekFromTopPicker({ restoreStage: true });
 refreshSyncStatus();
 restartSyncPolling();
 if (isSyncEnabled()) {
@@ -8686,6 +9063,12 @@ const clearChecks = document.getElementById("clear-checks");
 if (duplicateLastWeekButton) {
   duplicateLastWeekButton.addEventListener("click", () => {
     duplicateLastWeekPlan();
+  });
+}
+
+if (autoFillWeekButton) {
+  autoFillWeekButton.addEventListener("click", () => {
+    autoFillWeekPlan();
   });
 }
 
@@ -8765,6 +9148,8 @@ if (recipeModal) {
     if (!shouldClose) return;
     recipeModal.classList.remove("is-open");
     recipeModal.setAttribute("aria-hidden", "true");
+    recipeDetailsOpen = false;
+    persistUiState();
   });
 }
 

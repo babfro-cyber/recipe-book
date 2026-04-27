@@ -22,6 +22,7 @@
             </label>
             <div class="hero-week-actions">
               <button class="ghost" id="duplicate-last-week" data-i18n="duplicate_last_week" type="button">Duplicate last week</button>
+              <button class="ghost" id="auto-fill-week" data-i18n="auto_fill_week" type="button">Auto-fill week</button>
               <button class="ghost" id="clear-week" data-i18n="clear_plan" type="button">Clear week</button>
             </div>
             <p class="hero-week-note" id="week-shortcuts-note"></p>
@@ -39,6 +40,21 @@
         </div>
         <button class="settings-btn settings-floating" id="open-settings" type="button" aria-label="Open settings">⚙</button>
       </header>
+
+      <nav class="mode-nav" aria-label="Primary app modes">
+        <button class="mode-nav-item" type="button" data-mode-nav="plan">
+          <span class="mode-nav-label" data-i18n="flow_plan">Plan</span>
+          <small data-i18n="flow_plan_sub">Choose around 4 recipes</small>
+        </button>
+        <button class="mode-nav-item" type="button" data-mode-nav="shop">
+          <span class="mode-nav-label" data-i18n="flow_shop">Shop</span>
+          <small data-i18n="flow_shop_sub">Review the shopping list</small>
+        </button>
+        <button class="mode-nav-item" type="button" data-mode-nav="cook">
+          <span class="mode-nav-label" data-i18n="flow_cook">Cook</span>
+          <small data-i18n="flow_cook_sub">Use your planned recipes</small>
+        </button>
+      </nav>
 
       <section class="weekly-flow" aria-labelledby="weekly-flow-title">
         <div class="weekly-flow-header">
