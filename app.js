@@ -655,7 +655,7 @@ const recipes = [
     ],
     "steps": [
       "Preheat the oven to 200°C.",
-      "Cut the butternut pumpkin, capsicum, zucchini and brown onion into large pieces.",
+      "Cut the butternut pumpkin, capsicum, zucchini and brown onion into bite-size pieces.",
       "Toss the vegetables and garlic cloves with olive oil, dried rosemary, thyme, salt and black pepper.",
       "Spread the vegetables on a baking tray and roast for 30 minutes, turning halfway through.",
       "Add the canned cannellini beans and roast for 10 minutes more.",
@@ -822,11 +822,11 @@ const recipes = [
     ],
     "steps": [
       "Cut the beef steaks into thin strips and marinate them with 2 tbsp soy sauce, 2 tbsp yakitori sauce and 1 grated garlic clove for 15 minutes.",
-      "Slice the brown onion, carrot, spring onions and Chinese cabbage. Grate the fresh ginger and chop the fresh coriander.",
+      "Slice the brown onion, carrot, spring onions and fresh Chinese cabbage. Grate the fresh ginger and chop the fresh coriander.",
       "Add the water, chicken stock cubes, 3 tbsp soy sauce and 2 tbsp yakitori sauce to the Thermomix bowl and heat for 8 min / Varoma / speed 2.",
       "Add the fresh ginger, half of the spring onions, the brown onion, carrot and Chinese cabbage and cook for 8 min / 100°C / speed spoon / reverse.",
       "Add the marinated beef and ramen noodles and cook for 6 min / 100°C / speed spoon / reverse.",
-      "Serve with the fresh coriander, remaining spring onions and harissa."
+      "Season with salt and black pepper, then serve with the fresh coriander, remaining spring onions and harissa."
     ]
   },
   {
@@ -914,7 +914,7 @@ const recipes = [
       "When the chicken and onion start to brown (or before), add the carrots and green beans (cut to match the carrot size).",
       "Sprinkle with ground ginger, cayenne, and cumin.",
       "Saute for a few minutes. Add a splash of water if it sticks.",
-      "Add soy sauce and honey. Stir, check seasoning, cover, and cook a little longer until the carrots are tender."
+      "Add soy sauce, honey and black pepper. Stir, check seasoning, cover, and cook a little longer until the carrots are tender."
     ],
     "steps_fr": [
       "Eplucher les haricots verts, les mettre dans un plat allant au micro-ondes, couvrir partiellement et faire cuire 1 min a 850 W.",
@@ -924,7 +924,7 @@ const recipes = [
       "Quand le poulet et l'oignon commencent a dorer (voire avant), ajouter la carotte et les haricots verts (recoupes eventuellement pour qu'ils aient la meme taille que les batonnets de carotte).",
       "Saupoudrer de gingembre, de piment de Cayenne et de cumin.",
       "Faire revenir quelques minutes. Il peut etre necessaire d'ajouter un peu d'eau si ca attache.",
-      "Ajouter une cuillere a soupe de sauce soja et une cuillere a cafe de miel. Remuer, verifier l'assaisonnement, couvrir et laisser cuire encore un peu, jusqu'a ce que les carottes s'attendrissent."
+      "Ajouter une cuillere a soupe de sauce soja, une cuillere a cafe de miel et le poivre. Remuer, verifier l'assaisonnement, couvrir et laisser cuire encore un peu, jusqu'a ce que les carottes s'attendrissent."
     ]
   },
   {
@@ -1387,15 +1387,15 @@ const recipes = [
     ],
     "steps": [
       "Preheat oven to 180°C (350°F).",
-      "Cut off the tops of the vegetables and scoop out the insides.",
-      "Blend the vegetable flesh and mix it with the ground meat, egg, milk, breadcrumbs, garlic, onion, herbs, salt, and pepper.",
+      "Cut the tops off the tomatoes and capsicum, halve the zucchini lengthwise, then scoop out the insides and keep the vegetable flesh.",
+      "Blend the tomato, zucchini and capsicum flesh, then mix it with the ground meat, egg, milk, breadcrumbs, garlic, onion, herbs, salt, and pepper.",
       "Stuff the vegetables with the filling and place them in a baking dish.",
       "Drizzle with olive oil and bake for 40 minutes."
     ],
     "steps_fr": [
       "Prechauffer le four a 180°C (350°F).",
-      "Couper les chapeaux des legumes et vider l'interieur.",
-      "Mixer la chair des legumes et la melanger avec la viande hachee, l'oeuf, le lait, la chapelure, l'ail, l'oignon, les herbes, le sel et le poivre.",
+      "Couper les chapeaux des tomates et des poivrons, couper les courgettes en deux dans la longueur, puis vider l'interieur et garder la chair.",
+      "Mixer la chair des tomates, courgettes et poivrons, puis la melanger avec la viande hachee, l'oeuf, le lait, la chapelure, l'ail, l'oignon, les herbes, le sel et le poivre.",
       "Farcir les legumes et les disposer dans un plat.",
       "Arroser d'huile d'olive et enfourner 40 minutes."
     ]
@@ -1707,7 +1707,7 @@ const recipes = [
       "Cook the rice separately according to the packet instructions.",
       "Slice the brown onion and zucchini.",
       "Heat the olive oil in a large pan and cook the brown onion for 5 minutes.",
-      "Add the zucchini and cook until soft and lightly golden.",
+      "Add the zucchini, season with salt and black pepper, and cook until soft and lightly golden.",
       "Cut the chicken breast into small pieces and cook in a separate pan until golden and cooked through.",
       "Add the chicken breast to the zucchini mixture and stir in the sour cream.",
       "Simmer for 2 minutes, then serve with the rice."
@@ -1923,7 +1923,7 @@ const recipes = [
     "steps": [
       "Cook the rice separately according to the packet instructions.",
       "Rinse the red lentils.",
-      "Dice the brown onion, garlic cloves and carrot.",
+      "Dice the brown onion, garlic cloves and carrot into small pieces.",
       "Heat the olive oil in a saucepan and cook the brown onion, garlic cloves and carrot for 5 minutes.",
       "Add the red lentils, 320 ml coconut milk, 450 ml water, turmeric, curry powder, salt and black pepper.",
       "Cover and simmer for 25 to 30 minutes, stirring regularly and reducing the heat if it thickens too quickly.",
@@ -2074,7 +2074,7 @@ const recipes = [
       "Add the lid with the measuring cup.",
       "Heat 15 min/80C/spoon speed.",
       "Add 400 g tomato pulp to the Thermomix bowl.",
-      "Add 30 g tomato paste to the Thermomix bowl.",
+      "Add 30 g tomato paste, salt and black pepper to the Thermomix bowl.",
       "Add the lid with the measuring cup.",
       "Cook 20 min/90C/speed 1."
     ],
@@ -2094,7 +2094,7 @@ const recipes = [
       "Ajoutez le couvercle avec le gobelet doseur.",
       "Chauffer 15 min/80C/Vitesse Cuillere.",
       "Ajouter 400 grammes de coulis de tomates dans le bol du Thermomix.",
-      "Ajouter 30 grammes de concentre de tomates dans le bol du Thermomix.",
+      "Ajouter 30 grammes de concentre de tomates, le sel et le poivre dans le bol du Thermomix.",
       "Ajoutez le couvercle avec le gobelet doseur.",
       "Cuire 20 min/90C/vitesse 1."
     ]
@@ -2389,6 +2389,11 @@ const recipes = [
         "unit": "g"
       },
       {
+        "item": "olive oil",
+        "qty": 1,
+        "unit": "tbsp"
+      },
+      {
         "item": "water",
         "qty": 300,
         "unit": "ml"
@@ -2457,7 +2462,7 @@ const recipes = [
     "steps": [
       "Peel and finely chop the onion, garlic, and carrots. Cut zucchini and capsicum into small pieces.",
       "Heat olive oil in a large pan. Add onion and garlic. Cook 3 min on medium heat. Add carrots, zucchini, and capsicum. Cook 5 more min.",
-      "Add lentils, crushed tomatoes, tomato paste, herbs, and 300 ml of water. Bring to a boil, then cover and simmer 20-25 min until lentils are tender and sauce is reduced.",
+      "Add lentils, crushed tomatoes, tomato paste, thyme, oregano, sweet paprika, salt, black pepper and 300 ml of water. Bring to a boil, then cover and simmer 20-25 min until lentils are tender and sauce is reduced.",
       "Make the white sauce: melt butter in a saucepan, stir in flour, then gradually whisk in milk. Cook 5-7 min until thickened. Add nutmeg.",
       "Preheat oven to 180°C. In a baking dish, layer lentil sauce, lasagna sheets, and white sauce. Repeat for 2-3 layers. Finish with white sauce on top.",
       "Bake 30-35 min at 180°C. Let rest 10 min before serving."
@@ -2465,7 +2470,7 @@ const recipes = [
     "steps_fr": [
       "Peler et hacher finement l'oignon, l'ail et les carottes. Couper courgettes et poivron en petits pieces.",
       "Faire chauffer l'huile d'olive dans une grande poele. Ajouter oignon et ail. Cuire 3 min a feu moyen. Ajouter carottes, courgettes et poivron. Cuire 5 min de plus.",
-      "Ajouter lentilles, tomates concassees, concentre de tomate, herbes, et 300 ml d'eau. Porter a ebullition, puis couvrir et mijoter 20-25 min jusqu'a ce que les lentilles soient tendres et la sauce reduite.",
+      "Ajouter lentilles, tomates concassees, concentre de tomate, thym, origan, paprika doux, sel, poivre et 300 ml d'eau. Porter a ebullition, puis couvrir et mijoter 20-25 min jusqu'a ce que les lentilles soient tendres et la sauce reduite.",
       "Faire la bechamel : faire fondre le beurre dans une casserole, incorporer la farine, puis ajouter le lait progressivement en fouettant. Cuire 5-7 min jusqu'a epaississement. Ajouter la muscade.",
       "Prechauffer le four a 180°C. Dans un plat, alterner sauce aux lentilles, feuilles de lasagne et bechamel. Recommencer pour 2-3 couches. Terminer par la bechamel.",
       "Cuire 30-35 min a 180°C. Laisser reposer 10 min avant de servir."
@@ -2519,6 +2524,11 @@ const recipes = [
         "unit": "g"
       },
       {
+        "item": "nutmeg",
+        "qty": 0.25,
+        "unit": "tsp"
+      },
+      {
         "item": "butter",
         "qty": 50,
         "unit": "g"
@@ -2570,9 +2580,10 @@ const recipes = [
       }
     ],
     "steps": [
-      "Mix the fresh spinach, ricotta, garlic cloves, egg and half the parmesan to make the filling. Season with salt, black pepper and nutmeg.",
+      "Wilt the fresh spinach in a pan, squeeze out the excess water, then chop it small.",
+      "Mix the spinach with ricotta, garlic cloves, egg and half the parmesan to make the filling. Season with salt, black pepper and nutmeg.",
       "Make the white sauce by melting the butter, stirring in the plain flour, then whisking in the milk until smooth and thickened.",
-      "Heat the olive oil in a pan, cook the brown onion for 2 minutes, then add the diced tomatoes, dried oregano and dried basil and simmer for 5 minutes.",
+      "Heat the olive oil in a pan, cook the brown onion for 2 minutes, then add the diced tomatoes, dried oregano and dried basil and simmer for 5 minutes. Stir in the fresh basil.",
       "Preheat the oven to 200°C.",
       "Spread a little tomato sauce in the base of the dish, add a layer of lasagne sheets, half the spinach filling and a third of the white sauce.",
       "Repeat with another layer of tomato sauce, lasagne sheets, remaining spinach filling and another third of the white sauce.",
@@ -2737,7 +2748,7 @@ const recipes = [
       "Bake eggplants with olive oil for 45 minutes until browning and tender. Remove from oven, leave to cool.",
       "Saute onions and garlic: Heat olive oil in a large skillet over medium-high heat. Saute onions and garlic for 3 minutes until softened and just about to colour on the edges.",
       "Add remaining ingredients: Pour in fry pan canned tomatoes and oregano. Stir and bring to a simmer.",
-      "Simmer uncovered for about 15 minutes, stirring occasionally, until thickened, adding the basil stalks halfway through cooking.",
+      "Simmer uncovered for about 15 minutes, stirring occasionally, until thickened. Stir in half the basil leaves near the end.",
       "The final consistency should be slightly thicker than a pasta sauce so it's spreadable and not leaching liquid, but not too pasty either. Add extra water a little at a time if required during cooking if it gets too thick.",
       "Season: Stir in salt and pepper. (Remember, we get salt from the parmesan too, so no need to go overboard here)",
       "Assembling and baking:",
@@ -2754,7 +2765,7 @@ const recipes = [
       "Cuire les aubergines avec l'huile d'olive pendant 45 minutes jusqu'a ce qu'elles soient dorees et tendres. Retirer du four et laisser refroidir.",
       "Faire revenir les oignons et l'ail: Chauffer l'huile d'olive dans une grande poele a feu moyen-vif. Faire revenir oignons et ail 3 minutes jusqu'a ce qu'ils soient tendres et commencent a colorer.",
       "Ajouter les ingredients restants: Verser dans la poele les tomates en conserve et l'origan. Remuer et porter a frémissement.",
-      "Laisser mijoter a decouvert environ 15 minutes, en remuant de temps en temps, jusqu'a ce que la sauce epaississe, en ajoutant les tiges de basilic a mi-cuisson.",
+      "Laisser mijoter a decouvert environ 15 minutes, en remuant de temps en temps, jusqu'a ce que la sauce epaississe. Ajouter la moitie des feuilles de basilic vers la fin.",
       "La consistance finale doit etre legerement plus epaisse qu'une sauce pour pates afin qu'elle soit tartinable et ne rende pas d'eau, mais pas trop epaisse non plus. Ajouter un peu d'eau si necessaire pendant la cuisson si la sauce epaissit trop.",
       "Assaisonner: incorporer sel et poivre. (Rappelez-vous que le parmesan apporte deja du sel, donc pas besoin d'en mettre trop)",
       "Assemblage et cuisson:",
@@ -3095,7 +3106,7 @@ const recipes = [
     ],
     "steps": [
       "Preheat the oven to 200°C.",
-      "Toss the tomatoes, capsicum, brown onion, garlic cloves and canned chickpeas with olive oil, smoked paprika, ground cumin, salt and black pepper.",
+      "Cut the tomatoes, capsicum and brown onion into bite-size pieces, then toss them with the garlic cloves and canned chickpeas, olive oil, smoked paprika, ground cumin, salt and black pepper.",
       "Roast on a large tray for 35 to 40 minutes until the tomatoes collapse and the edges caramelise.",
       "Transfer everything to a large pot, add the vegetable stock and simmer for 10 minutes.",
       "Crush some of the canned chickpeas against the side of the pot, then stir in the fresh spinach until wilted."
@@ -3184,6 +3195,7 @@ const recipes = [
       }
     ],
     "steps": [
+      "Dice the carrot, zucchini and mushrooms into small pieces.",
       "Heat the olive oil in a large heavy pot and cook the brown onion for 6 minutes until soft. Add the garlic cloves and cook for 2 minutes.",
       "Add the carrot, zucchini and mushrooms and cook for 5 minutes.",
       "Increase the heat, add the turkey mince and cook until browned.",
@@ -3356,8 +3368,8 @@ const recipes = [
     ],
     "steps": [
       "Preheat the oven to 200°C and mix the soy sauce, honey, garlic cloves and sesame oil into a glaze.",
-      "Toss the sweet potato with 1 tbsp olive oil and half the salt. Spread it on a tray and roast for 15 minutes.",
-      "Add the zucchini and broccolini to the tray.",
+      "Cut the sweet potato into small cubes, toss with 1 tbsp olive oil and half the salt, then spread on a tray and roast for 15 minutes.",
+      "Cut the zucchini into bite-size half-moons, trim the broccolini, then add both to the tray.",
       "Nestle the salmon fillets among the vegetables, brush with the glaze and season with the remaining salt and black pepper.",
       "Roast for 15 minutes more until the salmon is cooked through.",
       "Finish with sesame seeds and lemon juice."
@@ -3444,8 +3456,8 @@ const recipes = [
       }
     ],
     "steps": [
-      "Toss the sweet potato with 1 tbsp olive oil, half the ground cumin and half the salt. Roast at 200°C for 20 minutes until tender.",
-      "Heat the remaining olive oil in a large pan and cook the brown onion and capsicum for 6 minutes.",
+      "Dice the sweet potato into small cubes, then toss with 1 tbsp olive oil, half the ground cumin and half the salt. Roast at 200°C for 20 minutes until tender.",
+      "Dice the brown onion and capsicum, then heat the remaining olive oil in a large pan and cook them for 6 minutes.",
       "Add the garlic cloves, remaining ground cumin, smoked paprika and chilli powder and cook for 1 minute.",
       "Add the crushed tomatoes and simmer for 5 minutes.",
       "Add the canned black beans and roasted sweet potato and simmer for 5 minutes more.",
@@ -4720,7 +4732,7 @@ const translations = {
     time_cook: "Cook",
     recipe_library: "Recipe Library",
     recipe_library_sub:
-      "Tap a recipe to add it to your picks. Scroll inside the list to keep the rest of the page visible.",
+      "Tap a recipe to add it to your picks. Browse the full library with clear recipe photos and filters.",
     pantry_matcher: "Recipe Matcher",
     pantry_matcher_sub: "Search recipe ingredients, add what you have, then see recipes ranked by matching items.",
     pantry_search_placeholder: "Search ingredients from recipes",
@@ -4964,7 +4976,7 @@ const translations = {
     time_cook: "Cuisson",
     recipe_library: "Bibliothèque de recettes",
     recipe_library_sub:
-      "Touchez une recette pour l'ajouter. Faites défiler la liste pour garder le reste visible.",
+      "Touchez une recette pour l'ajouter. Parcourez toute la bibliothèque avec les photos et les filtres.",
     pantry_matcher: "Correspondance recettes",
     pantry_matcher_sub: "Recherchez des ingrédients, ajoutez ce que vous avez, puis affichez les recettes par nombre d'articles correspondants.",
     pantry_search_placeholder: "Rechercher des ingrédients des recettes",
@@ -8383,6 +8395,19 @@ function renderCookRecipeList(planIds) {
       openCookRecipe(recipeId);
     });
 
+    const thumb = document.createElement("span");
+    thumb.className = "cook-recipe-thumb";
+    const thumbImg = document.createElement("img");
+    thumbImg.src = getRecipeImage(recipe) || buildRecipeFallbackImage(recipe);
+    thumbImg.alt = "";
+    thumbImg.loading = "eager";
+    thumbImg.decoding = "async";
+    thumbImg.draggable = false;
+    thumbImg.addEventListener("error", () => {
+      thumbImg.src = buildRecipeFallbackImage(recipe);
+    }, { once: true });
+    thumb.appendChild(thumbImg);
+
     const copy = document.createElement("div");
     copy.className = "cook-recipe-copy";
     const name = document.createElement("strong");
@@ -8410,7 +8435,7 @@ function renderCookRecipeList(planIds) {
     action.className = "cook-recipe-start";
     action.textContent = isActive ? t("cook_recipe_continue") : t("cook_recipe_start");
 
-    button.append(copy, badge, action);
+    button.append(thumb, copy, badge, action);
     list.appendChild(button);
   });
 
@@ -8449,6 +8474,19 @@ function renderCookCard(recipeId) {
 
   const header = document.createElement("div");
   header.className = "cook-header";
+
+  const heroImage = document.createElement("div");
+  heroImage.className = "cook-hero-image";
+  const heroImg = document.createElement("img");
+  heroImg.src = getRecipeImage(recipe) || buildRecipeFallbackImage(recipe);
+  heroImg.alt = getRecipeName(recipe);
+  heroImg.loading = "eager";
+  heroImg.decoding = "async";
+  heroImg.draggable = false;
+  heroImg.addEventListener("error", () => {
+    heroImg.src = buildRecipeFallbackImage(recipe);
+  }, { once: true });
+  heroImage.appendChild(heroImg);
 
   const titleWrap = document.createElement("div");
   titleWrap.className = "cook-title-wrap";
@@ -8505,7 +8543,7 @@ function renderCookCard(recipeId) {
   });
   servingControls.append(servingLabel, minus, servingCount, plus);
   actions.append(servingControls);
-  header.append(titleWrap, actions);
+  header.append(heroImage, titleWrap, actions);
 
   const tip = document.createElement("p");
   tip.className = "cook-focus-tip";
