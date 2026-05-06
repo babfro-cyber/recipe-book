@@ -59,6 +59,14 @@ const recipes = [
       "Layer the potatoes evenly in the prepared dish.",
       "Pour over the cream and a little of the cooking milk, then dot with butter.",
       "Bake for 50 to 60 minutes until golden and tender."
+    ],
+    "steps_fr": [
+      "Prechauffer le four a 180°C et beurrer un plat a gratin.",
+      "Eplucher les pommes de terre et les couper en fines rondelles. Ne pas rincer les tranches apres la decoupe.",
+      "Faire chauffer le lait avec l'ail, la muscade, le sel et le poivre. Ajouter les pommes de terre et laisser fremir 10 a 12 minutes, jusqu'a ce qu'elles soient juste tendres.",
+      "Repartir les pommes de terre regulierement dans le plat prepare.",
+      "Verser la creme et un peu de lait de cuisson, puis ajouter quelques noisettes de beurre.",
+      "Cuire 50 a 60 minutes, jusqu'a ce que le gratin soit dore et fondant."
     ]
   },
   {
@@ -224,6 +232,16 @@ const recipes = [
       "Add the brown onion to the pan and cook for 2 to 3 minutes. Add the chicken stock and thyme and simmer for 3 minutes.",
       "Stir in the thickened cream and dijon mustard and simmer for 5 to 6 minutes until slightly thickened.",
       "Serve the chicken and broccolini with the sauce spooned over the top."
+    ],
+    "steps_fr": [
+      "Mettre le four a 75°C ou sur maintien au chaud.",
+      "Secher le poulet, assaisonner avec sel et poivre, puis l'enrober legerement de farine.",
+      "Faire chauffer 2 c. a soupe d'huile d'olive dans une grande poele a feu moyen-vif. Saisir le poulet en plusieurs fois jusqu'a ce qu'il soit dore et cuit, puis le garder au chaud au four.",
+      "Porter l'eau a ebullition, ajouter le broccolini et cuire 2 minutes. Bien egoutter.",
+      "Faire chauffer le reste d'huile d'olive dans la meme poele et cuire le broccolini 1 minute. Le remettre au chaud au four.",
+      "Ajouter l'oignon dans la poele et cuire 2 a 3 minutes. Ajouter le bouillon de poulet et le thym, puis laisser mijoter 3 minutes.",
+      "Incorporer la creme et la moutarde de Dijon, puis laisser mijoter 5 a 6 minutes jusqu'a leger epaississement.",
+      "Servir le poulet et le broccolini nappes de sauce."
     ]
   },
   {
@@ -300,6 +318,13 @@ const recipes = [
       "Add the brown onion and garlic cloves and cook for 2 to 3 minutes.",
       "Add the tomato pulp, coconut milk, canned chickpeas, salt and black pepper. Bring to a boil, then simmer for 10 minutes.",
       "Add the fresh spinach and cook for 5 minutes more."
+    ],
+    "steps_fr": [
+      "Emincer l'oignon et l'ail, puis laver les epinards frais.",
+      "Faire chauffer l'huile d'olive dans une sauteuse. Ajouter le curry et le curcuma, puis cuire 1 minute.",
+      "Ajouter l'oignon et l'ail, puis cuire 2 a 3 minutes.",
+      "Ajouter la pulpe de tomate, le lait de coco, les pois chiches, le sel et le poivre. Porter a ebullition, puis mijoter 10 minutes.",
+      "Ajouter les epinards frais et cuire encore 5 minutes."
     ]
   },
   {
@@ -352,11 +377,21 @@ const recipes = [
       "Add the chicken to the pan and cook until golden and cooked through.",
       "Stir in the sour cream and cook for 2 minutes.",
       "Serve the chicken and pineapple over the couscous."
+    ],
+    "steps_fr": [
+      "Eplucher l'ananas et le couper en petits morceaux.",
+      "Couper le poulet en petits morceaux et assaisonner avec sel et poivre.",
+      "Preparer le couscous avec 750 ml d'eau chaude, couvrir 5 minutes, puis egrainer a la fourchette et reserver.",
+      "Cuire l'ananas dans une poele jusqu'a ce qu'il soit legerement caramelise.",
+      "Ajouter le poulet dans la poele et cuire jusqu'a ce qu'il soit dore et cuit a coeur.",
+      "Incorporer la creme fraiche et cuire 2 minutes.",
+      "Servir le poulet et l'ananas sur le couscous."
     ]
   },
   {
     "id": "tabbouleh",
     "name": "Couscous citrus salad",
+    "name_fr": "Salade de couscous aux agrumes",
     "time": "10 min",
     "servings": 4,
     "tags": [
@@ -428,6 +463,13 @@ const recipes = [
       "Add the grated carrot, raisins and olive oil and mix well.",
       "Peel the remaining orange, remove the white pith, cut it into pieces and fold it through gently.",
       "Chill for at least 2 hours before serving."
+    ],
+    "steps_fr": [
+      "Mettre le couscous dans un grand saladier. Ajouter le jus des citrons et d'une orange, puis melanger avec la menthe, le sel et le poivre.",
+      "Couper les tomates et le poivron en des, puis les ajouter au couscous.",
+      "Ajouter la carotte rapee, les raisins secs et l'huile d'olive, puis bien melanger.",
+      "Eplucher l'orange restante, retirer la peau blanche, la couper en morceaux et l'incorporer delicatement.",
+      "Mettre au frais au moins 2 heures avant de servir."
     ]
   },
   {
@@ -501,6 +543,14 @@ const recipes = [
       "Cook the quinoa in boiling water for 10 to 15 minutes, then drain.",
       "Chop the dried cranberries.",
       "Mix the quinoa with the roasted butternut pumpkin, goat cheese, dried cranberries and pepitas."
+    ],
+    "steps_fr": [
+      "Eplucher le butternut et le couper en petits morceaux.",
+      "Melanger le butternut avec l'huile d'olive, le curcuma, le miel, le sel et le poivre.",
+      "Rotir a 200°C pendant 20 minutes, jusqu'a ce qu'il soit tendre.",
+      "Cuire le quinoa dans de l'eau bouillante 10 a 15 minutes, puis egoutter.",
+      "Hacher les cranberries sechees.",
+      "Melanger le quinoa avec le butternut roti, le fromage de chevre, les cranberries et les graines de courge."
     ]
   },
   {
@@ -578,6 +628,15 @@ const recipes = [
       "Add the chicken breast and cook until golden and cooked through.",
       "Return the capsicum and brown onion to the pan, add the tomato pulp and cook for 5 minutes.",
       "Finish with lime juice and serve."
+    ],
+    "steps_fr": [
+      "Emincer les poivrons et les oignons.",
+      "Faire chauffer la moitie de l'huile d'olive dans une poele et cuire les poivrons et oignons jusqu'a ce qu'ils soient tendres et legerement grilles. Reserver.",
+      "Emincer le poulet et l'assaisonner avec sel et poivre.",
+      "Faire chauffer le reste d'huile d'olive dans la meme poele. Ajouter l'ail, le cumin et le paprika, puis cuire 30 secondes.",
+      "Ajouter le poulet et cuire jusqu'a ce qu'il soit dore et cuit a coeur.",
+      "Remettre les poivrons et oignons dans la poele, ajouter la pulpe de tomate et cuire 5 minutes.",
+      "Terminer avec le jus de citron vert et servir."
     ]
   },
   {
@@ -660,6 +719,14 @@ const recipes = [
       "Spread the vegetables on a baking tray and roast for 30 minutes, turning halfway through.",
       "Add the canned cannellini beans and roast for 10 minutes more.",
       "Sprinkle with parmesan and bake until the cheese is melted and golden."
+    ],
+    "steps_fr": [
+      "Prechauffer le four a 200°C.",
+      "Couper le butternut, les poivrons, les courgettes et les oignons en morceaux de taille bouchee.",
+      "Melanger les legumes et les gousses d'ail avec l'huile d'olive, le romarin, le thym, le sel et le poivre.",
+      "Etaler les legumes sur une plaque et rotir 30 minutes, en remuant a mi-cuisson.",
+      "Ajouter les haricots cannellini et rotir 10 minutes de plus.",
+      "Parsemer de parmesan et cuire jusqu'a ce que le fromage soit fondu et dore."
     ]
   },
   {
@@ -725,6 +792,12 @@ const recipes = [
       "Add the water, vegetable stock, frozen peas, salt and black pepper and cook 15 min / 100°C / speed 1.",
       "Add the fresh mint and cook 3 min / 100°C / speed 1.",
       "Add the thickened cream and blend for 1 minute, increasing the speed gradually to speed 10."
+    ],
+    "steps_fr": [
+      "Mettre l'oignon et l'huile d'olive dans le bol du Thermomix, puis hacher 3 sec / vitesse 6.",
+      "Ajouter l'eau, le bouillon de legumes, les petits pois surgeles, le sel et le poivre, puis cuire 15 min / 100°C / vitesse 1.",
+      "Ajouter la menthe fraiche et cuire 3 min / 100°C / vitesse 1.",
+      "Ajouter la creme et mixer 1 minute, en augmentant progressivement jusqu'a la vitesse 10."
     ]
   },
   {
@@ -827,6 +900,14 @@ const recipes = [
       "Add the fresh ginger, half of the spring onions, the brown onion, carrot and Chinese cabbage and cook for 8 min / 100°C / speed spoon / reverse.",
       "Add the marinated beef and ramen noodles and cook for 6 min / 100°C / speed spoon / reverse.",
       "Season with salt and black pepper, then serve with the fresh coriander, remaining spring onions and harissa."
+    ],
+    "steps_fr": [
+      "Couper le boeuf en fines lanieres et le faire mariner avec 2 c. a soupe de sauce soja, 2 c. a soupe de sauce yakitori et 1 gousse d'ail rapee pendant 15 minutes.",
+      "Emincer l'oignon, les carottes, les oignons nouveaux et le chou chinois. Raper le gingembre et hacher la coriandre.",
+      "Mettre l'eau, les cubes de bouillon de poulet, 3 c. a soupe de sauce soja et 2 c. a soupe de sauce yakitori dans le bol du Thermomix, puis chauffer 8 min / Varoma / vitesse 2.",
+      "Ajouter le gingembre, la moitie des oignons nouveaux, l'oignon, les carottes et le chou chinois, puis cuire 8 min / 100°C / vitesse cuillere / sens inverse.",
+      "Ajouter le boeuf marine et les nouilles ramen, puis cuire 6 min / 100°C / vitesse cuillere / sens inverse.",
+      "Assaisonner avec sel et poivre, puis servir avec la coriandre, le reste des oignons nouveaux et la harissa."
     ]
   },
   {
@@ -1022,6 +1103,14 @@ const recipes = [
       "Pour in the coconut milk, add the salt and black pepper, then simmer for 10 minutes.",
       "Add the white fish fillets, cover and cook for 10 minutes until flaky.",
       "Finish with lime juice and serve."
+    ],
+    "steps_fr": [
+      "Faire chauffer l'huile d'olive dans une poele et cuire l'oignon 3 minutes.",
+      "Ajouter l'ail, le curry, le curcuma, le gingembre et les flocons de piment, puis cuire 1 minute.",
+      "Ajouter la carotte, le poivron et la tomate, puis cuire 5 minutes.",
+      "Verser le lait de coco, ajouter le sel et le poivre, puis mijoter 10 minutes.",
+      "Ajouter les filets de poisson, couvrir et cuire 10 minutes jusqu'a ce qu'ils se defassent facilement.",
+      "Terminer avec le jus de citron vert et servir."
     ]
   },
   {
@@ -1301,6 +1390,13 @@ const recipes = [
       "Add the diced tomatoes, 800 ml vegetable stock and green lentils. Simmer for 25 minutes.",
       "Add the canned chickpeas and cook for 10 minutes more.",
       "Finish with salt, black pepper, lemon juice and fresh coriander."
+    ],
+    "steps_fr": [
+      "Faire chauffer l'huile d'olive dans une grande casserole et cuire l'oignon, la carotte et l'ail pendant 5 minutes.",
+      "Ajouter le cumin, la coriandre moulue, le paprika et le curcuma, puis cuire 1 minute.",
+      "Ajouter les tomates concassees, 800 ml de bouillon de legumes et les lentilles vertes. Mijoter 25 minutes.",
+      "Ajouter les pois chiches et cuire 10 minutes de plus.",
+      "Terminer avec le sel, le poivre, le jus de citron et la coriandre fraiche."
     ]
   },
   {
@@ -1484,6 +1580,14 @@ const recipes = [
       "Add the chilli powder, cumin, oregano, capsicum, tomato pulp, salt and black pepper.",
       "Cook 15 min / 120°C / spoon speed with the Varoma on top instead of the measuring cup.",
       "Add the canned red kidney beans and canned black beans and cook 10 min / 120°C / spoon speed."
+    ],
+    "steps_fr": [
+      "Mettre l'oignon et l'ail dans le bol du Thermomix et mixer 4 sec / vitesse 5.",
+      "Racler les parois du bol, ajouter l'huile d'olive et cuire 3 min / 100°C / vitesse 2.",
+      "Ajouter le boeuf hache et cuire 3 min / 100°C / vitesse cuillere.",
+      "Ajouter le piment, le cumin, l'origan, le poivron, la pulpe de tomate, le sel et le poivre.",
+      "Cuire 15 min / 120°C / vitesse cuillere avec le Varoma pose dessus a la place du gobelet doseur.",
+      "Ajouter les haricots rouges et les haricots noirs, puis cuire 10 min / 120°C / vitesse cuillere."
     ]
   },
   {
@@ -1556,6 +1660,14 @@ const recipes = [
       "Add the zucchini and cook for 5 minutes more.",
       "Add the tomatoes, mixed herbs, salt and black pepper.",
       "Simmer for 20 to 25 minutes until the vegetables are tender and the sauce has reduced."
+    ],
+    "steps_fr": [
+      "Faire chauffer l'huile d'olive dans une grande poele et cuire l'oignon et l'ail pendant 5 minutes.",
+      "Ajouter l'aubergine et cuire 8 minutes jusqu'a ce qu'elle commence a ramollir.",
+      "Ajouter les poivrons et cuire 5 minutes.",
+      "Ajouter les courgettes et cuire encore 5 minutes.",
+      "Ajouter les tomates, les herbes, le sel et le poivre.",
+      "Mijoter 20 a 25 minutes, jusqu'a ce que les legumes soient tendres et que la sauce ait reduit."
     ]
   },
   {
@@ -1711,6 +1823,15 @@ const recipes = [
       "Cut the chicken breast into small pieces and cook in a separate pan until golden and cooked through.",
       "Add the chicken breast to the zucchini mixture and stir in the sour cream.",
       "Simmer for 2 minutes, then serve with the rice."
+    ],
+    "steps_fr": [
+      "Cuire le riz separement selon les instructions du paquet.",
+      "Emincer les oignons et les courgettes.",
+      "Faire chauffer l'huile d'olive dans une grande poele et cuire les oignons 5 minutes.",
+      "Ajouter les courgettes, assaisonner avec sel et poivre, puis cuire jusqu'a ce qu'elles soient tendres et legerement dorees.",
+      "Couper le poulet en petits morceaux et le cuire dans une autre poele jusqu'a ce qu'il soit dore et cuit a coeur.",
+      "Ajouter le poulet au melange de courgettes et incorporer la creme fraiche.",
+      "Laisser mijoter 2 minutes, puis servir avec le riz."
     ]
   },
   {
@@ -1835,6 +1956,16 @@ const recipes = [
       "Stir in the canned cannellini beans, roasted fennel and roasted capsicum and warm through.",
       "Taste and balance with lemon juice or sugar or date syrup if needed.",
       "Top with the green olives and pepitas to serve."
+    ],
+    "steps_fr": [
+      "Prechauffer le four a 200°C. Couper la moitie du fenouil et 1 poivron en quartiers, melanger avec un peu d'huile d'olive et rotir 25 minutes.",
+      "Faire chauffer le reste d'huile d'olive dans une grande casserole et cuire l'oignon 7 minutes.",
+      "Ajouter l'ail, le reste du poivron et le reste du fenouil, puis cuire 5 minutes.",
+      "Incorporer le cumin, le paprika fume, les graines de fenouil, les flocons de piment et le safran, puis cuire 1 minute.",
+      "Ajouter les tomates concassees, le bouillon de legumes, le thym, le sel et le poivre, puis mijoter 25 minutes.",
+      "Incorporer les haricots cannellini, le fenouil roti et le poivron roti, puis rechauffer.",
+      "Gouter et equilibrer avec le jus de citron ou le sucre / sirop de datte si besoin.",
+      "Servir avec les olives vertes et les graines de courge par-dessus."
     ]
   },
   {
@@ -1929,6 +2060,16 @@ const recipes = [
       "Cover and simmer for 25 to 30 minutes, stirring regularly and reducing the heat if it thickens too quickly.",
       "Stir in the fresh spinach for the final 5 minutes.",
       "Finish with lime juice and serve with the rice."
+    ],
+    "steps_fr": [
+      "Cuire le riz separement selon les instructions du paquet.",
+      "Rincer les lentilles corail.",
+      "Couper l'oignon, l'ail et la carotte en petits des.",
+      "Faire chauffer l'huile d'olive dans une casserole et cuire l'oignon, l'ail et la carotte pendant 5 minutes.",
+      "Ajouter les lentilles corail, 320 ml de lait de coco, 450 ml d'eau, le curcuma, le curry, le sel et le poivre.",
+      "Couvrir et mijoter 25 a 30 minutes, en remuant regulierement et en baissant le feu si le dahl epaissit trop vite.",
+      "Incorporer les epinards frais pendant les 5 dernieres minutes.",
+      "Terminer avec le jus de citron vert et servir avec le riz."
     ]
   },
   {
@@ -1989,6 +2130,12 @@ const recipes = [
       "Slice the potatoes, tomatoes, eggplant and zucchini thinly.",
       "Layer the vegetables in a baking dish, seasoning each layer with thyme, salt, black pepper and olive oil.",
       "Bake for 45 minutes until tender and lightly golden."
+    ],
+    "steps_fr": [
+      "Prechauffer le four a 180°C.",
+      "Couper les pommes de terre, les tomates, l'aubergine et les courgettes en fines rondelles.",
+      "Disposer les legumes en couches dans un plat, en assaisonnant chaque couche avec thym, sel, poivre et huile d'olive.",
+      "Cuire 45 minutes, jusqu'a ce que les legumes soient tendres et legerement dores."
     ]
   },
   {
@@ -2164,6 +2311,14 @@ const recipes = [
       "Scatter over the almonds and grated cheese, then drizzle with the plant-based cream and olive oil.",
       "Season with thyme, ground cumin, salt and black pepper.",
       "Bake for 30 minutes until golden."
+    ],
+    "steps_fr": [
+      "Prechauffer le four a 180°C.",
+      "Couper le chou-fleur en fleurettes et le blanchir 10 minutes.",
+      "Disposer le chou-fleur dans un plat a gratin.",
+      "Parsemer d'amandes et de fromage rape, puis arroser avec la creme vegetale et l'huile d'olive.",
+      "Assaisonner avec le thym, le cumin moulu, le sel et le poivre.",
+      "Cuire 30 minutes, jusqu'a ce que le gratin soit dore."
     ]
   },
   {
@@ -2344,6 +2499,14 @@ const recipes = [
       "Add the fresh spinach, roasted carrot, canned chickpeas, salt, black pepper and 75 ml water. Cook for 5 minutes until the spinach has wilted.",
       "Stir in the lemon juice.",
       "Serve with the yogurt spooned over the top."
+    ],
+    "steps_fr": [
+      "Prechauffer le four a 200°C chaleur tournante.",
+      "Melanger les carottes avec 2 c. a soupe d'huile d'olive et rotir 20 minutes, jusqu'a ce qu'elles soient tendres mais encore fermes.",
+      "Faire chauffer le reste d'huile d'olive dans une grande poele et cuire les oignons avec le cumin moulu pendant 10 minutes, jusqu'a ce qu'ils soient dores.",
+      "Ajouter les epinards frais, les carottes roties, les pois chiches, le sel, le poivre et 75 ml d'eau. Cuire 5 minutes jusqu'a ce que les epinards tombent.",
+      "Incorporer le jus de citron.",
+      "Servir avec le yaourt par-dessus."
     ]
   },
   {
@@ -2589,6 +2752,17 @@ const recipes = [
       "Repeat with another layer of tomato sauce, lasagne sheets, remaining spinach filling and another third of the white sauce.",
       "Finish with lasagne sheets, the remaining tomato sauce, the remaining white sauce and the rest of the parmesan.",
       "Bake for 45 minutes until golden."
+    ],
+    "steps_fr": [
+      "Faire tomber les epinards frais dans une poele, presser l'exces d'eau, puis les hacher petit.",
+      "Melanger les epinards avec la ricotta, l'ail, l'oeuf et la moitie du parmesan pour faire la farce. Assaisonner avec sel, poivre et muscade.",
+      "Preparer la bechamel en faisant fondre le beurre, en incorporant la farine, puis en ajoutant le lait au fouet jusqu'a obtenir une sauce lisse et epaisse.",
+      "Faire chauffer l'huile d'olive dans une poele, cuire l'oignon 2 minutes, puis ajouter les tomates, l'origan et le basilic seche. Mijoter 5 minutes. Incorporer le basilic frais.",
+      "Prechauffer le four a 200°C.",
+      "Etaler un peu de sauce tomate au fond du plat, ajouter une couche de feuilles de lasagne, la moitie de la farce aux epinards et un tiers de la bechamel.",
+      "Recommencer avec sauce tomate, feuilles de lasagne, le reste de farce aux epinards et un autre tiers de bechamel.",
+      "Terminer avec des feuilles de lasagne, le reste de sauce tomate, le reste de bechamel et le reste de parmesan.",
+      "Cuire 45 minutes, jusqu'a ce que le dessus soit dore."
     ]
   },
   {
@@ -2672,6 +2846,14 @@ const recipes = [
       "Whisk the egg, sour cream, gruyere, remaining salt and black pepper.",
       "Spread the vegetables over the pastry, pour over the egg mixture and scatter the goat cheese on top.",
       "Bake for about 30 minutes."
+    ],
+    "steps_fr": [
+      "Melanger la farine, le beurre, l'eau et la moitie du sel dans le bol du Thermomix pendant 1 min / mode petrin, puis mettre la pate au frais 15 minutes.",
+      "Prechauffer le four a 220°C et etaler la pate dans un moule a tarte.",
+      "Cuire les courgettes, les poivrons et les oignons dans une poele jusqu'a ce qu'ils soient tendres et legerement dores.",
+      "Fouetter les oeufs, la creme fraiche, le gruyere, le reste du sel et le poivre.",
+      "Repartir les legumes sur la pate, verser l'appareil aux oeufs et ajouter le fromage de chevre par-dessus.",
+      "Cuire environ 30 minutes."
     ]
   },
   {
@@ -2852,6 +3034,15 @@ const recipes = [
       "Add the coconut milk, curry powder, cooked butternut pumpkin, salt and black pepper and simmer for 5 minutes.",
       "Prepare the couscous separately with the hot water, cover for 5 minutes, then fluff with a fork.",
       "Serve the curry with the couscous."
+    ],
+    "steps_fr": [
+      "Eplucher le butternut, retirer les graines et le couper en morceaux. Faire bouillir 10 a 15 minutes, puis egoutter.",
+      "Emincer le poulet.",
+      "Faire chauffer l'huile d'olive dans une grande poele et cuire l'oignon et l'ail pendant 3 minutes.",
+      "Ajouter le poulet et cuire jusqu'a ce qu'il soit dore.",
+      "Ajouter le lait de coco, le curry, le butternut cuit, le sel et le poivre, puis mijoter 5 minutes.",
+      "Preparer le couscous separement avec l'eau chaude, couvrir 5 minutes, puis egrainer a la fourchette.",
+      "Servir le curry avec le couscous."
     ]
   },
   {
@@ -2924,6 +3115,15 @@ const recipes = [
       "Bake at 180°C for 15 to 20 minutes until the fish is cooked through.",
       "Prepare the couscous separately with the hot water, cover for 5 minutes, then fluff with a fork.",
       "Serve the curry with the couscous."
+    ],
+    "steps_fr": [
+      "Eplucher le butternut, retirer les graines et le couper en morceaux. Faire bouillir 10 a 15 minutes, puis egoutter.",
+      "Hacher finement l'oignon et l'ail.",
+      "Mettre les filets de barramundi et le butternut cuit dans un plat allant au four.",
+      "Melanger le lait de coco avec le curry, l'oignon, l'ail, le sel et le poivre, puis verser sur le poisson.",
+      "Cuire a 180°C pendant 15 a 20 minutes, jusqu'a ce que le poisson soit cuit a coeur.",
+      "Preparer le couscous separement avec l'eau chaude, couvrir 5 minutes, puis egrainer a la fourchette.",
+      "Servir le curry avec le couscous."
     ]
   },
   {
@@ -3029,6 +3229,15 @@ const recipes = [
       "Stir in 150 ml coconut milk and cook for 5 minutes more.",
       "Add the fresh spinach and cook until wilted.",
       "Finish with salt, black pepper and lemon juice."
+    ],
+    "steps_fr": [
+      "Faire chauffer l'huile d'olive dans une grande casserole et cuire l'oignon 6 minutes jusqu'a ce qu'il soit tendre.",
+      "Ajouter l'ail et le gingembre frais, puis cuire 2 minutes.",
+      "Ajouter le cumin moulu, la coriandre moulue, le curcuma et le garam masala, puis cuire 1 minute.",
+      "Ajouter les tomates concassees, les lentilles corail et 900 ml de bouillon de legumes. Porter a ebullition, puis mijoter 20 minutes en remuant regulierement.",
+      "Incorporer 150 ml de lait de coco et cuire encore 5 minutes.",
+      "Ajouter les epinards frais et cuire jusqu'a ce qu'ils tombent.",
+      "Terminer avec sel, poivre et jus de citron."
     ]
   },
   {
@@ -3110,6 +3319,13 @@ const recipes = [
       "Roast on a large tray for 35 to 40 minutes until the tomatoes collapse and the edges caramelise.",
       "Transfer everything to a large pot, add the vegetable stock and simmer for 10 minutes.",
       "Crush some of the canned chickpeas against the side of the pot, then stir in the fresh spinach until wilted."
+    ],
+    "steps_fr": [
+      "Prechauffer le four a 200°C.",
+      "Couper les tomates, les poivrons et l'oignon en morceaux de taille bouchee, puis les melanger avec l'ail, les pois chiches, l'huile d'olive, le paprika fume, le cumin, le sel et le poivre.",
+      "Rotir sur une grande plaque 35 a 40 minutes, jusqu'a ce que les tomates s'affaissent et que les bords caramelisent.",
+      "Transferer le tout dans une grande casserole, ajouter le bouillon de legumes et mijoter 10 minutes.",
+      "Ecraser une partie des pois chiches contre le bord de la casserole, puis incorporer les epinards frais jusqu'a ce qu'ils tombent."
     ]
   },
   {
@@ -3201,6 +3417,14 @@ const recipes = [
       "Increase the heat, add the turkey mince and cook until browned.",
       "Stir in the tomato paste, crushed tomatoes, chicken stock, dried oregano, dried basil, salt and black pepper.",
       "Bring to a boil, then simmer uncovered for 35 to 40 minutes until thick."
+    ],
+    "steps_fr": [
+      "Couper les carottes, les courgettes et les champignons en petits des.",
+      "Faire chauffer l'huile d'olive dans une grande casserole epaisse et cuire l'oignon 6 minutes jusqu'a ce qu'il soit tendre. Ajouter l'ail et cuire 2 minutes.",
+      "Ajouter les carottes, les courgettes et les champignons, puis cuire 5 minutes.",
+      "Augmenter le feu, ajouter la dinde hachee et cuire jusqu'a ce qu'elle soit doree.",
+      "Incorporer le concentre de tomate, les tomates concassees, le bouillon de poulet, l'origan, le basilic, le sel et le poivre.",
+      "Porter a ebullition, puis mijoter a decouvert 35 a 40 minutes, jusqu'a ce que la sauce epaississe."
     ]
   },
   {
@@ -3287,6 +3511,13 @@ const recipes = [
       "Add the canned cannellini beans, crushed tomatoes, vegetable stock, dried oregano, salt and black pepper.",
       "Bring to a boil, then simmer gently for 40 minutes until the vegetables are tender.",
       "Stir in the lemon juice and the remaining olive oil before serving."
+    ],
+    "steps_fr": [
+      "Faire chauffer 3 c. a soupe d'huile d'olive dans une grande casserole. Ajouter l'oignon, les carottes et le celeri, puis cuire 10 minutes jusqu'a ce qu'ils soient tendres.",
+      "Ajouter l'ail et le concentre de tomate, puis cuire 2 minutes.",
+      "Ajouter les haricots cannellini, les tomates concassees, le bouillon de legumes, l'origan, le sel et le poivre.",
+      "Porter a ebullition, puis mijoter doucement 40 minutes, jusqu'a ce que les legumes soient tendres.",
+      "Incorporer le jus de citron et le reste d'huile d'olive avant de servir."
     ]
   },
   {
@@ -3373,6 +3604,14 @@ const recipes = [
       "Nestle the salmon fillets among the vegetables, brush with the glaze and season with the remaining salt and black pepper.",
       "Roast for 15 minutes more until the salmon is cooked through.",
       "Finish with sesame seeds and lemon juice."
+    ],
+    "steps_fr": [
+      "Prechauffer le four a 200°C et melanger la sauce soja, le miel, l'ail et l'huile de sesame pour faire un glacage.",
+      "Couper la patate douce en petits cubes, melanger avec 1 c. a soupe d'huile d'olive et la moitie du sel, puis etaler sur une plaque et rotir 15 minutes.",
+      "Couper les courgettes en demi-rondelles de taille bouchee, parer le broccolini, puis ajouter les deux sur la plaque.",
+      "Installer les filets de saumon parmi les legumes, badigeonner de glacage et assaisonner avec le reste du sel et le poivre.",
+      "Rotir encore 15 minutes, jusqu'a ce que le saumon soit cuit a coeur.",
+      "Terminer avec les graines de sesame et le jus de citron."
     ]
   },
   {
@@ -3462,12 +3701,20 @@ const recipes = [
       "Add the crushed tomatoes and simmer for 5 minutes.",
       "Add the canned black beans and roasted sweet potato and simmer for 5 minutes more.",
       "Finish with black pepper and lime juice."
+    ],
+    "steps_fr": [
+      "Couper la patate douce en petits cubes, puis melanger avec 1 c. a soupe d'huile d'olive, la moitie du cumin et la moitie du sel. Rotir a 200°C pendant 20 minutes, jusqu'a ce qu'elle soit tendre.",
+      "Couper l'oignon et le poivron en des, puis faire chauffer le reste d'huile d'olive dans une grande poele et les cuire 6 minutes.",
+      "Ajouter l'ail, le reste du cumin, le paprika fume et le piment, puis cuire 1 minute.",
+      "Ajouter les tomates concassees et mijoter 5 minutes.",
+      "Ajouter les haricots noirs et la patate douce rotie, puis mijoter 5 minutes de plus.",
+      "Terminer avec le poivre et le jus de citron vert."
     ]
   },
   {
     "id": "green-goddess-pasta-sauce",
     "name": "Green Goddess Pasta Sauce",
-    "name_fr": "Sauce pasta green goddess",
+    "name_fr": "Sauce verte pour pates",
     "time": "20 min",
     "servings": 4,
     "tags": [
@@ -3544,6 +3791,14 @@ const recipes = [
       "Add the canned cannellini beans and blend until creamy.",
       "Add the raw pistachios, parmesan, remaining water, salt and black pepper and blend again.",
       "Toss through hot pasta and serve."
+    ],
+    "steps_fr": [
+      "Blanchir les epinards frais et le kale pendant 1 minute, puis egoutter et presser pour retirer l'eau.",
+      "Cuire l'oignon dans l'huile d'olive pendant 6 minutes, puis ajouter l'ail et cuire 2 minutes.",
+      "Mixer les epinards, le kale, le basilic frais, l'oignon, l'ail et la moitie de l'eau jusqu'a obtenir une sauce lisse.",
+      "Ajouter les haricots cannellini et mixer jusqu'a ce que la sauce soit cremeuse.",
+      "Ajouter les pistaches, le parmesan, le reste d'eau, le sel et le poivre, puis mixer a nouveau.",
+      "Melanger avec des pates chaudes et servir."
     ]
   },
   {
@@ -3672,6 +3927,15 @@ const recipes = [
       "Add the canned red kidney beans, canned black beans, canned chickpeas, crushed tomatoes, vegetable stock, soy sauce, brown sugar, salt and black pepper.",
       "Bring to a boil, then simmer uncovered for 30 minutes until thick.",
       "Finish with lime juice."
+    ],
+    "steps_fr": [
+      "Faire chauffer l'huile d'olive dans une grande casserole et cuire l'oignon 8 minutes jusqu'a ce qu'il soit dore.",
+      "Ajouter l'ail, les poivrons et les carottes, puis cuire 5 minutes.",
+      "Ajouter le cumin moulu, le paprika fume, le piment, l'origan et la cannelle, puis cuire 1 minute.",
+      "Ajouter le concentre de tomate et cuire 1 minute.",
+      "Ajouter les haricots rouges, les haricots noirs, les pois chiches, les tomates concassees, le bouillon de legumes, la sauce soja, le sucre, le sel et le poivre.",
+      "Porter a ebullition, puis mijoter a decouvert 30 minutes, jusqu'a epaississement.",
+      "Terminer avec le jus de citron vert."
     ]
   },
   {
@@ -3790,6 +4054,14 @@ const recipes = [
       "Add the eggplant, canned chickpeas, diced tomatoes, vegetable stock, smoked paprika, ground cumin, chilli powder, salt and black pepper. Bring to a boil, then cover and simmer gently for 25 to 35 minutes, stirring occasionally.",
       "Mix the yogurt with the lemon juice, lemon zest, fresh dill and a small pinch of salt while the chili simmers.",
       "Serve the chili warm with the lemon-herb yogurt and fresh parsley on top."
+    ],
+    "steps_fr": [
+      "Couper l'aubergine en cubes de 2 cm, melanger avec la moitie de l'huile d'olive et une pincee de sel, puis faire dorer dans une poele tres chaude ou une poele-gril pendant 8 a 10 minutes. Travailler en plusieurs fois si besoin, puis reserver.",
+      "Faire chauffer le reste d'huile d'olive dans une grande casserole a feu moyen. Ajouter l'oignon, l'ail et le poivron, puis cuire 5 minutes jusqu'a ce qu'ils soient tendres.",
+      "Incorporer le concentre de tomate et cuire 1 a 2 minutes jusqu'a ce qu'il fonce et sente bon.",
+      "Ajouter l'aubergine, les pois chiches, les tomates concassees, le bouillon de legumes, le paprika fume, le cumin, le piment, le sel et le poivre. Porter a ebullition, puis couvrir et mijoter doucement 25 a 35 minutes en remuant de temps en temps.",
+      "Pendant que le chili mijote, melanger le yaourt avec le jus de citron, le zeste, l'aneth et une petite pincee de sel.",
+      "Servir le chili chaud avec le yaourt citron-herbes et le persil frais par-dessus."
     ]
   },
   {
@@ -3877,6 +4149,13 @@ const recipes = [
       "Push the vegetables to one side of the skillet. Pour in the beaten eggs and scramble until cooked.",
       "Stir in the frozen peas, cauliflower, turmeric, salt and black pepper. Cook for 5 to 7 minutes until the cauliflower is tender.",
       "Serve hot with sliced spring onions and sesame seeds."
+    ],
+    "steps_fr": [
+      "Raper le chou-fleur avec une rape ou un robot jusqu'a obtenir une texture de riz, puis preparer l'oignon, la carotte, le poivron, l'ail et les petits pois.",
+      "Faire chauffer l'huile d'olive dans une grande poele a feu moyen. Ajouter l'oignon, la carotte, le poivron et l'ail, puis faire revenir environ 5 minutes jusqu'a ce que les legumes soient tendres.",
+      "Pousser les legumes d'un cote de la poele. Verser les oeufs battus et les brouiller jusqu'a cuisson.",
+      "Incorporer les petits pois, le chou-fleur, le curcuma, le sel et le poivre. Cuire 5 a 7 minutes, jusqu'a ce que le chou-fleur soit tendre.",
+      "Servir chaud avec les oignons nouveaux eminces et les graines de sesame."
     ]
   },
   {
@@ -3995,6 +4274,14 @@ const recipes = [
       "Add the sweet potato, ground cumin, smoked paprika, chilli powder, cinnamon, cayenne pepper, salt and black pepper, then stir to coat everything in the spices.",
       "Add the diced tomatoes, canned black beans and chicken stock. Bring to a boil, reduce to low heat, cover and simmer for 25 to 30 minutes until the sweet potato is tender.",
       "Adjust seasoning, then serve with yogurt, fresh coriander and a squeeze of lime juice."
+    ],
+    "steps_fr": [
+      "Faire chauffer l'huile d'olive dans une grande casserole a feu moyen. Ajouter l'oignon et l'ail, puis faire revenir 3 a 4 minutes jusqu'a ce qu'ils soient parfumes et translucides.",
+      "Incorporer le poivron et cuire encore 2 minutes.",
+      "Ajouter la dinde hachee et l'ecraser avec une cuillere en bois. Cuire 5 a 6 minutes jusqu'a ce qu'elle soit doree.",
+      "Ajouter la patate douce, le cumin, le paprika fume, le piment, la cannelle, le piment de Cayenne, le sel et le poivre, puis melanger pour bien enrober.",
+      "Ajouter les tomates concassees, les haricots noirs et le bouillon de poulet. Porter a ebullition, baisser le feu, couvrir et mijoter 25 a 30 minutes, jusqu'a ce que la patate douce soit tendre.",
+      "Rectifier l'assaisonnement, puis servir avec le yaourt, la coriandre fraiche et un filet de jus de citron vert."
     ]
   }
 ];
@@ -5536,6 +5823,20 @@ const ingredientTranslationsFr = {
   "vegetable stock": "bouillon de légumes",
   "frozen peas": "petits pois surgelés",
   "white fish fillets": "filets de poisson blanc",
+  "beef steaks": "steaks de boeuf",
+  "fresh chinese cabbage": "chou chinois frais",
+  "fresh coriander": "coriandre fraiche",
+  "green beans": "haricots verts",
+  "green olives": "olives vertes",
+  "harissa": "harissa",
+  "oranges": "oranges",
+  "plant-based cream": "creme vegetale",
+  "raisins": "raisins secs",
+  "ramen noodles": "nouilles ramen",
+  "saffron": "safran",
+  "soy sauce": "sauce soja",
+  "sugar or date syrup": "sucre ou sirop de datte",
+  "yakitori sauce": "sauce yakitori",
   "carrot": "carotte",
   "ground ginger": "gingembre moulu",
   "chilli flakes": "flocons de piment",
