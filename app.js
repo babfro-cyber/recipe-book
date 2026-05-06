@@ -2743,7 +2743,7 @@ const recipes = [
       }
     ],
     "steps": [
-      "Wilt the fresh spinach in a pan, squeeze out the excess water, then chop it small.",
+      "Heat a large pan over medium heat. Add the fresh spinach by handfuls and cook for 2 to 3 minutes until wilted. Transfer to a sieve or bowl, let cool slightly, squeeze out the excess water, then chop it small.",
       "Mix the spinach with ricotta, garlic cloves, egg and half the parmesan to make the filling. Season with salt, black pepper and nutmeg.",
       "Make the white sauce by melting the butter, stirring in the plain flour, then whisking in the milk until smooth and thickened.",
       "Heat the olive oil in a pan, cook the brown onion for 2 minutes, then add the diced tomatoes, dried oregano and dried basil and simmer for 5 minutes. Stir in the fresh basil.",
@@ -2754,7 +2754,7 @@ const recipes = [
       "Bake for 45 minutes until golden."
     ],
     "steps_fr": [
-      "Faire tomber les epinards frais dans une poele, presser l'exces d'eau, puis les hacher petit.",
+      "Faire chauffer une grande poele a feu moyen. Ajouter les epinards frais en plusieurs fois et cuire 2 a 3 minutes, jusqu'a ce qu'ils tombent. Les transferer dans une passoire ou un bol, laisser tiedir, presser l'exces d'eau, puis les hacher petit.",
       "Melanger les epinards avec la ricotta, l'ail, l'oeuf et la moitie du parmesan pour faire la farce. Assaisonner avec sel, poivre et muscade.",
       "Preparer la bechamel en faisant fondre le beurre, en incorporant la farine, puis en ajoutant le lait au fouet jusqu'a obtenir une sauce lisse et epaisse.",
       "Faire chauffer l'huile d'olive dans une poele, cuire l'oignon 2 minutes, puis ajouter les tomates, l'origan et le basilic seche. Mijoter 5 minutes. Incorporer le basilic frais.",
@@ -5915,14 +5915,26 @@ function formatIngredientInline(ingredient, scaledQty = null) {
   return `${qty} ${unit} ${item}`.trim();
 }
 
+function normalizeMatchText(value) {
+  return String(value)
+    .toLowerCase()
+    .normalize("NFD")
+    .replace(/[\u0300-\u036f]/g, "");
+}
+
 function getIngredientMatchTokens(ingredient) {
-  const base = ingredient.item.toLowerCase();
-  const translated = translateIngredientItem(ingredient.item).toLowerCase();
+  const base = normalizeMatchText(ingredient.item);
+  const translated = normalizeMatchText(translateIngredientItem(ingredient.item));
   const tokens = new Set([base, translated]);
+  const genericParts = new Set(["fresh", "frais", "fraiche", "dried", "seche", "sechees", "ground", "moulu", "moulue", "canned", "conserve"]);
   const baseParts = base.split(" ");
   const translatedParts = translated.split(" ");
-  if (baseParts.length > 1) tokens.add(baseParts[baseParts.length - 1]);
-  if (translatedParts.length > 1) tokens.add(translatedParts[translatedParts.length - 1]);
+  if (baseParts.length > 1 && !genericParts.has(baseParts[baseParts.length - 1])) {
+    tokens.add(baseParts[baseParts.length - 1]);
+  }
+  if (translatedParts.length > 1 && !genericParts.has(translatedParts[translatedParts.length - 1])) {
+    tokens.add(translatedParts[translatedParts.length - 1]);
+  }
   return Array.from(tokens).filter((token) => token.length > 3);
 }
 
@@ -5953,7 +5965,7 @@ function stripStepQuantities(step) {
 }
 
 function formatStepWithQuantities(step, recipe, servings) {
-  const stepLower = String(step).toLowerCase();
+  const stepLower = normalizeMatchText(step);
   const matches = recipe.ingredients.filter((ingredient) => {
     const tokens = getIngredientMatchTokens(ingredient);
     const tokenHit = tokens.some((token) => stepLower.includes(token));
