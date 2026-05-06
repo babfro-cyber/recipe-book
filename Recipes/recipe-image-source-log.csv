@@ -1,15 +1,15 @@
 recipe_id,recipe_name,image_path,source_url,license_note
-gratin-dauphinois,Gratin Dauphinois,Recipes/gratin-dauphinois.jpg,https://commons.wikimedia.org/wiki/Special:FilePath/Gratin%20dauphinois%20avr%2020.jpg,CC BY-SA 4.0 via Wikimedia Commons
-quiche-courgettes-poivrons-onions,Capsicum & Zucchini Quiche,Recipes/quiche-courgettes-poivrons-onions.jpg,https://www.pexels.com/photo/homemade-vegetable-quiche-on-rustic-cloth-33433982/,Pexels License
+gratin-dauphinois,Gratin Dauphinois,Recipes/gratin-dauphinois.jpg,AI-generated local image,Generated in Codex from recipe-only ingredient prompt; approved by user
+quiche-courgettes-poivrons-onions,Capsicum & Zucchini Quiche,Recipes/quiche-courgettes-poivrons-onions.jpg,AI-generated local image,Generated in Codex from recipe-only ingredient prompt; approved by user
 poulet-courgettes-creme,Chicken & Zucchini in Cream,Recipes/poulet-courgettes-creme.jpg,https://www.pexels.com/photo/piece-of-chicken-on-a-creamy-sauce-with-sliced-zucchini-18265289/,Pexels License
 eggplant-parmigiana,Eggplant Parmigiana,Recipes/eggplant-parmigiana.jpg,https://www.pexels.com/photo/eggplant-parmesan-dish-19295802/,Pexels License
 fajitas,Mexican Fajitas,Recipes/fajitas.jpg,https://www.pexels.com/photo/colorful-mexican-fajitas-with-sides-on-vibrant-cloth-35739878/,Pexels License
-bolognese-thermomix,Bolognese,Recipes/bolognese-thermomix.jpg,https://www.pexels.com/photo/traditional-spaghetti-bolognese-with-fresh-ingredients-28575312/,Pexels License
-chicken-broccolini-mustard,Chicken & Broccolini in Creamy Mustard Sauce,Recipes/chicken-broccolini-mustard.jpg,https://www.pexels.com/photo/grilled-chicken-served-with-broccoli-25390071/,Pexels License
-chilli-con-carne-thermomix,Chilli Con Carne (Thermomix),Recipes/chilli-con-carne-thermomix.jpg,https://commons.wikimedia.org/wiki/Special:FilePath/Chili%20con%20carne%20%285123202867%29.jpg,Wikimedia Commons; see source page for exact license
+bolognese-thermomix,Bolognese,Recipes/bolognese-thermomix.jpg,AI-generated local image,Generated in Codex from recipe-only ingredient prompt; approved by user
+chicken-broccolini-mustard,Chicken & Broccolini in Creamy Mustard Sauce,Recipes/chicken-broccolini-mustard.jpg,AI-generated local image,Generated in Codex from recipe-only ingredient prompt; approved by user
+chilli-con-carne-thermomix,Chilli Con Carne (Thermomix),Recipes/chilli-con-carne-thermomix.jpg,AI-generated local image,Generated in Codex from recipe-only ingredient prompt; approved by user
 curry-poisson,Coconut Fish Curry,Recipes/curry-poisson.jpg,https://www.pexels.com/photo/delicious-traditional-fish-curry-with-rice-36477073/,Pexels License
 lasagne-lentilles,Lentil & Vegetable Lasagne,Recipes/lasagne-lentilles.jpg,https://www.pexels.com/photo/cheesy-vegetable-lasagna-on-elegant-plate-29050589/,Pexels License
-gratin-choufleur,Cauliflower Almond Gratin,Recipes/gratin-choufleur.jpg,https://www.pexels.com/photo/a-plate-of-baked-cauliflower-6544494/,Pexels License
+gratin-choufleur,Cauliflower Almond Gratin,Recipes/gratin-choufleur.jpg,AI-generated local image,Generated in Codex from recipe-only ingredient prompt; approved by user
 poulet-ananas-couscous,Chicken with Pineapple & Couscous,Recipes/poulet-ananas-couscous.jpg,https://www.pexels.com/photo/chicken-with-vegetables-16789510/,Pexels License
 chickpeas-swiss-chard,"Chickpeas, spinach, yogurt (Ottolenghi)",Recipes/chickpeas-swiss-chard.jpg,https://www.pexels.com/photo/roasted-vegetables-and-beans-on-yogurt-plate-28889501/,Pexels License
 vegan-bean-stew-fennel,Vegan Bean Stew with Fennel,Recipes/vegan-bean-stew-fennel.jpg,https://www.pexels.com/photo/vegan-mexican-bean-soup-28286253/,Pexels License
@@ -19,9 +19,9 @@ lentils-brussels-skillet,Lentils & Brussels Sprouts Skillet,Recipes/lentils-brus
 harira-lentil-chickpea,"Moroccan Lentil & Chickpea Soup (Harira)",Recipes/harira-lentil-chickpea.jpg,https://www.pexels.com/photo/delicious-moroccan-harira-soup-with-flatbread-33434038/,Pexels License
 moussaka,Moussaka,Recipes/moussaka.jpg,https://www.pexels.com/photo/delicious-homemade-eggplant-moussaka-on-plate-29535638/,Pexels License
 pea-mint-soup,"Pea & Mint Soup (Thermomix)",Recipes/pea-mint-soup.jpg,https://www.pexels.com/photo/green-soup-in-white-ceramic-bowl-8738014/,Pexels License
-poulet-basquaise,"Poulet Basquaise (Thermomix)",Recipes/poulet-basquaise.jpg,https://www.pexels.com/photo/a-bowl-of-chicken-stew-10338448/,Pexels License
+poulet-basquaise,"Poulet Basquaise (Thermomix)",Recipes/poulet-basquaise.jpg,AI-generated local image,Generated in Codex from recipe-only ingredient prompt; approved by user
 quinoa-butternut-cranberries,"Quinoa salad with honey-roasted butternut, goat cheese and cranberries",Recipes/quinoa-butternut-cranberries.jpg,https://www.pexels.com/photo/vegan-lentil-and-butternut-squash-salad-28286236/,Pexels License
-ratatouille-thermomix,Ratatouille,Recipes/ratatouille-thermomix.jpg,https://www.pexels.com/photo/colorful-ratatouille-in-rustic-baking-dish-36863876/,Pexels License
+ratatouille-thermomix,Ratatouille,Recipes/ratatouille-thermomix.jpg,AI-generated local image,Generated in Codex from recipe-only ingredient prompt; approved by user
 roasted-veg-cannellini,Rustic Roasted Vegetable Bake with Cannellini Beans,Recipes/roasted-veg-cannellini.jpg,https://www.pexels.com/photo/plate-of-cooked-beans-with-vegetables-36912393/,Pexels License
 curry-epinards-pois-chiche,Spinach & Chickpea Coconut Curry,Recipes/curry-epinards-pois-chiche.jpg,https://www.pexels.com/photo/cooked-food-on-black-bowl-12765333/,Pexels License
 spinach-ricotta-lasagne,Spinach & Ricotta Lasagne,Recipes/spinach-ricotta-lasagne.jpg,https://www.pexels.com/photo/close-up-of-lasagna-served-in-white-ceramic-plate-4162496/,Pexels License
