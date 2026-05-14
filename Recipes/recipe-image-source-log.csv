@@ -1,33 +1,39 @@
 recipe_id,recipe_name,image_path,source_url,license_note
 gratin-dauphinois,Gratin Dauphinois,Recipes/gratin-dauphinois.jpg,AI-generated local image,Generated in Codex from recipe-only ingredient prompt; approved by user
 quiche-courgettes-poivrons-onions,Capsicum & Zucchini Quiche,Recipes/quiche-courgettes-poivrons-onions.jpg,AI-generated local image,Generated in Codex from recipe-only ingredient prompt; approved by user
-poulet-courgettes-creme,Chicken & Zucchini in Cream,Recipes/poulet-courgettes-creme.jpg,https://www.pexels.com/photo/piece-of-chicken-on-a-creamy-sauce-with-sliced-zucchini-18265289/,Pexels License
-eggplant-parmigiana,Eggplant Parmigiana,Recipes/eggplant-parmigiana.jpg,https://www.pexels.com/photo/eggplant-parmesan-dish-19295802/,Pexels License
-fajitas,Mexican Fajitas,Recipes/fajitas.jpg,https://www.pexels.com/photo/colorful-mexican-fajitas-with-sides-on-vibrant-cloth-35739878/,Pexels License
+poulet-courgettes-creme,Chicken & Zucchini in Cream,https://www.eatingwell.com/thmb/fe20YyT49aMbWGVKuj3-F6QBy0w=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/CreamyChickenZucchiniCasserole-Step-4-185_preview_maxWidth_4000_maxHeight_4000_ppi_300_quality_100-c2b05c8336a3413cb87b9fed9b844811.jpg,User-provided image URL,Replaced by user-provided image URL
+eggplant-parmigiana,Eggplant Parmigiana,https://www.recipetineats.com/tachyon/2021/05/Eggplant-Parmigiana_1-SQ.jpg?resize=500%2C500,User-provided image URL,Replaced by user-provided image URL
+fajitas,Mexican Fajitas,https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTjuyRxiRLvoNUpRHJB5e0wS-pwOBaDHlkZEw&s,User-provided Google image thumbnail,Replaced by user-provided image URL
 bolognese-thermomix,Bolognese,Recipes/bolognese-thermomix.jpg,AI-generated local image,Generated in Codex from recipe-only ingredient prompt; approved by user
 chicken-broccolini-mustard,Chicken & Broccolini in Creamy Mustard Sauce,Recipes/chicken-broccolini-mustard.jpg,AI-generated local image,Generated in Codex from recipe-only ingredient prompt; approved by user
 chilli-con-carne-thermomix,Chilli Con Carne (Thermomix),Recipes/chilli-con-carne-thermomix.jpg,AI-generated local image,Generated in Codex from recipe-only ingredient prompt; approved by user
-curry-poisson,Coconut Fish Curry,Recipes/curry-poisson.jpg,https://www.pexels.com/photo/delicious-traditional-fish-curry-with-rice-36477073/,Pexels License
-lasagne-lentilles,Lentil & Vegetable Lasagne,Recipes/lasagne-lentilles.jpg,https://www.pexels.com/photo/cheesy-vegetable-lasagna-on-elegant-plate-29050589/,Pexels License
+curry-poisson,Coconut Fish Curry,https://www.gimmesomeoven.com/wp-content/uploads/2025/04/Cod-Curry-6-1.jpg,User-provided image URL,Replaced by user-provided image URL
+lasagne-lentilles,Lentil & Vegetable Lasagne,https://img.taste.com.au/WyZuiGFY/taste/2016/11/vegetarian-lasagne-96693-2.jpeg,User-provided image URL,Replaced by user-provided image URL
 gratin-choufleur,Cauliflower Almond Gratin,Recipes/gratin-choufleur.jpg,AI-generated local image,Generated in Codex from recipe-only ingredient prompt; approved by user
-poulet-ananas-couscous,Chicken with Pineapple & Couscous,Recipes/poulet-ananas-couscous.jpg,https://www.pexels.com/photo/chicken-with-vegetables-16789510/,Pexels License
-chickpeas-swiss-chard,"Chickpeas, spinach, yogurt (Ottolenghi)",Recipes/chickpeas-swiss-chard.jpg,https://www.pexels.com/photo/roasted-vegetables-and-beans-on-yogurt-plate-28889501/,Pexels License
+poulet-ananas-couscous,Chicken with Pineapple & Couscous,https://cookaborough.com/_next/image?url=https%3A%2F%2Fassets.cookaborough.com%2Fpublic%2Fmeals%2F07d9f1a6-eeea-43ca-878b-b81464ea734b.jpg&w=1920&q=75,User-provided image URL,Replaced by user-provided image URL
+chickpeas-swiss-chard,"Chickpeas, spinach, yogurt (Ottolenghi)",https://www.foodandwine.com/thmb/GgLDTnY7sb0lDhHgRVBqrhpnNWo=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/201105-xl-caraway-spiced-chickpea-stew-with-mint-yogurt-2000-68ea85dc601a48ae99a4af88a1efacd4.jpg,User-provided image URL,Replaced by user-provided image URL
 vegan-bean-stew-fennel,Vegan Bean Stew with Fennel,Recipes/vegan-bean-stew-fennel.jpg,https://www.pexels.com/photo/vegan-mexican-bean-soup-28286253/,Pexels License
-dahl-lentilles-epinards,Lentil Dahl with Spinach and Spices,Recipes/dahl-lentilles-epinards.jpg,https://www.pexels.com/photo/delicious-indian-lentil-soup-with-bread-35375003/,Pexels License
-lentil-soup-thermomix,Lentil Soup (Thermomix),Recipes/lentil-soup-thermomix.jpg,https://www.pexels.com/photo/warm-and-hearty-lentil-soup-in-terra-cotta-bowl-29850843/,Pexels License
+dahl-lentilles-epinards,Lentil Dahl with Spinach and Spices,https://saltedmint.com/wp-content/uploads/2024/01/red-lentil-curry-dhal-6-500x500.jpg,User-provided image URL,Replaced by user-provided image URL
+lentil-soup-thermomix,Lentil Soup (Thermomix),https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSxaMAxdv4BasqYdCk967jm3HNx2PAJJcm64A&s,User-provided Google image thumbnail,Replaced by user-provided image URL
 lentils-brussels-skillet,Lentils & Brussels Sprouts Skillet,Recipes/lentils-brussels-skillet.jpg,https://www.pexels.com/photo/cooked-vegetable-on-pan-3510155/,Pexels License
-harira-lentil-chickpea,"Moroccan Lentil & Chickpea Soup (Harira)",Recipes/harira-lentil-chickpea.jpg,https://www.pexels.com/photo/delicious-moroccan-harira-soup-with-flatbread-33434038/,Pexels License
-moussaka,Moussaka,Recipes/moussaka.jpg,https://www.pexels.com/photo/delicious-homemade-eggplant-moussaka-on-plate-29535638/,Pexels License
-pea-mint-soup,"Pea & Mint Soup (Thermomix)",Recipes/pea-mint-soup.jpg,https://www.pexels.com/photo/green-soup-in-white-ceramic-bowl-8738014/,Pexels License
+harira-lentil-chickpea,"Moroccan Lentil & Chickpea Soup (Harira)",https://www.thespruceeats.com/thmb/VYPte2nVkETFFHeLTicXLmXeWx4=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/classic-moroccan-harira-soup-2394920-hero-01-ffd8665c225c48c4a45c4314e96821b2.jpg,User-provided image URL,Replaced by user-provided image URL
+moussaka,Moussaka,https://www.recipetineats.com/tachyon/2019/03/Greek-Moussaka_3-re-edited-SQ.jpg?resize=500%2C500,User-provided image URL,Replaced by user-provided image URL
+pea-mint-soup,"Pea & Mint Soup (Thermomix)",https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS6V0K0v29CpPl1fivBUzW9hKu3XnLWolPj_w&s,User-provided Google image thumbnail,Replaced by user-provided image URL
+poelee-poulet-carottes-haricots,"Chicken, Carrot & Green Bean Skillet",https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSNVqH7arqOy2pBF5wDZ5oB98F3k_BZo_HO6Q&s,User-provided Google image thumbnail,Replaced by user-provided image URL
 poulet-basquaise,"Poulet Basquaise (Thermomix)",Recipes/poulet-basquaise.jpg,AI-generated local image,Generated in Codex from recipe-only ingredient prompt; approved by user
-quinoa-butternut-cranberries,"Quinoa salad with honey-roasted butternut, goat cheese and cranberries",Recipes/quinoa-butternut-cranberries.jpg,https://www.pexels.com/photo/vegan-lentil-and-butternut-squash-salad-28286236/,Pexels License
+quinoa-butternut-cranberries,"Quinoa salad with honey-roasted butternut, goat cheese and cranberries",https://foolproofliving.com/wp-content/uploads/2023/01/Butternut-Squash-Quinoa-Salad-with-Pomegranate.jpg,User-provided image URL,Replaced by user-provided image URL
 ratatouille-thermomix,Ratatouille,Recipes/ratatouille-thermomix.jpg,AI-generated local image,Generated in Codex from recipe-only ingredient prompt; approved by user
-roasted-veg-cannellini,Rustic Roasted Vegetable Bake with Cannellini Beans,Recipes/roasted-veg-cannellini.jpg,https://www.pexels.com/photo/plate-of-cooked-beans-with-vegetables-36912393/,Pexels License
-curry-epinards-pois-chiche,Spinach & Chickpea Coconut Curry,Recipes/curry-epinards-pois-chiche.jpg,https://www.pexels.com/photo/cooked-food-on-black-bowl-12765333/,Pexels License
-spinach-ricotta-lasagne,Spinach & Ricotta Lasagne,Recipes/spinach-ricotta-lasagne.jpg,https://www.pexels.com/photo/close-up-of-lasagna-served-in-white-ceramic-plate-4162496/,Pexels License
-split-pea-soup-thermomix,"Split Pea Soup (Thermomix)",Recipes/split-pea-soup-thermomix.jpg,https://www.pexels.com/photo/green-peas-soup-15529521/,Pexels License
-legumes-farcis,Stuffed Vegetables,Recipes/legumes-farcis.jpg,https://www.pexels.com/photo/stuffed-vegetables-with-rice-and-peppers-31953512/,Pexels License
-tabbouleh,"Tabbouleh (Original)",Recipes/tabbouleh.jpg,https://www.pexels.com/photo/fresh-tabbouleh-salad-with-mint-and-tomatoes-32592714/,Pexels License
+roasted-veg-cannellini,Rustic Roasted Vegetable Bake with Cannellini Beans,https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQHSlqdApiEPw6p_xrMjOMQtw7-LUqMesv-9Q&s,User-provided Google image thumbnail,Replaced by user-provided image URL
+curry-epinards-pois-chiche,Spinach & Chickpea Coconut Curry,https://cupfulofkale.com/wp-content/uploads/2019/11/Chickpea-and-Spinach-Curry-Close-Up-2.jpeg.webp,User-provided image URL,Replaced by user-provided image URL
+spinach-ricotta-lasagne,Spinach & Ricotta Lasagne,https://api.photon.aremedia.net.au/wp-content/uploads/sites/4/2015/03/19/e45f8cf903ef47ec94feb52dce841000/spinach-and-ricotta-lasagne.jpg?fit=2048%2C1536,User-provided image URL,Replaced by user-provided image URL
+split-pea-soup-thermomix,"Split Pea Soup (Thermomix)",https://www.allrecipes.com/thmb/VbJpto2PNNZNCemQU-Hk-1J0nZg=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/219170-HamAndSplitPeaSoup-DDMFS-4x3-154b6d4968b14fa190ea733b66bbbc8e.jpg,User-provided image URL,Replaced by user-provided image URL
+legumes-farcis,Stuffed Vegetables,https://food.fnr.sndimg.com/content/dam/images/food/fullset/2014/4/17/0/MN0305H_Bulgur-Stuffed-Summer-Vegetables_s4x3.jpg.rend.hgtvcom.1280.720.suffix/1397746391011.webp,User-provided image URL,Replaced by user-provided image URL
+tabbouleh,Couscous citrus salad,https://images.squarespace-cdn.com/content/v1/5fa0c111fe243e6a767cc724/5ac37e6b-95fe-473a-b2f7-e150e6abc005/19A.jpg,User-provided image URL,Replaced by user-provided image URL
 eggplant-chickpea-chili,Eggplant & Chickpea Chili,Recipes/eggplant-chickpea-chili.jpg,https://yuka.io/en/recipes/eggplant-chili/,Yuka recipe image
 golden-cauliflower-fried-rice,Golden Cauliflower Fried Rice,Recipes/golden-cauliflower-fried-rice.jpg,https://yuka.io/en/recipes/cauliflower-fried-rice/,Yuka recipe image
 turkey-chili,Hearty Turkey & Veggie Chili,Recipes/hearty-turkey-veggie-chili.jpg,https://yuka.io/en/recipes/turkey-chili/,Yuka recipe image
+tian-de-legumes,Vegetable Tian,https://lacuisinedegeraldine.fr/wp-content/uploads/2023/05/tian-de-legumes-104-1365x2048.jpg.webp,User-provided image URL,Replaced by user-provided image URL
+baked-salmon-tray-bake,Baked Salmon Tray Bake,Recipes/baked-salmon-tray-bake.jpg,AI-generated local image,Generated in Codex from recipe-only ingredient prompt; approved by user
+black-bean-sweet-potato-filling,Black Bean & Sweet Potato Filling,https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSITHzHJUwCPUA0mPwgs0R5BpBNSJgrDwE_AA&s,User-provided Google image thumbnail,Replaced by user-provided image URL
+greek-white-bean-soup,Greek White Bean Soup (Fasolada),https://www.veganeasy.org/wp-content/uploads/2025/03/vegan_recipe-Fasolada-Greek-bean-stew_fcsize-single.jpg,User-provided image URL,Replaced by user-provided image URL
+green-goddess-pasta-sauce,Green Goddess Pasta Sauce,https://greenhealthycooking.com/wp-content/uploads/2023/08/Aji-Verde-Sauce-2.jpg,User-provided image URL,Replaced by user-provided image URL
