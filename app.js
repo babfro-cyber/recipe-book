@@ -2513,7 +2513,7 @@ const recipes = [
     "id": "lasagne-lentilles",
     "name": "Lentil & Vegetable Lasagne",
     "name_fr": "Lasagnes lentilles et legumes",
-    "time": "60 min",
+    "time": "90 min",
     "servings": 4,
     "tags": [
       "oven",
@@ -2558,13 +2558,13 @@ const recipes = [
       },
       {
         "item": "water",
-        "qty": 300,
+        "qty": 150,
         "unit": "ml"
       },
       {
         "item": "crushed tomatoes",
-        "qty": 400,
-        "unit": "g"
+        "qty": 1,
+        "unit": "can"
       },
       {
         "item": "tomato paste",
@@ -2588,17 +2588,17 @@ const recipes = [
       },
       {
         "item": "butter",
-        "qty": 30,
+        "qty": 40,
         "unit": "g"
       },
       {
         "item": "plain flour",
-        "qty": 30,
+        "qty": 40,
         "unit": "g"
       },
       {
         "item": "milk",
-        "qty": 400,
+        "qty": 520,
         "unit": "ml"
       },
       {
@@ -2624,19 +2624,21 @@ const recipes = [
     ],
     "steps": [
       "Peel and finely chop the onion, garlic, and carrots. Cut zucchini and capsicum into small pieces.",
+      "Rinse the lentils, then cook in a large saucepan of boiling water for 25-30 min until tender. Drain and set aside.",
       "Heat olive oil in a large pan. Add onion and garlic. Cook 3 min on medium heat. Add carrots, zucchini, and capsicum. Cook 5 more min.",
-      "Add lentils, crushed tomatoes, tomato paste, thyme, oregano, sweet paprika, salt, black pepper and 300 ml of water. Bring to a boil, then cover and simmer 20-25 min until lentils are tender and sauce is reduced.",
+      "Add the cooked lentils, 1 can crushed tomatoes, tomato paste, thyme, oregano, sweet paprika, salt, black pepper and 150 ml of water. Bring to a boil, then simmer 10-15 min until the sauce is thick but still moist.",
       "Make the white sauce: melt butter in a saucepan, stir in flour, then gradually whisk in milk. Cook 5-7 min until thickened. Add nutmeg.",
       "Preheat oven to 180°C. In a baking dish, layer lentil sauce, lasagna sheets, and white sauce. Repeat for 2-3 layers. Finish with white sauce on top.",
-      "Bake 30-35 min at 180°C. Let rest 10 min before serving."
+      "Bake 45 min at 180°C. Let rest 10 min before serving."
     ],
     "steps_fr": [
       "Peler et hacher finement l'oignon, l'ail et les carottes. Couper courgettes et poivron en petits pieces.",
+      "Rincer les lentilles, puis les cuire dans une grande casserole d'eau bouillante 25-30 min jusqu'a ce qu'elles soient tendres. Egoutter et reserver.",
       "Faire chauffer l'huile d'olive dans une grande poele. Ajouter oignon et ail. Cuire 3 min a feu moyen. Ajouter carottes, courgettes et poivron. Cuire 5 min de plus.",
-      "Ajouter lentilles, tomates concassees, concentre de tomate, thym, origan, paprika doux, sel, poivre et 300 ml d'eau. Porter a ebullition, puis couvrir et mijoter 20-25 min jusqu'a ce que les lentilles soient tendres et la sauce reduite.",
+      "Ajouter les lentilles cuites, 1 boite de tomates concassees, concentre de tomate, thym, origan, paprika doux, sel, poivre et 150 ml d'eau. Porter a ebullition, puis mijoter 10-15 min jusqu'a obtenir une sauce epaisse mais encore humide.",
       "Faire la bechamel : faire fondre le beurre dans une casserole, incorporer la farine, puis ajouter le lait progressivement en fouettant. Cuire 5-7 min jusqu'a epaississement. Ajouter la muscade.",
       "Prechauffer le four a 180°C. Dans un plat, alterner sauce aux lentilles, feuilles de lasagne et bechamel. Recommencer pour 2-3 couches. Terminer par la bechamel.",
-      "Cuire 30-35 min a 180°C. Laisser reposer 10 min avant de servir."
+      "Cuire 45 min a 180°C. Laisser reposer 10 min avant de servir."
     ]
   },
   {
